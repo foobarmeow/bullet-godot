@@ -52,15 +52,18 @@ func end_game():
 
 func _on_hud_start_game():
 	var l1 = levels[0].instantiate()
+	l1.level_complete.connect(_on_level_complete)
 	add_child(l1)
 	
-	var wave1 = l1.get_node("Wave1")
-	wave1.start($Player)
+	l1.start($Player)
 	return
 	
 	spawn()
 	$SpawnTimer.start()
 	$HUD.hit(_lives)
+	
+func _on_level_complete():
+	$HUD.level_complete()
 
 
 func _on_hud_player_ready():

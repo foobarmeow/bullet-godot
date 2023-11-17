@@ -1,55 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://b30wm1l3hlwlu"]
+[gd_scene load_steps=3 format=3 uid="uid://qqacu0db0yoh"]
 
-[ext_resource type="PackedScene" uid="uid://btiwg5djjyl0p" path="res://scenes/mobs/mob_primitives/round.tscn" id="1_n8ue8"]
-[ext_resource type="Script" path="res://scenes/mobs/mob.gd" id="1_thm8t"]
+[ext_resource type="Script" path="res://scenes/mobs/mob_primitives/holder/mob_holder.gd" id="1_t6f6o"]
+[ext_resource type="PackedScene" uid="uid://xfomqs6ncqxq" path="res://scenes/mobs/mob_primitives/block.tscn" id="2_6bhpq"]
 
-[node name="square" type="Node2D" groups=["mob"]]
-script = ExtResource("1_thm8t")
+[node name="Square" type="Node2D"]
+script = ExtResource("1_t6f6o")
 
-[node name="Mob" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(-32, -32)
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
-[node name="Mob2" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(-16, -32)
+[node name="Area2D" parent="." instance=ExtResource("2_6bhpq")]
+position = Vector2(-16, 16)
 
-[node name="Mob3" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(0, -32)
+[node name="Area2D2" parent="." instance=ExtResource("2_6bhpq")]
+position = Vector2(16, 16)
 
-[node name="Mob4" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(16, -32)
+[node name="Area2D3" parent="." instance=ExtResource("2_6bhpq")]
+position = Vector2(16, -16)
 
-[node name="Mob5" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(32, -32)
+[node name="Area2D4" parent="." instance=ExtResource("2_6bhpq")]
+position = Vector2(-16, -16)
 
-[node name="Mob6" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(32, -16)
-
-[node name="Mob7" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(32, 0)
-
-[node name="Mob8" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(32, 16)
-
-[node name="Mob9" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(32, 32)
-
-[node name="Mob10" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(16, 32)
-
-[node name="Mob11" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(0, 32)
-
-[node name="Mob12" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(-16, 32)
-
-[node name="Mob13" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(-32, 32)
-
-[node name="Mob14" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(-32, 16)
-
-[node name="Mob15" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(-32, 0)
-
-[node name="Mob16" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(-32, -16)
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_exit_screen"]
