@@ -12,6 +12,7 @@ var tracking: bool
 var mob_offset: int
 
 func _init():
+	tracking = true
 	if mob_scene != null:
 		var mob_for_offset = mob_scene.instantiate()
 		mob_offset = mob_for_offset.get_node("Sprite2D").texture.get_width()
@@ -25,12 +26,17 @@ func start(type: String, p: Area2D):
 		"line":
 			spawn(mob_line)
 			
+func start_level(p: Area2D):
+	player = p
+	# After the timeout, stop tracking
+	await get_tree().create_timer(tracking_timeout).timeout
+	tracking = false
+			
 func spawn(scene: PackedScene):
 	position = get_spawn_position(mob_offset)
 	var mob = scene.instantiate()
 	add_child(mob)
 	
-	tracking = true
 	# After the timeout, stop tracking
 	await get_tree().create_timer(tracking_timeout).timeout
 	tracking = false

@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdj0ta3k6iega"]
+
+[ext_resource type="Script" path="res://scenes/levels/wave.gd" id="1_lgude"]
+[ext_resource type="PackedScene" uid="uid://b30wm1l3hlwlu" path="res://scenes/mobs/square.tscn" id="2_7uh34"]
+
+[node name="Level1" type="Node2D"]
+
+[node name="Wave1" type="Node2D" parent="."]
+script = ExtResource("1_lgude")
+
+[node name="square" parent="Wave1" instance=ExtResource("2_7uh34")]
+position = Vector2(256, 88)
+
+[node name="square2" parent="Wave1" instance=ExtResource("2_7uh34")]
+position = Vector2(864, 152)
+
+[node name="square3" parent="Wave1" instance=ExtResource("2_7uh34")]
+position = Vector2(512, 264)
+
+[node name="square4" parent="Wave1" instance=ExtResource("2_7uh34")]
+position = Vector2(40, 176)
+
+[node name="square5" parent="Wave1" instance=ExtResource("2_7uh34")]
+position = Vector2(192, 408)
+
+[node name="square6" parent="Wave1" instance=ExtResource("2_7uh34")]
+position = Vector2(568, 64)
+
+[node name="square7" parent="Wave1" instance=ExtResource("2_7uh34")]
+position = Vector2(872, 336)
+
+[node name="square8" parent="Wave1" instance=ExtResource("2_7uh34")]
+position = Vector2(624, 488)
+
+[node name="square9" parent="Wave1" instance=ExtResource("2_7uh34")]
+position = Vector2(384, 632)

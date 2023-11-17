@@ -2,6 +2,7 @@ extends Node2D
 
 @export var mob_holder_scene: PackedScene
 @export var lives: int = 3
+@export var levels: Array
 
 var _lives = lives
 
@@ -32,14 +33,13 @@ func _on_player_hit():
 	$Player.position = $PlayerSpawnPosition.position
 	$Player.start()
 	
-
 	
 	_lives -= 1
 	if _lives > 0:
 		$HUD.hit(_lives)
 		
-		spawn()
-		$SpawnTimer.start()
+		#spawn()
+		#$SpawnTimer.start()
 	else:
 		end_game()
 
@@ -51,7 +51,17 @@ func end_game():
 
 
 func _on_hud_start_game():
+	var l1 = levels[0].instantiate()
+	add_child(l1)
+	
+	var wave1 = l1.get_node("Wave1")
+	wave1.start($Player)
+	return
+	
 	spawn()
 	$SpawnTimer.start()
-	$Player.start()
 	$HUD.hit(_lives)
+
+
+func _on_hud_player_ready():
+	$Player.start()
