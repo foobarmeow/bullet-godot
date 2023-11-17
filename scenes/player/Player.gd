@@ -32,17 +32,20 @@ func _process(delta):
 	position = position.clamp(Vector2.ZERO, screen_size)
 
 func blink():
-	for i in 9:
+	for i in 10:
 		print("blink", $Sprite2D.visible)
 		$Sprite2D.visible = not $Sprite2D.visible
 		await get_tree().create_timer(0.25).timeout
-	hit.emit()
 
 func start():
 	alive = true
-	$Sprite2D.visible = true
+	$Sprite2D.show()
+	
+func end():
+	alive = false
+	$Sprite2D.hide()
 
 func _on_area_entered(area):
 	if alive:
 		alive = false
-		blink()
+		hit.emit()

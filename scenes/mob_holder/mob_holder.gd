@@ -1,36 +1,43 @@
 extends Node2D
 
 @export var mob_scene: PackedScene
+@export var mob_square: PackedScene
 @export var tracking_timeout: float = 0.5
 @export var speed: int = 400
 @export var offset_from_player: int = 100
 
 var player: Area2D
 var tracking: bool
+var mob_offset: int
 
-func start_random(p: Area2D):
-	var types = ["square", "line"]
-	start(types[randi_range(0, 1)], p)
+func _init():
+	if mob_scene != null:
+		var mob_for_offset = mob_scene.instantiate()
+		mob_offset = mob_for_offset.get_node("Sprite2D").texture.get_width()
+		mob_for_offset.queue_free()
 
 func start(type: String, p: Area2D):
 	player = p
 	tracking = true
 	match type:
 		"square":
-			spawn_square(1)
+			spawn_square()
 		"line":
 			spawn_line()
-			
+	
+func spawn_square():
+	position = get_spawn_position(mob_offset)
+	var mob = mob_square.instantiate()
+	add_child(mob)
+	# After the timeout, stop tracking
+	await get_tree().create_timer(tracking_timeout).timeout
+	tracking = false
+	
 func spawn_line():
-	var mobForOffset = mob_scene.instantiate()
-	var offset = mobForOffset.get_node("Sprite2D").texture.get_width()
-	mobForOffset.queue_free()
-	
-	offset += 15
-	
+	var offset = mob_offset + 15
 	position = get_spawn_position(offset)
 	
-	var n = 5
+	var n = 30
 	var start = -(offset * n/2)
 	for i in n:
 		var mob = mob_scene.instantiate()
@@ -41,19 +48,11 @@ func spawn_line():
 	# After the timeout, stop tracking
 	await get_tree().create_timer(tracking_timeout).timeout
 	tracking = false
-	
-					
 
-func spawn_square(n: int):
-	var mobForOffset = mob_scene.instantiate()
-	var offset = mobForOffset.get_node("Sprite2D").texture.get_width()
-	mobForOffset.queue_free()
-	
+func spawn_square_drawn():
+	var offset = mob_offset
 	position = get_spawn_position(offset)
-		
-	# override n = 4 for now
-	n = 4
-	for i in n:
+	for i in 4:
 		var mob = mob_scene.instantiate()
 		add_child(mob)
 		match i:
@@ -92,10 +91,6 @@ func get_spawn_position(offset: int):
 			offset_from_player -= 10
 		return get_spawn_position(offset)
 	return center
-	
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
