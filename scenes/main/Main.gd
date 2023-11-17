@@ -32,12 +32,14 @@ func _on_player_hit():
 	$Player.position = $PlayerSpawnPosition.position
 	$Player.start()
 	
-	spawn()
-	$SpawnTimer.start()
 
+	
+	_lives -= 1
 	if _lives > 0:
-		_lives -= 1
 		$HUD.hit(_lives)
+		
+		spawn()
+		$SpawnTimer.start()
 	else:
 		end_game()
 

@@ -2,9 +2,10 @@ extends Node2D
 
 @export var mob_scene: PackedScene
 @export var mob_square: PackedScene
+@export var mob_line: PackedScene
 @export var tracking_timeout: float = 0.5
 @export var speed: int = 400
-@export var offset_from_player: int = 100
+@export var offset_from_player: int = 250
 
 var player: Area2D
 var tracking: bool
@@ -18,32 +19,33 @@ func _init():
 
 func start(type: String, p: Area2D):
 	player = p
-	tracking = true
 	match type:
 		"square":
-			spawn_square()
+			spawn(mob_square)
 		"line":
-			spawn_line()
-	
-func spawn_square():
+			spawn(mob_line)
+			
+func spawn(scene: PackedScene):
 	position = get_spawn_position(mob_offset)
-	var mob = mob_square.instantiate()
+	var mob = scene.instantiate()
 	add_child(mob)
+	
+	tracking = true
 	# After the timeout, stop tracking
 	await get_tree().create_timer(tracking_timeout).timeout
 	tracking = false
 	
-func spawn_line():
+func spawn_line_drawn():
 	var offset = mob_offset + 15
 	position = get_spawn_position(offset)
 	
 	var n = 30
-	var start = -(offset * n/2)
+	var start_offset = -(offset * n/2)
 	for i in n:
 		var mob = mob_scene.instantiate()
 		add_child(mob)
-		mob.position = Vector2(0, start)
-		start += offset
+		mob.position = Vector2(0, start_offset)
+		start_offset += offset
 				
 	# After the timeout, stop tracking
 	await get_tree().create_timer(tracking_timeout).timeout
@@ -79,13 +81,10 @@ func get_spawn_position(offset: int):
 		randi_range(0+offset, viewport.x-offset), 
 		randi_range(0+offset, viewport.y-offset), 
 	)
-	
-	print(center)
-	
+		
 	var diff = player.global_position - center
 	if diff.length() < offset_from_player:
 		# This was inside our threshold, try again
-		print_debug("too close to player, trying again: ", offset_from_player)
 		# lower the threshold to be safe
 		if offset_from_player > 0:
 			offset_from_player -= 10
