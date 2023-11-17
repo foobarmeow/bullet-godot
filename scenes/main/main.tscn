@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://bh0f0wn1i2odl"]
+
+[ext_resource type="Script" path="res://scenes/main/Main.gd" id="1_ndwyi"]
+[ext_resource type="PackedScene" uid="uid://clpbah7q1kpfh" path="res://scenes/mob_holder/mob_holder.tscn" id="2_o7rgn"]
+[ext_resource type="PackedScene" uid="uid://b1sqn6oxm0d6m" path="res://scenes/player/player.tscn" id="3_36ncr"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ndwyi")
+mob_holder_scene = ExtResource("2_o7rgn")
+
+[node name="Player" parent="." instance=ExtResource("3_36ncr")]
