@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/mobs/mob_primitives/holder/mob_holder.gd" id="1_t6f6o"]
 [ext_resource type="PackedScene" uid="uid://xfomqs6ncqxq" path="res://scenes/mobs/mob_primitives/block.tscn" id="2_6bhpq"]
 
-[node name="Square" type="Node2D"]
+[node name="Square" type="Node2D" groups=["mob"]]
 script = ExtResource("1_t6f6o")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
@@ -20,4 +20,5 @@ position = Vector2(16, -16)
 [node name="Area2D4" parent="." instance=ExtResource("2_6bhpq")]
 position = Vector2(-16, -16)
 
+[connection signal="tree_exited" from="." to="." method="_on_exit_screen"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_exit_screen"]

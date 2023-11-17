@@ -5,6 +5,7 @@ signal player_ready
 
 func end_game():
 	# Display a game over message
+	$Root/EndLabel.text = "Sucks to suck"
 	$Root/ScoreLabel.hide()
 	$Root/EndLabel.show()
 	await get_tree().create_timer(1.5).timeout

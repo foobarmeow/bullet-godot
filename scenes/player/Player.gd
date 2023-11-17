@@ -1,9 +1,11 @@
 extends Area2D
 
 @export var speed = 1200
+@export var initial_lives = 1
 
 var screen_size = Vector2.ZERO
 var alive: bool = true
+var lives: int = initial_lives
 
 signal hit
 
@@ -47,4 +49,5 @@ func end():
 func _on_area_entered(area):
 	if alive:
 		alive = false
-		hit.emit()
+		lives -= 1
+		hit.emit(lives)
