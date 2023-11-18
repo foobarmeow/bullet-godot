@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var speed: int = 100
+@export var speed: int = 1
 @export var offset_from_player: int = 25
 
 const PROGRAM_RANDOM = "random"
@@ -8,9 +8,9 @@ const PROGRAM_RANDOM = "random"
 var program: String
 var player: Node2D
 var dir: Vector2
+var target: Vector2
 
 func _ready():
-	print("mover ready")
 	start(PROGRAM_RANDOM, get_node("../Player"))
 
 func start(prgm: String, p):
@@ -20,11 +20,15 @@ func start(prgm: String, p):
 	if player == null:
 		return
 	
-	dir = position - get_random_position()
+	target = get_random_position()
 
 func _process(delta):
-	return
-	var v = dir * speed
+	var diff = position - target
+	# some threshold here would be good
+	if diff.length() < 5:
+		target = get_random_position()
+		return
+	var v = diff * speed
 	translate(v.rotated(rotation) * delta)
 	
 func get_random_position(offset: int = 0):

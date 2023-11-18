@@ -9,9 +9,8 @@ script = ExtResource("1_glxwx")
 level_name = "Suckle on my zipple"
 
 [node name="Mover" parent="." instance=ExtResource("4_ep581")]
-position = Vector2(552, 346)
+position = Vector2(536, 344)
 rotation = 3.14159
-scale = Vector2(220.244, -55.1729)
 
 [node name="PlayerSpawnPosition" type="Control" parent="."]
 layout_mode = 3

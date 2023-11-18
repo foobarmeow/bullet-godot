@@ -12,9 +12,10 @@ func fire(v: Vector2):
 func _process(delta):
 	if !fired:
 		return
-	translate(velocity.rotated(rotation) * delta)
+	var v = velocity.rotated(rotation)
+	#v = to_global(v)
+	translate(v * delta)
 
 
 func _on_screen_exit():
-	return
 	queue_free()
