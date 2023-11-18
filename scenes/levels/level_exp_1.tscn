@@ -24,6 +24,5 @@ exp = true
 [node name="Mover" parent="." instance=ExtResource("4_ep581")]
 position = Vector2(176, 56)
 speed = 100.0
-movement_type = 1
 
 [connection signal="burst" from="Mover" to="." method="_on_mover_burst"]

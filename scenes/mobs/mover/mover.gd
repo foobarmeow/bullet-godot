@@ -1,12 +1,15 @@
-extends PathFollow2D
+class_name Mover extends PathFollow2D
 
 signal burst
 
-enum MovementType {STOPPED, RANDOM, PATHED = -1}
+enum MovementType {PLAYER_STALK, STOPPED, RANDOM, PATHED = -1}
 
-@export var speed: float = .01
+@export var path_speed: float = .01
+@export var translate_speed: int = 100
 @export var offset_from_player: int = 25
 @export var movement_type: MovementType
+@export var spawner_type: Constants.SpawnerType
+@export var poppable: bool = true
 
 var fill: float = 0
 var filling: float = 0
@@ -15,13 +18,27 @@ var dir: Vector2
 var target: Vector2
 var _player
 
+
+
 func _ready():
-	var player = get_node("../Player")
-	if player == null:
-		return
+	pass
+
+
+func begin(player: Node2D):
+	process_mode = Node.PROCESS_MODE_INHERIT
+	show()
+	
 	_player = player
+
 	if movement_type == MovementType.RANDOM:
 		target = get_random_position(player)
+	elif movement_type == MovementType.PLAYER_STALK:
+		target = player.position
+		
+	var spawner = $Spawner
+	if spawner == null:
+		return
+	spawner.type = spawner_type
 
 
 func _process(delta):
@@ -33,8 +50,9 @@ func _process(delta):
 		fill -= .5 * delta
 
 	if fill >= 1:
-		burst.emit(self)
-		queue_free()
+		if poppable:
+			burst.emit(self)
+			queue_free()
 	elif fill > .90:
 		shake(delta, 8)
 	elif fill > 0.75:
@@ -53,10 +71,17 @@ func _process(delta):
 			if diff.length() < 20:
 				target = get_random_position(_player)
 				return
-			position = position.move_toward(target, delta*speed)
+			position = position.move_toward(target, delta*translate_speed)
 		MovementType.PATHED:
-			var i = speed * delta
+			var i = path_speed * delta
 			progress_ratio += i
+		MovementType.PLAYER_STALK:
+			var diff = position - target
+			# some threshold here would be good
+			if diff.length() < 20:
+				target = _player.position
+				return
+			position = position.move_toward(target, delta*translate_speed)
 		MovementType.STOPPED:
 			return
 			
