@@ -2,8 +2,10 @@ extends Area2D
 
 @export var speed = 1200
 @export var initial_lives = 1
+@export var exp: bool = false
 
 var screen_size = Vector2.ZERO
+var initial_modulate: Color
 var alive: bool = true
 var lives: int = initial_lives
 
@@ -12,6 +14,7 @@ signal hit
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
+	initial_modulate = $Sprite2D.modulate
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -47,6 +50,11 @@ func end():
 	$Sprite2D.hide()
 
 func _on_area_entered(area):
+	if exp:
+		$Sprite2D.modulate = Color("ff0000")
+		await get_tree().create_timer(.25).timeout
+		$Sprite2D.modulate = initial_modulate
+		return
 	if alive:
 		alive = false
 		lives -= 1

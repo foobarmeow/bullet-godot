@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctiicgeqawq5a"]
+
+[ext_resource type="Script" path="res://Node2D.gd" id="1_s6kt8"]
+[ext_resource type="PackedScene" uid="uid://den0ajf1m1ws3" path="res://scenes/mobs/bullet.tscn" id="2_0hdrm"]
+
+[node name="Spawner" type="Node2D"]
+position = Vector2(538, 353)
+script = ExtResource("1_s6kt8")
+bullet = ExtResource("2_0hdrm")
+speed = 350
+
+[node name="FireTimer" type="Timer" parent="."]
+wait_time = 0.75
+autostart = true
