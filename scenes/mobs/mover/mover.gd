@@ -40,7 +40,6 @@ func _process(delta):
 			translate(v.rotated(rotation) * delta)
 		PROGRAM_PATH:
 			var i = speed * delta
-			print(i, delta)
 			progress_ratio += i
 			
 func get_random_position(offset: int = 0):

@@ -25,6 +25,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." instance=ExtResource("4_emqb3")]
 position = Vector2(171, 657)
+speed = 500
+acceleration = 0.15
 exp = true
 
 [node name="Path2D" type="Path2D" parent="."]
@@ -33,4 +35,5 @@ curve = SubResource("Curve2D_kayku")
 [node name="Mover" parent="Path2D" instance=ExtResource("4_ep581")]
 position = Vector2(176, 56)
 rotation = 0.225038
+rotates = false
 speed = 0.05
