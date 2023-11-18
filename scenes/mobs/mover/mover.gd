@@ -1,48 +1,39 @@
 extends PathFollow2D
 
+enum MovementType {RANDOM, PATHED = -1}
+
 @export var speed: float = .01
 @export var offset_from_player: int = 25
+@export var movement_type: MovementType
 
-const PROGRAM_RANDOM = "random"
-const PROGRAM_PATH = "path"
-
-var program: String
-var player: Node2D
 var dir: Vector2
 var target: Vector2
-
+var _player
 
 func _ready():
-	#start(PROGRAM_RANDOM, get_node("../Player"))
-	start_path(get_node("../../Player"))
-
-func start_path(p):
-	program = PROGRAM_PATH
-	player = p
-
-func start(prgm: String, p):
-	program = prgm
-	player = p
+	var player = get_node("../Player")
 	if player == null:
 		return
-	target = get_random_position()
+	_player = player
+	if movement_type == MovementType.RANDOM:
+		target = get_random_position(player)
+
 
 func _process(delta):
 	$AnimatedSprite2D.play()
-	match program:
-		PROGRAM_RANDOM:
+	match movement_type:
+		MovementType.RANDOM:
 			var diff = position - target
 			# some threshold here would be good
-			if diff.length() < 5:
-				target = get_random_position()
+			if diff.length() < 20:
+				target = get_random_position(_player)
 				return
-			var v = diff * speed
-			translate(v.rotated(rotation) * delta)
-		PROGRAM_PATH:
+			position = position.move_toward(target, delta*speed)
+		MovementType.PATHED:
 			var i = speed * delta
 			progress_ratio += i
 			
-func get_random_position(offset: int = 0):
+func get_random_position(player, offset: int = 0):
 	if player == null:
 		return
 	# Find our center point, randomly
