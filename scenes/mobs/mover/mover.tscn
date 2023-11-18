@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7fyo24ou0om7"]
+[gd_scene load_steps=8 format=3 uid="uid://c7fyo24ou0om7"]
 
 [ext_resource type="Script" path="res://scenes/mobs/mover/mover.gd" id="1_6fl8p"]
 [ext_resource type="PackedScene" uid="uid://ctiicgeqawq5a" path="res://scenes/mobs/spawner/spawner.tscn" id="2_cvf7l"]
@@ -31,14 +31,39 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_xxnp7"]
+radius = 2.08013
+
 [node name="Mover" type="PathFollow2D"]
 rotates = false
 script = ExtResource("1_6fl8p")
 
 [node name="Spawner" parent="." instance=ExtResource("2_cvf7l")]
 position = Vector2(0, 0)
+speed = 200
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_7n6sb")
 frame_progress = 0.0729744
+
+[node name="OutsideRadius" type="Area2D" parent="."]
+scale = Vector2(4.52, 4.52)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OutsideRadius"]
+scale = Vector2(26, 26)
+shape = SubResource("CircleShape2D_xxnp7")
+
+[node name="InsideRadius" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InsideRadius"]
+scale = Vector2(49.24, 49.24)
+shape = SubResource("CircleShape2D_xxnp7")
+debug_color = Color(0.764706, 0.364706, 0.0313726, 0.419608)
+
+[connection signal="area_entered" from="OutsideRadius" to="." method="_on_outside_radius_area_entered"]
+[connection signal="area_exited" from="OutsideRadius" to="." method="_on_outside_radius_area_exited"]
+[connection signal="area_entered" from="InsideRadius" to="." method="_on_inside_radius_area_entered"]
+[connection signal="area_exited" from="InsideRadius" to="." method="_on_inside_radius_area_exited"]
