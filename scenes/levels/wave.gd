@@ -9,6 +9,7 @@ var player: Area2D
 var mob_count: int = INF
 var hit = false
 var children
+var initialized = false
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_DISABLED
@@ -31,6 +32,9 @@ func start(p: Area2D):
 				
 		c.player = p
 		c.tracking = true
+	
+	initialized = true
+	
 	await get_tree().create_timer(track_timeout).timeout
 	for c in get_children():
 		c.tracking = false
@@ -48,6 +52,7 @@ func _on_player_hit(lives: int):
 
 func _on_mob_exit():
 	mob_count -= 1
+	
 
 func _process(delta):
 	if mob_count == 0 && !hit:
