@@ -3,7 +3,7 @@ extends Area2D
 @export var speed = 500
 @export var steps_to_accel: float = 3
 @export var steps_to_decel: float = 2
-@export var initial_lives = 1
+@export var initial_health = 100
 @export var exp: bool = false
 
 const TIME_PER_STEP: float = 0.2
@@ -11,7 +11,7 @@ const TIME_PER_STEP: float = 0.2
 var screen_size = Vector2.ZERO
 var initial_modulate: Color
 var alive: bool = true
-var lives: int = initial_lives
+var health: int = initial_health
 var local_speed: int = 0
 var walk_delta: float = 0
 var walk_steps: int = 0
@@ -72,13 +72,8 @@ func _process(delta):
 			walk_delta = 0
 			
 		var decel_amount = speed/steps_to_decel
-
-		print("before decel - ", local_speed)
-
 		local_speed -= decel_amount
-		
 		velocity = last_velocity
-		print("stopped! ", local_speed, " - ", walk_delta, " - ", decel_amount, " - ", walk_steps, " - ", last_velocity)
 		
 	local_speed = clamp(local_speed, 0, speed)	
 	walk_delta += delta
@@ -93,6 +88,7 @@ func _process(delta):
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO, screen_size)
 	last_velocity = velocity
+	
 func blink():
 	for i in 10:
 		sprite.visible = not sprite.visible
