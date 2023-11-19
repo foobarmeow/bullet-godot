@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://c7fyo24ou0om7"]
+[gd_scene load_steps=14 format=3 uid="uid://c7fyo24ou0om7"]
 
 [ext_resource type="Script" path="res://scenes/mobs/mover/mover.gd" id="1_6fl8p"]
 [ext_resource type="PackedScene" uid="uid://ctiicgeqawq5a" path="res://scenes/mobs/spawner/spawner.tscn" id="2_cvf7l"]
 [ext_resource type="Texture2D" uid="uid://c4026v6xiksqa" path="res://art/sprites/kenny-1px/monochrome_tilemap_transparent.png" id="3_hgo0q"]
+[ext_resource type="Texture2D" uid="uid://ch4f7cqanjq8i" path="res://art/alert.png" id="4_kigtp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_23gr4"]
 atlas = ExtResource("3_hgo0q")
@@ -36,6 +37,53 @@ size = Vector2(10.0577, 14.0512)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xxnp7"]
 radius = 1.79453
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38ne5"]
+atlas = ExtResource("4_kigtp")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5oef"]
+atlas = ExtResource("4_kigtp")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4q51b"]
+atlas = ExtResource("4_kigtp")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2u00n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38ne5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5oef")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4q51b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4q51b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4q51b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4q51b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38ne5")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"alert",
+"speed": 7.0
+}]
 
 [node name="Mover" type="PathFollow2D"]
 rotates = false
@@ -79,8 +127,15 @@ debug_color = Color(0.764706, 0.364706, 0.0313726, 0.419608)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
+[node name="Alert" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -13)
+sprite_frames = SubResource("SpriteFrames_2u00n")
+animation = &"alert"
+
 [connection signal="area_entered" from="OutsideRadius" to="." method="_on_outside_radius_area_entered"]
 [connection signal="area_exited" from="OutsideRadius" to="." method="_on_outside_radius_area_exited"]
 [connection signal="area_entered" from="InsideRadius" to="." method="_on_inside_radius_area_entered"]
 [connection signal="area_exited" from="InsideRadius" to="." method="_on_inside_radius_area_exited"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="animation_finished" from="Alert" to="." method="_on_alert_animation_finished"]
