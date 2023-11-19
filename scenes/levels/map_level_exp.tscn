@@ -1,16 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjoh7lgonxxhv"]
+[gd_scene load_steps=7 format=3 uid="uid://cjoh7lgonxxhv"]
 
 [ext_resource type="Script" path="res://scenes/levels/map_level.gd" id="1_icc6t"]
 [ext_resource type="PackedScene" uid="uid://bhnamekyyvkpa" path="res://scenes/player/player.tscn" id="2_s21pb"]
 [ext_resource type="PackedScene" uid="uid://c7fyo24ou0om7" path="res://scenes/mobs/mover/mover.tscn" id="3_w5hcx"]
 [ext_resource type="Texture2D" uid="uid://cvcc60svfqim0" path="res://art/s2s.bg.png" id="4_kqbhy"]
+[ext_resource type="Script" path="res://scenes/levels/Camera.gd" id="5_a1xxu"]
 [ext_resource type="TileSet" uid="uid://v6fs17ekenoc" path="res://art/tilesets/new_tile_set.tres" id="5_i2agf"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_icc6t")
 
 [node name="S2s_bg" type="Sprite2D" parent="."]
-position = Vector2(579, 385)
+position = Vector2(529, 624)
 scale = Vector2(10, 10)
 texture = ExtResource("4_kqbhy")
 
@@ -36,43 +37,63 @@ layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array(1703954, 1179650, 0, 1835026, 1179650, 0, 983061, 1179650, 1, 1572885, 1048578, 1, 983063, 1048578, 1, 1114135, 1114114, 0, 1245207, 1048578, 1, 1572890, 1114114, 0, 1900570, 1179650, 0, 524316, 1179650, 0, 720924, 1048578, 1, 1769500, 1179650, 0, 589853, 1048578, 0, 851999, 1179650, 0, 1048608, 1179650, 0, 1114145, 1179650, 0, 786467, 1179650, 1, 917539, 1114114, 0, 983075, 1179650, 1, 1966115, 1048578, 0, 1638436, 1048578, 0, 1441830, 1179650, 0, 1310759, 1048578, 0, 1835048, 1048578, 1, 1179689, 1048578, 1, 1572905, 1048578, 0, 1966121, 1179650, 1, 1769514, 1048578, 0, 1179692, 1114114, 0, 720900, 1114114, 0, 655367, 1048578, 1, 917511, 1048578, 1, 1048585, 1048578, 1, 458762, 1179650, 1, 589836, 1114114, 0, 589839, 1048578, 0, 524305, 1048578, 1, 1179683, 1179650, 1, 786468, 1048578, 0, 917540, 1114114, 1, 983076, 1179650, 0, 1179685, 1048578, 1, 589862, 1048578, 1, 1048614, 1114114, 0, 589863, 1179650, 1, 720935, 1048578, 1, 1114153, 1048578, 1, 655402, 1048578, 0, 983082, 1048578, 0, 655403, 1114114, 1, 786479, 1179650, 0, 524336, 1048578, 0, 720944, 1048578, 1, 589873, 1048578, 1, 589874, 1048578, 0, 1376285, 393218, 12, 1507362, 393218, 12, 1507357, 393218, 13, 1441823, 393218, 13, 1507360, 393218, 15, 1441822, 393218, 15, 1507359, 393218, 14, 1441819, 393218, 14, 1310752, 393218, 14, 1376287, 393218, 12, 1441826, 393218, 12, 1638432, 393218, 12, 1638430, 393218, 12, 1638428, 393218, 12, 1376289, 393218, 12, 1441824, 393218, 13, 1310748, 393218, 13, 3538967, 1114114, 1, 3473438, 1048578, 0, 3276832, 1114114, 0, 3211320, 1114114, 0, 3670078, 1048578, 0, 4456512, 1114114, 0, 2883653, 1048578, 0, 4194376, 1048578, 0, 2949151, 1114114, 1, 2555940, 1179650, 1, 3276845, 1048578, 0, 3342355, 1048578, 1, 4325400, 1048578, 0, 2883609, 1048578, 0, 2752538, 1048578, 1, 2687004, 1179650, 0, 2097181, 1114114, 0, 3342370, 1179650, 1, 4128802, 1114114, 0, 3145766, 1114114, 1, 2949160, 1048578, 0, 3145769, 1048578, 1, 3538993, 1179650, 0, 4653111, 1114114, 0, 2818109, 1048578, 1, 4587584, 1114114, 1, 2883651, 1114114, 0, 2359367, 1048578, 0, 3997768, 1048578, 1, 4522052, 1179650, 0, 4128840, 1179650, 1, 3735628, 1048578, 1, 4522036, 1048578, 0, 4325446, 1114114, 1)
 
 [node name="Player" parent="." instance=ExtResource("2_s21pb")]
-position = Vector2(124, 200)
+position = Vector2(1181.88, 993.26)
+motion_mode = 1
+floor_max_angle = 1.5708
 speed = 125
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(3.5, 3.5)
+script = ExtResource("5_a1xxu")
 
-[node name="StillGuard" parent="." instance=ExtResource("3_w5hcx")]
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="StillGuard" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(567, 326)
 movement_type = 1
 spawner_type = -1
 
-[node name="StillGuard2" parent="." instance=ExtResource("3_w5hcx")]
+[node name="StillGuard2" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(383, 532)
 movement_type = 1
 spawner_type = -1
 
-[node name="StillGuard3" parent="." instance=ExtResource("3_w5hcx")]
+[node name="StillGuard3" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(744, 499)
 movement_type = 1
 spawner_type = -1
 
-[node name="StillGuard4" parent="." instance=ExtResource("3_w5hcx")]
+[node name="StillGuard4" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(778, 546)
 movement_type = 1
 spawner_type = -1
 
-[node name="StillGuard5" parent="." instance=ExtResource("3_w5hcx")]
+[node name="StillGuard5" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(737, 588)
 movement_type = 1
 spawner_type = -1
 
-[node name="StillGuard6" parent="." instance=ExtResource("3_w5hcx")]
+[node name="StillGuard6" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(443, 584)
 movement_type = 1
 spawner_type = -1
 
-[node name="StillGuardCircle" parent="." instance=ExtResource("3_w5hcx")]
+[node name="StillGuardCircle" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(397, 986)
 movement_type = 1
 spawner_type = 2
+
+[node name="Chaser" parent="Enemies" instance=ExtResource("3_w5hcx")]
+position = Vector2(1052, 1061)
+spawner_type = -1
+
+[node name="AnimatedSprite2D" parent="Enemies/Chaser" index="5"]
+scale = Vector2(1.43998, 1.43998)
+
+[node name="Area2D" parent="Enemies/Chaser/AnimatedSprite2D" index="0" groups=["enemy"]]
+
+[node name="CollisionShape2D" parent="Enemies/Chaser/AnimatedSprite2D/Area2D" index="0"]
+scale = Vector2(1.6174, 1.09025)
+
+[editable path="Enemies/Chaser"]
+[editable path="Enemies/Chaser/Spawner"]
