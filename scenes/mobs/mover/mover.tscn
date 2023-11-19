@@ -1,9 +1,9 @@
 [gd_scene load_steps=20 format=3 uid="uid://c7fyo24ou0om7"]
 
 [ext_resource type="Script" path="res://scenes/mobs/mover/mover.gd" id="1_6fl8p"]
-[ext_resource type="PackedScene" uid="uid://ctiicgeqawq5a" path="res://scenes/mobs/spawner/spawner.tscn" id="2_cvf7l"]
+[ext_resource type="PackedScene" uid="uid://ctiicgeqawq5a" path="res://scenes/mobs/mover/spawner/spawner.tscn" id="2_cvf7l"]
 [ext_resource type="Texture2D" uid="uid://c4026v6xiksqa" path="res://art/sprites/kenny-1px/monochrome_tilemap_transparent.png" id="3_hgo0q"]
-[ext_resource type="Texture2D" uid="uid://ch4f7cqanjq8i" path="res://art/alert.png" id="4_kigtp"]
+[ext_resource type="Texture2D" uid="uid://ch4f7cqanjq8i" path="res://art/tilesets/alert.png" id="4_kigtp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xxnp7"]
 radius = 1.79453
