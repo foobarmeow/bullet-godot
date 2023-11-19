@@ -18,12 +18,6 @@ var dir: Vector2
 var target: Vector2
 var _player
 
-
-
-func _ready():
-	pass
-
-
 func begin(player: Node2D):
 	process_mode = Node.PROCESS_MODE_INHERIT
 	show()
@@ -128,3 +122,7 @@ func shake(delta, factor):
 	
 	
 
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered():
+	print("visible")
