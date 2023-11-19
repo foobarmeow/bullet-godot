@@ -1,3 +1,3 @@
 class_name Constants
 
-enum SpawnerType {LEFT, PLUS, CIRCLE = -1}
+enum SpawnerType {DIR, PLUS, CIRCLE = -1}
