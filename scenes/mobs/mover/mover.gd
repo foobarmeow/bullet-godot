@@ -4,6 +4,13 @@ signal burst
 
 enum MovementType {PLAYER_STALK, STOPPED, RANDOM, PATHED = -1}
 
+const animation_by_type = {
+	MovementType.RANDOM: "mover",
+	MovementType.PATHED: "mover",
+	MovementType.STOPPED: "still",
+	MovementType.PLAYER_STALK: "stalker",
+}
+
 @export var path_speed: float = .01
 @export var translate_speed: int = 100
 @export var offset_from_player: int = 25
@@ -15,30 +22,25 @@ var fill: float = 0
 var filling: float = 0
 var player: Player
 var alerted: bool = false
-
 var dir: Vector2
 var target: Vector2
 
 func begin():
-	process_mode = Node.PROCESS_MODE_INHERIT
-	show()
-
+	# Set up our initial target
 	if movement_type == MovementType.RANDOM:
 		target = get_random_position(player)
 	elif movement_type == MovementType.PLAYER_STALK:
 		target = player.position
 		
-	var spawner = $Spawner
-	if spawner == null:
-		return
-	spawner.type = spawner_type
+	$Spawner.type = spawner_type
+	var animation = animation_by_type[movement_type]
+	print("ANIM TYPE", animation)
+	
+	$AnimatedSprite2D.play(animation_by_type[movement_type])
 
 func _process(delta):
-	$AnimatedSprite2D.play()
-	
 	if $Spawner.type == Constants.SpawnerType.TARGET:
 		if player != null:
-			#$Spawner.dir = _player.global_position
 			$Spawner.dir = position.direction_to(player.position)
 
 	if filling > 0:
@@ -127,9 +129,6 @@ func _on_visible_on_screen_notifier_2d_screen_entered():
 	await get_tree().create_timer(.25).timeout
 
 	$Alert.play("alert")
-	$Spawner.fire()
 	$Spawner/FireTimer.start()
 
-func _on_visible_on_screen_notifier_2d_screen_exited():
-	alerted = false
 

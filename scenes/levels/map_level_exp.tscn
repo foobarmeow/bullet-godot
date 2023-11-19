@@ -11,8 +11,8 @@ script = ExtResource("1_icc6t")
 [node name="MapScene" parent="." instance=ExtResource("1_1fls0")]
 position = Vector2(-23, -17)
 
-[node name="Mover" parent="." instance=ExtResource("3_w5hcx")]
-position = Vector2(667, 259)
+[node name="StillGuard" parent="." instance=ExtResource("3_w5hcx")]
+position = Vector2(567, 326)
 movement_type = 1
 spawner_type = -1
 
