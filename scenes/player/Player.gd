@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 signal health_updated
 
@@ -110,6 +110,15 @@ func handle_movement(delta: float):
 	#position = position.clamp(Vector2.ZERO, screen_size)
 	last_velocity = velocity
 	
+# Called by bullets that detect collision with player
+func take_damage(d: int):
+	if health > 0:
+		health -= d
+		
+	sprite.modulate = Color("ff0000")
+	await get_tree().create_timer(.25).timeout
+	sprite.modulate = initial_modulate
+	
 func blink():
 	for i in 10:
 		sprite.visible = not sprite.visible
@@ -120,19 +129,6 @@ func start():
 	
 func end():
 	sprite.hide()
-
-func _on_area_entered(area):
-	print(area)
-	taking_damage = true
-	sprite.modulate = Color("ff0000")
-	await get_tree().create_timer(.25).timeout
-	sprite.modulate = initial_modulate
-
-
-
-func _on_area_exited(area):
-	taking_damage = false
-
 
 func _on_animated_sprite_2d_animation_finished():
 	if sprite.animation == "dead":

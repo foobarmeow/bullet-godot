@@ -6,6 +6,7 @@ extends Node2D
 @export var dir: Vector2
 
 func _ready():
+	print("MY TYPE", type, $FireTimer, bullet)
 	$FireTimer.timeout.connect(fire)
 
 func fire():
@@ -13,6 +14,9 @@ func fire():
 		return
 
 	match type:
+		Constants.SpawnerType.TARGET:
+			var v = dir * speed
+			add_bullet(v)
 		Constants.SpawnerType.DIR:
 			var v = dir * speed
 			add_bullet(v)
@@ -32,9 +36,8 @@ func add_bullet(v):
 	var b = bullet.instantiate()
 	b.position = global_position
 	get_tree().root.add_child(b)
-	
-	#add_child(b)
-	b.fire(v)
+	b.velocity = v
+	b.fire()
 				
 				
 			
