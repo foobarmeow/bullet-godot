@@ -23,7 +23,7 @@ func start(p: Area2D, h: CanvasLayer):
 	player = p
 	hud = h
 
-	p.hit.connect(_on_player_hit)
+	p.health_updated.connect(_on_player_hit)
 	
 	for wave in get_children():
 		if !wave.name.to_lower().begins_with("wave"):

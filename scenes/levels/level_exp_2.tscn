@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgejaps2tjq6f"]
+
+[ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_l4ej7"]
+[ext_resource type="PackedScene" uid="uid://b1sqn6oxm0d6m" path="res://scenes/player/player.tscn" id="2_g088l"]
+[ext_resource type="PackedScene" uid="uid://c7fyo24ou0om7" path="res://scenes/mobs/mover/mover.tscn" id="3_g60wj"]
+[ext_resource type="Texture2D" uid="uid://jhftm7n81ou3" path="res://art/sprites/bullet-player.png" id="4_uebjb"]
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_l4ej7")
+level_name = "Suckle on my zipple"
+
+[node name="PlayerSpawnPosition" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 491.0
+offset_top = 368.0
+offset_right = 531.0
+offset_bottom = 408.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Player" parent="." instance=ExtResource("2_g088l")]
+position = Vector2(171, 657)
+exp = true
+
+[node name="Mover" parent="." instance=ExtResource("3_g60wj")]
+position = Vector2(176, 56)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(442, 192)
+energy = 3.16
+texture = ExtResource("4_uebjb")
+
+[connection signal="burst" from="Mover" to="." method="_on_mover_burst"]
