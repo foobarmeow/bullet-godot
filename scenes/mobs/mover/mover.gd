@@ -1,4 +1,4 @@
-class_name Mover extends PathFollow2D
+class_name Mover extends CharacterBody2D
 
 signal burst
 
@@ -12,7 +12,7 @@ const animation_by_type = {
 }
 
 @export var path_speed: float = .01
-@export var translate_speed: int = 100
+@export var speed: int = 100
 @export var offset_from_player: int = 25
 @export var movement_type: MovementType
 @export var spawner_type: Constants.SpawnerType
@@ -22,21 +22,14 @@ var fill: float = 0
 var filling: float = 0
 var player: Player
 var alerted: bool = false
-var dir: Vector2
-var target: Vector2
+
 
 func begin():
-	# Set up our initial target
-	if movement_type == MovementType.RANDOM:
-		target = get_random_position(player)
-	elif movement_type == MovementType.PLAYER_STALK:
-		target = player.position
-		
 	$Spawner.type = spawner_type
 	var animation = animation_by_type[movement_type]
 	$AnimatedSprite2D.play(animation_by_type[movement_type])
 
-func _process(delta):
+func _physics_process(delta):
 	if $Spawner.type == Constants.SpawnerType.TARGET:
 		if player != null:
 			$Spawner.dir = position.direction_to(player.position)
@@ -63,44 +56,19 @@ func _process(delta):
 		
 	match movement_type:
 		MovementType.RANDOM:
-			var diff = position - target
-			# some threshold here would be good
-			if diff.length() < 20:
-				target = get_random_position(player)
-				return
-			position = position.move_toward(target, delta*translate_speed)
+			# More stuck on walls behaviour
+			pass
 		MovementType.PATHED:
-			var i = path_speed * delta
-			progress_ratio += i
+			# TODO: implement path'd movers
+			#var i = path_speed * delta
+			#progress_ratio += i
+			pass
 		MovementType.PLAYER_STALK:
-			var diff = position - target
-			# some threshold here would be good
-			if diff.length() < 20:
-				target = player.position
-				return
-			position = position.move_toward(target, delta*translate_speed)
+			# NOPE
+			# Getting following to work is hard :(
+			pass
 		MovementType.STOPPED:
-			return
-			
-func get_random_position(player, offset: int = 0):
-	if player == null:
-		return
-	# Find our center point, randomly
-	var viewport = get_viewport_rect().size
-	var center = Vector2(
-		randi_range(0+offset, viewport.x-offset), 
-		randi_range(0+offset, viewport.y-offset), 
-	)
-	
-	var diff = player.global_position - center
-	if diff.length() < offset_from_player:
-		# This was inside our threshold, try again
-		# lower the threshold to be safe
-		if offset_from_player > 0:
-			offset_from_player -= 2
-		return get_random_position(offset)
-	return center
-	
+			pass
 
 var outside_fill = .25
 var inside_fill = .45
