@@ -11,6 +11,7 @@ func fire():
 func _process(delta):
 	if !fired:
 		return
+	rotation += TAU / 16
 	var collision = move_and_collide(velocity * delta)
 	
 	# Since (FOR NOW) the bullet only collides with walls
