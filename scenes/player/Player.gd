@@ -6,7 +6,6 @@ signal health_updated
 @export var steps_to_accel: float = 3
 @export var steps_to_decel: float = 2
 @export var initial_health = 100
-@export var exp: bool = false
 
 const TIME_PER_STEP: float = 0.2
 
@@ -34,6 +33,10 @@ var damage: int = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if $AnimatedSprite2D == null:
+		print_debug("no sprite bruh")
+		return
+			
 	sprite = $AnimatedSprite2D
 	screen_size = get_viewport_rect().size
 	initial_modulate = sprite.modulate
@@ -55,9 +58,11 @@ func handle_movement(delta: float):
 		return
 	
 	if Input.is_action_pressed("move_right"):
-		sprite.flip_h = false
+		if sprite != null:
+			sprite.flip_h = false
 	if Input.is_action_pressed("move_left"):
-		sprite.flip_h = true
+		if sprite != null:
+			sprite.flip_h = true
 		
 	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = input_direction
@@ -82,7 +87,8 @@ func handle_movement(delta: float):
 		if walk_steps <= steps_to_accel:
 			local_speed = (speed/steps_to_accel) * walk_steps 
 		
-		sprite.play("walk")
+		if sprite != null:
+			sprite.play("walk")
 	elif walk_steps > 0:
 		# If our velocity is zero but walk_steps > 0 
 		# we just stopped moving because we haven't reset
@@ -100,7 +106,8 @@ func handle_movement(delta: float):
 	velocity = velocity.normalized() * local_speed
 
 	if velocity.length() == 0:
-		sprite.play("idle")
+		if sprite != null:
+			sprite.play("idle")
 		#local_speed = 0
 		walk_delta = 0
 		walk_steps = 0

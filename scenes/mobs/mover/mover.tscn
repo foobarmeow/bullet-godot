@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c7fyo24ou0om7"]
+[gd_scene load_steps=21 format=3 uid="uid://c7fyo24ou0om7"]
 
 [ext_resource type="Script" path="res://scenes/mobs/mover/mover.gd" id="1_6fl8p"]
 [ext_resource type="PackedScene" uid="uid://ctiicgeqawq5a" path="res://scenes/mobs/mover/spawner/spawner.tscn" id="2_cvf7l"]
@@ -132,6 +132,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ahux"]
 size = Vector2(10.0577, 14.0512)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_eiuu1"]
+polygon = PackedVector2Array(-4, -6, -7, -4, -7, 4, -6, 5, -6, 8, -2, 8, -2, 7, 2, 7, 2, 8, 6, 8, 6, 4, 7, 3, 7, -3, 6, -5, 4, -6)
+
 [node name="Mover" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 14
@@ -145,16 +148,16 @@ speed = 200
 
 [node name="OutsideRadius" type="Area2D" parent="."]
 scale = Vector2(4.52, 4.52)
-collision_layer = 0
-collision_mask = 16
+collision_layer = 16
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OutsideRadius"]
 scale = Vector2(14.4956, 14.4956)
 shape = SubResource("CircleShape2D_xxnp7")
 
 [node name="InsideRadius" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 16
+collision_layer = 16
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InsideRadius"]
 scale = Vector2(37.2, 37.2)
@@ -178,6 +181,9 @@ position = Vector2(0, 1.2)
 scale = Vector2(1.03403, 0.910956)
 shape = SubResource("RectangleShape2D_8ahux")
 debug_color = Color(0.898039, 0.27451, 0.396078, 0.419608)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_eiuu1")
 
 [connection signal="area_entered" from="OutsideRadius" to="." method="_on_outside_radius_area_entered"]
 [connection signal="area_exited" from="OutsideRadius" to="." method="_on_outside_radius_area_exited"]
