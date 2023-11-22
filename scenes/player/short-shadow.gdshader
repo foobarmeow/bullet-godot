@@ -1,11 +1,12 @@
 shader_type canvas_item;
 
 uniform vec2 shadowLocation = vec2(0.0, 0.0);		// Location of base of shadow node
-uniform vec2 lightLocation = vec2(0.0, 0.0);		// Location of light2D node
+uniform vec2 lightLocation = vec2(1.0, 1.0);		// Location of light2D node
 uniform float lightWidth = 32.0;					// Width of light texture
 uniform float lightHeight = 16.0;					// Height of light texture
 uniform float lightStrength = 1.0;					// Strength (energy) of light
 uniform float spriteHeight = 20.0;					// Height of shadow sprite. Used to offset skewVector
+
 
 void vertex() {
 	vec2 skewVector = vec2(lightLocation.x - shadowLocation.x, (lightLocation.y - shadowLocation.y) * 0.5 - spriteHeight);	// y *= 0.5 FOR MORE TOP DOWN PERSPECTIVE
@@ -21,7 +22,11 @@ void fragment() {
 	vec4 mask = texture(TEXTURE, UV);
 	float distX = lightLocation.x - VERTEX.x;
 	float distY = lightLocation.y - VERTEX.y;
-	float perc = 1.0 - distance(vec2(distX / lightWidth, 0.0), vec2(0.0, distY / lightHeight));
-	float alpha = perc * lightStrength;
-	COLOR =  mask * vec4(1.0, 0.0, 0.0, 1.0) * vec4(alpha);
+	float perc = 1.0 - distance(vec2(lightWidth/distX, 0.0), vec2(0.0, lightHeight/distY));
+	float alpha = perc * lightStrength;	
+	COLOR =  mask * vec4(0.0, 0.0, 0.0, perc);
+	//COLOR =  mask * vec4(mask.x, mask.y, mask.z, alpha);
+	//COLOR = vec4(0, 0, 0, alpha);
+	//COLOR =  mask;
+	//COLOR = vec4(100, 100, 100, 100);
 }

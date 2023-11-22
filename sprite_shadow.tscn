@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://c27avw8s50be6"]
+
+[ext_resource type="Shader" path="res://scenes/player/short-shadow.gdshader" id="1_sw8bu"]
+[ext_resource type="Script" path="res://SpriteShadow.gd" id="3_xdqg4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kl0fp"]
+shader = ExtResource("1_sw8bu")
+shader_parameter/shadowLocation = Vector2(0, 0)
+shader_parameter/lightLocation = Vector2(1, 1)
+shader_parameter/lightWidth = 32.0
+shader_parameter/lightHeight = 16.0
+shader_parameter/lightStrength = 1.0
+shader_parameter/spriteHeight = 20.0
+
+[node name="SpriteShadow" type="Sprite2D"]
+material = SubResource("ShaderMaterial_kl0fp")
+script = ExtResource("3_xdqg4")
