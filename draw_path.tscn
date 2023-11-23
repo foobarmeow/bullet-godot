@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpqvuj5gw2slr"]
+
+[ext_resource type="Script" path="res://PathFollow2D.gd" id="1_2jbmm"]
+[ext_resource type="Script" path="res://Path2D.gd" id="1_tmidj"]
+[ext_resource type="Texture2D" uid="uid://jhftm7n81ou3" path="res://art/sprites/debug/bullet-player.png" id="2_x1kpm"]
+[ext_resource type="Texture2D" uid="uid://byhl4lbmxeck0" path="res://art/sprites/debug/enemy.png" id="4_wp1fp"]
+
+[sub_resource type="Curve2D" id="Curve2D_70bg3"]
+bake_interval = 512.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 256, 64, 0, 0, 0, 0, 704, 64, 0, 0, 0, 0, 704, 320, 0, 0, 0, 0, 256, 320, 0, 0, 0, 0, 256, 64)
+}
+point_count = 5
+
+[sub_resource type="Environment" id="Environment_ryov3"]
+background_mode = 1
+background_color = Color(0.85098, 0, 0, 1)
+ambient_light_color = Color(0.509804, 0.384314, 0.427451, 1)
+adjustment_enabled = true
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Path2D" type="Path2D" parent="."]
+visible = false
+curve = SubResource("Curve2D_70bg3")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(256, 64)
+script = ExtResource("1_2jbmm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D"]
+texture = ExtResource("2_x1kpm")
+
+[node name="Spawn" type="Node2D" parent="Path2D"]
+
+[node name="@Sprite2D@454435" type="Sprite2D" parent="Path2D/Spawn"]
+position = Vector2(256, 64)
+texture = ExtResource("4_wp1fp")
+
+[node name="@Sprite2D@454436" type="Sprite2D" parent="Path2D/Spawn"]
+position = Vector2(704, 64)
+texture = ExtResource("4_wp1fp")
+
+[node name="@Sprite2D@454437" type="Sprite2D" parent="Path2D/Spawn"]
+position = Vector2(704, 320)
+texture = ExtResource("4_wp1fp")
+
+[node name="@Sprite2D@454438" type="Sprite2D" parent="Path2D/Spawn"]
+position = Vector2(256, 320)
+texture = ExtResource("4_wp1fp")
+
+[node name="@Sprite2D@454439" type="Sprite2D" parent="Path2D/Spawn"]
+position = Vector2(256, 64)
+texture = ExtResource("4_wp1fp")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ryov3")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+
+[node name="Line2D" type="Line2D" parent="."]
+scale = Vector2(0.701952, 0.468989)
+points = PackedVector2Array(273.523, 136.464, 547.046, 136.464, 820.569, 136.464, 820.569, 409.392, 547.046, 409.392, 273.523, 409.392)
+script = ExtResource("1_tmidj")
+thing_to_draw = ExtResource("4_wp1fp")
+
+[node name="Spawn" type="Node2D" parent="Line2D"]
+
+[node name="@Sprite2D@494244" type="Sprite2D" parent="Line2D/Spawn"]
+position = Vector2(547.046, 136.464)
+texture = ExtResource("4_wp1fp")
+
+[node name="@Sprite2D@494245" type="Sprite2D" parent="Line2D/Spawn"]
+position = Vector2(820.569, 136.464)
+texture = ExtResource("4_wp1fp")
+
+[node name="@Sprite2D@494246" type="Sprite2D" parent="Line2D/Spawn"]
+position = Vector2(820.569, 409.392)
+rotation = 1.5708
+texture = ExtResource("4_wp1fp")
+
+[node name="@Sprite2D@494247" type="Sprite2D" parent="Line2D/Spawn"]
+position = Vector2(547.046, 409.392)
+texture = ExtResource("4_wp1fp")
+
+[node name="@Sprite2D@494248" type="Sprite2D" parent="Line2D/Spawn"]
+position = Vector2(273.523, 409.392)
+texture = ExtResource("4_wp1fp")

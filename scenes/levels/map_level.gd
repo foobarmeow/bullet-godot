@@ -23,11 +23,12 @@ func _process(delta):
 func _on_lights_out_trigger_area_entered(area):
 	$CanvasModulate.show()
 	
-	var l = $KillLight
+	var l = $KillLightHolder/KillLight
+	var initial_energy = l.energy
 	l.energy = 0
-	$KillLight.show()
+	l.show()
 	
-	while l.energy < 4:
+	while l.energy < initial_energy:
 		await get_tree().create_timer(.1).timeout
 		l.energy += .1
 	l.reparent($Player)

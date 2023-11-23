@@ -2,9 +2,10 @@ extends CharacterBody2D
 
 var speed: int
 var fired: bool
-
+var fired_at: int
 
 func fire():
+	fired_at = Engine.get_frames_drawn()
 	fired = true
 
 
@@ -24,6 +25,11 @@ func _process(delta):
 		var collider = collision.get_collider()
 		if collider is Player:
 			collider.take_damage(10)
+		elif Engine.get_frames_drawn() - fired_at < 10:
+			# It's nice to have them dissapear when they
+			# hit another enemy, but we have to add this lag
+			# so that they have time to get away from their origin
+			return
 		queue_free()
 
 

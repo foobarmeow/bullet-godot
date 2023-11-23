@@ -1,23 +1,24 @@
-[gd_scene load_steps=21 format=3 uid="uid://c7fyo24ou0om7"]
+[gd_scene load_steps=26 format=3 uid="uid://c7fyo24ou0om7"]
 
 [ext_resource type="Script" path="res://scenes/mobs/mover/mover.gd" id="1_6fl8p"]
 [ext_resource type="PackedScene" uid="uid://ctiicgeqawq5a" path="res://scenes/mobs/mover/spawner/spawner.tscn" id="2_cvf7l"]
 [ext_resource type="Texture2D" uid="uid://c4026v6xiksqa" path="res://art/sprites/kenny-1px/monochrome_tilemap_transparent.png" id="3_hgo0q"]
-[ext_resource type="Texture2D" uid="uid://ch4f7cqanjq8i" path="res://art/tilesets/alert.png" id="4_kigtp"]
+[ext_resource type="Texture2D" uid="uid://ch4f7cqanjq8i" path="res://art/sprites/alert.png" id="3_vshqg"]
+[ext_resource type="Texture2D" uid="uid://br1uqupw4mq8x" path="res://art/sprites/fire.png" id="4_8vfpj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xxnp7"]
-radius = 1.79453
+radius = 0.268817
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_38ne5"]
-atlas = ExtResource("4_kigtp")
+atlas = ExtResource("3_vshqg")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s5oef"]
-atlas = ExtResource("4_kigtp")
+atlas = ExtResource("3_vshqg")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4q51b"]
-atlas = ExtResource("4_kigtp")
+atlas = ExtResource("3_vshqg")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2u00n"]
@@ -55,6 +56,22 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqe4p"]
+atlas = ExtResource("4_8vfpj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqeww"]
+atlas = ExtResource("4_8vfpj")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krjn5"]
+atlas = ExtResource("4_8vfpj")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahrmm"]
+atlas = ExtResource("4_8vfpj")
+region = Rect2(48, 0, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_23gr4"]
 atlas = ExtResource("3_hgo0q")
 region = Rect2(0, 323, 16, 16)
@@ -89,6 +106,23 @@ region = Rect2(34, 306, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7n6sb"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqe4p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqeww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_krjn5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahrmm")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_23gr4")
@@ -147,17 +181,17 @@ position = Vector2(0, 0)
 speed = 200
 
 [node name="OutsideRadius" type="Area2D" parent="."]
-scale = Vector2(4.52, 4.52)
-collision_layer = 16
-collision_mask = 2
+scale = Vector2(10.72, 10.72)
+collision_layer = 0
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OutsideRadius"]
 scale = Vector2(14.4956, 14.4956)
 shape = SubResource("CircleShape2D_xxnp7")
 
 [node name="InsideRadius" type="Area2D" parent="."]
-collision_layer = 16
-collision_mask = 2
+collision_layer = 0
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InsideRadius"]
 scale = Vector2(37.2, 37.2)
@@ -173,8 +207,8 @@ animation = &"alert"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7n6sb")
-animation = &"still"
-frame_progress = 0.634468
+animation = &"fire"
+frame_progress = 0.38916
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1.2)
@@ -191,3 +225,4 @@ occluder = SubResource("OccluderPolygon2D_eiuu1")
 [connection signal="area_exited" from="InsideRadius" to="." method="_on_inside_radius_area_exited"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="Spawner" method="_on_animated_sprite_2d_animation_finished"]
