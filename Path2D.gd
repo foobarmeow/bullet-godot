@@ -2,6 +2,7 @@
 extends Line2D
 
 @export var point_texture: Texture
+@export var sprite_light: PackedScene
 @export var do = false:
 	set(value):
 		draw_items(value)
@@ -42,7 +43,7 @@ func draw_items(draw: bool):
 		last_point = p
 		
 func set_at(p: Vector2, angle: float):
-	var l = PointLight2D.new()
+	var l = sprite_light.instantiate()
 	l.texture = point_texture
 	l.position = p
 	l.rotation = angle
