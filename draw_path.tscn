@@ -1,151 +1,60 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpqvuj5gw2slr"]
+[gd_scene load_steps=4 format=3 uid="uid://bpqvuj5gw2slr"]
 
-[ext_resource type="Script" path="res://PathFollow2D.gd" id="1_2jbmm"]
+[ext_resource type="Texture2D" uid="uid://cvcc60svfqim0" path="res://art/s2s.bg.png" id="1_iyn43"]
 [ext_resource type="Script" path="res://Path2D.gd" id="1_tmidj"]
-[ext_resource type="Texture2D" uid="uid://jhftm7n81ou3" path="res://art/sprites/debug/bullet-player.png" id="2_x1kpm"]
-[ext_resource type="Texture2D" uid="uid://byhl4lbmxeck0" path="res://art/sprites/debug/enemy.png" id="4_wp1fp"]
-
-[sub_resource type="Curve2D" id="Curve2D_70bg3"]
-bake_interval = 512.0
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 256, 64, 0, 0, 0, 0, 704, 64, 0, 0, 0, 0, 704, 320, 0, 0, 0, 0, 256, 320, 0, 0, 0, 0, 256, 64)
-}
-point_count = 5
-
-[sub_resource type="Environment" id="Environment_ryov3"]
-background_mode = 1
-background_color = Color(0.85098, 0, 0, 1)
-ambient_light_color = Color(0.509804, 0.384314, 0.427451, 1)
-adjustment_enabled = true
+[ext_resource type="Texture2D" uid="uid://5oyyd2tufl1m" path="res://art/sprites/lights/long-line.png" id="3_nqv3u"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Path2D" type="Path2D" parent="."]
-visible = false
-curve = SubResource("Curve2D_70bg3")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(256, 64)
-script = ExtResource("1_2jbmm")
-
-[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D"]
-texture = ExtResource("2_x1kpm")
-
-[node name="Spawn" type="Node2D" parent="Path2D"]
-
-[node name="@Sprite2D@454435" type="Sprite2D" parent="Path2D/Spawn"]
-position = Vector2(256, 64)
-texture = ExtResource("4_wp1fp")
-
-[node name="@Sprite2D@454436" type="Sprite2D" parent="Path2D/Spawn"]
-position = Vector2(704, 64)
-texture = ExtResource("4_wp1fp")
-
-[node name="@Sprite2D@454437" type="Sprite2D" parent="Path2D/Spawn"]
-position = Vector2(704, 320)
-texture = ExtResource("4_wp1fp")
-
-[node name="@Sprite2D@454438" type="Sprite2D" parent="Path2D/Spawn"]
-position = Vector2(256, 320)
-texture = ExtResource("4_wp1fp")
-
-[node name="@Sprite2D@454439" type="Sprite2D" parent="Path2D/Spawn"]
-position = Vector2(256, 64)
-texture = ExtResource("4_wp1fp")
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
+color = Color(0.2, 0.2, 0.2, 1)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ryov3")
-
-[node name="Polygon2D" type="Polygon2D" parent="."]
+[node name="S2s_bg" type="Sprite2D" parent="."]
+position = Vector2(136, 48)
+texture = ExtResource("1_iyn43")
 
 [node name="Line2D" type="Line2D" parent="."]
 scale = Vector2(0.701952, 0.468989)
-points = PackedVector2Array(273.523, 136.464, 547.046, 136.464, 820.569, 136.464, 820.569, 409.392, 547.046, 409.392, 273.523, 409.392)
+points = PackedVector2Array(91.1743, 136.464, 1185.27, 136.464, 752.188, 409.391, 296.317, 375.275, 125.365, 238.812, 763.585, 187.638)
+default_color = Color(1, 1, 1, 0)
 script = ExtResource("1_tmidj")
-point_texture = ExtResource("4_wp1fp")
+point_texture = ExtResource("3_nqv3u")
 do = true
 
 [node name="Spawn" type="Node2D" parent="Line2D"]
 
-[node name="@Sprite2D@512847" type="Sprite2D" parent="Line2D/Spawn"]
-position = Vector2(273.523, 136.464)
-texture = ExtResource("4_wp1fp")
+[node name="@PointLight2D@571456" type="PointLight2D" parent="Line2D/Spawn"]
+position = Vector2(91.1743, 136.464)
+texture = ExtResource("3_nqv3u")
 
-[node name="@Sprite2D@512848" type="Sprite2D" parent="Line2D/Spawn"]
-position = Vector2(364.697, 136.464)
-texture = ExtResource("4_wp1fp")
-
-[node name="@Sprite2D@512849" type="Sprite2D" parent="Line2D/Spawn"]
+[node name="@PointLight2D@571457" type="PointLight2D" parent="Line2D/Spawn"]
 position = Vector2(455.872, 136.464)
-texture = ExtResource("4_wp1fp")
+texture = ExtResource("3_nqv3u")
 
-[node name="@Sprite2D@512850" type="Sprite2D" parent="Line2D/Spawn"]
-position = Vector2(547.046, 136.464)
-texture = ExtResource("4_wp1fp")
-
-[node name="@Sprite2D@512851" type="Sprite2D" parent="Line2D/Spawn"]
-position = Vector2(547.046, 136.464)
-texture = ExtResource("4_wp1fp")
-
-[node name="@Sprite2D@512852" type="Sprite2D" parent="Line2D/Spawn"]
-position = Vector2(638.22, 136.464)
-texture = ExtResource("4_wp1fp")
-
-[node name="@Sprite2D@512853" type="Sprite2D" parent="Line2D/Spawn"]
-position = Vector2(729.395, 136.464)
-texture = ExtResource("4_wp1fp")
-
-[node name="@Sprite2D@512854" type="Sprite2D" parent="Line2D/Spawn"]
+[node name="@PointLight2D@571458" type="PointLight2D" parent="Line2D/Spawn"]
 position = Vector2(820.569, 136.464)
-texture = ExtResource("4_wp1fp")
+texture = ExtResource("3_nqv3u")
 
-[node name="@Sprite2D@512855" type="Sprite2D" parent="Line2D/Spawn"]
-position = Vector2(820.569, 136.464)
-texture = ExtResource("4_wp1fp")
+[node name="@PointLight2D@571459" type="PointLight2D" parent="Line2D/Spawn"]
+position = Vector2(1185.27, 136.464)
+texture = ExtResource("3_nqv3u")
 
-[node name="@Sprite2D@512856" type="Sprite2D" parent="Line2D/Spawn"]
-position = Vector2(820.569, 227.44)
-texture = ExtResource("4_wp1fp")
+[node name="@PointLight2D@571460" type="PointLight2D" parent="Line2D/Spawn"]
+position = Vector2(752.188, 409.391)
+rotation = 2.57926
+texture = ExtResource("3_nqv3u")
 
-[node name="@Sprite2D@512857" type="Sprite2D" parent="Line2D/Spawn"]
-position = Vector2(820.569, 318.416)
-texture = ExtResource("4_wp1fp")
+[node name="@PointLight2D@571461" type="PointLight2D" parent="Line2D/Spawn"]
+position = Vector2(296.317, 375.275)
+rotation = -3.0669
+texture = ExtResource("3_nqv3u")
 
-[node name="@Sprite2D@512858" type="Sprite2D" parent="Line2D/Spawn"]
-position = Vector2(820.569, 409.392)
-texture = ExtResource("4_wp1fp")
+[node name="@PointLight2D@571462" type="PointLight2D" parent="Line2D/Spawn"]
+position = Vector2(125.365, 238.812)
+rotation = -0.080011
+texture = ExtResource("3_nqv3u")
 
-[node name="@Sprite2D@512859" type="Sprite2D" parent="Line2D/Spawn"]
-position = Vector2(820.569, 409.392)
-texture = ExtResource("4_wp1fp")
-
-[node name="@Sprite2D@512860" type="Sprite2D" parent="Line2D/Spawn"]
-position = Vector2(729.395, 409.392)
-texture = ExtResource("4_wp1fp")
-
-[node name="@Sprite2D@512861" type="Sprite2D" parent="Line2D/Spawn"]
-position = Vector2(638.22, 409.392)
-texture = ExtResource("4_wp1fp")
-
-[node name="@Sprite2D@512862" type="Sprite2D" parent="Line2D/Spawn"]
-position = Vector2(547.046, 409.392)
-texture = ExtResource("4_wp1fp")
-
-[node name="@Sprite2D@512863" type="Sprite2D" parent="Line2D/Spawn"]
-position = Vector2(547.046, 409.392)
-texture = ExtResource("4_wp1fp")
-
-[node name="@Sprite2D@512864" type="Sprite2D" parent="Line2D/Spawn"]
-position = Vector2(455.872, 409.392)
-texture = ExtResource("4_wp1fp")
-
-[node name="@Sprite2D@512865" type="Sprite2D" parent="Line2D/Spawn"]
-position = Vector2(364.697, 409.392)
-texture = ExtResource("4_wp1fp")
-
-[node name="@Sprite2D@512866" type="Sprite2D" parent="Line2D/Spawn"]
-position = Vector2(273.523, 409.392)
-texture = ExtResource("4_wp1fp")
+[node name="@PointLight2D@571463" type="PointLight2D" parent="Line2D/Spawn"]
+position = Vector2(763.585, 187.638)
+rotation = -0.080011
+texture = ExtResource("3_nqv3u")
