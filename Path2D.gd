@@ -1,7 +1,7 @@
 @tool
 extends Line2D
 
-@export var thing_to_draw: Texture
+@export var point_texture: Texture
 @export var do = false:
 	set(value):
 		draw_items()
@@ -23,30 +23,23 @@ func draw_items():
 			last_point = p
 			continue
 			
-		var t = Sprite2D.new()
-		t.texture = thing_to_draw
-		t.position = p
+		var segment = p - last_point
+		var points_in_segment = floor(segment.length() / point_texture.get_width())
 		
-		var d = p.distance_to(last_point)
-		print(d)
-		
-		var y_diff = p.y - last_point.y
-		print("y diff ", y_diff)
-		
-		var pos: Vector2
-		if y_diff > 0:
-			t.rotate(TAU/4)
-			pos = Vector2(p.x, p.y - last_point.y)
-		else:
-			pos = Vector2(p.x - last_point.x, p.y)
+		for i in points_in_segment:
+			var t = i / (points_in_segment - 1)
+			print("t", t)
+			var np = last_point.lerp(p, t)
+					
+			var s = Sprite2D.new()
+			s.texture = point_texture
+			s.position = np
 			
+			$Spawn.add_child(s)
+			s.set_owner(get_tree().get_edited_scene_root())
 			
-		#t.scale.x = d/100
-		t.position = p
-		
 		
 		last_point = p
 		
 		
-		$Spawn.add_child(t)
-		t.set_owner(get_tree().get_edited_scene_root())
+	

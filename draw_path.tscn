@@ -65,27 +65,87 @@ environment = SubResource("Environment_ryov3")
 scale = Vector2(0.701952, 0.468989)
 points = PackedVector2Array(273.523, 136.464, 547.046, 136.464, 820.569, 136.464, 820.569, 409.392, 547.046, 409.392, 273.523, 409.392)
 script = ExtResource("1_tmidj")
-thing_to_draw = ExtResource("4_wp1fp")
+point_texture = ExtResource("4_wp1fp")
+do = true
 
 [node name="Spawn" type="Node2D" parent="Line2D"]
 
-[node name="@Sprite2D@494244" type="Sprite2D" parent="Line2D/Spawn"]
+[node name="@Sprite2D@512847" type="Sprite2D" parent="Line2D/Spawn"]
+position = Vector2(273.523, 136.464)
+texture = ExtResource("4_wp1fp")
+
+[node name="@Sprite2D@512848" type="Sprite2D" parent="Line2D/Spawn"]
+position = Vector2(364.697, 136.464)
+texture = ExtResource("4_wp1fp")
+
+[node name="@Sprite2D@512849" type="Sprite2D" parent="Line2D/Spawn"]
+position = Vector2(455.872, 136.464)
+texture = ExtResource("4_wp1fp")
+
+[node name="@Sprite2D@512850" type="Sprite2D" parent="Line2D/Spawn"]
 position = Vector2(547.046, 136.464)
 texture = ExtResource("4_wp1fp")
 
-[node name="@Sprite2D@494245" type="Sprite2D" parent="Line2D/Spawn"]
+[node name="@Sprite2D@512851" type="Sprite2D" parent="Line2D/Spawn"]
+position = Vector2(547.046, 136.464)
+texture = ExtResource("4_wp1fp")
+
+[node name="@Sprite2D@512852" type="Sprite2D" parent="Line2D/Spawn"]
+position = Vector2(638.22, 136.464)
+texture = ExtResource("4_wp1fp")
+
+[node name="@Sprite2D@512853" type="Sprite2D" parent="Line2D/Spawn"]
+position = Vector2(729.395, 136.464)
+texture = ExtResource("4_wp1fp")
+
+[node name="@Sprite2D@512854" type="Sprite2D" parent="Line2D/Spawn"]
 position = Vector2(820.569, 136.464)
 texture = ExtResource("4_wp1fp")
 
-[node name="@Sprite2D@494246" type="Sprite2D" parent="Line2D/Spawn"]
-position = Vector2(820.569, 409.392)
-rotation = 1.5708
+[node name="@Sprite2D@512855" type="Sprite2D" parent="Line2D/Spawn"]
+position = Vector2(820.569, 136.464)
 texture = ExtResource("4_wp1fp")
 
-[node name="@Sprite2D@494247" type="Sprite2D" parent="Line2D/Spawn"]
+[node name="@Sprite2D@512856" type="Sprite2D" parent="Line2D/Spawn"]
+position = Vector2(820.569, 227.44)
+texture = ExtResource("4_wp1fp")
+
+[node name="@Sprite2D@512857" type="Sprite2D" parent="Line2D/Spawn"]
+position = Vector2(820.569, 318.416)
+texture = ExtResource("4_wp1fp")
+
+[node name="@Sprite2D@512858" type="Sprite2D" parent="Line2D/Spawn"]
+position = Vector2(820.569, 409.392)
+texture = ExtResource("4_wp1fp")
+
+[node name="@Sprite2D@512859" type="Sprite2D" parent="Line2D/Spawn"]
+position = Vector2(820.569, 409.392)
+texture = ExtResource("4_wp1fp")
+
+[node name="@Sprite2D@512860" type="Sprite2D" parent="Line2D/Spawn"]
+position = Vector2(729.395, 409.392)
+texture = ExtResource("4_wp1fp")
+
+[node name="@Sprite2D@512861" type="Sprite2D" parent="Line2D/Spawn"]
+position = Vector2(638.22, 409.392)
+texture = ExtResource("4_wp1fp")
+
+[node name="@Sprite2D@512862" type="Sprite2D" parent="Line2D/Spawn"]
 position = Vector2(547.046, 409.392)
 texture = ExtResource("4_wp1fp")
 
-[node name="@Sprite2D@494248" type="Sprite2D" parent="Line2D/Spawn"]
+[node name="@Sprite2D@512863" type="Sprite2D" parent="Line2D/Spawn"]
+position = Vector2(547.046, 409.392)
+texture = ExtResource("4_wp1fp")
+
+[node name="@Sprite2D@512864" type="Sprite2D" parent="Line2D/Spawn"]
+position = Vector2(455.872, 409.392)
+texture = ExtResource("4_wp1fp")
+
+[node name="@Sprite2D@512865" type="Sprite2D" parent="Line2D/Spawn"]
+position = Vector2(364.697, 409.392)
+texture = ExtResource("4_wp1fp")
+
+[node name="@Sprite2D@512866" type="Sprite2D" parent="Line2D/Spawn"]
 position = Vector2(273.523, 409.392)
 texture = ExtResource("4_wp1fp")
