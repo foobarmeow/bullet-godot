@@ -30,9 +30,15 @@ var bounced: bool = false
 var damage: int = 10
 
 
+func _draw():
+	var w = $StaticBody2D/CollisionShape2D.shape.get_rect().size
+	draw_circle(Vector2.ZERO, w.x*.5, Color.GREEN)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+
+	print("draw", position)
 	if $AnimatedSprite2D == null:
 		print_debug("no sprite bruh")
 		return
@@ -137,7 +143,6 @@ func handle_movement(delta: float):
 		
 		var collider = collision.get_collider()
 		if collider.is_in_group("enemy"):
-			print("BOUNCE - ", velocity)
 			# bounce with it
 			bounced = true
 			get_tree().create_timer(.1).timeout.connect(func(): 
@@ -173,3 +178,6 @@ func end():
 func _on_animated_sprite_2d_animation_finished():
 	if sprite.animation == "dead":
 		process_mode = Node.PROCESS_MODE_DISABLED
+
+
+

@@ -13,4 +13,3 @@ script = ExtResource("2_m3fn3")
 
 [node name="Mover" parent="." instance=ExtResource("2_oj7li")]
 movement_type = 1
-spawner_type = -1

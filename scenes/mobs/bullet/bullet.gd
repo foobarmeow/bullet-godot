@@ -25,6 +25,10 @@ func _process(delta):
 		var collider = collision.get_collider()
 		if collider is Player:
 			collider.take_damage(10)
+		elif collider is StaticBody2D:
+			# If we ran into a static body we want to bounce off of it
+			velocity = velocity.bounce(collision.get_normal())
+			return
 		elif Engine.get_frames_drawn() - fired_at < 10:
 			# It's nice to have them dissapear when they
 			# hit another enemy, but we have to add this lag
