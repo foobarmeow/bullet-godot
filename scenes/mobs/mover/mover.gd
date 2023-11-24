@@ -27,7 +27,9 @@ var alerted: bool = false
 
 func _ready():
 	if get_parent().name == "exp":
+		player = $Player
 		begin() # call begin on exp level
+
 
 func begin():
 	$Spawner.type = spawner_type

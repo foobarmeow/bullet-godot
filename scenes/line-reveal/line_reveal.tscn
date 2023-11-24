@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cngc2lgvucdsp"]
+
+[ext_resource type="Shader" path="res://scenes/line-reveal/line_reveal.gdshader" id="1_3kelu"]
+[ext_resource type="Script" path="res://scenes/line-reveal/LineReveal.gd" id="2_1200n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1n0qv"]
+shader = ExtResource("1_3kelu")
+shader_parameter/fade_distance = 200.0
+shader_parameter/player_position = Vector2(315, -51)
+
+[node name="LineReveal" type="Line2D"]
+material = SubResource("ShaderMaterial_1n0qv")
+position = Vector2(5964, 1086)
+points = PackedVector2Array(0, 0, 124, 0, 300, 0, 571.003, 0, 908.375, 0)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("2_1200n")
