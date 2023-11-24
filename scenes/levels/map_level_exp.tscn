@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cjoh7lgonxxhv"]
+[gd_scene load_steps=13 format=3 uid="uid://cjoh7lgonxxhv"]
 
 [ext_resource type="Script" path="res://scenes/levels/map_level.gd" id="1_icc6t"]
 [ext_resource type="PackedScene" uid="uid://bhnamekyyvkpa" path="res://scenes/player/player.tscn" id="2_s21pb"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://scenes/levels/Camera.gd" id="5_a1xxu"]
 [ext_resource type="TileSet" uid="uid://v6fs17ekenoc" path="res://art/tilesets/new_tile_set.tres" id="5_i2agf"]
 [ext_resource type="Texture2D" uid="uid://tdf23n073efd" path="res://art/sprites/lights/halo.png" id="6_ecyny"]
+[ext_resource type="Shader" path="res://bruh.gdshader" id="8_754f8"]
+[ext_resource type="Script" path="res://scenes/levels/Line2D.gd" id="9_dvamj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rovmf"]
 size = Vector2(20, 35)
@@ -14,11 +16,15 @@ size = Vector2(20, 35)
 [sub_resource type="CircleShape2D" id="CircleShape2D_c1vd8"]
 radius = 63.0317
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1n0qv"]
+shader = ExtResource("8_754f8")
+shader_parameter/player_position = Vector2(279.485, -62.7811)
+
 [node name="MapLevel" type="Node2D"]
 script = ExtResource("1_icc6t")
 
 [node name="S2s_bg" type="Sprite2D" parent="."]
-position = Vector2(521, 737)
+position = Vector2(-620, 499)
 scale = Vector2(10, 10)
 texture = ExtResource("4_kqbhy")
 
@@ -50,15 +56,42 @@ layer_3/y_sort_origin = 0
 layer_3/z_index = 0
 layer_3/tile_data = PackedInt32Array()
 
-[node name="Player" parent="." instance=ExtResource("2_s21pb")]
-position = Vector2(315.69, 242.994)
-motion_mode = 1
-floor_max_angle = 1.5708
-speed = 125
+[node name="LightsOutTrigger" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(2.4, 2.4)
-script = ExtResource("5_a1xxu")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LightsOutTrigger"]
+visible = false
+position = Vector2(6941, 1088.5)
+shape = SubResource("RectangleShape2D_rovmf")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.333333, 0.333333, 0.333333, 1)
+
+[node name="KillLightHolder" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 7039.0
+offset_top = 1087.0
+offset_right = 7079.0
+offset_bottom = 1127.0
+
+[node name="KillLight" type="PointLight2D" parent="KillLightHolder"]
+visible = false
+color = Color(0.933333, 0.933333, 1, 1)
+energy = 0.89
+shadow_enabled = true
+texture = ExtResource("6_ecyny")
+texture_scale = 0.3
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="KillLightHolder/KillLight"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillLightHolder/KillLight/Area2D"]
+visible = false
+shape = SubResource("CircleShape2D_c1vd8")
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -192,41 +225,30 @@ position = Vector2(5130.65, 1137)
 movement_type = 1
 spawner_dir = Vector2(0, -1)
 
-[node name="LightsOutTrigger" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
+[node name="Player" parent="." instance=ExtResource("2_s21pb")]
+position = Vector2(6152.64, 1270.96)
+motion_mode = 1
+floor_max_angle = 1.5708
+speed = 125
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LightsOutTrigger"]
-visible = false
-position = Vector2(6941, 1088.5)
-shape = SubResource("RectangleShape2D_rovmf")
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(2.4, 2.4)
+script = ExtResource("5_a1xxu")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.333333, 0.333333, 0.333333, 1)
+[node name="LightPathContainer" type="Node2D" parent="."]
 
-[node name="KillLightHolder" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 7039.0
-offset_top = 1087.0
-offset_right = 7079.0
-offset_bottom = 1127.0
+[node name="CanvasLayer" type="CanvasLayer" parent="LightPathContainer"]
 
-[node name="KillLight" type="PointLight2D" parent="KillLightHolder"]
-visible = false
-color = Color(0.933333, 0.933333, 1, 1)
-energy = 0.89
-shadow_enabled = true
-texture = ExtResource("6_ecyny")
-texture_scale = 0.3
-metadata/_edit_group_ = true
-
-[node name="Area2D" type="Area2D" parent="KillLightHolder/KillLight"]
-collision_layer = 16
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KillLightHolder/KillLight/Area2D"]
-visible = false
-shape = SubResource("CircleShape2D_c1vd8")
+[node name="Line2D" type="Line2D" parent="." node_paths=PackedStringArray("player")]
+material = SubResource("ShaderMaterial_1n0qv")
+position = Vector2(6054, 966)
+points = PackedVector2Array(395, 122, 239, 120, -37, 109, 86, 51, 214, -28, -26, -101, -94, -35)
+width = 2.0
+default_color = Color(1, 1, 0, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("9_dvamj")
+player = NodePath("../Player")
 
 [connection signal="area_entered" from="LightsOutTrigger" to="." method="_on_lights_out_trigger_area_entered"]
