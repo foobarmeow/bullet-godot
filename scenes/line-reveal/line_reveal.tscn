@@ -5,8 +5,9 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1n0qv"]
 shader = ExtResource("1_3kelu")
-shader_parameter/fade_distance = 200.0
-shader_parameter/player_position = Vector2(315, -51)
+shader_parameter/enabled = true
+shader_parameter/fade_distance = 100.0
+shader_parameter/player_position = Vector2(267, -37)
 
 [node name="LineReveal" type="Line2D"]
 material = SubResource("ShaderMaterial_1n0qv")

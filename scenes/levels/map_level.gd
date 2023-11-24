@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var lit_material: CanvasItemMaterial
+@export var line_manager: Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,22 +16,30 @@ func start_movers(nodes: Array[Node]):
 			n.begin()
 	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-
 func _on_lights_out_trigger_area_entered(area):
+	# Darken the scene
 	$CanvasModulate.show()
-	
+
+	# Lighten the material used by enemies/player
+	lit_material.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
+		
+	# Show the light at 0 energy
 	var l = $KillLightHolder/KillLight
 	var initial_energy = l.energy
 	l.energy = 0
 	l.show()
 	
+	# Increase the energy over time
 	while l.energy < initial_energy:
 		await get_tree().create_timer(.1).timeout
 		l.energy += .1
+		
+	# Parent it to the player and disconnect this signal
 	l.reparent($Player)
 	$LightsOutTrigger.disconnect("area_entered", _on_lights_out_trigger_area_entered)
+	
+	# Show the lit path
+	line_manager.show()
+	line_manager.enabled = true
+	line_manager.reveal_type = Constants.RevealType.PLAYER
+	
