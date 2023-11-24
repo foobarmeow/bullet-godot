@@ -1,13 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://cjoh7lgonxxhv"]
+[gd_scene load_steps=16 format=3 uid="uid://cjoh7lgonxxhv"]
 
 [ext_resource type="Script" path="res://scenes/levels/map_level.gd" id="1_icc6t"]
-[ext_resource type="Material" uid="uid://vtmbky35o2p2" path="res://scenes/lit-mat.tres" id="2_is7a6"]
+[ext_resource type="Material" uid="uid://vtmbky35o2p2" path="res://resources/lit-mat.tres" id="2_1e3hk"]
 [ext_resource type="PackedScene" uid="uid://bhnamekyyvkpa" path="res://scenes/player/player.tscn" id="2_s21pb"]
 [ext_resource type="PackedScene" uid="uid://c7fyo24ou0om7" path="res://scenes/mobs/mover/mover.tscn" id="3_w5hcx"]
 [ext_resource type="Texture2D" uid="uid://cvcc60svfqim0" path="res://art/s2s.bg.png" id="4_kqbhy"]
 [ext_resource type="Script" path="res://scenes/levels/Camera.gd" id="5_a1xxu"]
 [ext_resource type="TileSet" uid="uid://v6fs17ekenoc" path="res://art/tilesets/new_tile_set.tres" id="5_i2agf"]
-[ext_resource type="Texture2D" uid="uid://tdf23n073efd" path="res://art/sprites/lights/halo.png" id="6_ecyny"]
+[ext_resource type="PackedScene" uid="uid://bwx1ygvwk1cwj" path="res://scenes/kill_light.tscn" id="7_rheqg"]
 [ext_resource type="Shader" path="res://scenes/line-reveal/line_reveal.gdshader" id="8_i7tpo"]
 [ext_resource type="Script" path="res://scenes/line-reveal/LineReveal.gd" id="9_ac6l3"]
 [ext_resource type="Script" path="res://scenes/levels/LineManager.gd" id="10_ayisk"]
@@ -17,29 +17,26 @@ resource_local_to_scene = true
 shader = ExtResource("8_i7tpo")
 shader_parameter/enabled = false
 shader_parameter/fade_distance = null
-shader_parameter/player_position = Vector2(-5218.99, -1024.53)
+shader_parameter/player_position = Vector2(-5358.99, -1045.45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rovmf"]
 size = Vector2(20, 35)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_c1vd8"]
-radius = 63.0317
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2xyrv"]
 shader = ExtResource("8_i7tpo")
 shader_parameter/enabled = true
 shader_parameter/fade_distance = null
-shader_parameter/player_position = Vector2(631.144, 97.7294)
+shader_parameter/player_position = Vector2(-768.859, -111.504)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jeapk"]
 shader = ExtResource("8_i7tpo")
 shader_parameter/enabled = true
 shader_parameter/fade_distance = null
-shader_parameter/player_position = Vector2(1436.14, 109.729)
+shader_parameter/player_position = Vector2(36.1406, -99.5043)
 
 [node name="MapLevel" type="Node2D" node_paths=PackedStringArray("line_manager")]
 script = ExtResource("1_icc6t")
-lit_material = ExtResource("2_is7a6")
+lit_material = ExtResource("2_1e3hk")
 line_manager = NodePath("CanvasLayer/LineManager")
 
 [node name="S2s_bg" type="Sprite2D" parent="."]
@@ -107,154 +104,110 @@ offset_top = 1087.0
 offset_right = 7079.0
 offset_bottom = 1127.0
 
-[node name="KillLight" type="PointLight2D" parent="KillLightHolder"]
+[node name="KillLight" parent="KillLightHolder" instance=ExtResource("7_rheqg")]
 visible = false
-color = Color(0.933333, 0.933333, 1, 1)
-energy = 0.89
-shadow_enabled = true
-texture = ExtResource("6_ecyny")
-texture_scale = 0.3
-metadata/_edit_group_ = true
-
-[node name="Area2D" type="Area2D" parent="KillLightHolder/KillLight"]
-collision_layer = 16
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KillLightHolder/KillLight/Area2D"]
-visible = false
-shape = SubResource("CircleShape2D_c1vd8")
 
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="StillGuard" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(567, 326)
 movement_type = 1
-spawner_type = -1
 
 [node name="StillGuard3" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(744, 499)
 movement_type = 1
-spawner_type = -1
 
 [node name="StillGuard4" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(778, 546)
 movement_type = 1
-spawner_type = -1
 
 [node name="StillGuard6" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(443, 584)
 movement_type = 1
-spawner_type = -1
 
 [node name="StillGuardCircle2" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(1099, 1094)
 movement_type = 1
-spawner_type = 2
 
 [node name="StillGuard7" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(1935.41, 1006.31)
 movement_type = 1
-spawner_type = -1
 
 [node name="StillGuard8" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(2544.34, 1026.3)
 movement_type = 1
-spawner_type = 1
 
 [node name="StillGuard9" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(3060.74, 1028.27)
 movement_type = 1
-spawner_type = 1
-spawner_dir = Vector2(0, -1)
 
 [node name="StillGuard11" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(3268, 1235)
 movement_type = 1
-spawner_type = 2
-spawner_dir = Vector2(0, -1)
 
 [node name="StillGuard12" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(4107, 1015)
 movement_type = 1
-spawner_type = 2
-spawner_dir = Vector2(0, -1)
 
 [node name="StillGuard13" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(4312, 1152)
 movement_type = 1
-spawner_type = 2
-spawner_dir = Vector2(0, -1)
 
 [node name="StillGuard14" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(4339, 1011)
 movement_type = 1
-spawner_type = -1
-spawner_dir = Vector2(0, -1)
 
 [node name="StillGuard10" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(2879.2, 686.55)
 movement_type = 1
-spawner_dir = Vector2(-1, 0)
 
 [node name="StillGuard15" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(4490, 1027)
 movement_type = 1
-spawner_dir = Vector2(0, 1)
 
 [node name="StillGuard22" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(4618, 1027)
 movement_type = 1
-spawner_dir = Vector2(0, 1)
 
 [node name="StillGuard23" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(4744.95, 1027)
 movement_type = 1
-spawner_dir = Vector2(0, 1)
 
 [node name="StillGuard24" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(4874.02, 1027)
 movement_type = 1
-spawner_dir = Vector2(0, 1)
 
 [node name="StillGuard25" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(5002.63, 1027)
 movement_type = 1
-spawner_dir = Vector2(0, 1)
 
 [node name="StillGuard26" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(5131.89, 1027)
 movement_type = 1
-spawner_dir = Vector2(0, 1)
 
 [node name="StillGuard16" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(4491, 1137)
 movement_type = 1
-spawner_dir = Vector2(0, -1)
 
 [node name="StillGuard17" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(4619.13, 1137)
 movement_type = 1
-spawner_dir = Vector2(0, -1)
 
 [node name="StillGuard18" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(4743.98, 1137)
 movement_type = 1
-spawner_dir = Vector2(0, -1)
 
 [node name="StillGuard19" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(4874.03, 1137)
 movement_type = 1
-spawner_dir = Vector2(0, -1)
 
 [node name="StillGuard20" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(5001.87, 1137)
 movement_type = 1
-spawner_dir = Vector2(0, -1)
 
 [node name="StillGuard21" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(5130.65, 1137)
 movement_type = 1
-spawner_dir = Vector2(0, -1)
 
 [node name="Player" parent="." instance=ExtResource("2_s21pb")]
 position = Vector2(6497.31, 1089.17)
