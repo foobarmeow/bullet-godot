@@ -17,7 +17,7 @@ resource_local_to_scene = true
 shader = ExtResource("4_tqwqv")
 shader_parameter/enabled = false
 shader_parameter/fade_distance = null
-shader_parameter/player_position = Vector2(-5820.2, -1110.36)
+shader_parameter/player_position = Vector2(-5825.4, -1107.2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rovmf"]
 size = Vector2(20, 35)
@@ -26,7 +26,7 @@ size = Vector2(20, 35)
 radius = 63.0317
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bb1at"]
-radius = 17.7368
+radius = 26.9677
 
 [node name="MapLevel" type="Node2D"]
 script = ExtResource("1_xoahx")
@@ -118,6 +118,7 @@ shape = SubResource("CircleShape2D_c1vd8")
 [node name="StillGuard" parent="Enemies" instance=ExtResource("8_7qug6")]
 position = Vector2(340.367, 160.675)
 movement_type = 1
+spawn_time = 0.1
 speed = 90
 parry_speed = 450
 
@@ -125,7 +126,9 @@ parry_speed = 450
 position = Vector2(438.471, 316.04)
 motion_mode = 1
 floor_max_angle = 1.5708
-speed = 125
+speed = 100
+acceleration = 10
+top_speed = 150
 hittable = false
 parry_time = 0.25
 metadata/_edit_group_ = true
