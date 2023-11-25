@@ -116,6 +116,7 @@ shape = SubResource("CircleShape2D_c1vd8")
 position = Vector2(340.367, 160.675)
 
 [node name="Player" parent="." instance=ExtResource("9_fw7ae")]
+self_modulate = Color(0, 0.419608, 1, 1)
 position = Vector2(438.471, 316.04)
 motion_mode = 1
 floor_max_angle = 1.5708
