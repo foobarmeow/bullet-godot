@@ -9,7 +9,9 @@ signal health_updated
 @export var steps_to_decel: float = 2
 @export var initial_health = 100
 @export var hittable: bool = true
+@export var damageable: bool = true
 @export var parry_time: float = 0.1
+@export var hit_grace: float = 0.1 # time after hit they can still parry
 
 const TIME_PER_STEP: float = 0.2
 
@@ -27,6 +29,7 @@ var health: int = initial_health:
 var sprite: AnimatedSprite2D
 var taking_damage: bool
 var bounced: bool = false
+var last_parried: Node2D
 
 # TODO: Make this a property of the node that collided
 var damage: int = 10
@@ -35,7 +38,7 @@ var damage: int = 10
 var circle_color = Color.RED
 func _draw():
 	var w = $Parry/CollisionShape2D.shape.get_rect().size
-	draw_circle(Vector2.ZERO, w.x*.5, circle_color)
+	#draw_circle(Vector2.ZERO, w.x*.5, circle_color)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -54,16 +57,32 @@ func _ready():
 
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("parry"):
-		print(parryables)
-		if len(parryables) > 0:
-			var p = parryables.pop_at(0)
-			p.get_parent().parry()
-			
+		#print(parryables)
+		#if len(parryables) > 0:
+		#	var p = parryables.pop_at(0)
+		#	p.get_parent().parry()
+		
+		var overlaps = $Parry.get_overlapping_bodies()
+		if len(overlaps) < 1:
+			return
+		var first_overlap = overlaps.pop_at(0)
+		if first_overlap.has_method("parry"):
+			first_overlap.parry()
+			last_parried = first_overlap
+		
+		for o in overlaps:
+			# destroy the rest, that is the power of the light
+			if o.has_method("destroy"):
+				o.destroy()
+					
 		var initial_color = circle_color
 		#$Parry.process_mode = Node.PROCESS_MODE_INHERIT
 		circle_color = Color.GREEN
 		queue_redraw()
+		var initial_energy = $Parry/CollisionShape2D/KillLight.energy
+		$Parry/CollisionShape2D/KillLight.energy = 0.1
 		await get_tree().create_timer(parry_time).timeout
+		$Parry/CollisionShape2D/KillLight.energy = initial_energy
 		#$Parry.process_mode = Node.PROCESS_MODE_DISABLED
 		circle_color = initial_color
 		queue_redraw()
@@ -132,15 +151,22 @@ func handle_movement(delta: float):
 			velocity = velocity.slide(collision.get_normal())
 	
 # Called by bullets that detect collision with player
-func take_damage(d: int):
+func take_damage(d: int, enemy: Node2D):
 	if !hittable:
 		return
 	if health > 0:
-		health -= d
-		
-	sprite.modulate = Color("ff0000")
-	await get_tree().create_timer(.25).timeout
-	sprite.modulate = initial_modulate
+		# Give just a couple frames of leway for them to parry
+		await get_tree().create_timer(hit_grace).timeout
+		if enemy != last_parried:
+			if damageable:
+				health -= d
+				
+			if hittable:
+				sprite.modulate = Color("ff0000")
+				await get_tree().create_timer(.25).timeout
+				sprite.modulate = initial_modulate
+			if is_instance_valid(enemy):
+				enemy.queue_free()
 	
 func blink():
 	for i in 10:
