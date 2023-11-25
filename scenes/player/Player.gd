@@ -47,7 +47,7 @@ func _ready():
 	initial_modulate = sprite.modulate
 	health = initial_health
 
-func _unhandled_input(event):
+func _unhandled_input(_event):
 	if Input.is_action_just_pressed("reload"):
 		get_tree().reload_current_scene()
 		return
@@ -71,17 +71,23 @@ func parry():
 		# destroy the rest, that is the power of the light
 		if o.has_method("destroy"):
 			o.destroy()
-				
-	var initial_energy = $Parry/CollisionShape2D/KillLight.energy
-	$Parry/CollisionShape2D/KillLight.energy = 10
-	await get_tree().create_timer(.1).timeout
-	$Parry/CollisionShape2D/KillLight.energy = 0.1
 	
+	parried = true
+	
+	var light = $Parry/CollisionShape2D/KillLight
+	var initial_energy = light.energy
+	light.energy = 10
+	await get_tree().create_timer(.1).timeout
+	light.energy = 0.1
+	
+	# Animate the parry ring returning to full brightness
 	var parry_return_steps = 10
-	var step = parry_time/parry_return_steps
+	var time_step = parry_time/parry_return_steps
+	var energy_step = initial_energy/parry_return_steps
 	for i in parry_return_steps:
-		await get_tree().create_timer(step).timeout
-		$Parry/CollisionShape2D/KillLight.energy += initial_energy/parry_return_steps
+		await get_tree().create_timer(time_step).timeout
+		light.energy = clamp(light.energy+energy_step, 0, initial_energy)
+	print("Finished parrying ", light.energy, " initial ", initial_energy)
 	parried = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
