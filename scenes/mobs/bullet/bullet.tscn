@@ -6,7 +6,7 @@
 
 [node name="Mob" type="CharacterBody2D"]
 scale = Vector2(1.15, 1.15)
-collision_mask = 26
+collision_mask = 30
 script = ExtResource("1_p1aaw")
 metadata/_edit_group_ = true
 
@@ -25,10 +25,11 @@ visible = false
 polygon = PackedVector2Array(-6.08696, -1.73913, -6.08696, 1.73913, -1.73913, 6.08696, 1.73913, 6.08696, 6.08696, 1.73913, 6.08696, -1.73913, 1.73913, -6.08696, -0.869565, -6.08696, -3.53706, -3.86404)
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_mask = 0
+collision_mask = 32
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
 visible = false
 polygon = PackedVector2Array(-6.08696, -1.73913, -6.08696, 1.73913, -1.73913, 6.08696, 1.73913, 6.08696, 6.08696, 1.73913, 6.08696, -1.73913, 1.73913, -6.08696, -0.869565, -6.08696, -3.53706, -3.86404)
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exit"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

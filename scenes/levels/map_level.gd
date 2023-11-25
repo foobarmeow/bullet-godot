@@ -9,6 +9,11 @@ var paused: bool
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	start_movers(get_children())
+	debug_state()
+	
+func debug_state():
+	$Player.position = $DebugSpot.position
+	_on_lights_out_trigger_area_entered(null)
 
 					
 func start_movers(nodes: Array[Node]):
@@ -31,7 +36,7 @@ func _on_lights_out_trigger_area_entered(area):
 	var l = $KillLightHolder/KillLight
 	var initial_energy = l.energy
 	l.energy = 0
-	l.show()
+	#l.show()
 	
 	
 	# Increase the energy over time

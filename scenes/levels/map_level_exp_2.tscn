@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b4sgaeuekl725"]
+[gd_scene load_steps=15 format=3 uid="uid://b4sgaeuekl725"]
 
 [ext_resource type="Script" path="res://scenes/levels/map_level.gd" id="1_xoahx"]
 [ext_resource type="Material" uid="uid://vtmbky35o2p2" path="res://resources/lit-mat.tres" id="2_sevok"]
@@ -10,24 +10,20 @@
 [ext_resource type="PackedScene" uid="uid://c7fyo24ou0om7" path="res://scenes/mobs/mover/mover.tscn" id="8_7qug6"]
 [ext_resource type="PackedScene" uid="uid://bhnamekyyvkpa" path="res://scenes/player/player.tscn" id="9_fw7ae"]
 [ext_resource type="Script" path="res://scenes/levels/Camera.gd" id="10_krsjo"]
-[ext_resource type="PackedScene" uid="uid://bwx1ygvwk1cwj" path="res://scenes/kill_light.tscn" id="11_t3o8k"]
-[ext_resource type="Texture2D" uid="uid://bhm8ejjl2sa26" path="res://art/sprites/lights/ring-halo-1.png" id="12_xtaui"]
+[ext_resource type="PackedScene" uid="uid://d0aqltjw153s5" path="res://parry.tscn" id="11_4y0fx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1n0qv"]
 resource_local_to_scene = true
 shader = ExtResource("4_tqwqv")
 shader_parameter/enabled = false
 shader_parameter/fade_distance = null
-shader_parameter/player_position = Vector2(-5830.6, -1113.1)
+shader_parameter/player_position = Vector2(-5831.61, -1112.85)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rovmf"]
 size = Vector2(20, 35)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c1vd8"]
 radius = 63.0317
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_bb1at"]
-radius = 26.9677
 
 [node name="MapLevel" type="Node2D"]
 script = ExtResource("1_xoahx")
@@ -118,36 +114,18 @@ shape = SubResource("CircleShape2D_c1vd8")
 
 [node name="StillGuard" parent="Enemies" instance=ExtResource("8_7qug6")]
 position = Vector2(340.367, 160.675)
-movement_type = 1
-spawn_time = 0.19
-parry_speed = 450
 
 [node name="Player" parent="." instance=ExtResource("9_fw7ae")]
 position = Vector2(438.471, 316.04)
 motion_mode = 1
 floor_max_angle = 1.5708
-speed = 100
-acceleration = 10
-top_speed = 150
 damageable = false
-parry_time = 1.5
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(2.4, 2.4)
 script = ExtResource("10_krsjo")
 
-[node name="Parry" type="Area2D" parent="Player"]
-collision_layer = 16
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Parry"]
-shape = SubResource("CircleShape2D_bb1at")
-
-[node name="KillLight" parent="Player/Parry/CollisionShape2D" instance=ExtResource("11_t3o8k")]
-scale = Vector2(0.42, 0.42)
-texture = ExtResource("12_xtaui")
-texture_scale = 0.35
+[node name="Parry2" parent="Player" instance=ExtResource("11_4y0fx")]
 
 [connection signal="area_entered" from="LightsOutTrigger" to="." method="_on_lights_out_trigger_area_entered"]
-[connection signal="area_entered" from="Player/Parry" to="Player" method="_on_parry_area_entered"]
-[connection signal="area_exited" from="Player/Parry" to="Player" method="_on_parry_area_exited"]

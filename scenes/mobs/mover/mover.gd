@@ -13,15 +13,15 @@ const animation_by_type = {
 }
 
 @export var path_speed: float = .01
-@export var movement_type: MovementType
+@export var movement_type: MovementType = MovementType.STOPPED
 @export var poppable: bool = true
 
 @export var spawn_type: Constants.SpawnerType = Constants.SpawnerType.TARGET
-@export var spawn_time: float = 0.25
+@export var spawn_time: float = 0.19
 @export var bullet: PackedScene
 @export var speed: int = 50
 @export var dir: Vector2
-@export var parry_speed: int = 150
+@export var parry_speed: int = 450
 
 
 var fill: float = 0
@@ -145,4 +145,5 @@ func add_bullet(v):
 	b.parry_speed = parry_speed
 	b.fire()
 	
-				
+func destroy():
+	queue_free()
