@@ -17,7 +17,7 @@ resource_local_to_scene = true
 shader = ExtResource("8_i7tpo")
 shader_parameter/enabled = false
 shader_parameter/fade_distance = null
-shader_parameter/player_position = Vector2(-5880.96, -1138.26)
+shader_parameter/player_position = Vector2(-5330.91, -1036.97)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rovmf"]
 size = Vector2(20, 35)
@@ -26,13 +26,13 @@ size = Vector2(20, 35)
 shader = ExtResource("8_i7tpo")
 shader_parameter/enabled = true
 shader_parameter/fade_distance = null
-shader_parameter/player_position = Vector2(-5988.59, -1039.56)
+shader_parameter/player_position = Vector2(-638.442, -22.6356)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jeapk"]
 shader = ExtResource("8_i7tpo")
 shader_parameter/enabled = true
 shader_parameter/fade_distance = null
-shader_parameter/player_position = Vector2(-5183.59, -1027.56)
+shader_parameter/player_position = Vector2(166.558, -10.6356)
 
 [node name="MapLevel" type="Node2D" node_paths=PackedStringArray("line_manager")]
 script = ExtResource("1_icc6t")
@@ -203,6 +203,8 @@ position = Vector2(5296.56, 1065.36)
 motion_mode = 1
 floor_max_angle = 1.5708
 speed = 125
+acceleration = 25
+deceleration = 50
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -216,7 +218,8 @@ follow_viewport_enabled = true
 visible = false
 script = ExtResource("10_ayisk")
 enabled = true
-fade_distance = 50
+reveal_type = -1
+fade_distance = 145
 player = NodePath("../../Player")
 
 [node name="LineReveal" type="Line2D" parent="CanvasLayer/LineManager"]

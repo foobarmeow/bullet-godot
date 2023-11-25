@@ -8,11 +8,12 @@ var parry_speed: int
 var armed: bool = false
 
 func fire():
-	print("FIRE")
 	fired_at = Engine.get_frames_drawn()
 	fired = true
 
 func parry():
+	# We want to collide with enemies now
+	set_collision_mask_value(3, true)
 	velocity = position.direction_to(from) * (parry_speed)
 	
 func destroy():
@@ -39,7 +40,6 @@ func _physics_process(delta):
 			return # We'll let the damage taker free it
 		elif collider is Mover:
 			if armed:
-				print("yo")
 				collider.destroy()
 			return
 		elif Engine.get_frames_drawn() - fired_at < 10:
@@ -52,7 +52,6 @@ func _physics_process(delta):
 
 
 func _on_screen_exit():
-	print("HERE")
 	queue_free()
 
 
