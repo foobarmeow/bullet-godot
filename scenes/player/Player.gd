@@ -6,6 +6,8 @@ signal health_updated
 @export var steps_to_accel: float = 3
 @export var steps_to_decel: float = 2
 @export var initial_health = 100
+@export var hittable: bool = true
+@export var parry_time: float = 0.1
 
 const TIME_PER_STEP: float = 0.2
 
@@ -30,15 +32,14 @@ var bounced: bool = false
 var damage: int = 10
 
 
+var circle_color = Color.RED
 func _draw():
-	var w = $StaticBody2D/CollisionShape2D.shape.get_rect().size
-	draw_circle(Vector2.ZERO, w.x*.5, Color.GREEN)
+	var w = $Parry/CollisionShape2D.shape.get_rect().size
+	draw_circle(Vector2.ZERO, w.x*.5, circle_color)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
-
-	print("draw", position)
+	#$Parry.process_mode = Node.PROCESS_MODE_DISABLED
 	if $AnimatedSprite2D == null:
 		print_debug("no sprite bruh")
 		return
@@ -48,8 +49,19 @@ func _ready():
 	initial_modulate = sprite.modulate
 	health = initial_health
 	#setup_shadow()
-	
-	
+
+func _unhandled_input(event):
+	if $Parry.process_mode == Node.PROCESS_MODE_INHERIT: 
+		return
+	if Input.is_action_just_pressed("parry"):
+		var initial_color = circle_color
+		$Parry.process_mode = Node.PROCESS_MODE_INHERIT
+		circle_color = Color.GREEN
+		queue_redraw()
+		await get_tree().create_timer(parry_time).timeout
+		$Parry.process_mode = Node.PROCESS_MODE_DISABLED
+		circle_color = initial_color
+		queue_redraw()
 #func setup_shadow():
 #	var frame = $AnimatedSprite2D.get_frame()
 #	var animation = $AnimatedSprite2D.get_animation()
@@ -157,6 +169,8 @@ func handle_movement(delta: float):
 	
 # Called by bullets that detect collision with player
 func take_damage(d: int):
+	if !hittable:
+		return
 	if health > 0:
 		health -= d
 		
