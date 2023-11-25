@@ -1,6 +1,7 @@
 class_name Player extends CharacterBody2D
 
 signal health_updated
+signal perry
 
 @export var speed = 125
 @export var acceleration = 25
@@ -87,6 +88,8 @@ func parry():
 		await get_tree().create_timer(time_step).timeout
 		light.energy = clamp(light.energy+energy_step, 0, initial_energy)
 	parried = false
+	perry.emit()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
