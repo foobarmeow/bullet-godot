@@ -17,7 +17,7 @@ resource_local_to_scene = true
 shader = ExtResource("4_tqwqv")
 shader_parameter/enabled = false
 shader_parameter/fade_distance = null
-shader_parameter/player_position = Vector2(-5821.65, -1111.27)
+shader_parameter/player_position = Vector2(-5820.2, -1110.36)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rovmf"]
 size = Vector2(20, 35)
@@ -119,7 +119,7 @@ shape = SubResource("CircleShape2D_c1vd8")
 position = Vector2(340.367, 160.675)
 movement_type = 1
 speed = 90
-parry_speed = 600
+parry_speed = 450
 
 [node name="Player" parent="." instance=ExtResource("9_fw7ae")]
 position = Vector2(438.471, 316.04)
@@ -137,11 +137,12 @@ script = ExtResource("10_krsjo")
 [node name="KillLight" parent="Player" instance=ExtResource("11_t3o8k")]
 visible = false
 
-[node name="Parry" type="StaticBody2D" parent="Player"]
+[node name="Parry" type="Area2D" parent="Player"]
 collision_layer = 16
-collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Parry"]
 shape = SubResource("CircleShape2D_bb1at")
 
 [connection signal="area_entered" from="LightsOutTrigger" to="." method="_on_lights_out_trigger_area_entered"]
+[connection signal="area_entered" from="Player/Parry" to="Player" method="_on_parry_area_entered"]
+[connection signal="area_exited" from="Player/Parry" to="Player" method="_on_parry_area_exited"]

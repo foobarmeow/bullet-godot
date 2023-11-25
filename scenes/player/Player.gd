@@ -13,6 +13,7 @@ const TIME_PER_STEP: float = 0.2
 
 var screen_size = Vector2.ZERO
 var initial_modulate: Color
+var parryables: Array[Node2D]
 
 
 var health: int = initial_health:
@@ -51,15 +52,18 @@ func _ready():
 	#setup_shadow()
 
 func _unhandled_input(event):
-	if $Parry.process_mode == Node.PROCESS_MODE_INHERIT: 
-		return
 	if Input.is_action_just_pressed("parry"):
+		print(parryables)
+		if len(parryables) > 0:
+			var p = parryables.pop_at(0)
+			p.get_parent().parry()
+			
 		var initial_color = circle_color
-		$Parry.process_mode = Node.PROCESS_MODE_INHERIT
+		#$Parry.process_mode = Node.PROCESS_MODE_INHERIT
 		circle_color = Color.GREEN
 		queue_redraw()
 		await get_tree().create_timer(parry_time).timeout
-		$Parry.process_mode = Node.PROCESS_MODE_DISABLED
+		#$Parry.process_mode = Node.PROCESS_MODE_DISABLED
 		circle_color = initial_color
 		queue_redraw()
 #func setup_shadow():
@@ -195,3 +199,11 @@ func _on_animated_sprite_2d_animation_finished():
 
 
 
+
+
+func _on_parry_area_entered(area):
+	print("YO")
+	parryables.append(area)
+		
+func _on_parry_area_exited(area):
+	parryables.pop_at(parryables.find(area))
