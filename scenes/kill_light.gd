@@ -15,4 +15,4 @@ func _process(delta):
 
 
 func _on_player_perry():
-	$AnimationPlayer.play("parry")
+	$AnimationPlayer.play("parry_2")

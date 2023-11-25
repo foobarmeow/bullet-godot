@@ -8,7 +8,6 @@
 
 [node name="Mover" parent="." instance=ExtResource("1_jkl3n")]
 position = Vector2(556, 350)
-movement_type = 1
 
 [node name="Player" parent="." instance=ExtResource("2_w7jrt")]
 position = Vector2(363.674, 307.956)
