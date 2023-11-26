@@ -5,10 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://c4026v6xiksqa" path="res://art/sprites/kenny-1px/monochrome_tilemap_transparent.png" id="3_hgo0q"]
 [ext_resource type="PackedScene" uid="uid://den0ajf1m1ws3" path="res://scenes/mobs/bullet/bullet.tscn" id="3_qs4ld"]
 [ext_resource type="Texture2D" uid="uid://ch4f7cqanjq8i" path="res://art/sprites/alert.png" id="3_vshqg"]
+[ext_resource type="PackedScene" uid="uid://7jh6at667qqy" path="res://scenes/components/DamageManager.tscn" id="4_6mota"]
 [ext_resource type="Texture2D" uid="uid://br1uqupw4mq8x" path="res://art/sprites/fire.png" id="4_8vfpj"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_xxnp7"]
-radius = 0.268817
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_38ne5"]
 atlas = ExtResource("3_vshqg")
@@ -209,28 +207,11 @@ script = ExtResource("1_6fl8p")
 bullet = ExtResource("3_qs4ld")
 metadata/_edit_group_ = true
 
+[node name="DamageManager" parent="." instance=ExtResource("4_6mota")]
+initial_health = 30
+
 [node name="FireTimer" type="Timer" parent="."]
-wait_time = 0.25
-
-[node name="OutsideRadius" type="Area2D" parent="."]
-visible = false
-scale = Vector2(10.72, 10.72)
-collision_layer = 0
-collision_mask = 16
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OutsideRadius"]
-scale = Vector2(14.4956, 14.4956)
-shape = SubResource("CircleShape2D_xxnp7")
-
-[node name="InsideRadius" type="Area2D" parent="."]
-visible = false
-collision_layer = 0
-collision_mask = 16
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InsideRadius"]
-scale = Vector2(37.2, 37.2)
-shape = SubResource("CircleShape2D_xxnp7")
-debug_color = Color(0.764706, 0.364706, 0.0313726, 0.419608)
+wait_time = 0.19
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
@@ -262,11 +243,8 @@ collision_mask = 0
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_ykj56")
 
+[connection signal="health_updated" from="DamageManager" to="." method="_on_damage_manager_health_updated"]
 [connection signal="timeout" from="FireTimer" to="." method="fire"]
-[connection signal="area_entered" from="OutsideRadius" to="." method="_on_outside_radius_area_entered"]
-[connection signal="area_exited" from="OutsideRadius" to="." method="_on_outside_radius_area_exited"]
-[connection signal="area_entered" from="InsideRadius" to="." method="_on_inside_radius_area_entered"]
-[connection signal="area_exited" from="InsideRadius" to="." method="_on_inside_radius_area_exited"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
