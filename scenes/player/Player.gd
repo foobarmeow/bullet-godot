@@ -1,7 +1,7 @@
 class_name Player extends CharacterBody2D
 
 signal health_updated
-signal perry
+signal parry
 
 @export var speed = 125
 @export var acceleration = 25
@@ -52,10 +52,10 @@ func _unhandled_input(_event):
 		get_tree().reload_current_scene()
 		return
 	if Input.is_action_just_pressed("parry"):
-		parry()
+		_parry()
 		return
 
-func parry():
+func _parry():
 	if parried: 
 			return
 	var overlaps = $Parry.get_overlapping_bodies()
@@ -88,9 +88,8 @@ func parry():
 #		await get_tree().create_timer(time_step).timeout
 #		light.energy = clamp(light.energy+energy_step, 0, initial_energy)
 #	parried = false
-	perry.emit()
+	parry.emit(self)
 	
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if health <= 0:
