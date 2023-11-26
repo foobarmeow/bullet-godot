@@ -90,3 +90,10 @@ func _on_damage_manager_health_updated(health: int):
 	if health <= 0:
 		dead = true
 		sprite.play("dead")
+
+
+func _on_damage_manager_invuln_updated(invuln: bool):
+	if invuln:
+		set_collision_layer_value(2, false)
+	else:
+		set_collision_layer_value(2, true)

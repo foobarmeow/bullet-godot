@@ -83,11 +83,12 @@ material = ExtResource("1_6rdlo")
 position = Vector2(512, 384)
 scale = Vector2(0.65, 0.65)
 collision_layer = 2
-collision_mask = 5
+collision_mask = 4
 script = ExtResource("1_0r62m")
 
 [node name="DamageManager" parent="." instance=ExtResource("3_n0tqd")]
-initial_health = 100
+health = 100
+invuln_time = 1.5
 
 [node name="KillLight" parent="." instance=ExtResource("4_y8ax7")]
 scale = Vector2(0.145, 0.145)
@@ -122,5 +123,6 @@ collision_layer = 16
 shape = SubResource("CircleShape2D_bb1at")
 
 [connection signal="health_updated" from="DamageManager" to="." method="_on_damage_manager_health_updated"]
+[connection signal="invuln_updated" from="DamageManager" to="." method="_on_damage_manager_invuln_updated"]
 [connection signal="parry_recharged" from="KillLight" to="." method="_on_kill_light_parry_recharged"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
