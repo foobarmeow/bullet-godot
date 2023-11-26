@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwx1ygvwk1cwj"]
+[gd_scene load_steps=8 format=3 uid="uid://bwx1ygvwk1cwj"]
 
 [ext_resource type="Texture2D" uid="uid://bhm8ejjl2sa26" path="res://art/sprites/lights/ring-halo-1.png" id="1_r6q5i"]
 [ext_resource type="Script" path="res://scenes/kill_light.gd" id="2_84vhp"]
@@ -10,36 +10,8 @@ shader_parameter/highlight_color = Color(1, 1, 0, 1)
 shader_parameter/circle_radius = 0.316
 shader_parameter/highlight_width = 0.344
 shader_parameter/feather_width = 0.252
-shader_parameter/start_angle = 150.0
-shader_parameter/end_angle = 180.0
-
-[sub_resource type="Animation" id="Animation_jjygt"]
-length = 0.6
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
+shader_parameter/start_angle = 360.0
+shader_parameter/end_angle = 360.0
 
 [sub_resource type="Animation" id="Animation_ytdj7"]
 resource_name = "parry_activate"
@@ -101,7 +73,6 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tkj07"]
 _data = {
-"RESET": SubResource("Animation_jjygt"),
 "parry_activate": SubResource("Animation_ytdj7"),
 "parry_recharge": SubResource("Animation_kolwd")
 }

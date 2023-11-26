@@ -73,22 +73,7 @@ func _parry():
 			o.destroy()
 	
 	parried = true
-	
-#	var light = $Parry/CollisionShape2D/KillLight
-#	var initial_energy = light.energy
-#	light.energy = 10
-#	await get_tree().create_timer(.1).timeout
-#	light.energy = 0.1
-#
-#	# Animate the parry ring returning to full brightness
-#	var parry_return_steps = 10
-#	var time_step = parry_time/parry_return_steps
-#	var energy_step = initial_energy/parry_return_steps
-#	for i in parry_return_steps:
-#		await get_tree().create_timer(time_step).timeout
-#		light.energy = clamp(light.energy+energy_step, 0, initial_energy)
-#	parried = false
-	parry.emit(self)
+	$KillLight.activate()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -145,3 +130,7 @@ func blink():
 func _on_animated_sprite_2d_animation_finished():
 	if sprite.animation == "dead":
 		process_mode = Node.PROCESS_MODE_DISABLED
+
+
+func _on_kill_light_parry_recharged():
+	parried = false
