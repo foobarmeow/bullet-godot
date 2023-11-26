@@ -12,6 +12,7 @@ const animation_by_type = {
 	MovementType.PLAYER_STALK: "stalker",
 }
 
+
 @export var path_speed: float = .01
 @export var movement_type: MovementType = MovementType.STOPPED
 @export var poppable: bool = true
@@ -22,7 +23,7 @@ const animation_by_type = {
 @export var speed: int = 100
 @export var dir: Vector2
 @export var parry_speed: int = 450
-
+@export var health: int = 30
 
 var fill: float = 0
 var filling: float = 0
@@ -148,3 +149,11 @@ func add_bullet(v):
 	
 func destroy():
 	queue_free()
+	
+func take_damage(d: int, enemy: Node2D):
+	print("damage!")
+	health -= d
+	if health <= 0:
+		destroy()	
+	if is_instance_valid(enemy):
+		enemy.queue_free()
