@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c7fyo24ou0om7"]
+[gd_scene load_steps=31 format=3 uid="uid://c7fyo24ou0om7"]
 
 [ext_resource type="Script" path="res://scenes/mobs/mover/mover.gd" id="1_6fl8p"]
 [ext_resource type="Material" uid="uid://vtmbky35o2p2" path="res://resources/lit-mat.tres" id="1_oict5"]
@@ -105,6 +105,18 @@ region = Rect2(17, 306, 16, 16)
 atlas = ExtResource("3_hgo0q")
 region = Rect2(34, 306, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4h4kc"]
+atlas = ExtResource("3_hgo0q")
+region = Rect2(51, 306, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jqu1"]
+atlas = ExtResource("3_hgo0q")
+region = Rect2(68, 306, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o76fe"]
+atlas = ExtResource("3_hgo0q")
+region = Rect2(85, 306, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_7n6sb"]
 animations = [{
 "frames": [{
@@ -162,6 +174,20 @@ animations = [{
 "loop": true,
 "name": &"still",
 "speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4h4kc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jqu1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o76fe")
+}],
+"loop": false,
+"name": &"still_dead",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ahux"]
@@ -181,6 +207,7 @@ motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_6fl8p")
 bullet = ExtResource("3_qs4ld")
+metadata/_edit_group_ = true
 
 [node name="FireTimer" type="Timer" parent="."]
 wait_time = 0.25
@@ -216,8 +243,7 @@ animation = &"alert"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_7n6sb")
-animation = &"fire"
-frame_progress = 0.38916
+animation = &"still_dead"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1.2)
@@ -243,3 +269,4 @@ shape = SubResource("RectangleShape2D_ykj56")
 [connection signal="area_exited" from="InsideRadius" to="." method="_on_inside_radius_area_exited"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
