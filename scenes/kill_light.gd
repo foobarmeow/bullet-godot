@@ -1,5 +1,5 @@
 @tool
-extends PointLight2D
+extends Node2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -15,4 +15,4 @@ func _process(delta):
 
 
 func _on_player_perry():
-	$AnimationPlayer.play("parry_2")
+	$AnimationPlayer.play("parry")

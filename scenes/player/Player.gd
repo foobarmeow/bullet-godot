@@ -74,20 +74,20 @@ func parry():
 	
 	parried = true
 	
-	var light = $Parry/CollisionShape2D/KillLight
-	var initial_energy = light.energy
-	light.energy = 10
-	await get_tree().create_timer(.1).timeout
-	light.energy = 0.1
-	
-	# Animate the parry ring returning to full brightness
-	var parry_return_steps = 10
-	var time_step = parry_time/parry_return_steps
-	var energy_step = initial_energy/parry_return_steps
-	for i in parry_return_steps:
-		await get_tree().create_timer(time_step).timeout
-		light.energy = clamp(light.energy+energy_step, 0, initial_energy)
-	parried = false
+#	var light = $Parry/CollisionShape2D/KillLight
+#	var initial_energy = light.energy
+#	light.energy = 10
+#	await get_tree().create_timer(.1).timeout
+#	light.energy = 0.1
+#
+#	# Animate the parry ring returning to full brightness
+#	var parry_return_steps = 10
+#	var time_step = parry_time/parry_return_steps
+#	var energy_step = initial_energy/parry_return_steps
+#	for i in parry_return_steps:
+#		await get_tree().create_timer(time_step).timeout
+#		light.energy = clamp(light.energy+energy_step, 0, initial_energy)
+#	parried = false
 	perry.emit()
 	
 

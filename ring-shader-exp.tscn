@@ -17,8 +17,10 @@ shader_parameter/slice_end = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6eexy"]
 shader = ExtResource("4_w1c0x")
+shader_parameter/highlight_color = Color(1, 1, 0, 1)
 shader_parameter/circle_radius = 0.325
 shader_parameter/highlight_width = 0.155
+shader_parameter/feather_width = 0.05
 shader_parameter/start_angle = 0.0
 shader_parameter/end_angle = 0.0
 
