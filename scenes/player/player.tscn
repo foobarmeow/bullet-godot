@@ -113,17 +113,18 @@ collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_0r62m")
 
+[node name="KillLight" parent="." instance=ExtResource("4_y8ax7")]
+scale = Vector2(0.197, 0.197)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_jt1sm")
 }
 
 [node name="DamageManager" parent="." instance=ExtResource("3_n0tqd")]
+visible = false
 health = 100
 invuln_time = 1.5
-
-[node name="KillLight" parent="." instance=ExtResource("4_y8ax7")]
-scale = Vector2(0.145, 0.145)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
@@ -131,14 +132,17 @@ sprite_frames = SubResource("SpriteFrames_ny255")
 animation = &"dead"
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
 scale = Vector2(0.274802, 0.274802)
 occluder = SubResource("OccluderPolygon2D_frnlm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 2.30774)
 shape = SubResource("RectangleShape2D_cosid")
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 collision_layer = 2
 collision_mask = 0
 
@@ -148,12 +152,13 @@ shape = SubResource("RectangleShape2D_wl5i8")
 debug_color = Color(0.929412, 0, 0.654902, 0.419608)
 
 [node name="Parry" type="Area2D" parent="."]
+scale = Vector2(1.24612, 1.24612)
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Parry"]
 shape = SubResource("CircleShape2D_bb1at")
 
+[connection signal="parry_recharged" from="KillLight" to="." method="_on_kill_light_parry_recharged"]
 [connection signal="health_updated" from="DamageManager" to="." method="_on_damage_manager_health_updated"]
 [connection signal="invuln_updated" from="DamageManager" to="." method="_on_damage_manager_invuln_updated"]
-[connection signal="parry_recharged" from="KillLight" to="." method="_on_kill_light_parry_recharged"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
