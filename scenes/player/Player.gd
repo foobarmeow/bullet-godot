@@ -94,6 +94,8 @@ func _on_damage_manager_health_updated(health: int):
 
 func _on_damage_manager_invuln_updated(invuln: bool):
 	if invuln:
+		$AnimationPlayer.play("invuln_blink")
 		set_collision_layer_value(2, false)
 	else:
+		$AnimationPlayer.stop()
 		set_collision_layer_value(2, true)
