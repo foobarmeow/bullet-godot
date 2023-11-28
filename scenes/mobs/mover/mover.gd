@@ -1,7 +1,7 @@
 @tool
 class_name Mover extends Node2D
 
-signal burst
+signal dead
 
 enum MovementType {PLAYER_STALK, STOPPED, RANDOM, PATHED = -1}
 
@@ -24,10 +24,13 @@ const animation_by_type = {
 @export var speed: int = 100
 @export var dir: Vector2
 @export var parry_speed: int = 450
-@export var health: int = 30
+@export var health: int = 30:
+	get:
+		return $DamageManager.health
 
 var player: Player
 var alerted: bool = false
+var started: bool
 
 func _ready():
 	$FireTimer.wait_time = spawn_time
@@ -37,6 +40,7 @@ func _ready():
 
 
 func begin():
+	started = true
 	$AnimatedSprite2D.play(animation_by_type[movement_type])
 	
 func _physics_process(delta):
@@ -126,3 +130,5 @@ func _on_damage_manager_health_updated(health: int):
 		$FireTimer.stop()
 		var death_anim = "%s_dead" % animation_by_type[movement_type]
 		$AnimatedSprite2D.play(death_anim)
+		dead.emit()
+		

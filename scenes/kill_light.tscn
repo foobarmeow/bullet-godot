@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwx1ygvwk1cwj"]
+[gd_scene load_steps=11 format=3 uid="uid://bwx1ygvwk1cwj"]
 
 [ext_resource type="Texture2D" uid="uid://bhm8ejjl2sa26" path="res://art/sprites/lights/ring-halo-1.png" id="1_r6q5i"]
+[ext_resource type="Texture2D" uid="uid://cvcc60svfqim0" path="res://art/s2s.bg.png" id="2_3jikf"]
 [ext_resource type="Script" path="res://scenes/kill_light.gd" id="2_84vhp"]
 [ext_resource type="Shader" path="res://ring-shader-area.gdshader" id="4_ouufx"]
+[ext_resource type="Texture2D" uid="uid://d0iai05rfiddw" path="res://art/sprites/lights/parry-halo.png" id="5_76imm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ogiuw"]
 shader = ExtResource("4_ouufx")
@@ -36,6 +38,30 @@ tracks/1/path = NodePath(".:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.403922), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.105882)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../PointLight2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.05, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.75, 1.75), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../PointLight2D:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.2, 0.25, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
@@ -80,7 +106,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0.5, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0.054902), Color(1, 1, 1, 0.847059)]
+"values": [Color(1, 1, 1, 0.054902), Color(1, 1, 1, 0.305882)]
 }
 
 [sub_resource type="Animation" id="Animation_cgn7l"]
@@ -132,15 +158,32 @@ _data = {
 [node name="KillLight" type="Node2D"]
 script = ExtResource("2_84vhp")
 
+[node name="S2s_bg" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(73, 53)
+texture = ExtResource("2_3jikf")
+
 [node name="Ring-halo-1" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.403922)
 material = SubResource("ShaderMaterial_ogiuw")
 texture = ExtResource("1_r6q5i")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+color = Color(1, 1, 1, 0.105882)
+shadow_enabled = true
+texture = ExtResource("5_76imm")
+texture_scale = 0.86
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Ring-halo-1")
 libraries = {
 "": SubResource("AnimationLibrary_tkj07")
 }
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+scale = Vector2(3.29806, 1.78868)
+color = Color(0.168627, 0.168627, 0.168627, 1)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

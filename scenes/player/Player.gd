@@ -1,6 +1,7 @@
 class_name Player extends CharacterBody2D
 
 signal parry
+signal died
 
 @export var speed = 125
 @export var acceleration = 25
@@ -79,9 +80,6 @@ func take_damage(d: int, enemy: Node2D):
 	if dmgmgr:
 		dmgmgr.take_damage(self, enemy, d)
 
-func _on_animated_sprite_2d_animation_finished():
-	if sprite.animation == "dead":
-		process_mode = Node.PROCESS_MODE_DISABLED
 
 func _on_kill_light_parry_recharged():
 	parried = false
@@ -90,6 +88,7 @@ func _on_damage_manager_health_updated(health: int):
 	if health <= 0:
 		dead = true
 		sprite.play("dead")
+		died.emit()
 
 
 func _on_damage_manager_invuln_updated(invuln: bool):
