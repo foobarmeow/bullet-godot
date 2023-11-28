@@ -10,7 +10,7 @@ var paused: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-#	start_movers(get_children())
+	start_movers(get_children())
 #	debug_state()
 	pass
 	

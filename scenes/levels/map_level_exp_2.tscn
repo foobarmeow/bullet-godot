@@ -49,8 +49,6 @@ layer_3/tile_data = PackedInt32Array()
 color = Color(0.843137, 0.843137, 0.843137, 1)
 
 [node name="Enemies" type="Node2D" parent="."]
-process_mode = 4
-visible = false
 
 [node name="StillGuard" parent="Enemies" instance=ExtResource("8_7qug6")]
 position = Vector2(301.513, 152.67)
@@ -90,6 +88,7 @@ zoom = Vector2(2.4, 2.4)
 script = ExtResource("10_krsjo")
 
 [node name="GUI" type="Control" parent="Player/Camera2D"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -609.231
