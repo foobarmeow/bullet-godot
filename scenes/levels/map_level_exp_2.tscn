@@ -52,31 +52,37 @@ color = Color(0.843137, 0.843137, 0.843137, 1)
 
 [node name="StillGuard" parent="Enemies" instance=ExtResource("8_7qug6")]
 position = Vector2(301.513, 152.67)
+bullet_color_override = Color(0, 0, 0, 1)
 
 [node name="StillGuard2" parent="Enemies" instance=ExtResource("8_7qug6")]
 process_mode = 4
 visible = false
 position = Vector2(566.06, 162.799)
+bullet_color_override = Color(0, 0, 0, 1)
 
 [node name="StillGuard3" parent="Enemies" instance=ExtResource("8_7qug6")]
 process_mode = 4
 visible = false
 position = Vector2(722.441, 323.936)
+bullet_color_override = Color(0, 0, 0, 1)
 
 [node name="StillGuard4" parent="Enemies" instance=ExtResource("8_7qug6")]
 process_mode = 4
 visible = false
 position = Vector2(904.984, 180.637)
+bullet_color_override = Color(0, 0, 0, 1)
 
 [node name="StillGuard5" parent="Enemies" instance=ExtResource("8_7qug6")]
 process_mode = 4
 visible = false
 position = Vector2(545.843, 540.372)
+bullet_color_override = Color(0, 0, 0, 1)
 
 [node name="StillGuard6" parent="Enemies" instance=ExtResource("8_7qug6")]
 process_mode = 4
 visible = false
 position = Vector2(964.444, 481.506)
+bullet_color_override = Color(0, 0, 0, 1)
 
 [node name="Player" parent="." instance=ExtResource("9_fw7ae")]
 position = Vector2(396, 293)
