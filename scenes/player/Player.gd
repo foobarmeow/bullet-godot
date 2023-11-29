@@ -66,11 +66,16 @@ func _parry():
 	var anyParried = false
 	for o in overlaps:
 		var diff = position.distance_to(o.position)
-		print(diff)		
-		if abs(diff - parry_outside_edge_distance) < 3:
+		var diff_from_outside = diff - parry_outside_edge_distance
+		
+		# if it's within a certain distance in or out
+		if abs(diff_from_outside) < 3:
 			if o.has_method("parry"):
-				o.parry()
+				o.parry(false)
 				last_parried = o
+		elif diff_from_outside < 0 && diff_from_outside > -15:
+			if o.has_method("parry"):
+				o.parry(true)
 
 #	var first_overlap = overlaps.pop_at(0)
 #	if first_overlap.has_method("parry"):

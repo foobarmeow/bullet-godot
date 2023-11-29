@@ -24,6 +24,7 @@ func activate():
 
 
 func draw():
+	return
 	draw_bodies()
 	#draw_a_line()
 
@@ -53,6 +54,7 @@ func draw_bodies():
 		c.shape = cs
 				
 		var r = RigidBody2D.new()
+		r.gravity_scale = 0
 		r.position = p
 		r.add_child(c)
 		#c.owner = get_tree().edited_scene_root
@@ -69,7 +71,7 @@ func draw_bodies():
 		
 		last_joint = joint
 		
-		body_container.add_child(joint)
+		#body_container.add_child(joint)
 		#joint.owner = get_tree().edited_scene_root
 		
 		print(last_joint.node_a, " - ", last_joint.node_b)
