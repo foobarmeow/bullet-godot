@@ -38,8 +38,12 @@ func draw_bodies():
 	# draw many points along a circle
 	body_container = Node2D.new()
 	add_child(body_container)
-	body_container.owner = get_tree().edited_scene_root
+	#body_container.owner = get_tree().edited_scene_root
 	var radius = circle_radius # or so
+	
+	
+	var last_joint: Joint2D
+	
 	for i in num_points+1:
 		var p = Vector2(1, 0).rotated((TAU/num_points)*i)*radius
 		
@@ -54,8 +58,21 @@ func draw_bodies():
 		#c.owner = get_tree().edited_scene_root
 		
 		body_container.add_child(r)
-		r.owner = get_tree().edited_scene_root
+		#r.owner = get_tree().edited_scene_root
 		
+		var joint = DampedSpringJoint2D.new()
+		r.add_child(joint)
+		joint.node_a = joint.get_path_to(r)
+		
+		if last_joint:
+			last_joint.node_b = last_joint.get_path_to(r)
+		
+		last_joint = joint
+		
+		body_container.add_child(joint)
+		#joint.owner = get_tree().edited_scene_root
+		
+		print(last_joint.node_a, " - ", last_joint.node_b)
 		
 
 var line: Line2D

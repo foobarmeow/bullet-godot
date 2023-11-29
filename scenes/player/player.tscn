@@ -115,6 +115,8 @@ script = ExtResource("1_0r62m")
 
 [node name="ParryRing" parent="." instance=ExtResource("4_y8ax7")]
 scale = Vector2(0.217, 0.217)
+circle_radius = null
+num_points = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
