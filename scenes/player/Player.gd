@@ -18,6 +18,7 @@ var sprite: AnimatedSprite2D
 var last_parried: Node2D
 var parried: bool = false
 var dead: bool = false
+var parry_outside_edge_distance: float
 
 
 # TODO: Make this a property of the node that collided
@@ -33,6 +34,8 @@ func _ready():
 		print_debug("no sprite bruh")
 		return			
 	sprite = $AnimatedSprite2D
+	parry_outside_edge_distance = Vector2.ZERO.distance_to($ParryMeasurementLine.points[2])
+	print(parry_outside_edge_distance)
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("reload"):
@@ -45,6 +48,8 @@ func _unhandled_input(_event):
 		_dash()
 		return
 
+
+var parry_debug_lines = []
 func _parry():
 	if parried || !can_parry: 
 			return
@@ -52,16 +57,31 @@ func _parry():
 	if len(overlaps) < 1:
 		parried = false
 		return
-	var first_overlap = overlaps.pop_at(0)
-	if first_overlap.has_method("parry"):
-		first_overlap.parry()
-		last_parried = first_overlap
-	
+
+	for l in parry_debug_lines:
+		l.queue_free()
+		
+	parry_debug_lines = []
+
+	var anyParried = false
 	for o in overlaps:
-		# destroy the rest, that is the power of the light
-		if o.has_method("destroy"):
-			o.destroy()
-	
+		var diff = position.distance_to(o.position)
+		print(diff)		
+		if abs(diff - parry_outside_edge_distance) < 3:
+			if o.has_method("parry"):
+				o.parry()
+				last_parried = o
+
+#	var first_overlap = overlaps.pop_at(0)
+#	if first_overlap.has_method("parry"):
+#		first_overlap.parry()
+#		last_parried = first_overlap
+#
+#	for o in overlaps:
+#		# destroy the rest, that is the power of the light
+#		if o.has_method("destroy"):
+#			o.destroy()
+#
 	parried = true
 	$ParryRing.activate()
 	

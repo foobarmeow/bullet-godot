@@ -102,7 +102,7 @@ size = Vector2(12.3077, 10.7692)
 size = Vector2(12.3077, 10.7693)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bb1at"]
-radius = 33.3342
+radius = 49.3839
 
 [node name="Player" type="CharacterBody2D"]
 self_modulate = Color(1, 1, 1, 0.962096)
@@ -129,7 +129,8 @@ invuln_time = 1.5
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_ny255")
-animation = &"dead"
+animation = &"idle"
+frame_progress = 0.125
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 visible = false
@@ -152,11 +153,16 @@ shape = SubResource("RectangleShape2D_wl5i8")
 debug_color = Color(0.929412, 0, 0.654902, 0.419608)
 
 [node name="Parry" type="Area2D" parent="."]
+visible = false
 scale = Vector2(1.24612, 1.24612)
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Parry"]
 shape = SubResource("CircleShape2D_bb1at")
+
+[node name="ParryMeasurementLine" type="Line2D" parent="."]
+points = PackedVector2Array(-4.61536, -3.0769, -18.4615, -20, -29.2308, -32.3077)
+width = 2.0
 
 [connection signal="parry_recharged" from="ParryRing" to="." method="_on_kill_light_parry_recharged"]
 [connection signal="health_updated" from="DamageManager" to="." method="_on_damage_manager_health_updated"]
