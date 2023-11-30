@@ -29,7 +29,7 @@ const animation_by_type = {
 @export var target: Node2D
 
 var alerted: bool = false
-var started: bool
+var is_dead: bool = false
 
 func _ready():
 	$FireTimer.wait_time = spawn_time
@@ -38,16 +38,18 @@ func _ready():
 
 
 func begin():
-	started = true
 	$AnimatedSprite2D.play(animation_by_type[movement_type])
 	
 func _physics_process(delta):
+	if is_dead: 
+		return
 	if spawn_type == Constants.SpawnerType.TARGET:
 		if target != null:
 			dir = position.direction_to(target.position)
-	
 	if spawn_type == Constants.SpawnerType.ROTATE:
 		rotation += TAU/100
+		if rotation >= 360:
+			rotation = 0
 	
 	match movement_type:
 		MovementType.RANDOM:
@@ -141,4 +143,5 @@ func _on_damage_manager_health_updated(health: int):
 		var death_anim = "%s_dead" % animation_by_type[movement_type]
 		$AnimatedSprite2D.play(death_anim)
 		dead.emit()
+		is_dead = true
 		
