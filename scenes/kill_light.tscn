@@ -172,12 +172,18 @@ draw_circle = true
 circle_radius = 190
 num_points = 30
 
-[node name="S2s_bg" type="Sprite2D" parent="."]
+[node name="DebugDisplay" type="Node2D" parent="."]
 visible = false
+
+[node name="S2s_bg" type="Sprite2D" parent="DebugDisplay"]
 position = Vector2(73, 53)
 texture = ExtResource("2_3jikf")
 
-[node name="RingDebug" type="Sprite2D" parent="."]
+[node name="CanvasModulate" type="CanvasModulate" parent="DebugDisplay"]
+scale = Vector2(3.29806, 1.78868)
+color = Color(0.34902, 0.34902, 0.34902, 1)
+
+[node name="RingDebug" type="Sprite2D" parent="DebugDisplay"]
 visible = false
 material = SubResource("ShaderMaterial_pypbu")
 scale = Vector2(1.44, 1.44)
@@ -201,16 +207,16 @@ libraries = {
 "": SubResource("AnimationLibrary_tkj07")
 }
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
-scale = Vector2(3.29806, 1.78868)
-color = Color(0.168627, 0.168627, 0.168627, 1)
-
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 visible = false
 shape = SubResource("CircleShape2D_dykci")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+visible = false
+shadow_enabled = true
+texture = ExtResource("1_r6q5i")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

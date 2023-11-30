@@ -8,6 +8,9 @@ var parry_speed: int
 var armed: bool = false
 var parried: bool = false
 
+func get_width():
+	return $Sprite2D.texture.get_width()
+
 func fire():
 	fired_at = Engine.get_frames_drawn()
 	fired = true

@@ -27,7 +27,8 @@ var damage: int = 10
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if can_parry:
-		$ParryRing.show()
+		pass
+		#$ParryRing.show()
 	else:
 		$ParryRing.hide()
 	if $AnimatedSprite2D == null:
@@ -38,6 +39,9 @@ func _ready():
 	print(parry_outside_edge_distance)
 
 func _unhandled_input(_event):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		_parry()
+		return
 	if Input.is_action_just_pressed("reload"):
 		get_tree().reload_current_scene()
 		return
@@ -53,8 +57,9 @@ var parry_debug_lines = []
 func _parry():
 	if parried || !can_parry: 
 			return
-	var overlaps = $Parry.get_overlapping_bodies()
+	var overlaps = $ParryArea.get_overlapping_bodies()
 	if len(overlaps) < 1:
+		print("no overlaps")
 		parried = false
 		return
 
@@ -68,14 +73,10 @@ func _parry():
 		var diff = position.distance_to(o.position)
 		var diff_from_outside = diff - parry_outside_edge_distance
 		
-		# if it's within a certain distance in or out
-		if abs(diff_from_outside) < 3:
+		if $Shield.check_position(o.global_position, o.get_width()):
 			if o.has_method("parry"):
 				o.parry(false)
 				last_parried = o
-		elif diff_from_outside < 0 && diff_from_outside > -15:
-			if o.has_method("parry"):
-				o.parry(true)
 
 #	var first_overlap = overlaps.pop_at(0)
 #	if first_overlap.has_method("parry"):
@@ -87,7 +88,7 @@ func _parry():
 #		if o.has_method("destroy"):
 #			o.destroy()
 #
-	parried = true
+	#sparried = true
 	$ParryRing.activate()
 	
 
