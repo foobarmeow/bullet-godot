@@ -1,4 +1,3 @@
-@tool
 class_name Mover extends Node2D
 
 signal dead
@@ -47,6 +46,9 @@ func _physics_process(delta):
 		if target != null:
 			dir = position.direction_to(target.position)
 	
+	if spawn_type == Constants.SpawnerType.ROTATE:
+		rotation += TAU/100
+	
 	match movement_type:
 		MovementType.RANDOM:
 			# More stuck on walls behaviour
@@ -62,6 +64,7 @@ func _physics_process(delta):
 			pass
 		MovementType.STOPPED:
 			pass
+	
 
 func _on_visible_on_screen_notifier_2d_screen_entered():
 	if alerted:
@@ -83,7 +86,6 @@ func shake(delta, factor):
 	$AnimatedSprite2D.position = p.normalized() * factor
 
 
-	
 func fire():
 	if bullet == null:
 		return
@@ -99,16 +101,23 @@ func fire():
 			for v in [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]:
 				add_bullet(v*speed)
 		Constants.SpawnerType.CIRCLE:
-			var steps = 8
-			var angle = 0.0
-			var step = TAU/steps
-			for i in steps:
-				var v = Vector2.UP.rotated(angle) * speed
-				add_bullet(v)
-				angle += step
-				
+			fire_circle()
+		Constants.SpawnerType.ROTATE:
+			fire_circle()
+			
 	$AnimatedSprite2D.play("fire")
 
+func fire_circle():
+	var steps = 8
+	var angle = 0.0
+	var step = TAU/steps
+	var v = Vector2.UP.rotated(rotation)
+	for i in steps:
+		var rv = v.rotated(angle) * speed
+		add_bullet(rv)
+		angle += step
+		
+		
 func add_bullet(v):
 	var b = bullet.instantiate()
 	b.position = global_position
