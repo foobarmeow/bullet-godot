@@ -128,7 +128,7 @@ func _physics_process(delta):
 func take_damage(d: int, enemy: Node2D):
 	if enemy == last_parried: 
 		return
-	
+	$BytesAnimator.play("hit-byte")
 	var dmgmgr = $DamageManager
 	if dmgmgr:
 		dmgmgr.take_damage(self, enemy, d)
@@ -137,7 +137,7 @@ func take_damage(d: int, enemy: Node2D):
 func _on_kill_light_parry_recharged():
 	parried = false
 
-func _on_damage_manager_health_updated(health: int):
+func _on_damage_manager_health_updated(health: int, _init_health: int):
 	if health <= 0:
 		dead = true
 		sprite.play("dead")
@@ -145,6 +145,7 @@ func _on_damage_manager_health_updated(health: int):
 
 
 func _on_damage_manager_invuln_updated(invuln: bool):
+	print("INVULN")
 	if invuln:
 		$AnimationPlayer.play("invuln_blink")
 		set_collision_layer_value(2, false)
