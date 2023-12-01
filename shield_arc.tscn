@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://idpb7hag6x1r"]
+
+[ext_resource type="Script" path="res://Shield2.gd" id="1_cyfi2"]
+
+[node name="ShieldBody" type="RigidBody2D" groups=["shield"]]
+rotation = -0.329594
+collision_layer = 128
+mass = 0.01
+gravity_scale = 0.0
+script = ExtResource("1_cyfi2")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(28.66, 108.598)
+polygon = PackedVector2Array(2.381, -133.767, 7.9537, -125.463, 10.9785, -115.932, 11.4556, -105.172, 9.10054, -95.4019, 7.78093, -91.6258, 4.52758, -85.3476, -2.21761, -78.1711, -10.5209, -72.5984, -15.2867, -71.086, -17.0376, -81.2316, -8.73432, -86.8043, -4.86687, -91.8086, -1.28362, -99.0308, 0.365904, -103.751, 0.502995, -113.237, -1.90775, -121.494, -6.25222, -127.25)
+
+[node name="Polygon2D" type="Polygon2D" parent="CollisionPolygon2D"]
+polygon = PackedVector2Array(2.381, -133.767, 7.9537, -125.463, 10.9785, -115.932, 11.4556, -105.172, 9.10054, -95.4019, 7.78093, -91.6258, 4.52758, -85.3476, -2.21761, -78.1711, -10.5209, -72.5984, -15.2867, -71.086, -17.0376, -81.2316, -8.73432, -86.8043, -4.86687, -91.8086, -1.28362, -99.0308, 0.365904, -103.751, 0.502995, -113.237, -1.90775, -121.494, -6.25222, -127.25)

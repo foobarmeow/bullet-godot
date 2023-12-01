@@ -40,6 +40,10 @@ func _physics_process(delta):
 			if armed:
 				collider.take_damage(10, self)
 			return
+		elif collider.is_in_group("shield"):
+			velocity = velocity.bounce(collision.get_normal())
+			print("YOs")
+			return
 		elif Engine.get_frames_drawn() - fired_at < 10:
 			# It's nice to have them dissapear when they
 			# hit another enemy, but we have to add this lag
