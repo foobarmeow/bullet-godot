@@ -234,11 +234,10 @@ texture = SubResource("AtlasTexture_81lhk")
 hframes = 5
 
 [node name="ShieldBody" type="RigidBody2D" parent="." groups=["shield"]]
-rotation = 2.62817
+rotation = -2.13877
 collision_layer = 128
-mass = 0.15
-inertia = 0.45
 gravity_scale = 0.0
+can_sleep = false
 script = ExtResource("8_yaled")
 track_mouse = true
 
