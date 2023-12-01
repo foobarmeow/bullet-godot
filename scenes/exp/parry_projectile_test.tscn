@@ -1,15 +1,13 @@
-[gd_scene load_steps=28 format=3 uid="uid://c7xroxfe1m3tp"]
+[gd_scene load_steps=27 format=3 uid="uid://c7xroxfe1m3tp"]
 
-[ext_resource type="Material" uid="uid://vtmbky35o2p2" path="res://resources/lit-mat.tres" id="1_2dqgt"]
-[ext_resource type="Script" path="res://scenes/player/Player.gd" id="2_enfba"]
-[ext_resource type="Script" path="res://scenes/levels/Camera.gd" id="2_h3y5p"]
-[ext_resource type="PackedScene" uid="uid://den0ajf1m1ws3" path="res://scenes/mobs/bullet/bullet.tscn" id="3_1u251"]
-[ext_resource type="PackedScene" uid="uid://bwx1ygvwk1cwj" path="res://scenes/kill_light.tscn" id="3_n2ya2"]
-[ext_resource type="PackedScene" uid="uid://c7fyo24ou0om7" path="res://scenes/mobs/mover/mover.tscn" id="4_p4hrg"]
-[ext_resource type="Texture2D" uid="uid://c4026v6xiksqa" path="res://art/sprites/kenny-1px/monochrome_tilemap_transparent.png" id="4_ypbjs"]
-[ext_resource type="Script" path="res://RigidBody2D.gd" id="5_ambmu"]
-[ext_resource type="Texture2D" uid="uid://bhw2uf7v71edv" path="res://art/sprites/damage-bytes.png" id="5_rvbrt"]
-[ext_resource type="Script" path="res://Shield2.gd" id="6_7tj5l"]
+[ext_resource type="Material" uid="uid://vtmbky35o2p2" path="res://resources/lit-mat.tres" id="1_2248p"]
+[ext_resource type="Script" path="res://scenes/player/Player.gd" id="2_kdltb"]
+[ext_resource type="Script" path="res://scenes/exp/Shield.gd" id="3_0nwge"]
+[ext_resource type="Texture2D" uid="uid://c4026v6xiksqa" path="res://art/sprites/kenny-1px/monochrome_tilemap_transparent.png" id="4_v2mxa"]
+[ext_resource type="Texture2D" uid="uid://bhw2uf7v71edv" path="res://art/sprites/damage-bytes.png" id="5_xfwjg"]
+[ext_resource type="Script" path="res://scenes/components/Camera.gd" id="6_ojw7l"]
+[ext_resource type="PackedScene" uid="uid://den0ajf1m1ws3" path="res://scenes/mobs/bullet/bullet.tscn" id="7_s2lre"]
+[ext_resource type="PackedScene" uid="uid://c7fyo24ou0om7" path="res://scenes/mobs/mover/mover.tscn" id="8_n88pa"]
 
 [sub_resource type="Animation" id="Animation_7d0am"]
 length = 0.5
@@ -91,27 +89,27 @@ _data = {
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x7kx5"]
-atlas = ExtResource("4_ypbjs")
+atlas = ExtResource("4_v2mxa")
 region = Rect2(0, 204, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8kv4o"]
-atlas = ExtResource("4_ypbjs")
+atlas = ExtResource("4_v2mxa")
 region = Rect2(85, 204, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cdkci"]
-atlas = ExtResource("4_ypbjs")
+atlas = ExtResource("4_v2mxa")
 region = Rect2(102, 204, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_efqnc"]
-atlas = ExtResource("4_ypbjs")
+atlas = ExtResource("4_v2mxa")
 region = Rect2(0, 204, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_obtri"]
-atlas = ExtResource("4_ypbjs")
+atlas = ExtResource("4_v2mxa")
 region = Rect2(51, 204, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t1d8j"]
-atlas = ExtResource("4_ypbjs")
+atlas = ExtResource("4_v2mxa")
 region = Rect2(34, 204, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ny255"]
@@ -163,9 +161,24 @@ size = Vector2(12.3077, 10.7693)
 radius = 32.1944
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_81lhk"]
-atlas = ExtResource("5_rvbrt")
+atlas = ExtResource("5_xfwjg")
 region = Rect2(0, 0, 325, 64)
 margin = Rect2(1, 0, 1, 0)
+
+[sub_resource type="GDScript" id="GDScript_oyuj3"]
+script/source = "extends RigidBody2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	apply_impulse(Vector2.RIGHT*10*delta)
+	pass
+"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gxyi1"]
 
@@ -173,21 +186,21 @@ margin = Rect2(1, 0, 1, 0)
 
 [node name="Player" type="CharacterBody2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.962096)
-material = ExtResource("1_2dqgt")
+material = ExtResource("1_2248p")
 position = Vector2(512, 384)
 scale = Vector2(0.65, 0.65)
 collision_layer = 2
 collision_mask = 76
-script = ExtResource("2_enfba")
+script = ExtResource("2_kdltb")
 can_parry = true
 
 [node name="ShieldBody" type="RigidBody2D" parent="Player" groups=["shield"]]
-rotation = 5.83841
+rotation = -15.077
 collision_layer = 0
 collision_mask = 0
 gravity_scale = 0.0
 can_sleep = false
-script = ExtResource("6_7tj5l")
+script = ExtResource("3_0nwge")
 track_mouse = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player/ShieldBody"]
@@ -206,11 +219,6 @@ libraries = {
 libraries = {
 "": SubResource("AnimationLibrary_jt1sm")
 }
-
-[node name="ParryRing" parent="Player" instance=ExtResource("3_n2ya2")]
-process_mode = 4
-visible = false
-scale = Vector2(0.217, 0.217)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 use_parent_material = true
@@ -258,22 +266,20 @@ texture = SubResource("AtlasTexture_81lhk")
 hframes = 5
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-script = ExtResource("2_h3y5p")
+script = ExtResource("6_ojw7l")
 
-[node name="Mob" parent="." instance=ExtResource("3_1u251")]
+[node name="Mob" parent="." instance=ExtResource("7_s2lre")]
 position = Vector2(458.849, 274.427)
 
-[node name="Mover" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_p4hrg")]
+[node name="Mover" parent="." node_paths=PackedStringArray("target") instance=ExtResource("8_n88pa")]
 position = Vector2(618.28, 176.716)
 target = NodePath("../Player")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 position = Vector2(0, -1.00003)
 gravity_scale = 0.0
-script = ExtResource("5_ambmu")
+script = SubResource("GDScript_oyuj3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 position = Vector2(269, 171)
 shape = SubResource("CircleShape2D_gxyi1")
-
-[connection signal="parry_recharged" from="Player/ParryRing" to="Player" method="_on_kill_light_parry_recharged" flags=18]

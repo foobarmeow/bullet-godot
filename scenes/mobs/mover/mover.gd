@@ -137,7 +137,7 @@ func take_damage(d: int, enemy: Node2D):
 	if dmgmgr:
 		dmgmgr.take_damage(self, enemy, d)
 
-func _on_damage_manager_health_updated(health: int):
+func _on_damage_manager_health_updated(health: int, _init_health: int):
 	if health <= 0:
 		$FireTimer.stop()
 		var death_anim = "%s_dead" % animation_by_type[movement_type]

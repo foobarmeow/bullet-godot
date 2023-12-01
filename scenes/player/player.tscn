@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_0r62m"]
 [ext_resource type="Material" uid="uid://vtmbky35o2p2" path="res://resources/lit-mat.tres" id="1_6rdlo"]
 [ext_resource type="Texture2D" uid="uid://c4026v6xiksqa" path="res://art/sprites/kenny-1px/monochrome_tilemap_transparent.png" id="3_i0sjv"]
-[ext_resource type="PackedScene" uid="uid://bwx1ygvwk1cwj" path="res://scenes/kill_light.tscn" id="4_y8ax7"]
+[ext_resource type="PackedScene" uid="uid://bwx1ygvwk1cwj" path="res://scenes/exp/kill_light.tscn" id="4_y8ax7"]
 [ext_resource type="Texture2D" uid="uid://bhw2uf7v71edv" path="res://art/sprites/damage-bytes.png" id="8_iavj4"]
-[ext_resource type="Script" path="res://Shield2.gd" id="8_yaled"]
+[ext_resource type="Script" path="res://scenes/exp/Shield.gd" id="8_yaled"]
 
 [sub_resource type="Animation" id="Animation_7d0am"]
 length = 0.5
@@ -234,8 +234,9 @@ texture = SubResource("AtlasTexture_81lhk")
 hframes = 5
 
 [node name="ShieldBody" type="RigidBody2D" parent="." groups=["shield"]]
-rotation = -2.13877
-collision_layer = 128
+rotation = 4.22421
+collision_layer = 0
+collision_mask = 0
 gravity_scale = 0.0
 can_sleep = false
 script = ExtResource("8_yaled")
