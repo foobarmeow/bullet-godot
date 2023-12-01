@@ -55,6 +55,8 @@ func _unhandled_input(_event):
 
 var parry_debug_lines = []
 func _parry():
+	$ShieldBody.parry()
+	return
 	if parried || !can_parry: 
 			return
 	var overlaps = $ParryArea.get_overlapping_bodies()

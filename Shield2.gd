@@ -7,6 +7,12 @@ extends RigidBody2D
 func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	pass # Replace with function body.
+
+
+func parry():
+	var v = Vector2.RIGHT.rotated(rotation) * 100
+	print(v)
+	add_constant_force(v, Vector2.ZERO)
 	
 
 func _process(delta):

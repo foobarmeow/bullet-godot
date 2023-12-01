@@ -8,7 +8,6 @@
 [node name="parryProjectileTest" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_kgtqu")]
-position = Vector2(512, 384)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 script = ExtResource("2_h3y5p")
