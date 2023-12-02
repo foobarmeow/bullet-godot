@@ -1,12 +1,13 @@
 extends Node2D
 
+signal done_drinking
+
 @export var lit_material: CanvasItemMaterial
 @export var line_manager: Node2D
 
-
-
 var paused: bool
 
+var first_drank: int = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,34 +31,36 @@ func start_movers(nodes: Array[Node]):
 	
 
 func _on_lights_out_trigger_area_entered(area):
-	# Darken the scene
-	$CanvasModulate.show()
+	pass
+#	# Darken the scene
 
-	# Lighten the material used by enemies/player
-	lit_material.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
-		
-	# Show the light at 0 energy
-	var l = $KillLightHolder/KillLight
-	#var initial_energy = l.energy
-	#l.energy = 0
-	#l.show()
-	
-	
-	# Increase the energy over time
-#	while l.energy < initial_energy:
-#		await get_tree().create_timer(.25).timeout
-#		l.energy += .1
+#	$CanvasModulate.show()
 #
-#	# Parent it to the player and disconnect this signal
-#	l.reparent($Player)
-#	l.translate(Vector2.ZERO)
-	$LightsOutTrigger.disconnect("area_entered", _on_lights_out_trigger_area_entered)
-	
-	# Show the lit path
-	line_manager.show()
-	line_manager.enabled = true
-	line_manager.reveal_type = Constants.RevealType.PLAYER
-	
+#	# Lighten the material used by enemies/player
+#	lit_material.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
+#
+#	# Show the light at 0 energy
+#	var l = $KillLightHolder/KillLight
+#	#var initial_energy = l.energy
+#	#l.energy = 0
+#	#l.show()
+#
+#
+#	# Increase the energy over time
+##	while l.energy < initial_energy:
+##		await get_tree().create_timer(.25).timeout
+##		l.energy += .1
+##
+##	# Parent it to the player and disconnect this signal
+##	l.reparent($Player)
+##	l.translate(Vector2.ZERO)
+#	$LightsOutTrigger.disconnect("area_entered", _on_lights_out_trigger_area_entered)
+#
+#	# Show the lit path
+#	line_manager.show()
+#	line_manager.enabled = true
+#	line_manager.reveal_type = Constants.RevealType.PLAYER
+#
 func _on_mover_dead():
 	var c = $Enemies.get_children()
 	for i in len(c):
@@ -94,3 +97,10 @@ func _on_player_died():
 	$Player/Camera2D/GUI.show()
 	dead = true
 
+
+
+func _on_player_drink():
+	print(first_drank)
+	first_drank -= 10
+	if first_drank <= 0:
+		done_drinking.emit()
