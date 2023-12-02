@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dfmmo1pwal3ix"]
+[gd_scene load_steps=11 format=3 uid="uid://dfmmo1pwal3ix"]
 
 [ext_resource type="Texture2D" uid="uid://cvcc60svfqim0" path="res://art/s2s.bg.png" id="1_cvwsn"]
 [ext_resource type="Script" path="res://scenes/levels/map_level.gd" id="1_n2rl4"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c7fyo24ou0om7" path="res://scenes/components/mobs/mover/mover.tscn" id="3_tj734"]
 [ext_resource type="Script" path="res://scenes/components/Camera.gd" id="4_581k5"]
 [ext_resource type="PackedScene" uid="uid://7jh6at667qqy" path="res://scenes/components/DamageManager.tscn" id="6_3rwpq"]
+[ext_resource type="PackedScene" uid="uid://cbudl0m208ybr" path="res://scenes/components/weapon.tscn" id="9_8t3sm"]
 [ext_resource type="Texture2D" uid="uid://cmbmbpyie140m" path="res://art/sketch1701530475698.png" id="9_s2bjd"]
 
 [node name="MapLevel" type="Node2D"]
@@ -55,6 +56,10 @@ self_modulate = Color(0.427493, 0.427493, 0.427493, 1)
 position = Vector2(448, 2056)
 scale = Vector2(0.083, 0.034)
 texture = ExtResource("1_cvwsn")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Scenery"]
+visible = false
+color = Color(0.379692, 0, 0.088718, 1)
 
 [node name="AimNodes" type="Node2D" parent="."]
 
@@ -319,8 +324,12 @@ dir = Vector2(0, -1)
 target = NodePath("../../Player")
 
 [node name="Player" parent="." instance=ExtResource("3_e7l1c")]
-position = Vector2(479.893, 3204.18)
+position = Vector2(431.147, 1072.99)
 dash_time = 0.22
+
+[node name="Weapon" parent="Player" instance=ExtResource("9_8t3sm")]
+scale = Vector2(1, 1)
+num_projectiles = 25
 
 [node name="DamageManager" parent="Player" instance=ExtResource("6_3rwpq")]
 position = Vector2(-92.5444, -370.463)

@@ -30,8 +30,6 @@ position = Vector2(458.849, 274.427)
 
 [node name="Mover" parent="." instance=ExtResource("8_n88pa")]
 position = Vector2(618.28, 176.716)
-spawn_type = 1
-dir = Vector2(-1, 0)
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 position = Vector2(0, -1.00003)
@@ -48,3 +46,8 @@ shape = SubResource("CircleShape2D_gxyi1")
 script = ExtResource("6_ojw7l")
 
 [node name="Weapon" parent="Player" instance=ExtResource("5_mq535")]
+firing_arc = null
+num_projectiles = null
+speed = null
+cooldown = null
+debug = null

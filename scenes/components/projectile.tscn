@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6t4c2r3ux47h"]
+
+[ext_resource type="Script" path="res://scenes/components/projectile.gd" id="1_tx8sc"]
+[ext_resource type="Texture2D" uid="uid://jhftm7n81ou3" path="res://art/sprites/debug/bullet-player.png" id="1_vtgcd"]
+
+[node name="ProjectileSprite" type="Sprite2D"]
+self_modulate = Color(0, 0.658824, 0, 1)
+scale = Vector2(0.072, 0.072)
+texture = ExtResource("1_vtgcd")
+script = ExtResource("1_tx8sc")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(1, 1)
