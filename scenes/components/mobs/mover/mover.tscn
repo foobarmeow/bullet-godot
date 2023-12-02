@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c7fyo24ou0om7"]
+[gd_scene load_steps=34 format=3 uid="uid://c7fyo24ou0om7"]
 
 [ext_resource type="Material" uid="uid://vtmbky35o2p2" path="res://resources/lit-mat.tres" id="1_n5o7v"]
 [ext_resource type="Script" path="res://scenes/components/mobs/mover/mover.gd" id="2_6yvkr"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ch4f7cqanjq8i" path="res://art/sprites/alert.png" id="5_t8gwx"]
 [ext_resource type="Texture2D" uid="uid://br1uqupw4mq8x" path="res://art/sprites/fire.png" id="6_ahb7p"]
 [ext_resource type="Texture2D" uid="uid://c4026v6xiksqa" path="res://art/sprites/kenny-1px/monochrome_tilemap_transparent.png" id="7_v4pk3"]
+[ext_resource type="Texture2D" uid="uid://ca1a0465063y0" path="res://art/sprites/enemy-dead-sheet.png" id="8_yqls7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_38ne5"]
 atlas = ExtResource("5_t8gwx")
@@ -103,17 +104,25 @@ region = Rect2(17, 306, 16, 16)
 atlas = ExtResource("7_v4pk3")
 region = Rect2(34, 306, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4h4kc"]
-atlas = ExtResource("7_v4pk3")
-region = Rect2(51, 306, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_7grip"]
+atlas = ExtResource("8_yqls7")
+region = Rect2(0, 0, 12, 12)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3jqu1"]
-atlas = ExtResource("7_v4pk3")
-region = Rect2(68, 306, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_gk6wt"]
+atlas = ExtResource("8_yqls7")
+region = Rect2(13, 0, 12, 12)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o76fe"]
-atlas = ExtResource("7_v4pk3")
-region = Rect2(85, 306, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_gb5gp"]
+atlas = ExtResource("8_yqls7")
+region = Rect2(26, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06x3j"]
+atlas = ExtResource("8_yqls7")
+region = Rect2(39, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y84xt"]
+atlas = ExtResource("8_yqls7")
+region = Rect2(52, 0, 12, 12)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7n6sb"]
 animations = [{
@@ -175,13 +184,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4h4kc")
+"texture": SubResource("AtlasTexture_7grip")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3jqu1")
+"texture": SubResource("AtlasTexture_gk6wt")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_o76fe")
+"texture": SubResource("AtlasTexture_gb5gp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06x3j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y84xt")
 }],
 "loop": false,
 "name": &"still_dead",
@@ -224,7 +239,7 @@ animation = &"alert"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_7n6sb")
-animation = &"fire"
+animation = &"still_dead"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1.2)
