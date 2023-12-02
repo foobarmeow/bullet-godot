@@ -1,15 +1,20 @@
-[gd_scene load_steps=11 format=3 uid="uid://dfmmo1pwal3ix"]
+[gd_scene load_steps=14 format=3 uid="uid://dfmmo1pwal3ix"]
 
 [ext_resource type="Texture2D" uid="uid://cvcc60svfqim0" path="res://art/s2s.bg.png" id="1_cvwsn"]
 [ext_resource type="Script" path="res://scenes/levels/map_level.gd" id="1_n2rl4"]
 [ext_resource type="PackedScene" uid="uid://nyv8fcxvcl2t" path="res://scenes/components/gui.tscn" id="2_33w7c"]
 [ext_resource type="TileSet" uid="uid://v6fs17ekenoc" path="res://art/tilesets/new_tile_set.tres" id="2_aw2mh"]
+[ext_resource type="PackedScene" uid="uid://d2dh5pmyvksls" path="res://scenes/components/mobs/villager.tscn" id="2_tb2g7"]
 [ext_resource type="PackedScene" uid="uid://bhnamekyyvkpa" path="res://scenes/components/player/player.tscn" id="3_e7l1c"]
 [ext_resource type="PackedScene" uid="uid://c7fyo24ou0om7" path="res://scenes/components/mobs/mover/mover.tscn" id="3_tj734"]
 [ext_resource type="Script" path="res://scenes/components/Camera.gd" id="4_581k5"]
+[ext_resource type="Texture2D" uid="uid://6f4rvbooea0b" path="res://art/well-ph.png" id="4_hr10h"]
 [ext_resource type="PackedScene" uid="uid://7jh6at667qqy" path="res://scenes/components/DamageManager.tscn" id="6_3rwpq"]
 [ext_resource type="PackedScene" uid="uid://cbudl0m208ybr" path="res://scenes/components/weapon.tscn" id="9_8t3sm"]
 [ext_resource type="Texture2D" uid="uid://cmbmbpyie140m" path="res://art/sketch1701530475698.png" id="9_s2bjd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lx1ft"]
+radius = 39.5892
 
 [node name="MapLevel" type="Node2D"]
 scale = Vector2(0.998978, 1)
@@ -60,6 +65,29 @@ texture = ExtResource("1_cvwsn")
 [node name="CanvasModulate" type="CanvasModulate" parent="Scenery"]
 visible = false
 color = Color(0.379692, 0, 0.088718, 1)
+
+[node name="WellArea" type="Area2D" parent="Scenery"]
+position = Vector2(-328.882, 2530.45)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scenery/WellArea"]
+shape = SubResource("CircleShape2D_lx1ft")
+
+[node name="Well-ph" type="Sprite2D" parent="Scenery/WellArea"]
+position = Vector2(0, 3)
+scale = Vector2(0.0994306, 0.099)
+texture = ExtResource("4_hr10h")
+
+[node name="NPCs" type="Node2D" parent="."]
+
+[node name="Elder" parent="NPCs" instance=ExtResource("2_tb2g7")]
+position = Vector2(979.032, 870.5)
+scale = Vector2(2.808, 2.808)
+villager_type = 2
+
+[node name="Villager" parent="NPCs" instance=ExtResource("2_tb2g7")]
+position = Vector2(715.424, 534.363)
 
 [node name="AimNodes" type="Node2D" parent="."]
 
@@ -324,10 +352,11 @@ dir = Vector2(0, -1)
 target = NodePath("../../Player")
 
 [node name="Player" parent="." instance=ExtResource("3_e7l1c")]
-position = Vector2(431.147, 1072.99)
+position = Vector2(-301.04, 2730.02)
 dash_time = 0.22
 
 [node name="Weapon" parent="Player" instance=ExtResource("9_8t3sm")]
+visible = false
 scale = Vector2(1, 1)
 num_projectiles = 25
 
@@ -337,6 +366,7 @@ health = 30
 invuln_time = 1.5
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(2, 2)
 script = ExtResource("4_581k5")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Player/Camera2D"]
@@ -355,6 +385,8 @@ position = Vector2(1143.17, 2888)
 scale = Vector2(0.019, 0.019)
 texture = ExtResource("9_s2bjd")
 
+[connection signal="area_entered" from="Scenery/WellArea" to="Player/Camera2D/CanvasLayer/GUI" method="_on_well_area_area_entered"]
+[connection signal="area_exited" from="Scenery/WellArea" to="Player/Camera2D/CanvasLayer/GUI" method="_on_well_area_area_exited"]
 [connection signal="health_updated" from="Player/DamageManager" to="Player" method="_on_damage_manager_health_updated"]
 [connection signal="health_updated" from="Player/DamageManager" to="Player/Camera2D/CanvasLayer/GUI" method="_on_damage_manager_health_updated"]
 [connection signal="invuln_updated" from="Player/DamageManager" to="Player" method="_on_damage_manager_invuln_updated"]

@@ -18,3 +18,11 @@ func _on_damage_manager_health_updated(health: int, init_health: int):
 	var heart = $HeartContainer.get_children().pop_back()
 	heart.remove()
 		
+
+
+func _on_well_area_area_entered(area):
+	# Show drink....stuff
+	$DrinkSprite.show()
+
+func _on_well_area_area_exited(area):
+	$DrinkSprite.hide()
