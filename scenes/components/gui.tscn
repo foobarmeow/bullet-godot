@@ -14,8 +14,10 @@ script = ExtResource("1_ibyel")
 
 [node name="HeartContainer" type="Control" parent="."]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 66.0
+offset_top = 611.0
+offset_right = 106.0
+offset_bottom = 651.0
 
 [node name="Heart" parent="HeartContainer" instance=ExtResource("2_2ji74")]
 position = Vector2(24, 16)

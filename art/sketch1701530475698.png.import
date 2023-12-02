@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4xn2fcsrvkl6"
-path="res://.godot/imported/bullet-light.png-dfac962b2b579595649c0dec9967feae.ctex"
+uid="uid://cmbmbpyie140m"
+path="res://.godot/imported/sketch1701530475698.png-d96a9b13c3158999410fdb59892174b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/mobs/bullet/bullet-light.png"
-dest_files=["res://.godot/imported/bullet-light.png-dfac962b2b579595649c0dec9967feae.ctex"]
+source_file="res://art/sketch1701530475698.png"
+dest_files=["res://.godot/imported/sketch1701530475698.png-d96a9b13c3158999410fdb59892174b6.ctex"]
 
 [params]
 
