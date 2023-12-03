@@ -96,14 +96,17 @@ func handle_invuln(invuln: bool, dash: bool):
 		$AnimationPlayer.stop()
 		set_collision_layer_value(2, true)
 
+
 func _on_damage_manager_health_updated(health: int, _init_health: int):
 	if health <= 0:
 		dead = true
 		sprite.play("dead")
 		died.emit()
-
 func _on_damage_manager_invuln_updated(invuln: bool):
 	handle_invuln(true, false)
-
-func _on_well_area_area(area):
-	drinkable = !drinkable
+func _on_map_level_done_drinking():
+	drinkable = false
+func _on_well_area_area_entered(area):
+	drinkable = true
+func _on_well_area_area_exited(area):
+	drinkable = false

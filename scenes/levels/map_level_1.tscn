@@ -357,7 +357,6 @@ dash_time = 0.22
 
 [node name="Weapon" parent="Player" instance=ExtResource("9_8t3sm")]
 visible = false
-scale = Vector2(1, 1)
 num_projectiles = 25
 
 [node name="DamageManager" parent="Player" instance=ExtResource("6_3rwpq")]
@@ -385,10 +384,11 @@ position = Vector2(1143.17, 2888)
 scale = Vector2(0.019, 0.019)
 texture = ExtResource("9_s2bjd")
 
+[connection signal="done_drinking" from="." to="Player" method="_on_map_level_done_drinking"]
 [connection signal="done_drinking" from="." to="Player/Camera2D/CanvasLayer/GUI" method="_on_map_level_done_drinking"]
-[connection signal="area_entered" from="Scenery/WellArea" to="Player" method="_on_well_area_area"]
+[connection signal="area_entered" from="Scenery/WellArea" to="Player" method="_on_well_area_area_entered"]
 [connection signal="area_entered" from="Scenery/WellArea" to="Player/Camera2D/CanvasLayer/GUI" method="_on_well_area_area_entered"]
-[connection signal="area_exited" from="Scenery/WellArea" to="Player" method="_on_well_area_area"]
+[connection signal="area_exited" from="Scenery/WellArea" to="Player" method="_on_well_area_area_exited"]
 [connection signal="area_exited" from="Scenery/WellArea" to="Player/Camera2D/CanvasLayer/GUI" method="_on_well_area_area_exited"]
 [connection signal="drink" from="Player" to="." method="_on_player_drink"]
 [connection signal="drink" from="Player" to="Player/Camera2D/CanvasLayer/GUI" method="_on_player_drink"]
