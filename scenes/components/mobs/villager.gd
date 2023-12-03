@@ -1,16 +1,14 @@
 extends PathFollow2D
 
-enum VillagerType { A = 1, B, C, D}
+enum VillagerType { A = 1, B = 2, C = 3, D = 4}
 enum VillagerRole {STANDER, FARMER}
 
 @export var role: VillagerRole = VillagerRole.STANDER
-@export var villager_type: VillagerType = VillagerType.D:
-	set(v):
-		villager_type = v
-		_ready()
+@export var villager_type: VillagerType = VillagerType.D
 @export var move_wait_min: int = 2
 @export var move_wait_max: int = 3
 @export var move_step: float = 0.002
+@export var min_move_slice: float = 0.01
 @export var max_move_slice: float = 0.05
 var move_timer: SceneTreeTimer
 
@@ -38,8 +36,6 @@ func _process(delta):
 		new_move_timer()
 	
 func new_move_timer():
-	if !get_tree():
-		return
 	if move_timer:
 		move_timer.disconnect("timeout", set_moving)
 		
@@ -48,7 +44,7 @@ func new_move_timer():
 	move_timer = get_tree().create_timer(randi_range(move_wait_min, move_wait_max))
 	move_timer.connect("timeout", set_moving)
 	this_move = 0.0
-	this_slice = randf_range(0.01, max_move_slice)
+	this_slice = randf_range(min_move_slice, max_move_slice)
 		
 func set_moving():
 	moving = true

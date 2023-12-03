@@ -239,6 +239,7 @@ script = ExtResource("1_ujcfk")
 move_wait_min = null
 move_wait_max = null
 move_step = null
+min_move_slice = null
 max_move_slice = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

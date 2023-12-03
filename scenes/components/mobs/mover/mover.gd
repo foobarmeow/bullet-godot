@@ -40,7 +40,7 @@ func _ready():
 func begin():
 	$AnimatedSprite2D.play(animation_by_type[movement_type])
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	if is_dead: 
 		return
 	if spawn_type == Constants.SpawnerType.TARGET:
@@ -135,8 +135,8 @@ func take_damage(d: int, enemy: Node2D):
 	if dmgmgr:
 		dmgmgr.take_damage(self, enemy, d)
 
-func _on_damage_manager_health_updated(health: int, _init_health: int):
-	if health <= 0:
+func _on_damage_manager_health_updated(new_health: int, _init_health: int):
+	if new_health <= 0:
 		$FireTimer.stop()
 		var death_anim = "%s_dead" % animation_by_type[movement_type]
 		$AnimatedSprite2D.play(death_anim)

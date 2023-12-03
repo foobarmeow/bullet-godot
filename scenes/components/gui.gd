@@ -1,17 +1,7 @@
 extends Control
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-func _on_damage_manager_health_updated(health: int, init_health: int):
+func _on_damage_manager_health_updated(_health: int, _init_health: int):
 	if !$HeartContainer:
 		print("not container wtf")
 		return
@@ -20,13 +10,13 @@ func _on_damage_manager_health_updated(health: int, init_health: int):
 		
 
 
-func _on_well_area_area_entered(area):
+func _on_well_area_area_entered(_area):
 	# Show drink....stuff
 	if done_drinking:
 		return
 	$AnimationPlayer.play("drink_visibility")
 
-func _on_well_area_area_exited(area):
+func _on_well_area_area_exited(_area):
 	if done_drinking:
 		return
 	$AnimationPlayer.play_backwards("drink_visibility")

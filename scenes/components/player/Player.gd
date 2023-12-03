@@ -83,9 +83,9 @@ func take_damage(d: int, enemy: Node2D):
 	if dmgmgr:
 		dmgmgr.take_damage(self, enemy, d)
 		
-func handle_invuln(invuln: bool, dash: bool):
+func handle_invuln(invuln: bool, is_dash: bool):
 	var animation_name = "invuln_blink"
-	if dash:
+	if is_dash:
 		animation_name = "dash_blink"
 	
 	# We don't exist on player layer while invulnerable
@@ -102,11 +102,11 @@ func _on_damage_manager_health_updated(health: int, _init_health: int):
 		dead = true
 		sprite.play("dead")
 		died.emit()
-func _on_damage_manager_invuln_updated(invuln: bool):
+func _on_damage_manager_invuln_updated(_invuln: bool):
 	handle_invuln(true, false)
 func _on_map_level_done_drinking():
 	drinkable = false
-func _on_well_area_area_entered(area):
+func _on_well_area_area_entered(_area):
 	drinkable = true
-func _on_well_area_area_exited(area):
+func _on_well_area_area_exited(_area):
 	drinkable = false
