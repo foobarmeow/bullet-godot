@@ -14,7 +14,8 @@ func _on_well_area_area_entered(_area):
 	# Show drink....stuff
 	if done_drinking:
 		return
-	$AnimationPlayer.play("drink_visibility")
+	#$AnimationPlayer.play("drink_visibility")
+	show_dialog("drink!")
 
 func _on_well_area_area_exited(_area):
 	if done_drinking:
@@ -36,3 +37,9 @@ func _on_map_level_done_drinking():
 	$AnimationPlayer.queue("drink_visibility")
 	$AnimationPlayer.queue("drank_visibility")
 	$AnimationPlayer.queue("return_visibiilty")
+
+func show_dialog(dialog: String):
+	$DialogBox.show_dialog(dialog)
+	
+func hide_dialog():
+	$DialogBox.hide()

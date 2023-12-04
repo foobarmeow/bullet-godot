@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6fwnyugw5tkh"]
+
+[ext_resource type="Texture2D" uid="uid://drm8gr2tgri06" path="res://art/dialogue-box.png" id="1_7q7kn"]
+[ext_resource type="Script" path="res://scenes/components/dialog_box.gd" id="1_gdjkf"]
+[ext_resource type="FontFile" uid="uid://bf7dh5uueciw1" path="res://art/CompassPro.otf" id="2_62efr"]
+
+[node name="DialogBox" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -552.0
+offset_bottom = -520.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gdjkf")
+
+[node name="Dialogue-box" type="Sprite2D" parent="."]
+position = Vector2(234, 125)
+scale = Vector2(0.52, 0.52)
+texture = ExtResource("1_7q7kn")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 215.0
+offset_bottom = 58.0
+theme_override_fonts/font = ExtResource("2_62efr")
+theme_override_font_sizes/font_size = 40
+text = "a suh duh hows it going"

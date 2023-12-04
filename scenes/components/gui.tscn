@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://nyv8fcxvcl2t"]
+[gd_scene load_steps=15 format=3 uid="uid://nyv8fcxvcl2t"]
 
 [ext_resource type="Script" path="res://scenes/components/gui.gd" id="1_ibyel"]
 [ext_resource type="PackedScene" uid="uid://kjixn2352h1t" path="res://scenes/components/heart-white.tscn" id="2_2ji74"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ddune8wy2ki30" path="res://art/sprites/text/drink-alert.png" id="4_j5yvk"]
 [ext_resource type="Texture2D" uid="uid://dpwr2ddkbcaqc" path="res://art/sprites/text/drank.png" id="5_l43sd"]
 [ext_resource type="Texture2D" uid="uid://dydls04ebp3yd" path="res://art/sprites/text/return.png" id="6_uoweg"]
+[ext_resource type="PackedScene" uid="uid://b6fwnyugw5tkh" path="res://scenes/components/dialog_box.tscn" id="7_msth8"]
 
 [sub_resource type="Animation" id="Animation_e28hy"]
 length = 0.001
@@ -262,3 +263,11 @@ texture = ExtResource("5_l43sd")
 self_modulate = Color(1, 1, 1, 0)
 position = Vector2(610, 459)
 texture = ExtResource("6_uoweg")
+
+[node name="DialogBox" parent="." instance=ExtResource("7_msth8")]
+visible = false
+layout_mode = 1
+offset_left = 194.0
+offset_top = 346.0
+offset_right = -358.0
+offset_bottom = -174.0
