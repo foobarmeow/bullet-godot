@@ -78,7 +78,7 @@ func _physics_process(delta):
 	if coll:
 		if coll.get_collider().is_in_group("walls"):
 			#velocity = velocity.bounce(coll.get_normal()) * .5
-			velocity = velocity.slide(coll.get_normal())*1.5
+			velocity = velocity.slide(coll.get_normal())
 			print(coll)
 	
 # Called by bullets that detect collision with player

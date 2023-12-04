@@ -14,6 +14,10 @@ config/name="BulletGodot"
 run/main_scene="res://scenes/levels/map_level_exp_2.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 
+[autoload]
+
+SignalBus="*res://scenes/components/SignalBus.gd"
+
 [display]
 
 window/size/viewport_width=1024

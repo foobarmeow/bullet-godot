@@ -1,8 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://dfmmo1pwal3ix"]
+[gd_scene load_steps=32 format=3 uid="uid://dfmmo1pwal3ix"]
 
 [ext_resource type="Texture2D" uid="uid://cvcc60svfqim0" path="res://art/s2s.bg.png" id="1_cvwsn"]
 [ext_resource type="Script" path="res://scenes/levels/map_level.gd" id="1_n2rl4"]
-[ext_resource type="PackedScene" uid="uid://nyv8fcxvcl2t" path="res://scenes/components/gui.tscn" id="2_33w7c"]
 [ext_resource type="TileSet" uid="uid://v6fs17ekenoc" path="res://art/tilesets/new_tile_set.tres" id="2_aw2mh"]
 [ext_resource type="PackedScene" uid="uid://d2dh5pmyvksls" path="res://scenes/components/mobs/villager.tscn" id="2_tb2g7"]
 [ext_resource type="PackedScene" uid="uid://bhnamekyyvkpa" path="res://scenes/components/player/player.tscn" id="3_e7l1c"]
@@ -12,6 +11,15 @@
 [ext_resource type="PackedScene" uid="uid://7jh6at667qqy" path="res://scenes/components/DamageManager.tscn" id="6_3rwpq"]
 [ext_resource type="PackedScene" uid="uid://cbudl0m208ybr" path="res://scenes/components/weapon.tscn" id="9_8t3sm"]
 [ext_resource type="Texture2D" uid="uid://cmbmbpyie140m" path="res://art/sketch1701530475698.png" id="9_s2bjd"]
+[ext_resource type="Script" path="res://scenes/components/gui.gd" id="11_as7by"]
+[ext_resource type="Texture2D" uid="uid://ch0ppvjvohdb2" path="res://art/sprites/byte-sheet.png" id="12_jca2y"]
+[ext_resource type="PackedScene" uid="uid://kjixn2352h1t" path="res://scenes/components/heart-white.tscn" id="13_mqams"]
+[ext_resource type="Texture2D" uid="uid://ddune8wy2ki30" path="res://art/sprites/text/drink-alert.png" id="14_ntbh6"]
+[ext_resource type="Texture2D" uid="uid://dpwr2ddkbcaqc" path="res://art/sprites/text/drank.png" id="15_e7hoe"]
+[ext_resource type="Texture2D" uid="uid://dydls04ebp3yd" path="res://art/sprites/text/return.png" id="16_exvx6"]
+[ext_resource type="Script" path="res://scenes/components/dialog_box.gd" id="17_yrow4"]
+[ext_resource type="Texture2D" uid="uid://drm8gr2tgri06" path="res://art/dialogue-box.png" id="18_dmlxo"]
+[ext_resource type="FontFile" uid="uid://bf7dh5uueciw1" path="res://art/CompassPro.otf" id="19_kvppn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lx1ft"]
 radius = 39.5892
@@ -33,6 +41,208 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -16.0162, -573, 0, 0, 0, 0, 124.127, -704, 0, 0, 0, 0, 192.197, -303, 0, 0, 0, 0, 400.409, -332, 0, 0, 0, 0, 578.591, -362, 0, 0, 0, 0, 563.576, -477, 0, 0, 0, 0, 341.349, -488, 0, 0, 0, 0, 45.0462, -545, 0, 0, 0, 0, -26.0264, -520, 0, 0, 0, 0, -197.201, -565, 0, 0, 0, 0, -272.278, -707, 0, 0, 0, 0, -272.278, -707, 0, 0, 0, 0, -376.385, -720, 0, 0, 0, 0, -381.39, -589, 0, 0, 0, 0, -345.353, -560, 0, 0, 0, 0, -254.26, -469, 0, 0, 0, 0, -212.217, -288, 0, 0, 0, 0, -168.172, -253, 0, 0, 0, 0, -63.0643, -253, 0, 0, 0, 0, 51.0523, -263, 0, 0, 0, 0, 109.112, -383, 0, 0, 0, 0, -4.00397, -461, 0, 0, 0, 0, -16.0162, -573)
 }
 point_count = 23
+
+[sub_resource type="Animation" id="Animation_e28hy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Byte:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -287.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Byte:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Drank:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(548, 521)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Drank:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Return:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(610, 459)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Return:self_modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mrbyy"]
+resource_name = "drank_visibility"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Drank:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(548, 521), Vector2(548, 100)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Drank:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t0ms3"]
+resource_name = "drink_visibility"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_r1rex"]
+resource_name = "return_visibiilty"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Return:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(610, 459), Vector2(610, -53)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Return:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n7iwa"]
+resource_name = "shake_the_drink_text"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Byte:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(614, 320), Vector2(609.719, 88.6811)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Byte:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.45, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.137255), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nw5vv"]
+_data = {
+"RESET": SubResource("Animation_e28hy"),
+"drank_visibility": SubResource("Animation_mrbyy"),
+"drink_visibility": SubResource("Animation_t0ms3"),
+"return_visibiilty": SubResource("Animation_r1rex"),
+"shake_the_drink_text": SubResource("Animation_n7iwa")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_272r4"]
+atlas = ExtResource("12_jca2y")
+region = Rect2(1, 0, 64, 64)
 
 [node name="MapLevel" type="Node2D"]
 scale = Vector2(0.998978, 1)
@@ -998,7 +1208,7 @@ dir = Vector2(0, -1)
 target = NodePath("../../Player")
 
 [node name="Player" parent="." instance=ExtResource("3_e7l1c")]
-position = Vector2(396.507, 440.958)
+position = Vector2(-282.146, 2571.55)
 dash_time = 0.22
 
 [node name="Weapon" parent="Player" instance=ExtResource("9_8t3sm")]
@@ -1016,14 +1226,118 @@ script = ExtResource("4_581k5")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Player/Camera2D"]
 
-[node name="GUI" parent="Player/Camera2D/CanvasLayer" instance=ExtResource("2_33w7c")]
+[node name="GUI" type="Control" parent="Player/Camera2D/CanvasLayer"]
+layout_mode = 3
 anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
 offset_left = 0.00012207
 offset_right = 0.00012207
-grow_horizontal = 1
-grow_vertical = 1
+script = ExtResource("11_as7by")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Camera2D/CanvasLayer/GUI"]
+root_node = NodePath("../DrinkSprite")
+libraries = {
+"": SubResource("AnimationLibrary_nw5vv")
+}
+
+[node name="Byte" type="Sprite2D" parent="Player/Camera2D/CanvasLayer/GUI"]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -287.5)
+scale = Vector2(2.03999, 2.03999)
+texture = SubResource("AtlasTexture_272r4")
+
+[node name="HeartContainer" type="Control" parent="Player/Camera2D/CanvasLayer/GUI"]
+visible = false
+anchors_preset = 0
+offset_left = 66.0
+offset_top = 611.0
+offset_right = 106.0
+offset_bottom = 651.0
+
+[node name="Heart" parent="Player/Camera2D/CanvasLayer/GUI/HeartContainer" instance=ExtResource("13_mqams")]
+position = Vector2(24, 16)
+
+[node name="Heart2" parent="Player/Camera2D/CanvasLayer/GUI/HeartContainer" instance=ExtResource("13_mqams")]
+position = Vector2(64, 16)
+
+[node name="Heart3" parent="Player/Camera2D/CanvasLayer/GUI/HeartContainer" instance=ExtResource("13_mqams")]
+position = Vector2(104, 16)
+
+[node name="DrinkSprite" type="Sprite2D" parent="Player/Camera2D/CanvasLayer/GUI"]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(727, 384)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("14_ntbh6")
+
+[node name="Drank" type="Sprite2D" parent="Player/Camera2D/CanvasLayer/GUI"]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(548, 521)
+texture = ExtResource("15_e7hoe")
+
+[node name="Return" type="Sprite2D" parent="Player/Camera2D/CanvasLayer/GUI"]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(610, 459)
+texture = ExtResource("16_exvx6")
+
+[node name="DialogBox" type="Control" parent="Player/Camera2D/CanvasLayer/GUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 491.0
+offset_top = 372.0
+offset_right = 491.0
+offset_bottom = 372.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("17_yrow4")
+
+[node name="Dialogue-box" type="Sprite2D" parent="Player/Camera2D/CanvasLayer/GUI/DialogBox"]
+position = Vector2(234, 125)
+scale = Vector2(0.52, 0.52)
+texture = ExtResource("18_dmlxo")
+
+[node name="Label" type="Label" parent="Player/Camera2D/CanvasLayer/GUI/DialogBox"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 215.0
+offset_bottom = 58.0
+theme_override_fonts/font = ExtResource("19_kvppn")
+theme_override_font_sizes/font_size = 40
+text = "a suh duh hows it going"
+
+[node name="ActionBox" type="Control" parent="Player/Camera2D/CanvasLayer/GUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 609.0
+offset_top = 343.0
+offset_right = 609.0
+offset_bottom = 343.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+script = ExtResource("17_yrow4")
+type = 0
+
+[node name="Dialogue-box" type="Sprite2D" parent="Player/Camera2D/CanvasLayer/GUI/ActionBox"]
+position = Vector2(234, 125)
+scale = Vector2(0.52, 0.52)
+texture = ExtResource("18_dmlxo")
+
+[node name="Label" type="Label" parent="Player/Camera2D/CanvasLayer/GUI/ActionBox"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 405.0
+offset_bottom = 198.0
+theme_override_fonts/font = ExtResource("19_kvppn")
+theme_override_font_sizes/font_size = 64
+text = "a suh duh hows it going"
+autowrap_mode = 2
 
 [node name="HealthPlaceholder" type="Sprite2D" parent="."]
 position = Vector2(1143.17, 2888)

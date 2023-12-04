@@ -15,13 +15,14 @@ func _on_well_area_area_entered(_area):
 	if done_drinking:
 		return
 	#$AnimationPlayer.play("drink_visibility")
-	show_dialog("drink!")
+	SignalBus.display_action.emit("action_drink")
 
 func _on_well_area_area_exited(_area):
 	if done_drinking:
 		return
-	$AnimationPlayer.play_backwards("drink_visibility")
-	$AnimationPlayer.queue("RESET")
+	SignalBus.hide_dialog.emit()
+	#$AnimationPlayer.play_backwards("drink_visibility")
+	#$AnimationPlayer.queue("RESET")
 
 func _on_player_drink():
 	if done_drinking:
