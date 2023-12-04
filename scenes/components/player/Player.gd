@@ -74,7 +74,12 @@ func _physics_process(delta):
 	if velocity.length() == 0:
 		sprite.play("idle")
 		velocity = velocity.move_toward(Vector2.ZERO, deceleration)
-	move_and_collide(velocity * delta)
+	var coll = move_and_collide(velocity * delta)
+	if coll:
+		if coll.get_collider().is_in_group("walls"):
+			#velocity = velocity.bounce(coll.get_normal()) * .5
+			velocity = velocity.slide(coll.get_normal())*1.5
+			print(coll)
 	
 # Called by bullets that detect collision with player
 func take_damage(d: int, enemy: Node2D):

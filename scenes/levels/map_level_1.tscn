@@ -49,7 +49,7 @@ position = Vector2(2940, 1664)
 scale = Vector2(3.90408, 4.30648)
 texture = ExtResource("1_cvwsn")
 
-[node name="TileMap" type="TileMap" parent="Scenery/CanvasLayer"]
+[node name="TileMap" type="TileMap" parent="Scenery/CanvasLayer" groups=["walls"]]
 scale = Vector2(0.998978, 1)
 tile_set = ExtResource("2_aw2mh")
 format = 2
