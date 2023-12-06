@@ -2,7 +2,7 @@ class_name Player extends CharacterBody2D
 
 signal parry
 signal died
-signal drink
+signal level_action
 
 
 @export var speed = 125
@@ -30,11 +30,8 @@ func _unhandled_input(_event):
 	if Input.is_action_just_pressed("dash"):
 		_dash()
 		return
-	if Input.is_action_just_pressed("drink"):
-		if !drinkable:
-			return
-		drink.emit()
-		$AnimationPlayer.play("drink")
+	if Input.is_action_just_pressed("action_input"):
+		level_action.emit()
 		return
 
 func fire():
@@ -107,11 +104,6 @@ func _on_damage_manager_health_updated(health: int, _init_health: int):
 		dead = true
 		sprite.play("dead")
 		died.emit()
+
 func _on_damage_manager_invuln_updated(_invuln: bool):
 	handle_invuln(true, false)
-func _on_map_level_done_drinking():
-	drinkable = false
-func _on_well_area_area_entered(_area):
-	drinkable = true
-func _on_well_area_area_exited(_area):
-	drinkable = false

@@ -18,7 +18,6 @@ func _ready():
 func debug_state():
 	if $DebugSpot != null:
 		$Player.position = $DebugSpot.position
-		_on_lights_out_trigger_area_entered(null)
 
 					
 func start_movers(nodes: Array[Node]):
@@ -28,39 +27,7 @@ func start_movers(nodes: Array[Node]):
 		if n is Mover:
 			n.begin()
 			n.dead.connect(_on_mover_dead)
-	
 
-func _on_lights_out_trigger_area_entered(_area):
-	pass
-#	# Darken the scene
-
-#	$CanvasModulate.show()
-#
-#	# Lighten the material used by enemies/player
-#	lit_material.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
-#
-#	# Show the light at 0 energy
-#	var l = $KillLightHolder/KillLight
-#	#var initial_energy = l.energy
-#	#l.energy = 0
-#	#l.show()
-#
-#
-#	# Increase the energy over time
-##	while l.energy < initial_energy:
-##		await get_tree().create_timer(.25).timeout
-##		l.energy += .1
-##
-##	# Parent it to the player and disconnect this signal
-##	l.reparent($Player)
-##	l.translate(Vector2.ZERO)
-#	$LightsOutTrigger.disconnect("area_entered", _on_lights_out_trigger_area_entered)
-#
-#	# Show the lit path
-#	line_manager.show()
-#	line_manager.enabled = true
-#	line_manager.reveal_type = Constants.RevealType.PLAYER
-#
 func _on_mover_dead():
 	var c = $Enemies.get_children()
 	for i in len(c):
@@ -98,8 +65,34 @@ func _on_player_died():
 	dead = true
 
 
+var drinking_at_well = false
+func _on_action_input():
+	if drinking_at_well:
+		if first_drank > 0:
+			first_drank -= 50
+			SignalBus.input_action.emit()
 
-func _on_player_drink():
-	first_drank -= 10
-	if first_drank <= 0:
-		done_drinking.emit()
+			if first_drank <= 0:
+				drinking_at_well = false
+				SignalBus.hide_action.emit()
+				SignalBus.display_dialog.emit("drink_success")
+				return
+	SignalBus.display_dialog.emit("advance_text")
+
+
+
+func _on_well_area_area_entered(_area):
+	if first_drank > 0:
+		drinking_at_well = true
+		SignalBus.display_action.emit("action_drink")
+
+func _on_well_area_area_exited(_area):
+	if drinking_at_well:
+		SignalBus.hide_action.emit()
+
+
+var intro = false
+func _on_begin_area_area_entered(_area):
+	if !intro:
+		return
+	SignalBus.display_dialog.emit("intro")		
