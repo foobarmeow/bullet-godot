@@ -59,6 +59,23 @@ func _physics_process(delta):
 		sprite.flip_h = false
 	if Input.is_action_pressed("move_left"):
 		sprite.flip_h = true
+
+	# Handle collision before setting velocity
+	var coll = move_and_collide(velocity * delta)
+	if coll:
+		var collider = coll.get_collider()
+		if collider is TileMap:
+			print("TILEMAP")
+			var coords = collider.local_to_map(collider.to_local(coll.get_position()))
+			var tile = collider.get_cell_tile_data(2, coords)
+			if tile is TileData:
+				print("FUCL")
+			print(tile, coords, coll.get_position(), collider.get_layers_count(), collider.get_layer_name(2))
+		print(coll.get_collider())
+		#if coll.get_collider().get_layer_mask_bit():
+		if coll.get_collider().is_in_group("walls"):
+			velocity = velocity.slide(coll.get_normal())
+			return
 		
 	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if dash:
@@ -69,12 +86,6 @@ func _physics_process(delta):
 	if velocity.length() == 0:
 		sprite.play("idle")
 		velocity = velocity.move_toward(Vector2.ZERO, deceleration)
-	var coll = move_and_collide(velocity * delta)
-	if coll:
-		if coll.get_collider().is_in_group("walls"):
-			#velocity = velocity.bounce(coll.get_normal()) * .5
-			velocity = velocity.slide(coll.get_normal())
-			print(coll)
 	
 # Called by bullets that detect collision with player
 func take_damage(d: int, enemy: Node2D):
