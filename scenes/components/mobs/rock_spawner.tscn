@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cteb0po78p04o"]
+
+[ext_resource type="Script" path="res://scenes/exp/RockSpawner.gd" id="1_t27n6"]
+[ext_resource type="PackedScene" uid="uid://w1agd274alpy" path="res://scenes/components/mobs/Rock.tscn" id="2_2bnko"]
+
+[node name="RockSpawner" type="Node2D"]
+position = Vector2(643.507, 433.592)
+script = ExtResource("1_t27n6")
+rockScene = ExtResource("2_2bnko")
+spawn_timeout = 0.1
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(-100, 0)
+collision_mask = 2
