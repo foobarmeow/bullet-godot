@@ -36,6 +36,7 @@ func _on_rock_spawn():
 	r.apply_torque_impulse(torque_force)
 
 	spawning = true
-	get_tree().create_timer(spawn_timeout).timeout.connect(func():
-		spawning = false
-	)
+	# Only spawn once
+#	get_tree().create_timer(spawn_timeout).timeout.connect(func():
+#		spawning = false
+#	)
