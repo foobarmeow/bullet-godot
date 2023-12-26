@@ -17,7 +17,7 @@ func _on_level_action():
 				drinking_at_well = false
 				SignalBus.hide_action.emit()
 				SignalBus.display_dialog.emit("drink_success")
-				return
+				return 
 	SignalBus.display_dialog.emit("advance_text")
 
 
