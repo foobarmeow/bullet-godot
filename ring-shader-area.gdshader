@@ -1,7 +1,10 @@
 shader_type canvas_item;
 render_mode blend_add;
+
+uniform vec4 highlight_color : source_color = vec4(1.0, 1.0, 0.0, 1.0);
 uniform float circle_radius : hint_range(0, 1) = 0.5;
 uniform float highlight_width : hint_range(0, 1) = 0.1;
+uniform float feather_width : hint_range(0,2) = 0.05; // Adjust this for feathering
 uniform float start_angle : hint_range(0, 360) = 0.0;
 uniform float end_angle : hint_range(0, 360) = 180.0;
 
@@ -15,7 +18,7 @@ void fragment() {
     float distance_to_center = distance(UV, center);
 
     // Calculate the angle of the current pixel in radians using atan
-    float angle = atan(UV.y - center.y, UV.x - center.x);
+    float angle = atan(UV.x - center.x, UV.y - center.y);
 
     // Convert the angle to degrees
     angle = degrees(angle);
@@ -29,11 +32,16 @@ void fragment() {
     if (abs(distance_to_center - circle_radius) <= highlight_width / 2.0) {
         // Check if the angle is within the specified segment
         if (angle >= start_angle && angle <= end_angle) {
-            // Adjust the intensity of the highlighted area
-            COLOR.r = 255.0; // You can modify this value based on your preference
-        	COLOR.g = 255.0;
-			COLOR.b = 0.0;
-			COLOR.a = 1.25;
-		}
+            // Calculate the distance-based blending factor for the edges
+            float edge_blend = smoothstep(0.0, feather_width, abs(distance_to_center - circle_radius - highlight_width / 2.0));
+
+            // Check if it's near the edges, then apply blending
+            if (edge_blend > 0.0 && edge_blend < 1.0) {
+                // Interpolate between the original color and the highlight color
+                COLOR = vec4(mix(texture(TEXTURE, UV).rgb, highlight_color.rgb, edge_blend), 1.0);
+            }
+        }
     }
+
+    // Use the original color if not in the highlighted area
 }
