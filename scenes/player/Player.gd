@@ -51,3 +51,4 @@ func _on_area_entered(area):
 		alive = false
 		lives -= 1
 		hit.emit(lives)
+	

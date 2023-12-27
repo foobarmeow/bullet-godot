@@ -12,375 +12,11 @@ level_name = "Suckle on my zipple"
 [node name="PlayerSpawnPosition" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 448.0
-offset_top = 192.0
-offset_right = 488.0
-offset_bottom = 232.0
+offset_left = 491.0
+offset_top = 368.0
+offset_right = 531.0
+offset_bottom = 408.0
 metadata/_edit_use_anchors_ = true
-
-[node name="Wave5" type="Node2D" parent="."]
-visible = false
-script = ExtResource("1_lgude")
-
-[node name="Square51" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(1072, -16)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square52" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(1024, -64)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square53" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(976, -112)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square54" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(928, -160)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square55" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(880, -208)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square56" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(832, -256)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square57" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(784, -304)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square58" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(736, -352)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square59" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(688, -400)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square60" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(640, -448)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square61" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(592, -496)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square62" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(544, -544)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square63" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(1645, 560)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square64" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(1597, 512)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square65" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(1549, 464)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square66" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(1501, 416)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square67" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(1453, 368)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square68" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(1405, 320)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square69" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(1357, 272)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square70" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(1309, 224)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square71" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(1261, 176)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square72" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(1213, 128)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square73" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(1165, 80)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square74" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(1117, 32)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square75" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(-72, 880)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square76" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(-120, 832)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square77" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(-168, 784)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square78" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(-216, 736)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square79" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(-264, 688)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square80" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(-312, 640)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square81" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(-360, 592)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square82" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(-408, 544)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square83" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(-456, 496)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square84" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(-504, 448)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square85" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(-552, 400)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square86" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(-600, 352)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square87" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(501, 1456)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square88" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(453, 1408)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square89" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(405, 1360)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square90" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(357, 1312)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square91" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(309, 1264)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square92" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(261, 1216)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square93" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(213, 1168)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square94" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(165, 1120)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square95" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(117, 1072)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square96" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(69, 1024)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square97" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(21, 976)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square98" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(-27, 928)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square99" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(24, 776)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square100" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(-24, 728)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square101" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(-72, 680)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square102" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(-120, 632)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square103" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(-168, 584)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square104" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(-216, 536)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square105" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(-264, 488)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square106" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(-312, 440)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square107" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(-360, 392)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square108" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(-408, 344)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square109" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(-456, 296)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square110" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(-504, 248)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square111" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(597, 1352)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square112" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(549, 1304)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square113" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(501, 1256)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square114" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(453, 1208)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square115" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(405, 1160)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square116" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(357, 1112)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square117" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(309, 1064)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square118" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(261, 1016)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square119" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(213, 968)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square120" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(165, 920)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square121" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(117, 872)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square122" parent="Wave5" instance=ExtResource("2_7uh34")]
-position = Vector2(69, 824)
-rotation = 1.57079
-scale = Vector2(1, 1)
 
 [node name="Wave1" type="Node2D" parent="."]
 visible = false
@@ -466,6 +102,90 @@ position = Vector2(199.764, 24)
 rotation = 2.3562
 scale = Vector2(1, 1)
 
+[node name="Wave3" type="Node2D" parent="."]
+visible = false
+script = ExtResource("1_lgude")
+
+[node name="Square13" parent="Wave3" instance=ExtResource("2_7uh34")]
+position = Vector2(199.764, 741.765)
+rotation = 0.785406
+scale = Vector2(1, 1)
+
+[node name="Square14" parent="Wave3" instance=ExtResource("2_7uh34")]
+position = Vector2(154.51, 696.51)
+rotation = 0.785406
+scale = Vector2(1, 1)
+
+[node name="Square15" parent="Wave3" instance=ExtResource("2_7uh34")]
+position = Vector2(109.255, 651.255)
+rotation = 0.785406
+scale = Vector2(1, 1)
+
+[node name="Square16" parent="Wave3" instance=ExtResource("2_7uh34")]
+position = Vector2(64, 606)
+rotation = 0.785406
+scale = Vector2(1, 1)
+
+[node name="Square17" parent="Wave3" instance=ExtResource("2_7uh34")]
+position = Vector2(959.764, 159.765)
+rotation = 0.785406
+scale = Vector2(1, 1)
+
+[node name="Square18" parent="Wave3" instance=ExtResource("2_7uh34")]
+position = Vector2(914.51, 114.51)
+rotation = 0.785406
+scale = Vector2(1, 1)
+
+[node name="Square19" parent="Wave3" instance=ExtResource("2_7uh34")]
+position = Vector2(869.255, 69.2549)
+rotation = 0.785406
+scale = Vector2(1, 1)
+
+[node name="Square20" parent="Wave3" instance=ExtResource("2_7uh34")]
+position = Vector2(824, 24)
+rotation = 0.785406
+scale = Vector2(1, 1)
+
+[node name="Square21" parent="Wave3" instance=ExtResource("2_7uh34")]
+position = Vector2(824, 743.765)
+rotation = 2.3562
+scale = Vector2(1, 1)
+
+[node name="Square22" parent="Wave3" instance=ExtResource("2_7uh34")]
+position = Vector2(869.255, 698.51)
+rotation = 2.3562
+scale = Vector2(1, 1)
+
+[node name="Square23" parent="Wave3" instance=ExtResource("2_7uh34")]
+position = Vector2(914.51, 653.255)
+rotation = 2.3562
+scale = Vector2(1, 1)
+
+[node name="Square24" parent="Wave3" instance=ExtResource("2_7uh34")]
+position = Vector2(959.764, 608)
+rotation = 2.3562
+scale = Vector2(1, 1)
+
+[node name="Square25" parent="Wave3" instance=ExtResource("2_7uh34")]
+position = Vector2(64, 159.765)
+rotation = 2.3562
+scale = Vector2(1, 1)
+
+[node name="Square26" parent="Wave3" instance=ExtResource("2_7uh34")]
+position = Vector2(109.255, 114.51)
+rotation = 2.3562
+scale = Vector2(1, 1)
+
+[node name="Square27" parent="Wave3" instance=ExtResource("2_7uh34")]
+position = Vector2(154.51, 69.2549)
+rotation = 2.3562
+scale = Vector2(1, 1)
+
+[node name="Square28" parent="Wave3" instance=ExtResource("2_7uh34")]
+position = Vector2(199.764, 24)
+rotation = 2.3562
+scale = Vector2(1, 1)
+
 [node name="Wave2" type="Node2D" parent="."]
 visible = false
 script = ExtResource("1_lgude")
@@ -490,26 +210,6 @@ position = Vector2(679.764, 504)
 rotation = 2.3562
 scale = Vector2(1, 1)
 
-[node name="Square25" parent="Wave2" instance=ExtResource("2_7uh34")]
-position = Vector2(672, 639.765)
-rotation = 2.3562
-scale = Vector2(1, 1)
-
-[node name="Square26" parent="Wave2" instance=ExtResource("2_7uh34")]
-position = Vector2(717.255, 594.51)
-rotation = 2.3562
-scale = Vector2(1, 1)
-
-[node name="Square27" parent="Wave2" instance=ExtResource("2_7uh34")]
-position = Vector2(762.51, 549.255)
-rotation = 2.3562
-scale = Vector2(1, 1)
-
-[node name="Square28" parent="Wave2" instance=ExtResource("2_7uh34")]
-position = Vector2(807.764, 504)
-rotation = 2.3562
-scale = Vector2(1, 1)
-
 [node name="Square29" parent="Wave2" instance=ExtResource("2_7uh34")]
 position = Vector2(800, 639.765)
 rotation = 2.3562
@@ -527,26 +227,6 @@ scale = Vector2(1, 1)
 
 [node name="Square32" parent="Wave2" instance=ExtResource("2_7uh34")]
 position = Vector2(935.764, 504)
-rotation = 2.3562
-scale = Vector2(1, 1)
-
-[node name="Square33" parent="Wave2" instance=ExtResource("2_7uh34")]
-position = Vector2(416, 639.765)
-rotation = 2.3562
-scale = Vector2(1, 1)
-
-[node name="Square34" parent="Wave2" instance=ExtResource("2_7uh34")]
-position = Vector2(461.255, 594.51)
-rotation = 2.3562
-scale = Vector2(1, 1)
-
-[node name="Square35" parent="Wave2" instance=ExtResource("2_7uh34")]
-position = Vector2(506.51, 549.255)
-rotation = 2.3562
-scale = Vector2(1, 1)
-
-[node name="Square36" parent="Wave2" instance=ExtResource("2_7uh34")]
-position = Vector2(551.764, 504)
 rotation = 2.3562
 scale = Vector2(1, 1)
 
@@ -570,26 +250,6 @@ position = Vector2(679.764, 504)
 rotation = 2.3562
 scale = Vector2(1, 1)
 
-[node name="Square41" parent="Wave2" instance=ExtResource("2_7uh34")]
-position = Vector2(672, 639.765)
-rotation = 2.3562
-scale = Vector2(1, 1)
-
-[node name="Square42" parent="Wave2" instance=ExtResource("2_7uh34")]
-position = Vector2(717.255, 594.51)
-rotation = 2.3562
-scale = Vector2(1, 1)
-
-[node name="Square43" parent="Wave2" instance=ExtResource("2_7uh34")]
-position = Vector2(762.51, 549.255)
-rotation = 2.3562
-scale = Vector2(1, 1)
-
-[node name="Square44" parent="Wave2" instance=ExtResource("2_7uh34")]
-position = Vector2(807.764, 504)
-rotation = 2.3562
-scale = Vector2(1, 1)
-
 [node name="Square45" parent="Wave2" instance=ExtResource("2_7uh34")]
 position = Vector2(800, 639.765)
 rotation = 2.3562
@@ -607,46 +267,6 @@ scale = Vector2(1, 1)
 
 [node name="Square48" parent="Wave2" instance=ExtResource("2_7uh34")]
 position = Vector2(935.764, 504)
-rotation = 2.3562
-scale = Vector2(1, 1)
-
-[node name="Square49" parent="Wave2" instance=ExtResource("2_7uh34")]
-position = Vector2(416, 639.765)
-rotation = 2.3562
-scale = Vector2(1, 1)
-
-[node name="Square50" parent="Wave2" instance=ExtResource("2_7uh34")]
-position = Vector2(461.255, 594.51)
-rotation = 2.3562
-scale = Vector2(1, 1)
-
-[node name="Square51" parent="Wave2" instance=ExtResource("2_7uh34")]
-position = Vector2(506.51, 549.255)
-rotation = 2.3562
-scale = Vector2(1, 1)
-
-[node name="Square52" parent="Wave2" instance=ExtResource("2_7uh34")]
-position = Vector2(551.764, 504)
-rotation = 2.3562
-scale = Vector2(1, 1)
-
-[node name="Square53" parent="Wave2" instance=ExtResource("2_7uh34")]
-position = Vector2(168, 639.765)
-rotation = 2.3562
-scale = Vector2(1, 1)
-
-[node name="Square54" parent="Wave2" instance=ExtResource("2_7uh34")]
-position = Vector2(213.255, 594.51)
-rotation = 2.3562
-scale = Vector2(1, 1)
-
-[node name="Square55" parent="Wave2" instance=ExtResource("2_7uh34")]
-position = Vector2(258.51, 549.255)
-rotation = 2.3562
-scale = Vector2(1, 1)
-
-[node name="Square56" parent="Wave2" instance=ExtResource("2_7uh34")]
-position = Vector2(303.764, 504)
 rotation = 2.3562
 scale = Vector2(1, 1)
 
@@ -690,26 +310,6 @@ position = Vector2(175.764, 504)
 rotation = 2.3562
 scale = Vector2(1, 1)
 
-[node name="Square66" parent="Wave2" instance=ExtResource("2_7uh34")]
-position = Vector2(168, 639.765)
-rotation = 2.3562
-scale = Vector2(1, 1)
-
-[node name="Square67" parent="Wave2" instance=ExtResource("2_7uh34")]
-position = Vector2(213.255, 594.51)
-rotation = 2.3562
-scale = Vector2(1, 1)
-
-[node name="Square68" parent="Wave2" instance=ExtResource("2_7uh34")]
-position = Vector2(258.51, 549.255)
-rotation = 2.3562
-scale = Vector2(1, 1)
-
-[node name="Square69" parent="Wave2" instance=ExtResource("2_7uh34")]
-position = Vector2(303.764, 504)
-rotation = 2.3562
-scale = Vector2(1, 1)
-
 [node name="Square70" parent="Wave2" instance=ExtResource("2_7uh34")]
 position = Vector2(296, 639.765)
 rotation = 2.3562
@@ -750,251 +350,87 @@ position = Vector2(175.764, 504)
 rotation = 2.3562
 scale = Vector2(1, 1)
 
-[node name="Wave3" type="Node2D" parent="."]
-visible = false
-script = ExtResource("1_lgude")
-
-[node name="Square51" parent="Wave3" instance=ExtResource("2_7uh34")]
-position = Vector2(496, 368)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square52" parent="Wave3" instance=ExtResource("2_7uh34")]
-position = Vector2(448, 320)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square53" parent="Wave3" instance=ExtResource("2_7uh34")]
-position = Vector2(400, 272)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square54" parent="Wave3" instance=ExtResource("2_7uh34")]
-position = Vector2(352, 224)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square55" parent="Wave3" instance=ExtResource("2_7uh34")]
-position = Vector2(304, 176)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square56" parent="Wave3" instance=ExtResource("2_7uh34")]
-position = Vector2(256, 128)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square57" parent="Wave3" instance=ExtResource("2_7uh34")]
-position = Vector2(208, 80)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square58" parent="Wave3" instance=ExtResource("2_7uh34")]
-position = Vector2(160, 32)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square59" parent="Wave3" instance=ExtResource("2_7uh34")]
-position = Vector2(112, -16)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square60" parent="Wave3" instance=ExtResource("2_7uh34")]
-position = Vector2(64, -64)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square61" parent="Wave3" instance=ExtResource("2_7uh34")]
-position = Vector2(16, -112)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square62" parent="Wave3" instance=ExtResource("2_7uh34")]
-position = Vector2(-32, -160)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square63" parent="Wave3" instance=ExtResource("2_7uh34")]
-position = Vector2(1069, 944)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square64" parent="Wave3" instance=ExtResource("2_7uh34")]
-position = Vector2(1021, 896)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square65" parent="Wave3" instance=ExtResource("2_7uh34")]
-position = Vector2(973, 848)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square66" parent="Wave3" instance=ExtResource("2_7uh34")]
-position = Vector2(925, 800)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square67" parent="Wave3" instance=ExtResource("2_7uh34")]
-position = Vector2(877, 752)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square68" parent="Wave3" instance=ExtResource("2_7uh34")]
-position = Vector2(829, 704)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square69" parent="Wave3" instance=ExtResource("2_7uh34")]
-position = Vector2(781, 656)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square70" parent="Wave3" instance=ExtResource("2_7uh34")]
-position = Vector2(733, 608)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square71" parent="Wave3" instance=ExtResource("2_7uh34")]
-position = Vector2(685, 560)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square72" parent="Wave3" instance=ExtResource("2_7uh34")]
-position = Vector2(637, 512)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square73" parent="Wave3" instance=ExtResource("2_7uh34")]
-position = Vector2(589, 464)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square74" parent="Wave3" instance=ExtResource("2_7uh34")]
-position = Vector2(541, 416)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
 [node name="Wave4" type="Node2D" parent="."]
 visible = false
 script = ExtResource("1_lgude")
 
-[node name="Square51" parent="Wave4" instance=ExtResource("2_7uh34")]
-position = Vector2(1072, -16)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square52" parent="Wave4" instance=ExtResource("2_7uh34")]
-position = Vector2(1024, -64)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square53" parent="Wave4" instance=ExtResource("2_7uh34")]
-position = Vector2(976, -112)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square54" parent="Wave4" instance=ExtResource("2_7uh34")]
-position = Vector2(928, -160)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square55" parent="Wave4" instance=ExtResource("2_7uh34")]
-position = Vector2(880, -208)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square56" parent="Wave4" instance=ExtResource("2_7uh34")]
-position = Vector2(832, -256)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square57" parent="Wave4" instance=ExtResource("2_7uh34")]
-position = Vector2(784, -304)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square58" parent="Wave4" instance=ExtResource("2_7uh34")]
-position = Vector2(736, -352)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square59" parent="Wave4" instance=ExtResource("2_7uh34")]
-position = Vector2(688, -400)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
-[node name="Square60" parent="Wave4" instance=ExtResource("2_7uh34")]
-position = Vector2(640, -448)
-rotation = 1.57079
-scale = Vector2(1, 1)
-
 [node name="Square61" parent="Wave4" instance=ExtResource("2_7uh34")]
-position = Vector2(592, -496)
+position = Vector2(568, 232)
 rotation = 1.57079
 scale = Vector2(1, 1)
 
 [node name="Square62" parent="Wave4" instance=ExtResource("2_7uh34")]
-position = Vector2(544, -544)
+position = Vector2(696, 232)
 rotation = 1.57079
 scale = Vector2(1, 1)
 
 [node name="Square63" parent="Wave4" instance=ExtResource("2_7uh34")]
-position = Vector2(1645, 560)
+position = Vector2(632, 296)
+rotation = 1.57079
+scale = Vector2(1, 1)
+
+[node name="Square59" parent="Wave4" instance=ExtResource("2_7uh34")]
+position = Vector2(632, 168)
 rotation = 1.57079
 scale = Vector2(1, 1)
 
 [node name="Square64" parent="Wave4" instance=ExtResource("2_7uh34")]
-position = Vector2(1597, 512)
+position = Vector2(160, 608)
 rotation = 1.57079
 scale = Vector2(1, 1)
 
 [node name="Square65" parent="Wave4" instance=ExtResource("2_7uh34")]
-position = Vector2(1549, 464)
+position = Vector2(288, 608)
 rotation = 1.57079
 scale = Vector2(1, 1)
 
 [node name="Square66" parent="Wave4" instance=ExtResource("2_7uh34")]
-position = Vector2(1501, 416)
+position = Vector2(224, 672)
 rotation = 1.57079
 scale = Vector2(1, 1)
 
-[node name="Square67" parent="Wave4" instance=ExtResource("2_7uh34")]
-position = Vector2(1453, 368)
+[node name="Square60" parent="Wave4" instance=ExtResource("2_7uh34")]
+position = Vector2(224, 544)
 rotation = 1.57079
 scale = Vector2(1, 1)
 
-[node name="Square68" parent="Wave4" instance=ExtResource("2_7uh34")]
-position = Vector2(1405, 320)
+[node name="Square75" parent="Wave4" instance=ExtResource("2_7uh34")]
+position = Vector2(88, 144)
 rotation = 1.57079
 scale = Vector2(1, 1)
 
-[node name="Square69" parent="Wave4" instance=ExtResource("2_7uh34")]
-position = Vector2(1357, 272)
+[node name="Square76" parent="Wave4" instance=ExtResource("2_7uh34")]
+position = Vector2(216, 144)
 rotation = 1.57079
 scale = Vector2(1, 1)
 
-[node name="Square70" parent="Wave4" instance=ExtResource("2_7uh34")]
-position = Vector2(1309, 224)
+[node name="Square77" parent="Wave4" instance=ExtResource("2_7uh34")]
+position = Vector2(152, 208)
 rotation = 1.57079
 scale = Vector2(1, 1)
 
-[node name="Square71" parent="Wave4" instance=ExtResource("2_7uh34")]
-position = Vector2(1261, 176)
+[node name="Square78" parent="Wave4" instance=ExtResource("2_7uh34")]
+position = Vector2(152, 80)
 rotation = 1.57079
 scale = Vector2(1, 1)
 
-[node name="Square72" parent="Wave4" instance=ExtResource("2_7uh34")]
-position = Vector2(1213, 128)
+[node name="Square79" parent="Wave4" instance=ExtResource("2_7uh34")]
+position = Vector2(760, 560)
 rotation = 1.57079
 scale = Vector2(1, 1)
 
-[node name="Square73" parent="Wave4" instance=ExtResource("2_7uh34")]
-position = Vector2(1165, 80)
+[node name="Square80" parent="Wave4" instance=ExtResource("2_7uh34")]
+position = Vector2(888, 560)
 rotation = 1.57079
 scale = Vector2(1, 1)
 
-[node name="Square74" parent="Wave4" instance=ExtResource("2_7uh34")]
-position = Vector2(1117, 32)
+[node name="Square81" parent="Wave4" instance=ExtResource("2_7uh34")]
+position = Vector2(824, 624)
+rotation = 1.57079
+scale = Vector2(1, 1)
+
+[node name="Square82" parent="Wave4" instance=ExtResource("2_7uh34")]
+position = Vector2(824, 496)
 rotation = 1.57079
 scale = Vector2(1, 1)
 

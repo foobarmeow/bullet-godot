@@ -1,6 +1,7 @@
 extends Node2D
 
 signal exit
+signal entered
 
 @export var player: Area2D
 @export var tracking: bool = false
@@ -11,7 +12,10 @@ func _process(delta):
 		look_at(player.position)
 	elif tracking == false && player != null:
 		translate(Vector2(speed, 0).rotated(rotation) * delta)
-
-
+		
 func _on_exit_screen():
 	exit.emit()
+
+
+func _on_area_entered(area):
+	entered.emit(tracking)
