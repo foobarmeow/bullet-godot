@@ -1,36 +1,52 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdj0ta3k6iega"]
+[gd_scene load_steps=4 format=3 uid="uid://cdj0ta3k6iega"]
 
+[ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_c881j"]
 [ext_resource type="Script" path="res://scenes/levels/wave.gd" id="1_lgude"]
-[ext_resource type="PackedScene" uid="uid://b30wm1l3hlwlu" path="res://scenes/mobs/square.tscn" id="2_7uh34"]
+[ext_resource type="PackedScene" uid="uid://qqacu0db0yoh" path="res://scenes/mobs/square.tscn" id="2_7uh34"]
 
 [node name="Level1" type="Node2D"]
+script = ExtResource("1_c881j")
 
 [node name="Wave1" type="Node2D" parent="."]
+visible = false
 script = ExtResource("1_lgude")
 
-[node name="square" parent="Wave1" instance=ExtResource("2_7uh34")]
-position = Vector2(256, 88)
+[node name="Square" parent="Wave1" instance=ExtResource("2_7uh34")]
+position = Vector2(115, 55)
 
-[node name="square2" parent="Wave1" instance=ExtResource("2_7uh34")]
-position = Vector2(864, 152)
+[node name="Square2" parent="Wave1" instance=ExtResource("2_7uh34")]
+position = Vector2(860, 96)
 
-[node name="square3" parent="Wave1" instance=ExtResource("2_7uh34")]
-position = Vector2(512, 264)
+[node name="Square3" parent="Wave1" instance=ExtResource("2_7uh34")]
+position = Vector2(179, 304)
 
-[node name="square4" parent="Wave1" instance=ExtResource("2_7uh34")]
-position = Vector2(40, 176)
+[node name="Square4" parent="Wave1" instance=ExtResource("2_7uh34")]
+position = Vector2(919, 486)
 
-[node name="square5" parent="Wave1" instance=ExtResource("2_7uh34")]
-position = Vector2(192, 408)
+[node name="Square5" parent="Wave1" instance=ExtResource("2_7uh34")]
+position = Vector2(604, 156)
 
-[node name="square6" parent="Wave1" instance=ExtResource("2_7uh34")]
-position = Vector2(568, 64)
+[node name="Square6" parent="Wave1" instance=ExtResource("2_7uh34")]
+position = Vector2(350, 536)
 
-[node name="square7" parent="Wave1" instance=ExtResource("2_7uh34")]
-position = Vector2(872, 336)
+[node name="Wave2" type="Node2D" parent="."]
+visible = false
+script = ExtResource("1_lgude")
 
-[node name="square8" parent="Wave1" instance=ExtResource("2_7uh34")]
-position = Vector2(624, 488)
+[node name="Square" parent="Wave2" instance=ExtResource("2_7uh34")]
+position = Vector2(90, 152)
 
-[node name="square9" parent="Wave1" instance=ExtResource("2_7uh34")]
-position = Vector2(384, 632)
+[node name="Square2" parent="Wave2" instance=ExtResource("2_7uh34")]
+position = Vector2(200, 213)
+
+[node name="Square3" parent="Wave2" instance=ExtResource("2_7uh34")]
+position = Vector2(436, 109)
+
+[node name="Square4" parent="Wave2" instance=ExtResource("2_7uh34")]
+position = Vector2(365, 293)
+
+[node name="Square5" parent="Wave2" instance=ExtResource("2_7uh34")]
+position = Vector2(211, 388)
+
+[node name="Square6" parent="Wave2" instance=ExtResource("2_7uh34")]
+position = Vector2(276, 100)

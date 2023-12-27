@@ -1,14 +1,14 @@
 [gd_scene load_steps=6 format=3 uid="uid://bh0f0wn1i2odl"]
 
 [ext_resource type="Script" path="res://scenes/main/Main.gd" id="1_ndwyi"]
-[ext_resource type="PackedScene" uid="uid://clpbah7q1kpfh" path="res://scenes/mob_holder/mob_holder.tscn" id="2_o7rgn"]
+[ext_resource type="PackedScene" uid="uid://clpbah7q1kpfh" path="res://scenes/mob_holder_old/mob_holder_old.tscn" id="2_cly0q"]
 [ext_resource type="PackedScene" uid="uid://b1sqn6oxm0d6m" path="res://scenes/player/player.tscn" id="3_36ncr"]
 [ext_resource type="PackedScene" uid="uid://hoxobtgt486a" path="res://scenes/hud/hud.tscn" id="4_4xova"]
 [ext_resource type="PackedScene" uid="uid://cdj0ta3k6iega" path="res://scenes/levels/level_1.tscn" id="5_wrebh"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ndwyi")
-mob_holder_scene = ExtResource("2_o7rgn")
+mob_holder_scene = ExtResource("2_cly0q")
 levels = [ExtResource("5_wrebh")]
 
 [node name="ColorRect" type="ColorRect" parent="."]

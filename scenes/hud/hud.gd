@@ -26,3 +26,7 @@ func _on_start_button_pressed():
 func hit(lives: int):
 	$Root/ScoreLabel.text = str(lives)
 	
+func level_complete():
+	$Root/EndLabel.text = "I guess you don't suck"
+	$Root/EndLabel.show()
+	
