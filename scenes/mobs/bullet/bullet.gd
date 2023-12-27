@@ -12,8 +12,12 @@ func fire():
 
 func parry():
 	velocity = position.direction_to(from) * (parry_speed)
+	
+func destroy():
+	# TODO: some particle or something
+	queue_free()
 
-func _process(delta):
+func _physics_process(delta):
 	if !fired:
 		return
 	#rotation += TAU / 16
@@ -27,7 +31,9 @@ func _process(delta):
 	if collision != null:
 		var collider = collision.get_collider()
 		if collider is Player:
-			collider.take_damage(10)
+			# Pass a reference to myself so it knows who brought the heat
+			collider.take_damage(10, self)
+			return # We'll let the damage taker free it
 		elif collider is Mover:
 			print("ya dead!")
 		elif collider is StaticBody2D:

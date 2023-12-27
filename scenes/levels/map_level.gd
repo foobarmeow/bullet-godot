@@ -36,7 +36,7 @@ func _on_lights_out_trigger_area_entered(area):
 	
 	# Increase the energy over time
 	while l.energy < initial_energy:
-		await get_tree().create_timer(.1).timeout
+		await get_tree().create_timer(.25).timeout
 		l.energy += .1
 		
 	# Parent it to the player and disconnect this signal

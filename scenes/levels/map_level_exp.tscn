@@ -17,7 +17,7 @@ resource_local_to_scene = true
 shader = ExtResource("8_i7tpo")
 shader_parameter/enabled = false
 shader_parameter/fade_distance = null
-shader_parameter/player_position = Vector2(-5221.85, -1046.89)
+shader_parameter/player_position = Vector2(-5223.77, -1047.27)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rovmf"]
 size = Vector2(20, 35)
@@ -26,13 +26,13 @@ size = Vector2(20, 35)
 shader = ExtResource("8_i7tpo")
 shader_parameter/enabled = true
 shader_parameter/fade_distance = null
-shader_parameter/player_position = Vector2(602.485, -125.907)
+shader_parameter/player_position = Vector2(583.271, -129.687)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jeapk"]
 shader = ExtResource("8_i7tpo")
 shader_parameter/enabled = true
 shader_parameter/fade_distance = null
-shader_parameter/player_position = Vector2(1407.48, -113.907)
+shader_parameter/player_position = Vector2(1388.27, -117.687)
 
 [node name="MapLevel" type="Node2D" node_paths=PackedStringArray("line_manager")]
 script = ExtResource("1_icc6t")
