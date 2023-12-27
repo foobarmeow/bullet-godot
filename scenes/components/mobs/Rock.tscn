@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://w1agd274alpy"]
+[gd_scene load_steps=8 format=3 uid="uid://w1agd274alpy"]
 
 [ext_resource type="Texture2D" uid="uid://c4026v6xiksqa" path="res://art/sprites/kenny-1px/monochrome_tilemap_transparent.png" id="2_lhjr4"]
 
@@ -7,6 +7,34 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_j4ri1"]
 atlas = ExtResource("2_lhjr4")
 region = Rect2(238, 0, 16, 16)
+
+[sub_resource type="Gradient" id="Gradient_68pp1"]
+offsets = PackedFloat32Array(0.786116, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.0352941)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5a3y6"]
+gradient = SubResource("Gradient_68pp1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_um57p"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 5.0
+direction = Vector3(0, -1, 0)
+spread = 44.69
+gravity = Vector3(0, 250, 0)
+initial_velocity_min = 75.0
+initial_velocity_max = 75.0
+angular_velocity_max = 25.0
+damping_min = 17.007
+damping_max = 17.007
+scale_min = 0.05
+scale_max = 0.25
+color_ramp = SubResource("GradientTexture1D_5a3y6")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k0ibh"]
+load_path = "res://.godot/imported/rock_particle.png-506570e54d0c21ce3eee30ecb9cb041b.ctex"
 
 [node name="Rock" type="RigidBody2D" groups=["rocks"]]
 collision_layer = 9
@@ -23,5 +51,13 @@ shape = SubResource("CircleShape2D_8g1v2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_j4ri1")
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_um57p")
+texture = SubResource("CompressedTexture2D_k0ibh")
+one_shot = true
+explosiveness = 0.95
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

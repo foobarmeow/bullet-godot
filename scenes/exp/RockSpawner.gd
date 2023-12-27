@@ -34,6 +34,7 @@ func _on_rock_spawn():
 	else:
 		torque_force = torque
 	r.apply_torque_impulse(torque_force)
+	r.get_node("Particles").emitting = true
 
 	spawning = true
 	# Only spawn once
