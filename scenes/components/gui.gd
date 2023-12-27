@@ -43,6 +43,6 @@ func _on_map_level_done_drinking():
 		return
 	done_drinking = true
 	
-	$AnimationPlayer.play_backwards("drink_visibility")
+	$AnimationPlayer.queue("drink_visibility")
 	$AnimationPlayer.queue("drank_visibility")
 	$AnimationPlayer.queue("return_visibiilty")
