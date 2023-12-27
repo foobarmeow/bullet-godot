@@ -30,7 +30,7 @@ func start_movers(nodes: Array[Node]):
 			n.dead.connect(_on_mover_dead)
 	
 
-func _on_lights_out_trigger_area_entered(area):
+func _on_lights_out_trigger_area_entered(_area):
 	pass
 #	# Darken the scene
 

@@ -62,6 +62,6 @@ func reset_cooldown():
 	on_cooldown = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	look_at(get_global_mouse_position())
 	pass
