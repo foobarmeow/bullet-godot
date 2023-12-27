@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://w1agd274alpy"]
+
+[ext_resource type="Texture2D" uid="uid://c4026v6xiksqa" path="res://art/sprites/kenny-1px/monochrome_tilemap_transparent.png" id="2_lhjr4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8g1v2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4ri1"]
+atlas = ExtResource("2_lhjr4")
+region = Rect2(238, 0, 16, 16)
+
+[node name="Rock" type="RigidBody2D"]
+position = Vector2(560, 476)
+collision_mask = 8
+input_pickable = true
+mass = 150.0
+inertia = 8.49
+gravity_scale = 0.0
+linear_damp = 0.156
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8g1v2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_j4ri1")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
