@@ -20,6 +20,7 @@ const animation_by_type = {
 @export var bullet: PackedScene
 @export var speed: int = 50
 @export var dir: Vector2
+@export var parry_speed: int = 150
 
 
 var fill: float = 0
@@ -137,5 +138,9 @@ func add_bullet(v):
 	b.position = global_position
 	get_tree().root.add_child(b)
 	b.velocity = v
+	b.speed = speed
+	b.from = position
+	b.parry_speed = parry_speed
 	b.fire()
+	
 				
