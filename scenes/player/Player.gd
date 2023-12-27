@@ -30,12 +30,14 @@ var sprite: AnimatedSprite2D
 var taking_damage: bool
 var last_parried: Node2D
 var parried: bool = false
+var damage_manager: DamageManager
 
 # TODO: Make this a property of the node that collided
 var damage: int = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	damage_manager = DamageManager.new(self)
 	initial_speed = speed
 	
 	if $AnimatedSprite2D == null:
@@ -99,6 +101,11 @@ func handle_movement(delta: float):
 		speed = initial_speed
 	move_and_collide(velocity * delta)
 	
+
+func allow_hit(enemy: Node2D) -> bool:
+	return enemy != last_parried
+
+
 # Called by bullets that detect collision with player
 func take_damage(d: int, enemy: Node2D):
 	if !hittable || taking_damage:
@@ -110,17 +117,32 @@ func take_damage(d: int, enemy: Node2D):
 			if damageable:
 				taking_damage = true
 				health -= d
-				print(health)
 			if hittable:
 				sprite.modulate = Color("ff0000")
 				get_tree().create_timer(.25).timeout.connect(func():
 					sprite.modulate = initial_modulate
 				)
+				damage_animate()
 			if is_instance_valid(enemy):
 				enemy.queue_free()
 			await get_tree().create_timer(i_time).timeout
 			taking_damage = false
-			
+
+
+func damage_animate():
+	var initial_position = position
+	var initial_color = modulate
+	var color_tween = get_tree().create_tween()
+	color_tween.tween_property(self, "modulate", Color.RED, .05)
+	color_tween.tween_property(self, "modulate", initial_color, .05)
+	var tween = get_tree().create_tween()
+		# 5 frames
+	for i in 5:
+		var p = Vector2(position.x+randi_range(-2, 2), position.y+randi_range(-2,2))
+		tween.tween_property(self, "position", p, .025)
+	# Back to initial position
+	tween.tween_property(self, "position", initial_position, .025)
+	
 	
 func blink():
 	for i in 10:

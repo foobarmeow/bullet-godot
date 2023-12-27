@@ -17,7 +17,7 @@ resource_local_to_scene = true
 shader = ExtResource("8_i7tpo")
 shader_parameter/enabled = false
 shader_parameter/fade_distance = null
-shader_parameter/player_position = Vector2(-5384.32, -1052.36)
+shader_parameter/player_position = Vector2(-5352.4, -1056.07)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rovmf"]
 size = Vector2(20, 35)
@@ -119,84 +119,59 @@ visible = false
 visible = false
 
 [node name="StillGuard" parent="Enemies" instance=ExtResource("3_w5hcx")]
-position = Vector2(567, 326)
 
 [node name="StillGuard3" parent="Enemies" instance=ExtResource("3_w5hcx")]
-position = Vector2(744, 499)
 
 [node name="StillGuard4" parent="Enemies" instance=ExtResource("3_w5hcx")]
-position = Vector2(778, 546)
 
 [node name="StillGuard6" parent="Enemies" instance=ExtResource("3_w5hcx")]
-position = Vector2(443, 584)
 
 [node name="StillGuardCircle2" parent="Enemies" instance=ExtResource("3_w5hcx")]
-position = Vector2(1099, 1094)
 
 [node name="StillGuard7" parent="Enemies" instance=ExtResource("3_w5hcx")]
-position = Vector2(1935.41, 1006.31)
 
 [node name="StillGuard8" parent="Enemies" instance=ExtResource("3_w5hcx")]
-position = Vector2(2544.34, 1026.3)
 
 [node name="StillGuard9" parent="Enemies" instance=ExtResource("3_w5hcx")]
-position = Vector2(3060.74, 1028.27)
 
 [node name="StillGuard11" parent="Enemies" instance=ExtResource("3_w5hcx")]
-position = Vector2(3268, 1235)
 
 [node name="StillGuard12" parent="Enemies" instance=ExtResource("3_w5hcx")]
-position = Vector2(4107, 1015)
 
 [node name="StillGuard13" parent="Enemies" instance=ExtResource("3_w5hcx")]
-position = Vector2(4312, 1152)
 
 [node name="StillGuard14" parent="Enemies" instance=ExtResource("3_w5hcx")]
-position = Vector2(4339, 1011)
 
 [node name="StillGuard10" parent="Enemies" instance=ExtResource("3_w5hcx")]
-position = Vector2(2879.2, 686.55)
 
 [node name="StillGuard15" parent="Enemies" instance=ExtResource("3_w5hcx")]
-position = Vector2(4490, 1027)
 
 [node name="StillGuard22" parent="Enemies" instance=ExtResource("3_w5hcx")]
-position = Vector2(4618, 1027)
 
 [node name="StillGuard23" parent="Enemies" instance=ExtResource("3_w5hcx")]
-position = Vector2(4744.95, 1027)
 
 [node name="StillGuard24" parent="Enemies" instance=ExtResource("3_w5hcx")]
-position = Vector2(4874.02, 969)
 spawn_time = 0.65
 
 [node name="StillGuard25" parent="Enemies" instance=ExtResource("3_w5hcx")]
-position = Vector2(5002.63, 969)
 spawn_time = 0.65
 
 [node name="StillGuard26" parent="Enemies" instance=ExtResource("3_w5hcx")]
-position = Vector2(5131.89, 969)
 spawn_time = 0.65
 
 [node name="StillGuard16" parent="Enemies" instance=ExtResource("3_w5hcx")]
-position = Vector2(4491, 1137)
 
 [node name="StillGuard17" parent="Enemies" instance=ExtResource("3_w5hcx")]
-position = Vector2(4619.13, 1137)
 
 [node name="StillGuard18" parent="Enemies" instance=ExtResource("3_w5hcx")]
-position = Vector2(4743.98, 1137)
 
 [node name="StillGuard19" parent="Enemies" instance=ExtResource("3_w5hcx")]
-position = Vector2(4874.03, 1204)
 spawn_time = 0.65
 
 [node name="StillGuard20" parent="Enemies" instance=ExtResource("3_w5hcx")]
-position = Vector2(5001.87, 1204)
 spawn_time = 0.65
 
 [node name="StillGuard21" parent="Enemies" instance=ExtResource("3_w5hcx")]
-position = Vector2(5130.65, 1204)
 spawn_time = 0.65
 
 [node name="Player" parent="." instance=ExtResource("2_s21pb")]
