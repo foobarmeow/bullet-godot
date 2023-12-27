@@ -19,7 +19,7 @@ func _process(delta):
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p7txf"]
 size = Vector2(39, 40)
 
-[node name="Mob" type="Area2D" groups=["mob"]]
+[node name="Mob" type="Area2D"]
 scale = Vector2(0.25, 0.25)
 script = SubResource("GDScript_wpq8s")
 metadata/_edit_group_ = true

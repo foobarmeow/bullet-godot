@@ -1,53 +1,55 @@
-[gd_scene load_steps=2 format=3 uid="uid://b30wm1l3hlwlu"]
+[gd_scene load_steps=3 format=3 uid="uid://b30wm1l3hlwlu"]
 
-[ext_resource type="PackedScene" uid="uid://btiwg5djjyl0p" path="res://scenes/mobs/mob.tscn" id="1_n8ue8"]
+[ext_resource type="PackedScene" uid="uid://btiwg5djjyl0p" path="res://scenes/mobs/mob_primitives/round.tscn" id="1_n8ue8"]
+[ext_resource type="Script" path="res://scenes/mobs/mob.gd" id="1_thm8t"]
 
-[node name="square" type="Node2D"]
-position = Vector2(-32, -32)
+[node name="square" type="Node2D" groups=["mob"]]
+script = ExtResource("1_thm8t")
 
 [node name="Mob" parent="." instance=ExtResource("1_n8ue8")]
+position = Vector2(-32, -32)
 
 [node name="Mob2" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(16, 0)
+position = Vector2(-16, -32)
 
 [node name="Mob3" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(32, 0)
+position = Vector2(0, -32)
 
 [node name="Mob4" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(48, 0)
+position = Vector2(16, -32)
 
 [node name="Mob5" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(64, 0)
+position = Vector2(32, -32)
 
 [node name="Mob6" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(64, 16)
+position = Vector2(32, -16)
 
 [node name="Mob7" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(64, 32)
+position = Vector2(32, 0)
 
 [node name="Mob8" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(64, 48)
+position = Vector2(32, 16)
 
 [node name="Mob9" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(64, 64)
+position = Vector2(32, 32)
 
 [node name="Mob10" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(48, 64)
+position = Vector2(16, 32)
 
 [node name="Mob11" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(32, 64)
-
-[node name="Mob12" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(16, 64)
-
-[node name="Mob13" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(0, 64)
-
-[node name="Mob14" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(0, 48)
-
-[node name="Mob15" parent="." instance=ExtResource("1_n8ue8")]
 position = Vector2(0, 32)
 
+[node name="Mob12" parent="." instance=ExtResource("1_n8ue8")]
+position = Vector2(-16, 32)
+
+[node name="Mob13" parent="." instance=ExtResource("1_n8ue8")]
+position = Vector2(-32, 32)
+
+[node name="Mob14" parent="." instance=ExtResource("1_n8ue8")]
+position = Vector2(-32, 16)
+
+[node name="Mob15" parent="." instance=ExtResource("1_n8ue8")]
+position = Vector2(-32, 0)
+
 [node name="Mob16" parent="." instance=ExtResource("1_n8ue8")]
-position = Vector2(0, 16)
+position = Vector2(-32, -16)

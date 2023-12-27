@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 signal start_game
+signal player_ready
 
 func end_game():
 	# Display a game over message
@@ -15,6 +16,7 @@ func _on_start_button_pressed():
 	
 	# Display a start game message
 	$Root/ReadyLabel.show()
+	player_ready.emit()
 	await get_tree().create_timer(1.5).timeout
 	$Root/ReadyLabel.hide()
 	$Root/ScoreLabel.show()

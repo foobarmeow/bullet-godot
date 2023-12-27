@@ -1,16 +1,16 @@
 [gd_scene load_steps=5 format=3 uid="uid://clpbah7q1kpfh"]
 
 [ext_resource type="Script" path="res://scenes/mob_holder/mob_holder.gd" id="1_2gmug"]
-[ext_resource type="PackedScene" uid="uid://btiwg5djjyl0p" path="res://scenes/mobs/mob.tscn" id="2_c6i77"]
-[ext_resource type="PackedScene" uid="uid://b30wm1l3hlwlu" path="res://scenes/mob_holder/groups/square.tscn" id="3_pwwaa"]
-[ext_resource type="PackedScene" uid="uid://bgrv4qfp5ckik" path="res://scenes/mob_holder/groups/line.tscn" id="4_hsvk3"]
+[ext_resource type="PackedScene" uid="uid://btiwg5djjyl0p" path="res://scenes/mobs/mob_primitives/round.tscn" id="2_taax5"]
+[ext_resource type="PackedScene" uid="uid://b30wm1l3hlwlu" path="res://scenes/mobs/square.tscn" id="3_pwwaa"]
+[ext_resource type="PackedScene" uid="uid://bgrv4qfp5ckik" path="res://scenes/mobs/line.tscn" id="4_t15op"]
 
 [node name="MobHolder" type="Node2D"]
 position = Vector2(248, 130)
 script = ExtResource("1_2gmug")
-mob_scene = ExtResource("2_c6i77")
+mob_scene = ExtResource("2_taax5")
 mob_square = ExtResource("3_pwwaa")
-mob_line = ExtResource("4_hsvk3")
+mob_line = ExtResource("4_t15op")
 tracking_timeout = 1.5
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
