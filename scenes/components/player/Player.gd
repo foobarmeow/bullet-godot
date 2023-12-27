@@ -63,20 +63,10 @@ func _physics_process(delta):
 	# Handle collision before setting velocity
 	var coll = move_and_collide(velocity * delta)
 	if coll:
-		var collider = coll.get_collider()
-		if collider is TileMap:
-			print("TILEMAP")
-			var coords = collider.local_to_map(collider.to_local(coll.get_position()))
-			var tile = collider.get_cell_tile_data(2, coords)
-			if tile is TileData:
-				print("FUCL")
-			print(tile, coords, coll.get_position(), collider.get_layers_count(), collider.get_layer_name(2))
-		print(coll.get_collider())
-		#if coll.get_collider().get_layer_mask_bit():
 		if coll.get_collider().is_in_group("walls"):
 			velocity = velocity.slide(coll.get_normal())
 			return
-		
+	
 	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if dash:
 		input_direction = input_direction * dash_multiplier
@@ -116,3 +106,11 @@ func _on_damage_manager_health_updated(health: int, _init_health: int):
 
 func _on_damage_manager_invuln_updated(_invuln: bool):
 	handle_invuln(true, false)
+
+
+func _on_bridge_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
+	set_collision_mask_value(7, false)
+
+
+func _on_bridge_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
+	set_collision_mask_value(7, true)
