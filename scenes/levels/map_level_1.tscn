@@ -218,7 +218,6 @@ dash_time = 0.22
 
 [node name="DamageManager" parent="Player" instance=ExtResource("6_3rwpq")]
 position = Vector2(-92.5444, -370.463)
-scale = Vector2(1, 1)
 health = 30
 invuln_time = 1.5
 

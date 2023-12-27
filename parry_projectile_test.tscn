@@ -1,15 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7xroxfe1m3tp"]
+[gd_scene load_steps=5 format=3 uid="uid://c7xroxfe1m3tp"]
 
 [ext_resource type="PackedScene" uid="uid://bhnamekyyvkpa" path="res://scenes/player/player.tscn" id="1_kgtqu"]
 [ext_resource type="Script" path="res://scenes/levels/Camera.gd" id="2_h3y5p"]
 [ext_resource type="PackedScene" uid="uid://den0ajf1m1ws3" path="res://scenes/mobs/bullet/bullet.tscn" id="3_1u251"]
+[ext_resource type="PackedScene" uid="uid://c7fyo24ou0om7" path="res://scenes/mobs/mover/mover.tscn" id="4_p4hrg"]
 
 [node name="parryProjectileTest" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_kgtqu")]
+position = Vector2(512, 384)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 script = ExtResource("2_h3y5p")
 
 [node name="Mob" parent="." instance=ExtResource("3_1u251")]
 position = Vector2(458.849, 274.427)
+
+[node name="Mover" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_p4hrg")]
+position = Vector2(618.28, 176.716)
+target = NodePath("../Player")
