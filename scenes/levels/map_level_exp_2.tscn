@@ -17,7 +17,7 @@ resource_local_to_scene = true
 shader = ExtResource("4_tqwqv")
 shader_parameter/enabled = false
 shader_parameter/fade_distance = null
-shader_parameter/player_position = Vector2(-5839.67, -1117.38)
+shader_parameter/player_position = Vector2(-5818.97, -1103.76)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rovmf"]
 size = Vector2(20, 35)
@@ -99,7 +99,6 @@ color = Color(0.933333, 0.933333, 1, 1)
 energy = 0.89
 shadow_enabled = true
 texture = ExtResource("7_4pqml")
-texture_scale = 0.3
 metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="KillLightHolder/KillLight"]
@@ -114,6 +113,7 @@ shape = SubResource("CircleShape2D_c1vd8")
 
 [node name="StillGuard" parent="Enemies" instance=ExtResource("8_7qug6")]
 position = Vector2(340.367, 160.675)
+collision_layer = 0
 
 [node name="Player" parent="." instance=ExtResource("9_fw7ae")]
 self_modulate = Color(0, 0.419608, 1, 1)

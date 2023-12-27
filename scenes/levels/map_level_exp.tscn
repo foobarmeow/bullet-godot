@@ -17,7 +17,7 @@ resource_local_to_scene = true
 shader = ExtResource("8_i7tpo")
 shader_parameter/enabled = false
 shader_parameter/fade_distance = null
-shader_parameter/player_position = Vector2(-5834.37, -1112.11)
+shader_parameter/player_position = Vector2(-5824.45, -1110.15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rovmf"]
 size = Vector2(20, 35)
@@ -26,13 +26,13 @@ size = Vector2(20, 35)
 shader = ExtResource("8_i7tpo")
 shader_parameter/enabled = true
 shader_parameter/fade_distance = null
-shader_parameter/player_position = Vector2(-638.442, -22.6356)
+shader_parameter/player_position = Vector2(-638.44, -22.64)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jeapk"]
 shader = ExtResource("8_i7tpo")
 shader_parameter/enabled = true
 shader_parameter/fade_distance = null
-shader_parameter/player_position = Vector2(166.558, -10.6356)
+shader_parameter/player_position = Vector2(166.56, -10.64)
 
 [node name="MapLevel" type="Node2D" node_paths=PackedStringArray("line_manager")]
 script = ExtResource("1_icc6t")
@@ -114,8 +114,10 @@ offset_bottom = 1127.0
 
 [node name="KillLight" parent="KillLightHolder" instance=ExtResource("7_rheqg")]
 visible = false
+energy = 0.211166
 
 [node name="Enemies" type="Node2D" parent="."]
+visible = false
 
 [node name="StillGuard" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(567, 326)
