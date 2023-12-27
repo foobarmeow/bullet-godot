@@ -32,3 +32,12 @@ static func search_tree_for(children, callback: Callable):
 		if callback.call(c):
 			arr.append(c)
 	return arr
+
+static func for_each_tree(children, callback: Callable):
+	var arr = []
+	for c in children:
+		if c.has_method("get_child_count") && c.get_child_count() > 0:
+			for_each_tree(c.get_children(), callback)
+		callback.call(c)
+			
+
