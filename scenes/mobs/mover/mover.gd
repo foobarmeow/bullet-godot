@@ -13,16 +13,15 @@ enum MovementType {PLAYER_STALK, STOPPED, RANDOM, PATHED = -1}
 
 var fill: float = 0
 var filling: float = 0
+var player: Player
+var alerted: bool = false
 
 var dir: Vector2
 var target: Vector2
-var _player
 
-func begin(player: Node2D):
+func begin():
 	process_mode = Node.PROCESS_MODE_INHERIT
 	show()
-	
-	_player = player
 
 	if movement_type == MovementType.RANDOM:
 		target = get_random_position(player)
@@ -38,9 +37,9 @@ func _process(delta):
 	$AnimatedSprite2D.play()
 	
 	if $Spawner.type == Constants.SpawnerType.TARGET:
-		if _player != null:
+		if player != null:
 			#$Spawner.dir = _player.global_position
-			$Spawner.dir = position.direction_to(_player.position)
+			$Spawner.dir = position.direction_to(player.position)
 
 	if filling > 0:
 		fill += filling * delta
@@ -67,7 +66,7 @@ func _process(delta):
 			var diff = position - target
 			# some threshold here would be good
 			if diff.length() < 20:
-				target = get_random_position(_player)
+				target = get_random_position(player)
 				return
 			position = position.move_toward(target, delta*translate_speed)
 		MovementType.PATHED:
@@ -77,7 +76,7 @@ func _process(delta):
 			var diff = position - target
 			# some threshold here would be good
 			if diff.length() < 20:
-				target = _player.position
+				target = player.position
 				return
 			position = position.move_toward(target, delta*translate_speed)
 		MovementType.STOPPED:
@@ -119,10 +118,18 @@ func _on_outside_radius_area_exited(area):
 func shake(delta, factor):
 	var p = Vector2.from_angle(randf_range(0, TAU)) * delta
 	$AnimatedSprite2D.position = p.normalized() * factor
-	
-	
-
-
 
 func _on_visible_on_screen_notifier_2d_screen_entered():
-	print("visible")
+	if alerted:
+		return
+		
+	alerted = true
+	await get_tree().create_timer(.25).timeout
+
+	$Alert.play("alert")
+	$Spawner.fire()
+	$Spawner/FireTimer.start()
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	alerted = false
+
