@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7xroxfe1m3tp"]
+
+[ext_resource type="PackedScene" uid="uid://bhnamekyyvkpa" path="res://scenes/player/player.tscn" id="1_kgtqu"]
+[ext_resource type="Script" path="res://scenes/levels/Camera.gd" id="2_h3y5p"]
+[ext_resource type="PackedScene" uid="uid://den0ajf1m1ws3" path="res://scenes/mobs/bullet/bullet.tscn" id="3_1u251"]
+
+[node name="parryProjectileTest" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_kgtqu")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+script = ExtResource("2_h3y5p")
+
+[node name="Mob" parent="." instance=ExtResource("3_1u251")]
+position = Vector2(458.849, 274.427)

@@ -12,7 +12,6 @@ scale = Vector2(0.998978, 1)
 script = ExtResource("1_n2rl4")
 
 [node name="Scenery" type="Node2D" parent="."]
-scale = Vector2(1, 1)
 
 [node name="S2s_bg" type="Sprite2D" parent="Scenery"]
 position = Vector2(2650, 1565)
@@ -20,7 +19,6 @@ scale = Vector2(3.90807, 4.30648)
 texture = ExtResource("1_cvwsn")
 
 [node name="TileMap" type="TileMap" parent="Scenery"]
-scale = Vector2(1, 1)
 tile_set = ExtResource("2_aw2mh")
 format = 2
 layer_0/name = "Pits"
@@ -59,20 +57,27 @@ texture = ExtResource("1_cvwsn")
 position = Vector2(446.703, 1239.65)
 
 [node name="Enemies" type="Node2D" parent="."]
-scale = Vector2(1, 1)
 
 [node name="Mover" parent="Enemies" node_paths=PackedStringArray("target") instance=ExtResource("3_tj734")]
 position = Vector2(291.298, 1285)
 bullet_color_override = Color(0, 0.74902, 0, 1)
 spawn_time = 0.5
-dir = Vector2(0.959962, -0.280131)
+dir = Vector2(0.959961, -0.280134)
 target = NodePath("../../Scenery/AimNode1")
 
 [node name="Mover2" parent="Enemies" node_paths=PackedStringArray("target") instance=ExtResource("3_tj734")]
 position = Vector2(559.907, 1342.89)
 bullet_color_override = Color(0, 0.74902, 0, 1)
 spawn_time = 0.5
-dir = Vector2(-0.738884, -0.673833)
+dir = Vector2(-0.738876, -0.673841)
+target = NodePath("../../Scenery/AimNode1")
+
+[node name="Mover3" parent="Enemies" node_paths=PackedStringArray("target") instance=ExtResource("3_tj734")]
+position = Vector2(415.425, 1466)
+bullet_color_override = Color(0, 0.74902, 0, 1)
+spawn_type = 2
+spawn_time = 0.5
+dir = Vector2(0.0642951, -0.997931)
 target = NodePath("../../Scenery/AimNode1")
 
 [node name="Player" parent="." instance=ExtResource("3_e7l1c")]
