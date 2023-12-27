@@ -65,6 +65,7 @@ func finish():
 func _on_hide_dialog():
 	if is_visible:
 		$AnimationPlayer.play_backwards("show")
+		is_visible = false
 		
 func _on_input_action():
 	print("PLAYING SHAKE")

@@ -22,6 +22,7 @@ func _on_level_action():
 
 
 func _on_well_area_area_entered(_area):
+	print(first_drank)
 	if first_drank > 0:
 		drinking_at_well = true
 		SignalBus.display_action.emit("action_drink")
