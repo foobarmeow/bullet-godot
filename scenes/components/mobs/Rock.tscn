@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://w1agd274alpy"]
+[gd_scene load_steps=9 format=3 uid="uid://w1agd274alpy"]
 
+[ext_resource type="Script" path="res://scenes/components/mobs/Rock.gd" id="1_27exj"]
 [ext_resource type="Texture2D" uid="uid://c4026v6xiksqa" path="res://art/sprites/kenny-1px/monochrome_tilemap_transparent.png" id="2_lhjr4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8g1v2"]
@@ -43,7 +44,10 @@ input_pickable = true
 mass = 150.0
 inertia = 8.49
 gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
 linear_damp = 0.156
+script = ExtResource("1_27exj")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -60,4 +64,5 @@ texture = SubResource("CompressedTexture2D_k0ibh")
 one_shot = true
 explosiveness = 0.95
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="input_event" from="." to="." method="_on_input_event"]

@@ -13,3 +13,5 @@ func _on_damage_manager_health_updated(_health: int, _init_health: int):
 	var heart = $HeartContainer.get_children().pop_back()
 	heart.remove()
 		
+func _on_display_blood_hell():
+	$PentagramContainer.visible = true
