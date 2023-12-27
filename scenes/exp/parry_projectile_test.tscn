@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://c7xroxfe1m3tp"]
+[gd_scene load_steps=12 format=3 uid="uid://c7xroxfe1m3tp"]
 
 [ext_resource type="PackedScene" uid="uid://bhnamekyyvkpa" path="res://scenes/components/player/player.tscn" id="3_4yhfd"]
 [ext_resource type="PackedScene" uid="uid://cbudl0m208ybr" path="res://scenes/components/weapon.tscn" id="5_mq535"]
 [ext_resource type="TileSet" uid="uid://v6fs17ekenoc" path="res://art/tilesets/new_tile_set.tres" id="6_76xg5"]
+[ext_resource type="PackedScene" uid="uid://7jh6at667qqy" path="res://scenes/components/DamageManager.tscn" id="6_g64g6"]
 [ext_resource type="Script" path="res://scenes/components/Camera.gd" id="6_ojw7l"]
 [ext_resource type="PackedScene" uid="uid://den0ajf1m1ws3" path="res://scenes/components/mobs/bullet/bullet.tscn" id="7_s2lre"]
 [ext_resource type="PackedScene" uid="uid://w1agd274alpy" path="res://scenes/components/mobs/Rock.tscn" id="7_sng7i"]
@@ -54,6 +55,10 @@ script = ExtResource("6_ojw7l")
 
 [node name="Weapon" parent="Player" instance=ExtResource("5_mq535")]
 
+[node name="DamageManager" parent="Player" instance=ExtResource("6_g64g6")]
+health = 30
+invuln_time = 1.5
+
 [node name="TileMap" type="TileMap" parent="." groups=["walls"]]
 tile_set = ExtResource("6_76xg5")
 format = 2
@@ -63,7 +68,7 @@ layer_0/tile_data = PackedInt32Array(1835032, 589826, 5, 1769496, 589826, 5, 170
 position = Vector2(643.507, 433.592)
 script = ExtResource("8_ki532")
 rockScene = ExtResource("7_sng7i")
+spawn_timeout = 0.1
 
 [node name="RayCast2D" type="RayCast2D" parent="RockSpawner"]
-target_position = Vector2(-100, 0)
 collision_mask = 2

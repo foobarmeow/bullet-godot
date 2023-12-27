@@ -7,7 +7,7 @@
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_learh"]
 polygon = PackedVector2Array(0.869565, -5.21739, 2.6087, -3.47826, 5.21739, -0.869565, 5.21739, 0.869565, 3.47826, 2.6087, 1.73913, 4.34783, 0.869565, 5.21739, -0.869565, 5.21739, -2.6087, 3.47826, -5.21739, 0.869565, -5.21739, 0, -5.21739, -0.869565, -3.47826, -2.6087, -0.869565, -5.21739)
 
-[node name="Bullet" type="CharacterBody2D"]
+[node name="Bullet" type="CharacterBody2D" groups=["destroy_on_hit"]]
 modulate = Color(1, 0, 0, 1)
 scale = Vector2(1.15, 1.15)
 collision_mask = 138
