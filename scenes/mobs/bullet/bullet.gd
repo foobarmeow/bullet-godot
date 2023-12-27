@@ -13,7 +13,6 @@ func _process(delta):
 	if !fired:
 		return
 	var v = velocity.rotated(rotation)
-	#v = to_global(v)
 	translate(v * delta)
 
 
