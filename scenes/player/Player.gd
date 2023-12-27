@@ -41,7 +41,26 @@ func _ready():
 	screen_size = get_viewport_rect().size
 	initial_modulate = sprite.modulate
 	health = initial_health
-
+	#setup_shadow()
+	
+	
+#func setup_shadow():
+#	var frame = $AnimatedSprite2D.get_frame()
+#	var animation = $AnimatedSprite2D.get_animation()
+#	var texture = $AnimatedSprite2D.get_sprite_frames().get_frame_texture(animation, frame)
+#
+#	# At least right now, this will always just be the atlas texture
+#	# set our shadow's texture
+#	if $AnimatedSprite2D/SpriteShadow == null:
+#		print_debug("no sprite shadow attached to player")
+#		return
+#
+#	var shadow = $AnimatedSprite2D/SpriteShadow
+#	shadow.texture = texture
+	
+	
+	
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if health <= 0:

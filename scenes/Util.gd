@@ -21,3 +21,14 @@ static func get_random_position(
 				offset_from_avoid -= 2
 			return get_random_position(bounds, avoid, offset, offset_from_avoid)
 	return pos
+	
+static func search_tree_for(children, callback: Callable):
+	var arr = []
+	for c in children:
+		if c.has_method("get_child_count") && c.get_child_count() > 0:
+			var res = search_tree_for(c.get_children(), callback)
+			if len(res) > 0:
+				arr.append_array(res)
+		if callback.call(c):
+			arr.append(c)
+	return arr

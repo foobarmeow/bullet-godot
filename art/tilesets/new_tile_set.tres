@@ -29,7 +29,7 @@ polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, 7, 8, -8, 8)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tlom5"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7ocu3"]
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_xhw76"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wnnit"]
@@ -48,6 +48,7 @@ polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 resource_name = "Kenny1b"
 texture = ExtResource("1_lkg3m")
 separation = Vector2i(1, 1)
+use_texture_padding = false
 1:0/0 = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
@@ -404,7 +405,7 @@ separation = Vector2i(1, 1)
 8:5/0 = 0
 8:5/0/terrain_set = 0
 8:5/0/terrain = 0
-8:5/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_7ocu3")
+8:5/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_xhw76")
 8:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:5/0/physics_layer_0/angular_velocity = 0.0
 8:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)

@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bq3efdgekuwou"]
+[gd_scene load_steps=8 format=3 uid="uid://bq3efdgekuwou"]
 
 [ext_resource type="Texture2D" uid="uid://jhftm7n81ou3" path="res://art/sprites/bullet-player.png" id="2_16bxf"]
-[ext_resource type="Script" path="res://SpriteShadow.gd" id="3_6msyc"]
-[ext_resource type="Shader" path="res://scenes/player/short-shadow.gdshader" id="3_8ags3"]
+[ext_resource type="PackedScene" uid="uid://c27avw8s50be6" path="res://sprite_shadow.tscn" id="2_h357l"]
 [ext_resource type="Texture2D" uid="uid://bs2ic4jk5myni" path="res://art/2d_lights_and_shadows_neutral_point_light.webp" id="4_b2dfe"]
 [ext_resource type="Script" path="res://Light.gd" id="5_tvumb"]
 
@@ -18,15 +17,6 @@ point_count = 1
 curve_x = SubResource("Curve_na2jj")
 curve_y = SubResource("Curve_yqd8g")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kl0fp"]
-shader = ExtResource("3_8ags3")
-shader_parameter/shadowLocation = Vector2(10, 10)
-shader_parameter/lightLocation = Vector2(20, 20)
-shader_parameter/lightWidth = 32.0
-shader_parameter/lightHeight = 16.0
-shader_parameter/lightStrength = 1.0
-shader_parameter/spriteHeight = 100.0
-
 [node name="Heyo" type="Node2D"]
 
 [node name="BG" type="Sprite2D" parent="."]
@@ -35,19 +25,19 @@ scale = Vector2(4.91797, 803.5)
 texture = SubResource("CurveXYZTexture_la6gv")
 
 [node name="Bullet-player" type="Sprite2D" parent="."]
-position = Vector2(581, 294)
+position = Vector2(537, 335)
 texture = ExtResource("2_16bxf")
+metadata/_edit_group_ = true
 
-[node name="SpriteShadow" type="Sprite2D" parent="Bullet-player"]
-material = SubResource("ShaderMaterial_kl0fp")
-position = Vector2(55, 30)
+[node name="SpriteShadow" parent="Bullet-player" instance=ExtResource("2_h357l")]
 texture = ExtResource("2_16bxf")
-script = ExtResource("3_6msyc")
+sprite_height = 20
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.745098, 0.745098, 0.745098, 1)
 
 [node name="Light" type="PointLight2D" parent="."]
-position = Vector2(428, 278)
+position = Vector2(334, 268)
 shadow_enabled = true
 texture = ExtResource("4_b2dfe")
 script = ExtResource("5_tvumb")
