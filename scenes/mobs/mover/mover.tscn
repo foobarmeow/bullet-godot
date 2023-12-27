@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7fyo24ou0om7"]
+
+[ext_resource type="Script" path="res://scenes/mobs/mover/mover.gd" id="1_6fl8p"]
+[ext_resource type="PackedScene" uid="uid://ctiicgeqawq5a" path="res://scenes/mobs/spawner/spawner.tscn" id="2_cvf7l"]
+
+[node name="Mover" type="Node2D"]
+script = ExtResource("1_6fl8p")
+
+[node name="Spawner" parent="." instance=ExtResource("2_cvf7l")]
+position = Vector2(0, 0)

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://den0ajf1m1ws3"]
+
+[ext_resource type="Script" path="res://scenes/mobs/bullet.gd" id="1_ob51w"]
+[ext_resource type="Texture2D" uid="uid://bm2an1j5clbc0" path="res://art/sprites/kenny-1px/tile_0022.png" id="1_ughiu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7txf"]
+size = Vector2(39, 40)
+
+[node name="Mob" type="Area2D"]
+scale = Vector2(1.15, 1.15)
+script = ExtResource("1_ob51w")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 0.785398
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("1_ughiu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_p7txf")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exit"]
