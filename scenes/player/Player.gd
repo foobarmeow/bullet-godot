@@ -1,5 +1,7 @@
 extends Area2D
 
+signal health_updated
+
 @export var speed = 500
 @export var steps_to_accel: float = 3
 @export var steps_to_decel: float = 2
@@ -10,26 +12,43 @@ const TIME_PER_STEP: float = 0.2
 
 var screen_size = Vector2.ZERO
 var initial_modulate: Color
-var alive: bool = true
-var health: int = initial_health
+
+
+var health: int = initial_health:
+	set(v):
+		health = v
+		health_updated.emit(health)
+	
 var local_speed: int = 0
 var walk_delta: float = 0
 var walk_steps: int = 0
 var last_velocity: Vector2
-var sprite
+var sprite: AnimatedSprite2D
+var taking_damage: bool
 
-signal hit
+# TODO: Make this a property of the node that collided
+var damage: int = 10
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sprite = $AnimatedSprite2D
 	screen_size = get_viewport_rect().size
 	initial_modulate = sprite.modulate
+	health = initial_health
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if !alive:
+	if health <= 0:
+		sprite.play("dead")
 		return
+	handle_movement(delta)
+	
+	if taking_damage && damage != 0:
+		health -= damage * delta
+	
+func handle_movement(delta: float):
 	var velocity = Vector2.ZERO
 	if Input.is_action_pressed("move_up"):
 		velocity.y = -1
@@ -95,21 +114,23 @@ func blink():
 		await get_tree().create_timer(0.25).timeout
 
 func start():
-	alive = true
 	sprite.show()
 	
 func end():
-	alive = false
 	sprite.hide()
 
 func _on_area_entered(area):
-	if exp:
-		sprite.modulate = Color("ff0000")
-		await get_tree().create_timer(.25).timeout
-		sprite.modulate = initial_modulate
-		return
-	if alive:
-		alive = false
-		lives -= 1
-		hit.emit(lives)
-	
+	taking_damage = true
+	sprite.modulate = Color("ff0000")
+	await get_tree().create_timer(.25).timeout
+	sprite.modulate = initial_modulate
+
+
+
+func _on_area_exited(area):
+	taking_damage = false
+
+
+func _on_animated_sprite_2d_animation_finished():
+	if sprite.animation == "dead":
+		process_mode = Node.PROCESS_MODE_DISABLED

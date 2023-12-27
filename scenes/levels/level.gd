@@ -35,8 +35,9 @@ func start(p: Area2D, h: CanvasLayer):
 		wave.start(p)
 		await wave.wave_complete
 	
-	print("level complete", player.lives)
-	level_complete.emit(player.lives > 0)
+	# TODO: This kind of coupling is an anti-pattern
+	print("level complete", player.health)
+	level_complete.emit(player.health > 0)
 	
 func _on_player_hit(lives: int):
 	if hud != null:
