@@ -1,12 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://bwx1ygvwk1cwj"]
+[gd_scene load_steps=18 format=3 uid="uid://bwx1ygvwk1cwj"]
 
 [ext_resource type="Texture2D" uid="uid://bhm8ejjl2sa26" path="res://art/sprites/lights/ring-halo-1.png" id="1_r6q5i"]
 [ext_resource type="Texture2D" uid="uid://cvcc60svfqim0" path="res://art/s2s.bg.png" id="2_3jikf"]
 [ext_resource type="Script" path="res://scenes/kill_light.gd" id="2_84vhp"]
 [ext_resource type="Shader" path="res://scenes/parry-ring-debug.gdshader" id="3_6i1b5"]
+[ext_resource type="Texture2D" uid="uid://jhftm7n81ou3" path="res://art/sprites/debug/bullet-player.png" id="4_5td5y"]
 [ext_resource type="Texture2D" uid="uid://c7u3xb5mo3n3t" path="res://art/sprites/debug/512-blank.png" id="4_lsmaa"]
 [ext_resource type="Shader" path="res://ring-shader-area.gdshader" id="4_ouufx"]
 [ext_resource type="Texture2D" uid="uid://d0iai05rfiddw" path="res://art/sprites/lights/parry-halo.png" id="5_76imm"]
+[ext_resource type="Script" path="res://scenes/levels/Camera.gd" id="9_gmuk1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pypbu"]
 shader = ExtResource("3_6i1b5")
@@ -166,6 +168,8 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_dykci"]
 radius = 194.659
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_dmukq"]
+
 [node name="KillLight" type="Node2D"]
 script = ExtResource("2_84vhp")
 draw_circle = true
@@ -213,99 +217,17 @@ visible = false
 visible = false
 shape = SubResource("CircleShape2D_dykci")
 
-[node name="@Node2D@581693" type="Node2D" parent="."]
+[node name="Pointer" type="RigidBody2D" parent="."]
+gravity_scale = 0.0
+freeze = true
 
-[node name="@RigidBody2D@581695" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(190, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pointer"]
+shape = SubResource("CircleShape2D_dmukq")
 
-[node name="@RigidBody2D@581697" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(185.848, 39.5032)
+[node name="Camera2D" type="Camera2D" parent="Pointer"]
+script = ExtResource("9_gmuk1")
 
-[node name="@RigidBody2D@581699" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(173.574, 77.28)
-
-[node name="@RigidBody2D@581701" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(153.713, 111.679)
-
-[node name="@RigidBody2D@581703" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(127.135, 141.198)
-
-[node name="@RigidBody2D@581705" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(95, 164.545)
-
-[node name="@RigidBody2D@581707" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(58.7132, 180.701)
-
-[node name="@RigidBody2D@581709" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(19.8604, 188.959)
-
-[node name="@RigidBody2D@581711" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(-19.8604, 188.959)
-
-[node name="@RigidBody2D@581713" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(-58.7132, 180.701)
-
-[node name="@RigidBody2D@581715" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(-95, 164.545)
-
-[node name="@RigidBody2D@581717" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(-127.135, 141.198)
-
-[node name="@RigidBody2D@581719" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(-153.713, 111.679)
-
-[node name="@RigidBody2D@581721" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(-173.574, 77.28)
-
-[node name="@RigidBody2D@581723" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(-185.848, 39.5032)
-
-[node name="@RigidBody2D@581725" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(-190, -1.66103e-05)
-
-[node name="@RigidBody2D@581727" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(-185.848, -39.5032)
-
-[node name="@RigidBody2D@581729" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(-173.574, -77.28)
-
-[node name="@RigidBody2D@581731" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(-153.713, -111.679)
-
-[node name="@RigidBody2D@581733" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(-127.135, -141.198)
-
-[node name="@RigidBody2D@581735" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(-95, -164.545)
-
-[node name="@RigidBody2D@581737" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(-58.7132, -180.701)
-
-[node name="@RigidBody2D@581739" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(-19.8604, -188.959)
-
-[node name="@RigidBody2D@581741" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(19.8604, -188.959)
-
-[node name="@RigidBody2D@581743" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(58.7133, -180.701)
-
-[node name="@RigidBody2D@581745" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(95, -164.545)
-
-[node name="@RigidBody2D@581747" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(127.135, -141.198)
-
-[node name="@RigidBody2D@581749" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(153.713, -111.679)
-
-[node name="@RigidBody2D@581751" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(173.574, -77.2799)
-
-[node name="@RigidBody2D@581753" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(185.848, -39.5032)
-
-[node name="@RigidBody2D@581755" type="RigidBody2D" parent="@Node2D@581693"]
-position = Vector2(190, 3.32207e-05)
+[node name="Bullet-player" type="Sprite2D" parent="Pointer"]
+texture = ExtResource("4_5td5y")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
