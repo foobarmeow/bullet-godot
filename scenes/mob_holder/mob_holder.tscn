@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://clpbah7q1kpfh"]
+
+[ext_resource type="Script" path="res://scenes/mob_holder/mob_holder.gd" id="1_2gmug"]
+[ext_resource type="PackedScene" uid="uid://btiwg5djjyl0p" path="res://scenes/mob/mob.tscn" id="2_3v8y5"]
+
+[node name="MobHolder" type="Node2D"]
+position = Vector2(248, 130)
+script = ExtResource("1_2gmug")
+mob_scene = ExtResource("2_3v8y5")

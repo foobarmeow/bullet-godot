@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var mob_holder: PackedScene
+@export var mob_holder_scene: PackedScene
 
 
 # Called when the node enters the scene tree for the first time.
@@ -13,8 +13,8 @@ func _process(delta):
 	pass
 	
 func _unhandled_input(event):
-	if Input.is_action_pressed("spawn"):
-		var mob = mob_holder.instantiate()
-		add_child(mob)
-		mob.start("circle")
+	if Input.is_action_just_released("spawn"):
+		var mob_holder = mob_holder_scene.instantiate()
+		add_child(mob_holder)
+		mob_holder.start("circle", $Player)
 		
