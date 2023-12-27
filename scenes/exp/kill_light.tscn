@@ -1,18 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://bwx1ygvwk1cwj"]
+[gd_scene load_steps=11 format=3 uid="uid://bwx1ygvwk1cwj"]
 
 [ext_resource type="Texture2D" uid="uid://bhm8ejjl2sa26" path="res://art/sprites/lights/ring-halo-1.png" id="1_r6q5i"]
 [ext_resource type="Texture2D" uid="uid://cvcc60svfqim0" path="res://art/s2s.bg.png" id="2_3jikf"]
-[ext_resource type="Script" path="res://scenes/kill_light.gd" id="2_84vhp"]
-[ext_resource type="Shader" path="res://scenes/parry-ring-debug.gdshader" id="3_6i1b5"]
-[ext_resource type="Texture2D" uid="uid://c7u3xb5mo3n3t" path="res://art/sprites/debug/512-blank.png" id="4_lsmaa"]
 [ext_resource type="Shader" path="res://scenes/exp/ring-shader-area.gdshader" id="4_ouufx"]
 [ext_resource type="Texture2D" uid="uid://d0iai05rfiddw" path="res://art/sprites/lights/parry-halo.png" id="5_76imm"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pypbu"]
-shader = ExtResource("3_6i1b5")
-shader_parameter/highlight_color = Color(1, 1, 0, 1)
-shader_parameter/circle_radius = 0.227
-shader_parameter/ring_width = 0.076
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ogiuw"]
 shader = ExtResource("4_ouufx")
@@ -166,28 +157,16 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_dykci"]
 radius = 194.659
 
-[node name="KillLight" type="Node2D"]
-script = ExtResource("2_84vhp")
-draw_circle = true
-circle_radius = 190
-num_points = 30
-
-[node name="DebugDisplay" type="Node2D" parent="."]
+[node name="DebugDisplay" type="Node2D"]
 visible = false
 
-[node name="S2s_bg" type="Sprite2D" parent="DebugDisplay"]
+[node name="DebugDisplay@S2s_bg" type="Sprite2D" parent="."]
 position = Vector2(73, 53)
 texture = ExtResource("2_3jikf")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="DebugDisplay"]
+[node name="DebugDisplay@CanvasModulate" type="CanvasModulate" parent="."]
 scale = Vector2(3.29806, 1.78868)
 color = Color(0.34902, 0.34902, 0.34902, 1)
-
-[node name="RingDebug" type="Sprite2D" parent="DebugDisplay"]
-visible = false
-material = SubResource("ShaderMaterial_pypbu")
-scale = Vector2(1.44, 1.44)
-texture = ExtResource("4_lsmaa")
 
 [node name="Ring-halo-1" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.403922)

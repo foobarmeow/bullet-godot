@@ -4,17 +4,17 @@
 [ext_resource type="Material" uid="uid://vtmbky35o2p2" path="res://resources/lit-mat.tres" id="2_1e3hk"]
 [ext_resource type="PackedScene" uid="uid://bhnamekyyvkpa" path="res://scenes/player/player.tscn" id="2_s21pb"]
 [ext_resource type="PackedScene" uid="uid://c7fyo24ou0om7" path="res://scenes/mobs/mover/mover.tscn" id="3_w5hcx"]
+[ext_resource type="Shader" path="res://scenes/components/line-reveal/line_reveal.gdshader" id="4_j8ky7"]
 [ext_resource type="Texture2D" uid="uid://cvcc60svfqim0" path="res://art/s2s.bg.png" id="4_kqbhy"]
 [ext_resource type="Script" path="res://scenes/components/Camera.gd" id="5_a1xxu"]
 [ext_resource type="TileSet" uid="uid://v6fs17ekenoc" path="res://art/tilesets/new_tile_set.tres" id="5_i2agf"]
+[ext_resource type="Script" path="res://scenes/components/line-reveal/LineReveal.gd" id="5_rhr5p"]
 [ext_resource type="PackedScene" uid="uid://bwx1ygvwk1cwj" path="res://scenes/exp/kill_light.tscn" id="7_rheqg"]
-[ext_resource type="Shader" path="res://scenes/line-reveal/line_reveal.gdshader" id="8_i7tpo"]
-[ext_resource type="Script" path="res://scenes/line-reveal/LineReveal.gd" id="9_ac6l3"]
-[ext_resource type="Script" path="res://scenes/components/LineManager.gd" id="10_ayisk"]
+[ext_resource type="Script" path="res://scenes/components/line-reveal/LineManager.gd" id="11_283wh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1n0qv"]
 resource_local_to_scene = true
-shader = ExtResource("8_i7tpo")
+shader = ExtResource("4_j8ky7")
 shader_parameter/enabled = false
 shader_parameter/fade_distance = null
 shader_parameter/player_position = Vector2(-4942.11, -958.955)
@@ -23,13 +23,13 @@ shader_parameter/player_position = Vector2(-4942.11, -958.955)
 size = Vector2(20, 35)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2xyrv"]
-shader = ExtResource("8_i7tpo")
+shader = ExtResource("4_j8ky7")
 shader_parameter/enabled = true
 shader_parameter/fade_distance = null
 shader_parameter/player_position = Vector2(-638.44, -22.64)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jeapk"]
-shader = ExtResource("8_i7tpo")
+shader = ExtResource("4_j8ky7")
 shader_parameter/enabled = true
 shader_parameter/fade_distance = null
 shader_parameter/player_position = Vector2(166.56, -10.64)
@@ -53,7 +53,7 @@ default_color = Color(0.647059, 0, 0, 1)
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
-script = ExtResource("9_ac6l3")
+script = ExtResource("5_rhr5p")
 
 [node name="DebugSpot" type="Control" parent="."]
 layout_mode = 3
@@ -213,7 +213,7 @@ follow_viewport_enabled = true
 
 [node name="LineManager" type="Node2D" parent="CanvasLayer" node_paths=PackedStringArray("player")]
 visible = false
-script = ExtResource("10_ayisk")
+script = ExtResource("11_283wh")
 enabled = true
 reveal_type = -1
 fade_distance = 145
@@ -228,7 +228,7 @@ default_color = Color(0.647059, 0, 0, 1)
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
-script = ExtResource("9_ac6l3")
+script = ExtResource("5_rhr5p")
 
 [node name="LineReveal2" type="Line2D" parent="CanvasLayer/LineManager"]
 material = SubResource("ShaderMaterial_jeapk")
@@ -239,6 +239,6 @@ default_color = Color(0.647059, 0, 0, 1)
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
-script = ExtResource("9_ac6l3")
+script = ExtResource("5_rhr5p")
 
 [connection signal="area_entered" from="LightsOutTrigger" to="." method="_on_lights_out_trigger_area_entered"]

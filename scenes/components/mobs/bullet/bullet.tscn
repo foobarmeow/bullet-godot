@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://den0ajf1m1ws3"]
 
-[ext_resource type="Script" path="res://scenes/mobs/bullet/bullet.gd" id="1_p1aaw"]
+[ext_resource type="Script" path="res://scenes/components/mobs/bullet/bullet.gd" id="1_p1aaw"]
 [ext_resource type="Texture2D" uid="uid://bm2an1j5clbc0" path="res://art/sprites/kenny-1px/tile_0022.png" id="2_4nsqr"]
 [ext_resource type="Material" uid="uid://vtmbky35o2p2" path="res://resources/lit-mat.tres" id="2_i780x"]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cngc2lgvucdsp"]
 
-[ext_resource type="Shader" path="res://scenes/line-reveal/line_reveal.gdshader" id="1_3kelu"]
-[ext_resource type="Script" path="res://scenes/line-reveal/LineReveal.gd" id="2_1200n"]
+[ext_resource type="Shader" path="res://scenes/components/line-reveal/line_reveal.gdshader" id="1_3kelu"]
+[ext_resource type="Script" path="res://scenes/components/line-reveal/LineReveal.gd" id="2_1200n"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1n0qv"]
 shader = ExtResource("1_3kelu")
