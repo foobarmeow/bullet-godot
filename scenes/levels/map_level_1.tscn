@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfmmo1pwal3ix"]
+[gd_scene load_steps=9 format=3 uid="uid://dfmmo1pwal3ix"]
 
 [ext_resource type="Texture2D" uid="uid://cvcc60svfqim0" path="res://art/s2s.bg.png" id="1_cvwsn"]
 [ext_resource type="Script" path="res://scenes/levels/map_level.gd" id="1_n2rl4"]
+[ext_resource type="PackedScene" uid="uid://nyv8fcxvcl2t" path="res://scenes/gui.tscn" id="2_33w7c"]
 [ext_resource type="TileSet" uid="uid://v6fs17ekenoc" path="res://art/tilesets/new_tile_set.tres" id="2_aw2mh"]
 [ext_resource type="PackedScene" uid="uid://bhnamekyyvkpa" path="res://scenes/player/player.tscn" id="3_e7l1c"]
 [ext_resource type="PackedScene" uid="uid://c7fyo24ou0om7" path="res://scenes/mobs/mover/mover.tscn" id="3_tj734"]
 [ext_resource type="Script" path="res://scenes/levels/Camera.gd" id="4_581k5"]
+[ext_resource type="PackedScene" uid="uid://7jh6at667qqy" path="res://scenes/components/DamageManager.tscn" id="6_3rwpq"]
 
 [node name="MapLevel" type="Node2D"]
 scale = Vector2(0.998978, 1)
@@ -214,5 +216,26 @@ target = NodePath("../../Player")
 position = Vector2(788.482, 2306.08)
 dash_time = 0.22
 
+[node name="DamageManager" parent="Player" instance=ExtResource("6_3rwpq")]
+position = Vector2(-92.5444, -370.463)
+scale = Vector2(1, 1)
+health = 30
+invuln_time = 1.5
+
 [node name="Camera2D" type="Camera2D" parent="Player"]
 script = ExtResource("4_581k5")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Player/Camera2D"]
+
+[node name="GUI" parent="Player/Camera2D/CanvasLayer" instance=ExtResource("2_33w7c")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.00012207
+offset_right = 0.00012207
+grow_horizontal = 1
+grow_vertical = 1
+
+[connection signal="health_updated" from="Player/DamageManager" to="Player" method="_on_damage_manager_health_updated"]
+[connection signal="health_updated" from="Player/DamageManager" to="Player/Camera2D/CanvasLayer/GUI" method="_on_damage_manager_health_updated"]
+[connection signal="invuln_updated" from="Player/DamageManager" to="Player" method="_on_damage_manager_invuln_updated"]

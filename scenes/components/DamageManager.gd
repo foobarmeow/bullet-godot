@@ -9,10 +9,13 @@ signal invuln_updated
 @export var hit_color: Color = Color.RED
 @export var invuln_time: float
 
+var is_ready: bool = false
+
 var _health: int = health:
 	set(v):
 		_health = v
-		health_updated.emit(_health)
+		if is_ready:
+			health_updated.emit(_health, health)
 		
 var _invuln: bool = invuln:
 	set(v):
@@ -23,6 +26,8 @@ var taking_damage: bool = false
 	
 func _ready():
 	_health = health
+	is_ready = true
+	pass
 	
 func end_invuln():
 	_invuln = false
@@ -64,5 +69,3 @@ func damage_animate(parent: Node2D):
 		tween.tween_property(parent, "position", p, .025)
 	# Back to initial position
 	tween.tween_property(parent, "position", initial_position, .025)
-
-	
