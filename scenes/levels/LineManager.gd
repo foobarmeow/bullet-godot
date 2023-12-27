@@ -17,7 +17,6 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for c in get_children():
-		print("setting", reveal_type)
 		c.reveal_type = reveal_type
 		c.player = player
 		c.enabled = enabled

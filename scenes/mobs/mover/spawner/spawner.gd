@@ -20,7 +20,6 @@ func fire():
 		Constants.SpawnerType.DIR:
 			var v = dir * speed
 			add_bullet(v)
-			print(type, " - ", v, name	)
 		Constants.SpawnerType.PLUS:
 			for v in [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]:
 				add_bullet(v*speed)
