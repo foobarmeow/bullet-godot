@@ -1,9 +1,9 @@
 [gd_scene load_steps=27 format=3 uid="uid://c7fyo24ou0om7"]
 
 [ext_resource type="Script" path="res://scenes/mobs/mover/mover.gd" id="1_6fl8p"]
-[ext_resource type="PackedScene" uid="uid://ctiicgeqawq5a" path="res://scenes/mobs/mover/spawner/spawner.tscn" id="2_cvf7l"]
-[ext_resource type="Material" uid="uid://vtmbky35o2p2" path="res://scenes/lit-mat.tres" id="3_417d4"]
+[ext_resource type="Material" uid="uid://vtmbky35o2p2" path="res://resources/lit-mat.tres" id="1_oict5"]
 [ext_resource type="Texture2D" uid="uid://c4026v6xiksqa" path="res://art/sprites/kenny-1px/monochrome_tilemap_transparent.png" id="3_hgo0q"]
+[ext_resource type="PackedScene" uid="uid://den0ajf1m1ws3" path="res://scenes/mobs/bullet/bullet.tscn" id="3_qs4ld"]
 [ext_resource type="Texture2D" uid="uid://ch4f7cqanjq8i" path="res://art/sprites/alert.png" id="3_vshqg"]
 [ext_resource type="Texture2D" uid="uid://br1uqupw4mq8x" path="res://art/sprites/fire.png" id="4_8vfpj"]
 
@@ -171,16 +171,16 @@ size = Vector2(10.0577, 14.0512)
 polygon = PackedVector2Array(-4, -6, -7, -4, -7, 4, -6, 5, -6, 8, -2, 8, -2, 7, 2, 7, 2, 8, 6, 8, 6, 4, 7, 3, 7, -3, 6, -5, 4, -6)
 
 [node name="Mover" type="CharacterBody2D"]
-material = ExtResource("3_417d4")
+material = ExtResource("1_oict5")
 collision_layer = 4
 collision_mask = 14
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_6fl8p")
+bullet = ExtResource("3_qs4ld")
 
-[node name="Spawner" parent="." instance=ExtResource("2_cvf7l")]
-position = Vector2(0, 0)
-speed = 200
+[node name="FireTimer" type="Timer" parent="."]
+wait_time = 0.25
 
 [node name="OutsideRadius" type="Area2D" parent="."]
 scale = Vector2(10.72, 10.72)
@@ -223,10 +223,10 @@ debug_color = Color(0.898039, 0.27451, 0.396078, 0.419608)
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_eiuu1")
 
+[connection signal="timeout" from="FireTimer" to="." method="fire"]
 [connection signal="area_entered" from="OutsideRadius" to="." method="_on_outside_radius_area_entered"]
 [connection signal="area_exited" from="OutsideRadius" to="." method="_on_outside_radius_area_exited"]
 [connection signal="area_entered" from="InsideRadius" to="." method="_on_inside_radius_area_entered"]
 [connection signal="area_exited" from="InsideRadius" to="." method="_on_inside_radius_area_exited"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
-[connection signal="animation_finished" from="AnimatedSprite2D" to="Spawner" method="_on_animated_sprite_2d_animation_finished"]

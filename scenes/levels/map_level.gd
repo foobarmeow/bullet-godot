@@ -3,10 +3,13 @@ extends Node2D
 @export var lit_material: CanvasItemMaterial
 @export var line_manager: Node2D
 
+var paused: bool
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	start_movers(get_children())
 
+					
 func start_movers(nodes: Array[Node]):
 	for n in nodes:
 		if n.get_child_count() > 0:
@@ -29,6 +32,7 @@ func _on_lights_out_trigger_area_entered(area):
 	l.energy = 0
 	l.show()
 	
+	
 	# Increase the energy over time
 	while l.energy < initial_energy:
 		await get_tree().create_timer(.1).timeout
@@ -36,6 +40,7 @@ func _on_lights_out_trigger_area_entered(area):
 		
 	# Parent it to the player and disconnect this signal
 	l.reparent($Player)
+	l.translate(Vector2.ZERO)
 	$LightsOutTrigger.disconnect("area_entered", _on_lights_out_trigger_area_entered)
 	
 	# Show the lit path

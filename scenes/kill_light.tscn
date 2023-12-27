@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwx1ygvwk1cwj"]
+
+[ext_resource type="Texture2D" uid="uid://tdf23n073efd" path="res://art/sprites/lights/halo.png" id="1_nxbnl"]
+[ext_resource type="Texture2D" uid="uid://cvcc60svfqim0" path="res://art/s2s.bg.png" id="2_tclfd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c1vd8"]
+radius = 63.0317
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_vwh7k"]
+polygon = PackedVector2Array(149, -61, 180, -58, 178, -34, 157, -39)
+
+[node name="KillLight" type="PointLight2D"]
+color = Color(0.847059, 1, 0.701961, 1)
+energy = 0.89
+shadow_enabled = true
+texture = ExtResource("1_nxbnl")
+texture_scale = 0.3
+
+[node name="S2s_bg" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_tclfd")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="S2s_bg"]
+color = Color(0.466667, 0.466667, 0.466667, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_c1vd8")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
+position = Vector2(-121, 21)
+occluder = SubResource("OccluderPolygon2D_vwh7k")

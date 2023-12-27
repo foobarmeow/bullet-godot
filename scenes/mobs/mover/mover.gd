@@ -1,4 +1,4 @@
-class_name Mover extends CharacterBody2D
+class_name Mover extends Node2D
 
 signal burst
 
@@ -13,12 +13,14 @@ const animation_by_type = {
 }
 
 @export var path_speed: float = .01
-@export var speed: int = 100
-@export var offset_from_player: int = 25
 @export var movement_type: MovementType
-@export var spawner_type: Constants.SpawnerType
-@export var spawner_dir: Vector2
 @export var poppable: bool = true
+
+@export var spawn_type: Constants.SpawnerType = Constants.SpawnerType.TARGET
+@export var bullet: PackedScene
+@export var speed: int = 50
+@export var dir: Vector2
+
 
 var fill: float = 0
 var filling: float = 0
@@ -32,17 +34,13 @@ func _ready():
 
 
 func begin():
-	$Spawner.type = spawner_type
 	var animation = animation_by_type[movement_type]
 	$AnimatedSprite2D.play(animation_by_type[movement_type])
 	
-	if spawner_type == Constants.SpawnerType.DIR:
-		$Spawner.dir = spawner_dir
-
 func _physics_process(delta):
-	if $Spawner.type == Constants.SpawnerType.TARGET:
+	if spawn_type == Constants.SpawnerType.TARGET:
 		if player != null:
-			$Spawner.dir = position.direction_to(player.position)
+			dir = position.direction_to(player.position)
 
 	if filling > 0: 
 		fill += filling * delta
@@ -82,8 +80,6 @@ func _physics_process(delta):
 
 var outside_fill = .25
 var inside_fill = .45
-
-
 func _on_outside_radius_area_entered(area):
 	filling = outside_fill
 func _on_inside_radius_area_entered(area):
@@ -105,9 +101,41 @@ func _on_visible_on_screen_notifier_2d_screen_entered():
 	await get_tree().create_timer(.25).timeout
 
 	$Alert.play("alert")
-	$Spawner/FireTimer.start()
+	$FireTimer.start()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	alerted = false
-	$Spawner/FireTimer.stop()
-	pass
+	$FireTimer.stop()
+
+func fire():
+	if bullet == null:
+		return
+
+	match spawn_type:
+		Constants.SpawnerType.TARGET:
+			var v = dir * speed
+			add_bullet(v)
+		Constants.SpawnerType.DIR:
+			var v = dir * speed
+			add_bullet(v)
+		Constants.SpawnerType.PLUS:
+			for v in [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]:
+				add_bullet(v*speed)
+		Constants.SpawnerType.CIRCLE:
+			var steps = 8
+			var angle = 0.0
+			var step = TAU/steps
+			for i in steps:
+				var v = Vector2.UP.rotated(angle) * speed
+				add_bullet(v)
+				angle += step
+				
+	$AnimatedSprite2D.play("fire")
+
+func add_bullet(v):
+	var b = bullet.instantiate()
+	b.position = global_position
+	get_tree().root.add_child(b)
+	b.velocity = v
+	b.fire()
+				

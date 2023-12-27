@@ -1,4 +1,4 @@
-extends Node2D
+class_name Spawner extends Node2D
 
 @export var type: Constants.SpawnerType
 @export var bullet: PackedScene
