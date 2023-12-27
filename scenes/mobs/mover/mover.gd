@@ -19,7 +19,7 @@ const animation_by_type = {
 @export var spawn_type: Constants.SpawnerType = Constants.SpawnerType.TARGET
 @export var spawn_time: float = 0.19
 @export var bullet: PackedScene
-@export var speed: int = 50
+@export var speed: int = 100
 @export var dir: Vector2
 @export var parry_speed: int = 450
 

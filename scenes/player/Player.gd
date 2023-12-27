@@ -2,9 +2,9 @@ class_name Player extends CharacterBody2D
 
 signal health_updated
 
-@export var speed = 100
-@export var acceleration = 10
-@export var deceleration = 40
+@export var speed = 125
+@export var acceleration = 25
+@export var deceleration = 50
 @export var top_speed = 150
 @export var initial_health = 100
 @export var hittable: bool = true
@@ -17,7 +17,6 @@ const TIME_PER_STEP: float = 0.2
 
 var screen_size = Vector2.ZERO
 var initial_modulate: Color
-var parryables: Array[Node2D]
 var initial_speed: int
 
 
@@ -87,7 +86,6 @@ func parry():
 	for i in parry_return_steps:
 		await get_tree().create_timer(time_step).timeout
 		light.energy = clamp(light.energy+energy_step, 0, initial_energy)
-	print("Finished parrying ", light.energy, " initial ", initial_energy)
 	parried = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -145,9 +143,3 @@ func blink():
 func _on_animated_sprite_2d_animation_finished():
 	if sprite.animation == "dead":
 		process_mode = Node.PROCESS_MODE_DISABLED
-
-func _on_parry_area_entered(area):
-	parryables.append(area)
-		
-func _on_parry_area_exited(area):
-	parryables.pop_at(parryables.find(area))

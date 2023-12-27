@@ -14,6 +14,7 @@ func fire():
 func parry():
 	# We want to collide with enemies now
 	set_collision_mask_value(3, true)
+	modulate = Color(0.0, 106.0, 252.0, 255)
 	velocity = position.direction_to(from) * (parry_speed)
 	
 func destroy():

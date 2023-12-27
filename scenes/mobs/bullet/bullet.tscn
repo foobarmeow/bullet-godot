@@ -5,13 +5,13 @@
 [ext_resource type="Material" uid="uid://vtmbky35o2p2" path="res://resources/lit-mat.tres" id="2_i780x"]
 
 [node name="Mob" type="CharacterBody2D"]
+modulate = Color(1, 0, 0, 1)
 scale = Vector2(1.15, 1.15)
 collision_mask = 26
 script = ExtResource("1_p1aaw")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0, 0, 1)
 material = ExtResource("2_i780x")
 texture = ExtResource("2_4nsqr")
 
