@@ -19,8 +19,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." instance=ExtResource("4_emqb3")]
 position = Vector2(171, 657)
-speed = 500
-acceleration = 0.15
 exp = true
 
 [node name="Mover" parent="." instance=ExtResource("4_ep581")]
