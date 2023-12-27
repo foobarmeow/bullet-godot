@@ -23,7 +23,7 @@ func destroy():
 func _physics_process(delta):
 	if !fired:
 		return
-	#rotation += TAU / 16
+	rotation += TAU / 16
 	var collision = move_and_collide(velocity * delta)
 	
 	# Since (FOR NOW) the bullet only collides with walls
@@ -47,7 +47,6 @@ func _physics_process(delta):
 			# hit another enemy, but we have to add this lag
 			# so that they have time to get away from their origin
 			return
-		print("FREE")
 		queue_free()
 
 
