@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwx1ygvwk1cwj"]
+[gd_scene load_steps=10 format=3 uid="uid://bwx1ygvwk1cwj"]
 
-[ext_resource type="Texture2D" uid="uid://tdf23n073efd" path="res://art/sprites/lights/halo.png" id="1_nxbnl"]
+[ext_resource type="Texture2D" uid="uid://bhm8ejjl2sa26" path="res://art/sprites/lights/ring-halo-1.png" id="1_r6q5i"]
+[ext_resource type="Script" path="res://scenes/kill_light.gd" id="2_84vhp"]
 [ext_resource type="Texture2D" uid="uid://cvcc60svfqim0" path="res://art/s2s.bg.png" id="2_tclfd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c1vd8"]
@@ -9,21 +10,91 @@ radius = 63.0317
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_vwh7k"]
 polygon = PackedVector2Array(149, -61, 180, -58, 178, -34, 157, -39)
 
+[sub_resource type="Animation" id="Animation_vl8lh"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 2
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.15, 0.25, 0.45, 0.65, 0.89]
+}
+
+[sub_resource type="Animation" id="Animation_jfsxk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.15]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:texture_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.3]
+}
+
+[sub_resource type="Animation" id="Animation_droyk"]
+resource_name = "parry"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.3, 0.31, 0.35, 0.35]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ar3wy"]
+_data = {
+"RESET": SubResource("Animation_jfsxk"),
+"idle": SubResource("Animation_vl8lh"),
+"parry": SubResource("Animation_droyk")
+}
+
 [node name="KillLight" type="PointLight2D"]
 color = Color(0.847059, 1, 0.701961, 1)
-energy = 0.89
+energy = 0.15
 shadow_enabled = true
-texture = ExtResource("1_nxbnl")
+texture = ExtResource("1_r6q5i")
 texture_scale = 0.3
+script = ExtResource("2_84vhp")
 
 [node name="S2s_bg" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_tclfd")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="S2s_bg"]
 color = Color(0.466667, 0.466667, 0.466667, 1)
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 collision_layer = 16
 collision_mask = 0
 
@@ -34,3 +105,8 @@ shape = SubResource("CircleShape2D_c1vd8")
 visible = false
 position = Vector2(-121, 21)
 occluder = SubResource("OccluderPolygon2D_vwh7k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ar3wy")
+}
