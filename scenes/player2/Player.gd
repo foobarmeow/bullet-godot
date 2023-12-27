@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Area2D
 
 signal health_updated
 
@@ -39,7 +39,7 @@ func _ready():
 	health = initial_health
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _process(delta):
 	if health <= 0:
 		sprite.play("dead")
 		return
@@ -106,8 +106,8 @@ func handle_movement(delta: float):
 		
 	move_and_collide(velocity * delta)
 		
-	#position += velocity * delta
-	#position = position.clamp(Vector2.ZERO, screen_size)
+	position += velocity * delta
+	position = position.clamp(Vector2.ZERO, screen_size)
 	last_velocity = velocity
 	
 func blink():
