@@ -33,7 +33,6 @@ func _process(delta):
 
 func blink():
 	for i in 10:
-		print("blink", $Sprite2D.visible)
 		$Sprite2D.visible = not $Sprite2D.visible
 		await get_tree().create_timer(0.25).timeout
 
