@@ -1,15 +1,43 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7fyo24ou0om7"]
+[gd_scene load_steps=7 format=3 uid="uid://c7fyo24ou0om7"]
 
 [ext_resource type="Script" path="res://scenes/mobs/mover/mover.gd" id="1_6fl8p"]
 [ext_resource type="PackedScene" uid="uid://ctiicgeqawq5a" path="res://scenes/mobs/spawner/spawner.tscn" id="2_cvf7l"]
-[ext_resource type="Texture2D" uid="uid://jhftm7n81ou3" path="res://art/sprites/bullet-player.png" id="3_mr0xx"]
+[ext_resource type="Texture2D" uid="uid://c4026v6xiksqa" path="res://art/sprites/kenny-1px/monochrome_tilemap_transparent.png" id="3_hgo0q"]
 
-[node name="Mover" type="Node2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_23gr4"]
+atlas = ExtResource("3_hgo0q")
+region = Rect2(0, 323, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0n6vp"]
+atlas = ExtResource("3_hgo0q")
+region = Rect2(17, 323, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7n6sb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23gr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0n6vp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="Mover" type="PathFollow2D"]
 script = ExtResource("1_6fl8p")
 
 [node name="Spawner" parent="." instance=ExtResource("2_cvf7l")]
 position = Vector2(0, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("3_mr0xx")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_7n6sb")
+frame_progress = 0.0729744

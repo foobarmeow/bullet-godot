@@ -1,16 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkxg8g3bgqbbh"]
+[gd_scene load_steps=5 format=3 uid="uid://bkxg8g3bgqbbh"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_glxwx"]
 [ext_resource type="PackedScene" uid="uid://b1sqn6oxm0d6m" path="res://scenes/player/player.tscn" id="4_emqb3"]
 [ext_resource type="PackedScene" uid="uid://c7fyo24ou0om7" path="res://scenes/mobs/mover/mover.tscn" id="4_ep581"]
 
+[sub_resource type="Curve2D" id="Curve2D_kayku"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 176, 56, 0, 0, 0, 0, 840, 208, 0, 0, 0, 0, 856, 512, 0, 0, 0, 0, 696, 640, 0, 0, 0, 0, 288, 600, 0, 0, 0, 0, 48, 440, 0, 0, 0, 0, 144, 256, 0, 0, 0, 0, 280, 320, 0, 0, 0, 0, 392, 248, 0, 0, 0, 0, 176, 56)
+}
+point_count = 10
+
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_glxwx")
 level_name = "Suckle on my zipple"
-
-[node name="Mover" parent="." instance=ExtResource("4_ep581")]
-position = Vector2(536, 344)
-rotation = 3.14159
 
 [node name="PlayerSpawnPosition" type="Control" parent="."]
 layout_mode = 3
@@ -24,3 +26,11 @@ metadata/_edit_use_anchors_ = true
 [node name="Player" parent="." instance=ExtResource("4_emqb3")]
 position = Vector2(171, 657)
 exp = true
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_kayku")
+
+[node name="Mover" parent="Path2D" instance=ExtResource("4_ep581")]
+position = Vector2(176, 56)
+rotation = 0.225038
+speed = 0.05
