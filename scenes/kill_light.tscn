@@ -1,10 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://bwx1ygvwk1cwj"]
+[gd_scene load_steps=15 format=3 uid="uid://bwx1ygvwk1cwj"]
 
 [ext_resource type="Texture2D" uid="uid://bhm8ejjl2sa26" path="res://art/sprites/lights/ring-halo-1.png" id="1_r6q5i"]
 [ext_resource type="Texture2D" uid="uid://cvcc60svfqim0" path="res://art/s2s.bg.png" id="2_3jikf"]
 [ext_resource type="Script" path="res://scenes/kill_light.gd" id="2_84vhp"]
+[ext_resource type="Shader" path="res://scenes/parry-ring-debug.gdshader" id="3_6i1b5"]
+[ext_resource type="Texture2D" uid="uid://c7u3xb5mo3n3t" path="res://art/sprites/debug/512-blank.png" id="4_lsmaa"]
 [ext_resource type="Shader" path="res://ring-shader-area.gdshader" id="4_ouufx"]
 [ext_resource type="Texture2D" uid="uid://d0iai05rfiddw" path="res://art/sprites/lights/parry-halo.png" id="5_76imm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pypbu"]
+shader = ExtResource("3_6i1b5")
+shader_parameter/highlight_color = Color(1, 1, 0, 1)
+shader_parameter/circle_radius = 0.227
+shader_parameter/ring_width = 0.076
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ogiuw"]
 shader = ExtResource("4_ouufx")
@@ -155,13 +163,25 @@ _data = {
 "parry_recharge": SubResource("Animation_kolwd")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_dykci"]
+radius = 194.659
+
 [node name="KillLight" type="Node2D"]
 script = ExtResource("2_84vhp")
+draw_circle = true
+circle_radius = 190
+num_points = 30
 
 [node name="S2s_bg" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(73, 53)
 texture = ExtResource("2_3jikf")
+
+[node name="RingDebug" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_pypbu")
+scale = Vector2(1.44, 1.44)
+texture = ExtResource("4_lsmaa")
 
 [node name="Ring-halo-1" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.403922)
@@ -185,5 +205,107 @@ libraries = {
 visible = false
 scale = Vector2(3.29806, 1.78868)
 color = Color(0.168627, 0.168627, 0.168627, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+shape = SubResource("CircleShape2D_dykci")
+
+[node name="@Node2D@581693" type="Node2D" parent="."]
+
+[node name="@RigidBody2D@581695" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(190, 0)
+
+[node name="@RigidBody2D@581697" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(185.848, 39.5032)
+
+[node name="@RigidBody2D@581699" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(173.574, 77.28)
+
+[node name="@RigidBody2D@581701" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(153.713, 111.679)
+
+[node name="@RigidBody2D@581703" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(127.135, 141.198)
+
+[node name="@RigidBody2D@581705" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(95, 164.545)
+
+[node name="@RigidBody2D@581707" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(58.7132, 180.701)
+
+[node name="@RigidBody2D@581709" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(19.8604, 188.959)
+
+[node name="@RigidBody2D@581711" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(-19.8604, 188.959)
+
+[node name="@RigidBody2D@581713" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(-58.7132, 180.701)
+
+[node name="@RigidBody2D@581715" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(-95, 164.545)
+
+[node name="@RigidBody2D@581717" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(-127.135, 141.198)
+
+[node name="@RigidBody2D@581719" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(-153.713, 111.679)
+
+[node name="@RigidBody2D@581721" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(-173.574, 77.28)
+
+[node name="@RigidBody2D@581723" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(-185.848, 39.5032)
+
+[node name="@RigidBody2D@581725" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(-190, -1.66103e-05)
+
+[node name="@RigidBody2D@581727" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(-185.848, -39.5032)
+
+[node name="@RigidBody2D@581729" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(-173.574, -77.28)
+
+[node name="@RigidBody2D@581731" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(-153.713, -111.679)
+
+[node name="@RigidBody2D@581733" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(-127.135, -141.198)
+
+[node name="@RigidBody2D@581735" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(-95, -164.545)
+
+[node name="@RigidBody2D@581737" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(-58.7132, -180.701)
+
+[node name="@RigidBody2D@581739" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(-19.8604, -188.959)
+
+[node name="@RigidBody2D@581741" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(19.8604, -188.959)
+
+[node name="@RigidBody2D@581743" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(58.7133, -180.701)
+
+[node name="@RigidBody2D@581745" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(95, -164.545)
+
+[node name="@RigidBody2D@581747" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(127.135, -141.198)
+
+[node name="@RigidBody2D@581749" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(153.713, -111.679)
+
+[node name="@RigidBody2D@581751" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(173.574, -77.2799)
+
+[node name="@RigidBody2D@581753" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(185.848, -39.5032)
+
+[node name="@RigidBody2D@581755" type="RigidBody2D" parent="@Node2D@581693"]
+position = Vector2(190, 3.32207e-05)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

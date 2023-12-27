@@ -50,44 +50,46 @@ color = Color(0.843137, 0.843137, 0.843137, 1)
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="StillGuard" parent="Enemies" instance=ExtResource("8_7qug6")]
+[node name="StillGuard" parent="Enemies" node_paths=PackedStringArray("target") instance=ExtResource("8_7qug6")]
 position = Vector2(301.513, 152.67)
-bullet_color_override = Color(0, 0, 0, 1)
+dir = Vector2(0.558515, 0.829494)
+target = NodePath("../../Player")
 
-[node name="StillGuard2" parent="Enemies" instance=ExtResource("8_7qug6")]
+[node name="StillGuard2" parent="Enemies" node_paths=PackedStringArray("target") instance=ExtResource("8_7qug6")]
 process_mode = 4
 visible = false
 position = Vector2(566.06, 162.799)
-bullet_color_override = Color(0, 0, 0, 1)
+target = NodePath("../../Player")
 
-[node name="StillGuard3" parent="Enemies" instance=ExtResource("8_7qug6")]
+[node name="StillGuard3" parent="Enemies" node_paths=PackedStringArray("target") instance=ExtResource("8_7qug6")]
 process_mode = 4
 visible = false
 position = Vector2(722.441, 323.936)
-bullet_color_override = Color(0, 0, 0, 1)
+target = NodePath("../../Player")
 
-[node name="StillGuard4" parent="Enemies" instance=ExtResource("8_7qug6")]
+[node name="StillGuard4" parent="Enemies" node_paths=PackedStringArray("target") instance=ExtResource("8_7qug6")]
 process_mode = 4
 visible = false
 position = Vector2(904.984, 180.637)
-bullet_color_override = Color(0, 0, 0, 1)
+target = NodePath("../../Player")
 
-[node name="StillGuard5" parent="Enemies" instance=ExtResource("8_7qug6")]
+[node name="StillGuard5" parent="Enemies" node_paths=PackedStringArray("target") instance=ExtResource("8_7qug6")]
 process_mode = 4
 visible = false
 position = Vector2(545.843, 540.372)
-bullet_color_override = Color(0, 0, 0, 1)
+target = NodePath("../../Player")
 
-[node name="StillGuard6" parent="Enemies" instance=ExtResource("8_7qug6")]
+[node name="StillGuard6" parent="Enemies" node_paths=PackedStringArray("target") instance=ExtResource("8_7qug6")]
 process_mode = 4
 visible = false
 position = Vector2(964.444, 481.506)
-bullet_color_override = Color(0, 0, 0, 1)
+target = NodePath("../../Player")
 
 [node name="Player" parent="." instance=ExtResource("9_fw7ae")]
 position = Vector2(396, 293)
 motion_mode = 1
 floor_max_angle = 1.5708
+can_parry = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(2.4, 2.4)
