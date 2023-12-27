@@ -45,8 +45,11 @@ position = Vector2(512, 384)
 scale = Vector2(0.65, 0.65)
 collision_layer = 3
 script = ExtResource("1_0r62m")
+speed = null
+steps_to_accel = null
 steps_to_decel = 5.0
 initial_lives = 3
+exp = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4.61536)
