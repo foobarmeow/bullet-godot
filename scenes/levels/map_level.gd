@@ -36,19 +36,19 @@ func _on_lights_out_trigger_area_entered(area):
 		
 	# Show the light at 0 energy
 	var l = $KillLightHolder/KillLight
-	var initial_energy = l.energy
-	l.energy = 0
+	#var initial_energy = l.energy
+	#l.energy = 0
 	#l.show()
 	
 	
 	# Increase the energy over time
-	while l.energy < initial_energy:
-		await get_tree().create_timer(.25).timeout
-		l.energy += .1
-		
-	# Parent it to the player and disconnect this signal
-	l.reparent($Player)
-	l.translate(Vector2.ZERO)
+#	while l.energy < initial_energy:
+#		await get_tree().create_timer(.25).timeout
+#		l.energy += .1
+#
+#	# Parent it to the player and disconnect this signal
+#	l.reparent($Player)
+#	l.translate(Vector2.ZERO)
 	$LightsOutTrigger.disconnect("area_entered", _on_lights_out_trigger_area_entered)
 	
 	# Show the lit path

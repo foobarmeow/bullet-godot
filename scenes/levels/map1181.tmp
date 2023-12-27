@@ -16,7 +16,7 @@ resource_local_to_scene = true
 shader = ExtResource("4_tqwqv")
 shader_parameter/enabled = false
 shader_parameter/fade_distance = null
-shader_parameter/player_position = Vector2(-5849.55, -1130.7)
+shader_parameter/player_position = Vector2(-5843.42, -1125.28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rovmf"]
 size = Vector2(20, 35)
@@ -112,6 +112,15 @@ shape = SubResource("CircleShape2D_c1vd8")
 
 [node name="StillGuard" parent="Enemies" instance=ExtResource("8_7qug6")]
 position = Vector2(301.513, 152.67)
+path_speed = 0.01
+movement_type = 1
+poppable = true
+spawn_type = -1
+spawn_time = 0.19
+speed = 100
+dir = Vector2(0, 0)
+parry_speed = 450
+health = 30
 
 [node name="Player" parent="." instance=ExtResource("9_fw7ae")]
 self_modulate = Color(0, 0.419608, 1, 1)

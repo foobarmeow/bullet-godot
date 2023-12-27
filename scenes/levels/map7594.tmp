@@ -17,7 +17,7 @@ resource_local_to_scene = true
 shader = ExtResource("8_i7tpo")
 shader_parameter/enabled = false
 shader_parameter/fade_distance = null
-shader_parameter/player_position = Vector2(-5840.6, -1127.93)
+shader_parameter/player_position = Vector2(-5846.32, -1124.66)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rovmf"]
 size = Vector2(20, 35)
@@ -116,6 +116,7 @@ offset_bottom = 1127.0
 visible = false
 
 [node name="Enemies" type="Node2D" parent="."]
+visible = false
 
 [node name="StillGuard" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(567, 326)

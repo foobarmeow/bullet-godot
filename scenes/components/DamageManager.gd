@@ -1,48 +1,59 @@
 class_name DamageManager extends Node2D
 
-var parent: Node2D
-var health: int
-var can_hit: bool = true
-var can_damage: bool = true
-var taking_damage: bool = false
-var hit_grace: int = 0
-var hit_color: Color = Color.RED
+signal health_updated
 
-func _init(_parent: Node2D):
-	parent = _parent
+@export var initial_health: int
+@export var can_hit: bool = true
+@export var can_damage: bool = true
+@export var hit_grace: int = 0
+@export var hit_color: Color = Color.RED
+
+var health: int = initial_health:
+	set(v):
+		health = v
+		health_updated.emit(health)
+
+var taking_damage: bool = false
 	
-func take_damage(dmg: int, enemy: Node2D):
+func _ready():
+	health = initial_health
+	
+func take_damage(parent: Node2D, enemy: Node2D, dmg: int):
 	if !can_hit || taking_damage:
 		return
 		
-	# No damage will be taken if health is < 0
 	if health <= 0:
 		return
-		
-	# See if the parent has a callback to let us know
-	# if we should allow the hit or not
-	if parent.has_method("allow_hit"):
-		if !parent.allow_hit():
-			return
 
 	if !can_damage: 
 		return
 		
-	taking_damage = true
 	health -= dmg
-	damage_animate()
+	
+	# free the enemy right away...
+	enemy.queue_free()
 
+	damage_animate(parent)
+	
 
-func damage_animate():
+var tweens: Array[Tween]
+func damage_animate(parent: Node2D):
+	for t in tweens:
+		t.kill()
+	tweens = []
+	
 	var initial_position = parent.position
 	var initial_color = parent.modulate
 	var color_tween = get_tree().create_tween()
+	tweens.append(color_tween)
+	
 	color_tween.tween_property(parent, "modulate", Color.RED, .05)
 	color_tween.tween_property(parent, "modulate", initial_color, .05)
 	var tween = get_tree().create_tween()
+	tweens.append(tween)
 		# 5 frames
 	for i in 5:
-		var p = Vector2(position.x+randi_range(-2, 2), position.y+randi_range(-2,2))
+		var p = Vector2(parent.position.x+randi_range(-2, 2), parent.position.y+randi_range(-2,2))
 		tween.tween_property(parent, "position", p, .025)
 	# Back to initial position
 	tween.tween_property(parent, "position", initial_position, .025)
