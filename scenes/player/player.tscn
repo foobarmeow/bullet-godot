@@ -110,10 +110,10 @@ material = ExtResource("1_6rdlo")
 position = Vector2(512, 384)
 scale = Vector2(0.65, 0.65)
 collision_layer = 2
-collision_mask = 4
+collision_mask = 76
 script = ExtResource("1_0r62m")
 
-[node name="KillLight" parent="." instance=ExtResource("4_y8ax7")]
+[node name="ParryRing" parent="." instance=ExtResource("4_y8ax7")]
 scale = Vector2(0.217, 0.217)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -158,6 +158,6 @@ collision_layer = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Parry"]
 shape = SubResource("CircleShape2D_bb1at")
 
-[connection signal="parry_recharged" from="KillLight" to="." method="_on_kill_light_parry_recharged"]
+[connection signal="parry_recharged" from="ParryRing" to="." method="_on_kill_light_parry_recharged"]
 [connection signal="health_updated" from="DamageManager" to="." method="_on_damage_manager_health_updated"]
 [connection signal="invuln_updated" from="DamageManager" to="." method="_on_damage_manager_invuln_updated"]

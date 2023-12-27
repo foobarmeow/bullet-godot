@@ -8,6 +8,11 @@ signal died
 @export var deceleration = 50
 @export var top_speed = 150
 @export var parry_time: float = 1.5
+@export var dash_multiplier: int = 100
+@export var dash_time: float = .2
+@export var can_parry: bool:
+	set(v):
+		can_parry = v
 
 var sprite: AnimatedSprite2D
 var last_parried: Node2D
@@ -20,6 +25,10 @@ var damage: int = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if can_parry:
+		$ParryRing.show()
+	else:
+		$ParryRing.hide()
 	if $AnimatedSprite2D == null:
 		print_debug("no sprite bruh")
 		return			
@@ -32,9 +41,12 @@ func _unhandled_input(_event):
 	if Input.is_action_just_pressed("parry"):
 		_parry()
 		return
+	if Input.is_action_just_pressed("dash"):
+		_dash()
+		return
 
 func _parry():
-	if parried: 
+	if parried || !can_parry: 
 			return
 	var overlaps = $Parry.get_overlapping_bodies()
 	if len(overlaps) < 1:
@@ -51,7 +63,20 @@ func _parry():
 			o.destroy()
 	
 	parried = true
-	$KillLight.activate()
+	$ParryRing.activate()
+	
+
+var dash = false
+func _dash():
+	if dash:
+		return
+	set_collision_mask_value(7, false)
+	dash = true
+	_on_damage_manager_invuln_updated(true)
+	await get_tree().create_timer(dash_time).timeout
+	dash = false
+	_on_damage_manager_invuln_updated(false)
+	set_collision_mask_value(7, true)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -63,6 +88,8 @@ func _physics_process(delta):
 		sprite.flip_h = true
 		
 	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	if dash:
+		input_direction = input_direction * dash_multiplier
 	velocity = velocity.move_toward(input_direction * speed, acceleration)
 	sprite.play("walk")
 
