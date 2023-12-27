@@ -6,6 +6,7 @@
 [node name="Spawner" type="Node2D"]
 position = Vector2(538, 353)
 script = ExtResource("1_5xnxv")
+type = -1
 bullet = ExtResource("2_0hdrm")
 speed = 350
 

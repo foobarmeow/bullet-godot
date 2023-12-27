@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvoxm8lopnaxe"]
+
+[ext_resource type="TileSet" uid="uid://v6fs17ekenoc" path="res://art/tilesets/new_tile_set.tres" id="1_e3xgv"]
+[ext_resource type="PackedScene" uid="uid://ctiicgeqawq5a" path="res://scenes/mobs/spawner/spawner.tscn" id="2_tkakw"]
+
+[node name="BulletCollisionTest" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_e3xgv")
+format = 2
+layer_0/tile_data = PackedInt32Array(851992, 589826, 5, 917528, 589826, 5, 983064, 589826, 5, 1048600, 589826, 5, 1114136, 589826, 5, 1179672, 589826, 5, 1245208, 589826, 5, 1310744, 589826, 5, 1376280, 589826, 5, 1441816, 589826, 5, 1507352, 589826, 5, 1572888, 589826, 5, 1638424, 589826, 5, 1703960, 589826, 5)
+
+[node name="Spawner" parent="." instance=ExtResource("2_tkakw")]

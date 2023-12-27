@@ -40,9 +40,13 @@ func begin(player: Node2D):
 		return
 	spawner.type = spawner_type
 
-
 func _process(delta):
 	$AnimatedSprite2D.play()
+	
+	if $Spawner.type == Constants.SpawnerType.TARGET:
+		if _player != null:
+			#$Spawner.dir = _player.global_position
+			$Spawner.dir = position.direction_to(_player.position)
 
 	if filling > 0:
 		fill += filling * delta
