@@ -1,14 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://bh0f0wn1i2odl"]
+[gd_scene load_steps=5 format=3 uid="uid://bh0f0wn1i2odl"]
 
 [ext_resource type="Script" path="res://scenes/main/Main.gd" id="1_ndwyi"]
-[ext_resource type="PackedScene" uid="uid://clpbah7q1kpfh" path="res://scenes/mob_holder_old/mob_holder_old.tscn" id="2_cly0q"]
 [ext_resource type="PackedScene" uid="uid://b1sqn6oxm0d6m" path="res://scenes/player/player.tscn" id="3_36ncr"]
 [ext_resource type="PackedScene" uid="uid://hoxobtgt486a" path="res://scenes/hud/hud.tscn" id="4_4xova"]
 [ext_resource type="PackedScene" uid="uid://cdj0ta3k6iega" path="res://scenes/levels/level_1.tscn" id="5_wrebh"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ndwyi")
-mob_holder_scene = ExtResource("2_cly0q")
 levels = [ExtResource("5_wrebh")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -18,26 +16,8 @@ color = Color(0, 0, 0, 1)
 
 [node name="Player" parent="." instance=ExtResource("3_36ncr")]
 
-[node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 2.5
-
-[node name="PlayerSpawnPosition" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 488.0
-offset_top = 368.0
-offset_right = 528.0
-offset_bottom = 408.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="HUD" parent="." instance=ExtResource("4_4xova")]
 
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
-[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="player_ready" from="HUD" to="." method="_on_hud_player_ready"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
