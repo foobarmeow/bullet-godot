@@ -8,6 +8,7 @@ var parry_speed: int
 var armed: bool = false
 
 func fire():
+	print("FIRE")
 	fired_at = Engine.get_frames_drawn()
 	fired = true
 
@@ -36,19 +37,22 @@ func _physics_process(delta):
 			if armed:
 				collider.take_damage(10, self)
 			return # We'll let the damage taker free it
-		elif collider is Mover && Engine.get_frames_drawn() - fired_at > 10:
+		elif collider is Mover:
 			if armed:
 				print("yo")
 				collider.destroy()
-		elif Engine.get_frames_drawn() - fired_at < 100:
+			return
+		elif Engine.get_frames_drawn() - fired_at < 10:
 			# It's nice to have them dissapear when they
 			# hit another enemy, but we have to add this lag
 			# so that they have time to get away from their origin
 			return
+		print("FREE")
 		queue_free()
 
 
 func _on_screen_exit():
+	print("HERE")
 	queue_free()
 
 

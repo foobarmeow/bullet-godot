@@ -36,12 +36,6 @@ var parried: bool = false
 # TODO: Make this a property of the node that collided
 var damage: int = 10
 
-
-var circle_color = Color.RED
-func _draw():
-	var w = $Parry/CollisionShape2D.shape.get_rect().size
-	#draw_circle(Vector2.ZERO, w.x*.5, circle_color)
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	initial_speed = speed

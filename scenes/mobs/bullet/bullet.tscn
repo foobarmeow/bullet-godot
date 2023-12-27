@@ -16,19 +16,16 @@ material = ExtResource("2_i780x")
 texture = ExtResource("2_4nsqr")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-visible = false
 position = Vector2(-2.08616e-07, -3.57628e-07)
 scale = Vector2(0.608696, 0.608696)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-visible = false
 polygon = PackedVector2Array(-6.08696, -1.73913, -6.08696, 1.73913, -1.73913, 6.08696, 1.73913, 6.08696, 6.08696, 1.73913, 6.08696, -1.73913, 1.73913, -6.08696, -0.869565, -6.08696, -3.53706, -3.86404)
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 32
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
-visible = false
 polygon = PackedVector2Array(-6.08696, -1.73913, -6.08696, 1.73913, -1.73913, 6.08696, 1.73913, 6.08696, 6.08696, 1.73913, 6.08696, -1.73913, 1.73913, -6.08696, -0.869565, -6.08696, -3.53706, -3.86404)
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exit"]

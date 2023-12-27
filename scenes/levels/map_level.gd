@@ -12,8 +12,9 @@ func _ready():
 	debug_state()
 	
 func debug_state():
-	$Player.position = $DebugSpot.position
-	_on_lights_out_trigger_area_entered(null)
+	if $DebugSpot != null:
+		$Player.position = $DebugSpot.position
+		_on_lights_out_trigger_area_entered(null)
 
 					
 func start_movers(nodes: Array[Node]):
