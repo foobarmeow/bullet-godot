@@ -4,7 +4,8 @@ signal display_blood_hell
 
 var first_drank: int = 100
 var drinking_at_well = false
-
+var blood_hell_activated = false
+var dash_given = false
 
 func _ready():
 	SignalBus.connect("level_action", _on_level_action)
@@ -44,5 +45,21 @@ func _on_begin_area_area_entered(_area):
 
 func _unhandled_input(event):
 	if event.is_action_pressed("blood_hell"):
+		blood_hell_activated = !blood_hell_activated
 		display_blood_hell.emit()
-		$Scenery/CanvasLayer/RootModulate/AnimationPlayer.play("BloodLoop")
+		if blood_hell_activated:
+			$Scenery/CanvasLayer/RootModulate/AnimationPlayer.play("BloodLoop")
+		else:
+			$Scenery/CanvasLayer/RootModulate/AnimationPlayer.play("RESET")
+
+
+func _on_angela_of_dash_area_area_entered(_area):
+	if dash_given:
+		return
+	SignalBus.display_dialog.emit("angel_of_dash")
+	SignalBus.dialog_finished.connect(func():
+		# Give the boi the dash
+		$Player.can_dash = true
+		dash_given = true
+	)
+

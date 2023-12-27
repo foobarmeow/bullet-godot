@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var rockScene: PackedScene
-@export var speed: int = 100
+@export var speed: int = 200
 @export var torque: int = 200
 @export var spawn_timeout: float = 5
 
@@ -23,10 +23,8 @@ func _on_rock_spawn():
 		return
 	var r = rockScene.instantiate()
 	add_child(r)
-	
-	print(ray.target_position)
-	print(r.position)
-	r.apply_impulse(ray.target_position*1)
+	print("BRUH - ", ray.target_position.normalized().length(), " - ", ray.target_position.length())
+	r.apply_impulse(ray.target_position.normalized()*speed)
 
 	var torque_force: int
 	if ray.target_position.angle_to(Vector2.RIGHT) < 0:
@@ -34,7 +32,7 @@ func _on_rock_spawn():
 	else:
 		torque_force = torque
 	r.apply_torque_impulse(torque_force)
-	r.get_node("Particles").emitting = true
+	r.set_particles(ray.target_position)
 
 	spawning = true
 	# Only spawn once

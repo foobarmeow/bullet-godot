@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bhnamekyyvkpa"]
+[gd_scene load_steps=22 format=3 uid="uid://bhnamekyyvkpa"]
 
 [ext_resource type="Material" uid="uid://vtmbky35o2p2" path="res://resources/lit-mat.tres" id="1_jqbrk"]
 [ext_resource type="Script" path="res://scenes/components/player/Player.gd" id="2_imbdw"]
@@ -202,6 +202,9 @@ atlas = ExtResource("5_3f06y")
 region = Rect2(0, 0, 325, 64)
 margin = Rect2(1, 0, 1, 0)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_rp12q"]
+radius = 7.69232
+
 [node name="Player" type="CharacterBody2D"]
 self_modulate = Color(1, 1, 1, 0.962096)
 material = ExtResource("1_jqbrk")
@@ -244,3 +247,11 @@ self_modulate = Color(1, 1, 1, 0)
 position = Vector2(0, -10.7692)
 texture = SubResource("AtlasTexture_81lhk")
 hframes = 5
+
+[node name="PlayerAreaForCollidingWithEvents" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAreaForCollidingWithEvents"]
+position = Vector2(0, 1.53845)
+shape = SubResource("CircleShape2D_rp12q")

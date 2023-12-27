@@ -6,3 +6,4 @@ signal hide_dialog
 signal hide_action
 signal input_action
 signal level_action
+signal dialog_finished

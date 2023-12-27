@@ -12,6 +12,7 @@ signal level_action
 
 @export var dash_multiplier: int = 100
 @export var dash_time: float = .2
+@export var can_dash: bool = false
 
 @export var has_weapon: bool = false
 
@@ -40,7 +41,7 @@ func fire():
 # local variable for whether or not we're dashing
 var dash = false
 func _dash():
-	if dash:
+	if dash || !can_dash:
 		return
 		
 	# We don't collide with ledges while dashing

@@ -15,6 +15,12 @@ var dialog_dict = {
 		"Nice you drank, that's sick.",	
 	 	"Now get back to me.",
 	],
+	"angel_of_dash": [
+		"What's up I'm the Angel of DASH.",
+		"I hand out the power to DASH",
+		"Get at it with SHIFT",
+		"Love you *kiss sound*"
+	]
 }
 
 var is_visible = false
@@ -61,6 +67,7 @@ func finish():
 	$Label.text = ""
 	in_progress = false
 	get_tree().paused = false
+	SignalBus.dialog_finished.emit()
 	
 func _on_hide_dialog():
 	if is_visible:
