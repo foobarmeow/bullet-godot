@@ -5,19 +5,19 @@
 [ext_resource type="PackedScene" uid="uid://bhnamekyyvkpa" path="res://scenes/player/player.tscn" id="2_s21pb"]
 [ext_resource type="PackedScene" uid="uid://c7fyo24ou0om7" path="res://scenes/mobs/mover/mover.tscn" id="3_w5hcx"]
 [ext_resource type="Texture2D" uid="uid://cvcc60svfqim0" path="res://art/s2s.bg.png" id="4_kqbhy"]
-[ext_resource type="Script" path="res://scenes/levels/Camera.gd" id="5_a1xxu"]
+[ext_resource type="Script" path="res://scenes/components/Camera.gd" id="5_a1xxu"]
 [ext_resource type="TileSet" uid="uid://v6fs17ekenoc" path="res://art/tilesets/new_tile_set.tres" id="5_i2agf"]
-[ext_resource type="PackedScene" uid="uid://bwx1ygvwk1cwj" path="res://scenes/kill_light.tscn" id="7_rheqg"]
+[ext_resource type="PackedScene" uid="uid://bwx1ygvwk1cwj" path="res://scenes/exp/kill_light.tscn" id="7_rheqg"]
 [ext_resource type="Shader" path="res://scenes/line-reveal/line_reveal.gdshader" id="8_i7tpo"]
 [ext_resource type="Script" path="res://scenes/line-reveal/LineReveal.gd" id="9_ac6l3"]
-[ext_resource type="Script" path="res://scenes/levels/LineManager.gd" id="10_ayisk"]
+[ext_resource type="Script" path="res://scenes/components/LineManager.gd" id="10_ayisk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1n0qv"]
 resource_local_to_scene = true
 shader = ExtResource("8_i7tpo")
 shader_parameter/enabled = false
 shader_parameter/fade_distance = null
-shader_parameter/player_position = Vector2(-5362.28, -1068.27)
+shader_parameter/player_position = Vector2(-4942.11, -958.955)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rovmf"]
 size = Vector2(20, 35)

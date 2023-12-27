@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scenes/kill_light.gd" id="2_84vhp"]
 [ext_resource type="Shader" path="res://scenes/parry-ring-debug.gdshader" id="3_6i1b5"]
 [ext_resource type="Texture2D" uid="uid://c7u3xb5mo3n3t" path="res://art/sprites/debug/512-blank.png" id="4_lsmaa"]
-[ext_resource type="Shader" path="res://ring-shader-area.gdshader" id="4_ouufx"]
+[ext_resource type="Shader" path="res://scenes/exp/ring-shader-area.gdshader" id="4_ouufx"]
 [ext_resource type="Texture2D" uid="uid://d0iai05rfiddw" path="res://art/sprites/lights/parry-halo.png" id="5_76imm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pypbu"]

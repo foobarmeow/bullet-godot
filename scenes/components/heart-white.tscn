@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://kjixn2352h1t"]
 
-[ext_resource type="Script" path="res://scenes/heart-white.gd" id="1_l34hn"]
+[ext_resource type="Script" path="res://scenes/components/heart-white.gd" id="1_l34hn"]
 [ext_resource type="Texture2D" uid="uid://b2iir8r2n3emw" path="res://art/sprites/heart-white.png" id="1_r3qe6"]
 
 [sub_resource type="Animation" id="Animation_eja0a"]

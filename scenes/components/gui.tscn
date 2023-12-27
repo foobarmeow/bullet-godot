@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://nyv8fcxvcl2t"]
 
-[ext_resource type="Script" path="res://scenes/gui.gd" id="1_ibyel"]
-[ext_resource type="PackedScene" uid="uid://kjixn2352h1t" path="res://scenes/heart-white.tscn" id="2_2ji74"]
+[ext_resource type="Script" path="res://scenes/components/gui.gd" id="1_ibyel"]
+[ext_resource type="PackedScene" uid="uid://kjixn2352h1t" path="res://scenes/components/heart-white.tscn" id="2_2ji74"]
 
 [node name="GUI" type="Control"]
 layout_mode = 3
