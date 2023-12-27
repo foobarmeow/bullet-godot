@@ -8,7 +8,5 @@ position = Vector2(248, 130)
 script = ExtResource("1_2gmug")
 mob_scene = ExtResource("2_3v8y5")
 tracking_timeout = 1.5
-
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_exited_screen"]
+speed = null
+offset_from_player = null

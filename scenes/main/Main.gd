@@ -16,5 +16,15 @@ func _unhandled_input(event):
 	if Input.is_action_just_released("spawn"):
 		var mob_holder = mob_holder_scene.instantiate()
 		add_child(mob_holder)
-		mob_holder.start("circle", $Player)
+		mob_holder.start("line", $Player)
 		
+
+
+func _on_spawn_timer_timeout():
+	var mob_holder = mob_holder_scene.instantiate()
+	add_child(mob_holder)
+	mob_holder.start_random($Player)
+
+
+func _on_player_hit():
+	$Player.position = $PlayerSpawnPosition.position
