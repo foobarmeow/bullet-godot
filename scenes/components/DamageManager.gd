@@ -14,7 +14,6 @@ var is_ready: bool = false
 var _health: int = health:
 	set(v):
 		_health = v
-		print("HEALTH UPDATED", is_ready)
 		if is_ready:
 			health_updated.emit(_health, health)
 		
@@ -26,7 +25,6 @@ var _invuln: bool = invuln:
 var taking_damage: bool = false
 	
 func _ready():
-	print("READY", health)
 	_health = health
 	is_ready = true
 	pass
@@ -49,7 +47,6 @@ func take_damage(parent: Node2D, enemy: Node2D, dmg: int):
 	if _health <= 0:
 		return
 
-	print("TAKING DAMAGE", dmg)
 	_health -= dmg
 	damage_animate(parent)
 	

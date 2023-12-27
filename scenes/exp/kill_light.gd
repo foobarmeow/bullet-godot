@@ -4,7 +4,6 @@ extends Node2D
 @export var draw_circle: bool = false: 
 	set(v):
 		draw_circle = v
-		print(v, draw_circle)
 		draw()
 @export var circle_radius: int = 100:
 	set(v):
@@ -74,7 +73,6 @@ func draw_bodies():
 		#body_container.add_child(joint)
 		#joint.owner = get_tree().edited_scene_root
 		
-		print(last_joint.node_a, " - ", last_joint.node_b)
 		
 
 var line: Line2D

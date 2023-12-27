@@ -44,7 +44,6 @@ func _physics_process(delta):
 			velocity = velocity.bounce(collision.get_normal())*5
 			set_collision_mask_value(3, true)
 			modulate = Color(0.0, 106.0, 252.0, 255)
-			print("YOs")
 			return
 		elif Engine.get_frames_drawn() - fired_at < 10:
 			# It's nice to have them dissapear when they

@@ -76,11 +76,9 @@ func done():
 	dun = true
 
 func _on_button_pressed():
-	print(dun, dead)
 	if dun || dead:
 		dun = false
 		dead = false
-		print('reloading')
 		get_tree().reload_current_scene()
 		_on_button_pressed()
 	$Player/Camera2D/GUI/Welcome.hide()

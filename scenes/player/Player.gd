@@ -36,7 +36,6 @@ func _ready():
 		return			
 	sprite = $AnimatedSprite2D
 	parry_outside_edge_distance = Vector2.ZERO.distance_to($ParryMeasurementLine.points[2])
-	print(parry_outside_edge_distance)
 
 func _unhandled_input(_event):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
@@ -61,7 +60,6 @@ func _parry():
 			return
 	var overlaps = $ParryArea.get_overlapping_bodies()
 	if len(overlaps) < 1:
-		print("no overlaps")
 		parried = false
 		return
 
@@ -147,7 +145,6 @@ func _on_damage_manager_health_updated(health: int, _init_health: int):
 
 
 func _on_damage_manager_invuln_updated(invuln: bool):
-	print("INVULN")
 	if invuln:
 		$AnimationPlayer.play("invuln_blink")
 		set_collision_layer_value(2, false)
