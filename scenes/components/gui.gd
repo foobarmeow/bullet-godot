@@ -22,20 +22,27 @@ func _on_damage_manager_health_updated(health: int, init_health: int):
 
 func _on_well_area_area_entered(area):
 	# Show drink....stuff
+	if done_drinking:
+		return
 	$AnimationPlayer.play("drink_visibility")
 
 func _on_well_area_area_exited(area):
+	if done_drinking:
+		return
 	$AnimationPlayer.play_backwards("drink_visibility")
-	$AnimationPlayer.play("RESET")
+	$AnimationPlayer.queue("RESET")
 
 func _on_player_drink():
-	$AnimationPlayer.play("shake_the_drink_text")
+	if done_drinking:
+		return
+	$AnimationPlayer.queue("shake_the_drink_text")
 
 var done_drinking: bool = false
 func _on_map_level_done_drinking():
 	if done_drinking:
 		return
 	done_drinking = true
-	$AnimationPlayer.play("drank_visibility")
-	await $AnimationPlayer.animation_finished
-	$AnimationPlayer.play("return_visibiilty")
+	
+	$AnimationPlayer.play_backwards("drink_visibility")
+	$AnimationPlayer.queue("drank_visibility")
+	$AnimationPlayer.queue("return_visibiilty")

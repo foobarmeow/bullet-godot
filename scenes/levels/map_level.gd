@@ -100,7 +100,6 @@ func _on_player_died():
 
 
 func _on_player_drink():
-	print(first_drank)
 	first_drank -= 10
 	if first_drank <= 0:
 		done_drinking.emit()
