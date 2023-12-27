@@ -4,6 +4,7 @@ extends Node2D
 @export var line_manager: Node2D
 
 
+
 var paused: bool
 
 # Called when the node enters the scene tree for the first time.
