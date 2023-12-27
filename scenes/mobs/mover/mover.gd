@@ -25,6 +25,9 @@ var filling: float = 0
 var player: Player
 var alerted: bool = false
 
+func _ready():
+	if get_parent().name == "exp":
+		begin() # call begin on exp level
 
 func begin():
 	$Spawner.type = spawner_type
@@ -49,11 +52,11 @@ func _physics_process(delta):
 			burst.emit(self)
 			queue_free()
 	elif fill > .90:
-		shake(delta, 8)
+		shake(delta, 4)
 	elif fill > 0.75:
-		shake(delta, 5)
-	elif fill > 0.50:
 		shake(delta, 3)
+	elif fill > 0.50:
+		shake(delta, 2)
 	elif fill > 0.25:
 		shake(delta, 1)
 	elif fill > 0:
