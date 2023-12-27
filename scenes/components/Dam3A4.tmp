@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://7jh6at667qqy"]
+
+[ext_resource type="Script" path="res://scenes/components/DamageManager.gd" id="1_7dkbj"]
+
+[node name="DamageManager" type="Node2D"]
+script = ExtResource("1_7dkbj")
+health = null
+invuln = null
+hit_grace = null
+hit_color = null
+invuln_time = null

@@ -16,7 +16,7 @@ resource_local_to_scene = true
 shader = ExtResource("4_tqwqv")
 shader_parameter/enabled = false
 shader_parameter/fade_distance = null
-shader_parameter/player_position = Vector2(-5849.55, -1130.7)
+shader_parameter/player_position = Vector2(-5839.82, -1126.63)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rovmf"]
 size = Vector2(20, 35)
@@ -114,7 +114,6 @@ shape = SubResource("CircleShape2D_c1vd8")
 position = Vector2(301.513, 152.67)
 
 [node name="Player" parent="." instance=ExtResource("9_fw7ae")]
-self_modulate = Color(0, 0.419608, 1, 1)
 position = Vector2(396, 293)
 motion_mode = 1
 floor_max_angle = 1.5708

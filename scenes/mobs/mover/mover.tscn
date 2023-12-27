@@ -208,7 +208,7 @@ bullet = ExtResource("3_qs4ld")
 metadata/_edit_group_ = true
 
 [node name="DamageManager" parent="." instance=ExtResource("4_6mota")]
-initial_health = 30
+health = 30
 
 [node name="FireTimer" type="Timer" parent="."]
 wait_time = 0.19
