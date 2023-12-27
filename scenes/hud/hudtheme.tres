@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://srs1c8np6lm4"]
+
+[ext_resource type="FontFile" uid="uid://baoopqiwy105w" path="res://art/fonts/Thirty Sans Bold DEMO.ttf" id="1_n76nm"]
+
+[resource]
+default_font = ExtResource("1_n76nm")
+default_font_size = 64

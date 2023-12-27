@@ -1,17 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://btiwg5djjyl0p"]
 
 [ext_resource type="Script" path="res://scenes/mob/mob.gd" id="1_rk35v"]
-[ext_resource type="Texture2D" uid="uid://byhl4lbmxeck0" path="res://art/enemy.png" id="1_s118t"]
+[ext_resource type="Texture2D" uid="uid://byhl4lbmxeck0" path="res://art/sprites/enemy.png" id="2_gbolx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hq22o"]
 radius = 31.0644
 
-[node name="Mob" type="Area2D"]
+[node name="Mob" type="Area2D" groups=["mob"]]
+scale = Vector2(0.25, 0.25)
 script = ExtResource("1_rk35v")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_s118t")
+texture = ExtResource("2_gbolx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_hq22o")
