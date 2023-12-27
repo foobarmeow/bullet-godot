@@ -68,6 +68,7 @@ animations = [{
 [node name="Player" type="Area2D"]
 position = Vector2(512, 384)
 scale = Vector2(0.65, 0.65)
+collision_layer = 3
 script = ExtResource("1_0r62m")
 initial_lives = 3
 

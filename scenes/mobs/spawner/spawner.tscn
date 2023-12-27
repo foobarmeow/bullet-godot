@@ -10,5 +10,5 @@ bullet = ExtResource("2_0hdrm")
 speed = 350
 
 [node name="FireTimer" type="Timer" parent="."]
-wait_time = 0.75
+wait_time = 1.25
 autostart = true
