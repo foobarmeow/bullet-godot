@@ -34,8 +34,6 @@ func begin():
 		
 	$Spawner.type = spawner_type
 	var animation = animation_by_type[movement_type]
-	print("ANIM TYPE", animation)
-	
 	$AnimatedSprite2D.play(animation_by_type[movement_type])
 
 func _process(delta):
