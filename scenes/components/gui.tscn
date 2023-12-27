@@ -1,229 +1,151 @@
-[gd_scene load_steps=15 format=3 uid="uid://nyv8fcxvcl2t"]
+[gd_scene load_steps=17 format=3 uid="uid://bv30emql2nye5"]
 
 [ext_resource type="Script" path="res://scenes/components/gui.gd" id="1_ibyel"]
+[ext_resource type="FontFile" uid="uid://bf7dh5uueciw1" path="res://art/CompassPro.otf" id="1_nfopc"]
 [ext_resource type="PackedScene" uid="uid://kjixn2352h1t" path="res://scenes/components/heart-white.tscn" id="2_2ji74"]
+[ext_resource type="Texture2D" uid="uid://jhftm7n81ou3" path="res://art/sprites/debug/bullet-player.png" id="3_4vho1"]
 [ext_resource type="Texture2D" uid="uid://ch0ppvjvohdb2" path="res://art/sprites/byte-sheet.png" id="4_bsm5j"]
-[ext_resource type="Texture2D" uid="uid://ddune8wy2ki30" path="res://art/sprites/text/drink-alert.png" id="4_j5yvk"]
-[ext_resource type="Texture2D" uid="uid://dpwr2ddkbcaqc" path="res://art/sprites/text/drank.png" id="5_l43sd"]
-[ext_resource type="Texture2D" uid="uid://dydls04ebp3yd" path="res://art/sprites/text/return.png" id="6_uoweg"]
-[ext_resource type="PackedScene" uid="uid://b6fwnyugw5tkh" path="res://scenes/components/dialog_box.tscn" id="7_msth8"]
+[ext_resource type="Script" path="res://scenes/components/dialog_box.gd" id="6_hsosc"]
+[ext_resource type="Texture2D" uid="uid://drm8gr2tgri06" path="res://art/dialogue-box.png" id="7_mwb7k"]
 
-[sub_resource type="Animation" id="Animation_e28hy"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Byte:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -287.5)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Byte:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:self_modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../Drank:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(548, 521)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../Drank:self_modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../Return:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(610, 459)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../Return:self_modulate")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_mrbyy"]
-resource_name = "drank_visibility"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Drank:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(548, 521), Vector2(548, 100)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Drank:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 1.8, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_t0ms3"]
-resource_name = "drink_visibility"
-length = 0.25
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_r1rex"]
-resource_name = "return_visibiilty"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Return:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(610, 459), Vector2(610, -53)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Return:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 1.8, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_n7iwa"]
-resource_name = "shake_the_drink_text"
-length = 0.5
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Byte:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(614, 320), Vector2(609.719, 88.6811)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Byte:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.45, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.137255), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_nw5vv"]
-_data = {
-"RESET": SubResource("Animation_e28hy"),
-"drank_visibility": SubResource("Animation_mrbyy"),
-"drink_visibility": SubResource("Animation_t0ms3"),
-"return_visibiilty": SubResource("Animation_r1rex"),
-"shake_the_drink_text": SubResource("Animation_n7iwa")
-}
+[sub_resource type="Theme" id="Theme_g4xxv"]
+default_font = ExtResource("1_nfopc")
+default_font_size = 20
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_272r4"]
 atlas = ExtResource("4_bsm5j")
 region = Rect2(1, 0, 64, 64)
 
+[sub_resource type="Animation" id="Animation_sgi5f"]
+resource_name = "show"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ou8uo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gu8ns"]
+resource_name = "shake"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.056, 1.056), Vector2(1, 1), Vector2(1.056, 1.056), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j43pq"]
+_data = {
+"RESET": SubResource("Animation_ou8uo"),
+"shake": SubResource("Animation_gu8ns"),
+"show": SubResource("Animation_sgi5f")
+}
+
+[sub_resource type="Animation" id="Animation_xc10u"]
+resource_name = "show"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2kn6c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6qnwa"]
+_data = {
+"RESET": SubResource("Animation_2kn6c"),
+"show": SubResource("Animation_xc10u")
+}
+
 [node name="GUI" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 1.0
+offset_bottom = 2.0
+theme = SubResource("Theme_g4xxv")
 script = ExtResource("1_ibyel")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../DrinkSprite")
-libraries = {
-"": SubResource("AnimationLibrary_nw5vv")
-}
+[node name="DebugCenter" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(514.783, 360.854)
+texture = ExtResource("3_4vho1")
 
 [node name="Byte" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0)
@@ -248,25 +170,67 @@ position = Vector2(64, 16)
 [node name="Heart3" parent="HeartContainer" instance=ExtResource("2_2ji74")]
 position = Vector2(104, 16)
 
-[node name="DrinkSprite" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0)
-position = Vector2(727, 384)
-scale = Vector2(0.35, 0.35)
-texture = ExtResource("4_j5yvk")
+[node name="ActionBox" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(591, 336)
+script = ExtResource("6_hsosc")
+type = 0
 
-[node name="Drank" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0)
-position = Vector2(548, 521)
-texture = ExtResource("5_l43sd")
+[node name="Label" type="Label" parent="ActionBox"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -3.0
+offset_right = 371.0
+offset_bottom = 163.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_nfopc")
+theme_override_font_sizes/font_size = 64
+text = "a suh duh hows it going"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
-[node name="Return" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0)
-position = Vector2(610, 459)
-texture = ExtResource("6_uoweg")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ActionBox"]
+libraries = {
+"": SubResource("AnimationLibrary_j43pq")
+}
 
-[node name="DialogBox" parent="." instance=ExtResource("7_msth8")]
-layout_mode = 1
-offset_left = 445.0
-offset_top = 351.0
-offset_right = -107.0
-offset_bottom = -169.0
+[node name="DialogBox" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(435, 438)
+scale = Vector2(1.72, 1.72)
+script = ExtResource("6_hsosc")
+
+[node name="Dialogue-box" type="Sprite2D" parent="DialogBox"]
+position = Vector2(160, 85)
+scale = Vector2(0.353601, 0.353601)
+texture = ExtResource("7_mwb7k")
+
+[node name="Label" type="Label" parent="DialogBox"]
+offset_left = 17.0
+offset_top = 10.0
+offset_right = 294.0
+offset_bottom = 93.0
+theme_override_fonts/font = ExtResource("1_nfopc")
+theme_override_font_sizes/font_size = 40
+text = "a suh duh hows it going"
+autowrap_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DialogBox"]
+libraries = {
+"": SubResource("AnimationLibrary_6qnwa")
+}
+
+[node name="NextLabel" type="Label" parent="DialogBox"]
+offset_left = 259.884
+offset_top = 141.279
+offset_right = 313.884
+offset_bottom = 164.279
+theme_override_fonts/font = ExtResource("1_nfopc")
+theme_override_font_sizes/font_size = 18
+text = "space..."
