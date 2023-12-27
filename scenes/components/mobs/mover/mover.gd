@@ -73,14 +73,12 @@ func _on_visible_on_screen_notifier_2d_screen_entered():
 		return
 		
 	alerted = true
-	await get_tree().create_timer(.25).timeout
+	await get_tree().create_timer(.1).timeout
 
 	$Alert.play("alert")
 	$FireTimer.start()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
-	#alerted = false
-	#$FireTimer.stop()
 	pass
 
 func shake(delta, factor):
@@ -107,7 +105,7 @@ func fire():
 		Constants.SpawnerType.ROTATE:
 			fire_circle()
 			
-	$AnimatedSprite2D.play("fire")
+	#$AnimatedSprite2D.play("fire")
 
 func fire_circle():
 	var steps = 8

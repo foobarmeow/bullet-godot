@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bhnamekyyvkpa"]
+[gd_scene load_steps=23 format=3 uid="uid://bhnamekyyvkpa"]
 
 [ext_resource type="Material" uid="uid://vtmbky35o2p2" path="res://resources/lit-mat.tres" id="1_jqbrk"]
 [ext_resource type="Script" path="res://scenes/components/player/Player.gd" id="2_imbdw"]
@@ -30,6 +30,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, -10.7692)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.65, 0.65)]
 }
 
 [sub_resource type="Animation" id="Animation_r08aj"]
@@ -77,9 +89,44 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 0, 0, 0.258824)]
 }
 
+[sub_resource type="Animation" id="Animation_rxn1c"]
+resource_name = "dash_blink"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.027451, 0.603922, 0.952941, 0.258824)]
+}
+
+[sub_resource type="Animation" id="Animation_s77u1"]
+resource_name = "drink"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.65, 0.65), Vector2(0.749, 0.749), Vector2(0.678, 0.678), Vector2(0.858, 0.858), Vector2(0.65, 0.65)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jt1sm"]
 _data = {
 "RESET": SubResource("Animation_7d0am"),
+"dash_blink": SubResource("Animation_rxn1c"),
+"drink": SubResource("Animation_s77u1"),
 "hit-byte": SubResource("Animation_r08aj"),
 "invuln_blink": SubResource("Animation_8l71e")
 }
@@ -169,7 +216,6 @@ scale = Vector2(0.65, 0.65)
 collision_layer = 2
 collision_mask = 76
 script = ExtResource("2_imbdw")
-can_parry = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
