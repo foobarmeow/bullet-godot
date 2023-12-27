@@ -1,10 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://bhnamekyyvkpa"]
+[gd_scene load_steps=21 format=3 uid="uid://bhnamekyyvkpa"]
 
 [ext_resource type="Material" uid="uid://vtmbky35o2p2" path="res://resources/lit-mat.tres" id="1_jqbrk"]
 [ext_resource type="Script" path="res://scenes/components/player/Player.gd" id="2_imbdw"]
 [ext_resource type="Texture2D" uid="uid://c4026v6xiksqa" path="res://art/sprites/kenny-1px/monochrome_tilemap_transparent.png" id="4_uvbnn"]
 [ext_resource type="Texture2D" uid="uid://bhw2uf7v71edv" path="res://art/sprites/damage-bytes.png" id="5_3f06y"]
-[ext_resource type="Script" path="res://scenes/exp/Shield.gd" id="6_61ail"]
 
 [sub_resource type="Animation" id="Animation_7d0am"]
 length = 0.5
@@ -226,19 +225,3 @@ self_modulate = Color(1, 1, 1, 0)
 position = Vector2(0, -10.7692)
 texture = SubResource("AtlasTexture_81lhk")
 hframes = 5
-
-[node name="ShieldBody" type="RigidBody2D" parent="." groups=["shield"]]
-rotation = 22.938
-collision_layer = 0
-collision_mask = 0
-gravity_scale = 0.0
-can_sleep = false
-script = ExtResource("6_61ail")
-track_mouse = true
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldBody"]
-position = Vector2(28.66, 108.598)
-polygon = PackedVector2Array(9.80151, -119.367, 11.34, -108.598, 9.80151, -97.8287, 6.72461, -88.598, 3.64764, -85.5211, 2.10919, -87.0595, 5.1861, -93.2133, 6.72461, -97.8287, 8.26306, -103.983, 8.26306, -110.136, 6.72461, -117.829)
-
-[node name="Polygon2D" type="Polygon2D" parent="ShieldBody/CollisionPolygon2D"]
-polygon = PackedVector2Array(9.80151, -119.367, 11.34, -108.598, 9.80151, -97.8287, 6.72461, -88.598, 3.64764, -85.5211, 2.10919, -87.0595, 5.1861, -93.2133, 6.72461, -97.8287, 8.26306, -103.983, 8.26306, -110.136, 6.72461, -117.829)

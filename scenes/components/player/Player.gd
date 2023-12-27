@@ -39,58 +39,19 @@ func _ready():
 
 func _unhandled_input(_event):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		_parry()
+		fire()
 		return
 	if Input.is_action_just_pressed("reload"):
 		get_tree().reload_current_scene()
-		return
-	if Input.is_action_just_pressed("parry"):
-		_parry()
 		return
 	if Input.is_action_just_pressed("dash"):
 		_dash()
 		return
 
+func fire():
+	if $Weapon:
+		$Weapon.fire()
 
-var parry_debug_lines = []
-func _parry():
-	$ShieldBody.parry()
-	return
-	if parried || !can_parry: 
-			return
-	var overlaps = $ParryArea.get_overlapping_bodies()
-	if len(overlaps) < 1:
-		parried = false
-		return
-
-	for l in parry_debug_lines:
-		l.queue_free()
-		
-	parry_debug_lines = []
-
-	var anyParried = false
-	for o in overlaps:
-		var diff = position.distance_to(o.position)
-		var diff_from_outside = diff - parry_outside_edge_distance
-		
-		if $Shield.check_position(o.global_position, o.get_width()):
-			if o.has_method("parry"):
-				o.parry(false)
-				last_parried = o
-
-#	var first_overlap = overlaps.pop_at(0)
-#	if first_overlap.has_method("parry"):
-#		first_overlap.parry()
-#		last_parried = first_overlap
-#
-#	for o in overlaps:
-#		# destroy the rest, that is the power of the light
-#		if o.has_method("destroy"):
-#			o.destroy()
-#
-	#sparried = true
-	$ParryRing.activate()
-	
 
 var dash = false
 func _dash():
@@ -132,10 +93,6 @@ func take_damage(d: int, enemy: Node2D):
 	var dmgmgr = $DamageManager
 	if dmgmgr:
 		dmgmgr.take_damage(self, enemy, d)
-
-
-func _on_kill_light_parry_recharged():
-	parried = false
 
 func _on_damage_manager_health_updated(health: int, _init_health: int):
 	if health <= 0:

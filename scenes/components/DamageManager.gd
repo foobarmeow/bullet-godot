@@ -33,8 +33,9 @@ func end_invuln():
 	_invuln = false
 	
 func take_damage(parent: Node2D, enemy: Node2D, dmg: int):
-	# free the enemy right away...
-	enemy.queue_free()
+	if is_instance_valid(enemy):	
+		# free the enemy right away...
+		enemy.queue_free()
 	
 	if _invuln:
 		return
