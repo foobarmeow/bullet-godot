@@ -8,5 +8,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var velocity = velocity.move_toward(get_global_mouse_position()*10)
-	move_and_collide(velocity)
+	move_and_collide(position.direction_to(get_global_mouse_position()))

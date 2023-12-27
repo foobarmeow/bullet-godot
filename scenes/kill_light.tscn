@@ -1,14 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://bwx1ygvwk1cwj"]
+[gd_scene load_steps=15 format=3 uid="uid://bwx1ygvwk1cwj"]
 
 [ext_resource type="Texture2D" uid="uid://bhm8ejjl2sa26" path="res://art/sprites/lights/ring-halo-1.png" id="1_r6q5i"]
 [ext_resource type="Texture2D" uid="uid://cvcc60svfqim0" path="res://art/s2s.bg.png" id="2_3jikf"]
 [ext_resource type="Script" path="res://scenes/kill_light.gd" id="2_84vhp"]
 [ext_resource type="Shader" path="res://scenes/parry-ring-debug.gdshader" id="3_6i1b5"]
-[ext_resource type="Texture2D" uid="uid://jhftm7n81ou3" path="res://art/sprites/debug/bullet-player.png" id="4_5td5y"]
 [ext_resource type="Texture2D" uid="uid://c7u3xb5mo3n3t" path="res://art/sprites/debug/512-blank.png" id="4_lsmaa"]
 [ext_resource type="Shader" path="res://ring-shader-area.gdshader" id="4_ouufx"]
 [ext_resource type="Texture2D" uid="uid://d0iai05rfiddw" path="res://art/sprites/lights/parry-halo.png" id="5_76imm"]
-[ext_resource type="Script" path="res://scenes/levels/Camera.gd" id="9_gmuk1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pypbu"]
 shader = ExtResource("3_6i1b5")
@@ -24,6 +22,45 @@ shader_parameter/highlight_width = 0.124
 shader_parameter/feather_width = 0.252
 shader_parameter/start_angle = 360.0
 shader_parameter/end_angle = 360.0
+
+[sub_resource type="Animation" id="Animation_cgn7l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/start_angle")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [360.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/end_angle")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [360.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.403922)]
+}
 
 [sub_resource type="Animation" id="Animation_ytdj7"]
 resource_name = "parry_activate"
@@ -119,45 +156,6 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 0.054902), Color(1, 1, 1, 0.305882)]
 }
 
-[sub_resource type="Animation" id="Animation_cgn7l"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/start_angle")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [360.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:material:shader_parameter/end_angle")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [360.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:self_modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.403922)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tkj07"]
 _data = {
 "RESET": SubResource("Animation_cgn7l"),
@@ -167,8 +165,6 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dykci"]
 radius = 194.659
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_dmukq"]
 
 [node name="KillLight" type="Node2D"]
 script = ExtResource("2_84vhp")
@@ -216,18 +212,5 @@ visible = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 visible = false
 shape = SubResource("CircleShape2D_dykci")
-
-[node name="Pointer" type="RigidBody2D" parent="."]
-gravity_scale = 0.0
-freeze = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pointer"]
-shape = SubResource("CircleShape2D_dmukq")
-
-[node name="Camera2D" type="Camera2D" parent="Pointer"]
-script = ExtResource("9_gmuk1")
-
-[node name="Bullet-player" type="Sprite2D" parent="Pointer"]
-texture = ExtResource("4_5td5y")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

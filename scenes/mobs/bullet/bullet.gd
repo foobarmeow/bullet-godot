@@ -12,7 +12,10 @@ func fire():
 	fired_at = Engine.get_frames_drawn()
 	fired = true
 
-func parry():
+func parry(random: bool):
+	if random:
+		velocity = position.rotated(randf_range(0, 1) * speed/2)
+		return
 	# We want to collide with enemies now
 	set_collision_mask_value(3, true)
 	modulate = Color(0.0, 106.0, 252.0, 255)
