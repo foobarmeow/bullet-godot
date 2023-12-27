@@ -10,6 +10,8 @@ func fire():
 	fired_at = Engine.get_frames_drawn()
 	fired = true
 
+func parry():
+	velocity = position.direction_to(from) * (parry_speed)
 
 func _process(delta):
 	if !fired:
@@ -23,7 +25,6 @@ func _process(delta):
 
 	
 	if collision != null:
-		print(collision.get_collider())
 		var collider = collision.get_collider()
 		if collider is Player:
 			collider.take_damage(10)
@@ -38,7 +39,6 @@ func _process(delta):
 			set_collision_mask_value(3, true)
 			# We're a magic
 			
-			print(delta*parry_speed)
 			# TODO: sometimes this can end up with the bullet getting a little stuck 
 			# on the parry collider
 			velocity = position.direction_to(from) * (parry_speed)

@@ -3,6 +3,7 @@ extends Node2D
 @export var lit_material: CanvasItemMaterial
 @export var line_manager: Node2D
 
+
 var paused: bool
 
 # Called when the node enters the scene tree for the first time.
@@ -48,3 +49,5 @@ func _on_lights_out_trigger_area_entered(area):
 	line_manager.enabled = true
 	line_manager.reveal_type = Constants.RevealType.PLAYER
 	
+
+
