@@ -14,7 +14,6 @@ func _ready():
 	$FireTimer.timeout.connect(fire)
 
 func fire():
-	print("here", bullet, type)
 	if bullet == null:
 		return
 
@@ -36,8 +35,9 @@ func fire():
 
 func add_bullet(v):
 	var b = bullet.instantiate()
-	get_tree().root.add_child(b)
 	b.position = global_position
+	get_tree().root.add_child(b)
+	
 	#add_child(b)
 	b.fire(v)
 				

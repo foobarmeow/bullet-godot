@@ -1,6 +1,7 @@
 extends Area2D
 
 @export var speed = 1200
+@export var acceleration: float = 0.25
 @export var initial_lives = 1
 @export var exp: bool = false
 
@@ -8,6 +9,7 @@ var screen_size = Vector2.ZERO
 var initial_modulate: Color
 var alive: bool = true
 var lives: int = initial_lives
+var local_speed: int = 0
 
 signal hit
 
@@ -29,9 +31,15 @@ func _process(delta):
 		velocity.x = 1
 	if Input.is_action_pressed("move_left"):
 		velocity.x = -1
+	
+
 		
 	if velocity.length() != 0:
-		velocity = velocity.normalized() * speed
+		if local_speed < speed:
+			local_speed += speed * acceleration
+		velocity = velocity.normalized() * local_speed
+	else:
+		local_speed = 0
 		
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO, screen_size)
