@@ -9,19 +9,29 @@ func _ready():
 	pass # Replace with function body.
 
 
+var parrying = false
 func parry():
-	var v = Vector2.RIGHT.rotated(rotation) * 100
-	print(v)
-	add_constant_force(v, Vector2.ZERO)
+	if parrying:
+		return
+	set_collision_layer_value(8, true)
+	parrying = true
+	await get_tree().create_timer(.25).timeout
+	parrying = false
+	set_collision_layer_value(8, false)
 	
 
-func _process(delta):
+func _physics_process(delta):
 	if !track_mouse:
 		return
 		
-	var mouse_position = get_global_mouse_position()
-	var angle_to_mouse = atan2(mouse_position.y - to_global(position).y, mouse_position.x - to_global(position).x)
-	rotation = angle_to_mouse
+	look_at(get_global_mouse_position())
+		
+#
+#	var mouse_position = get_global_mouse_position()
+#	var angle_to_mouse = atan2(mouse_position.y - to_global(position).y, mouse_position.x - to_global(position).x)
+#	rotation = angle_to_mouse
+	
+
 	
 
 
