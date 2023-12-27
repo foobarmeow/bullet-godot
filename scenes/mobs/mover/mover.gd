@@ -107,9 +107,10 @@ func _on_visible_on_screen_notifier_2d_screen_entered():
 	$FireTimer.start()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
-	alerted = false
-	$FireTimer.stop()
-
+	#alerted = false
+	#$FireTimer.stop()
+	pass
+	
 func fire():
 	if bullet == null:
 		return
