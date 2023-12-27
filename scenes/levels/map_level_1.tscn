@@ -652,7 +652,7 @@ position = Vector2(745.762, 1133)
 curve = SubResource("Curve2D_cdo1u")
 
 [node name="Runner" parent="NPCs/Runners/RunnerPath2" instance=ExtResource("2_tb2g7")]
-position = Vector2(-2.56124, -585.577)
+position = Vector2(-2.5612, -585.577)
 progress = 18.4346
 rotates = false
 role = 1
@@ -664,7 +664,7 @@ min_move_slice = 0.1
 max_move_slice = 0.5
 
 [node name="Runner2" parent="NPCs/Runners/RunnerPath2" instance=ExtResource("2_tb2g7")]
-position = Vector2(-2.56124, -585.577)
+position = Vector2(-2.5612, -585.577)
 progress = 18.4346
 rotates = false
 role = 1
@@ -676,7 +676,7 @@ min_move_slice = 0.1
 max_move_slice = 0.5
 
 [node name="Runner3" parent="NPCs/Runners/RunnerPath2" instance=ExtResource("2_tb2g7")]
-position = Vector2(-2.56124, -585.577)
+position = Vector2(-2.5612, -585.577)
 progress = 18.4346
 rotates = false
 role = 1
@@ -688,7 +688,7 @@ min_move_slice = 0.1
 max_move_slice = 0.5
 
 [node name="Runner4" parent="NPCs/Runners/RunnerPath2" instance=ExtResource("2_tb2g7")]
-position = Vector2(-2.56124, -585.577)
+position = Vector2(-2.5612, -585.577)
 progress = 18.4346
 rotates = false
 role = 1
@@ -700,7 +700,7 @@ min_move_slice = 0.1
 max_move_slice = 0.5
 
 [node name="Runner5" parent="NPCs/Runners/RunnerPath2" instance=ExtResource("2_tb2g7")]
-position = Vector2(-2.56124, -585.577)
+position = Vector2(-2.5612, -585.577)
 progress = 18.4346
 rotates = false
 role = 1
@@ -712,7 +712,7 @@ min_move_slice = 0.1
 max_move_slice = 0.5
 
 [node name="Runner6" parent="NPCs/Runners/RunnerPath2" instance=ExtResource("2_tb2g7")]
-position = Vector2(-2.56124, -585.577)
+position = Vector2(-2.5612, -585.577)
 progress = 18.4346
 rotates = false
 role = 1
@@ -724,7 +724,7 @@ min_move_slice = 0.1
 max_move_slice = 0.5
 
 [node name="Runner7" parent="NPCs/Runners/RunnerPath2" instance=ExtResource("2_tb2g7")]
-position = Vector2(-2.56124, -585.577)
+position = Vector2(-2.5612, -585.577)
 progress = 18.4346
 rotates = false
 role = 1
