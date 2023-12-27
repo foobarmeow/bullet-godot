@@ -30,9 +30,7 @@ func _unhandled_input(_event):
 	if Input.is_action_just_pressed("dash"):
 		_dash()
 		return
-	if Input.is_action_just_pressed("action_input"):
-		level_action.emit()
-		return
+
 
 func fire():
 	if has_weapon && $Weapon:
