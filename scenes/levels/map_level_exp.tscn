@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cjoh7lgonxxhv"]
+[gd_scene load_steps=10 format=3 uid="uid://cjoh7lgonxxhv"]
 
 [ext_resource type="Script" path="res://scenes/levels/map_level.gd" id="1_icc6t"]
 [ext_resource type="PackedScene" uid="uid://bhnamekyyvkpa" path="res://scenes/player/player.tscn" id="2_s21pb"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://scenes/levels/Camera.gd" id="5_a1xxu"]
 [ext_resource type="TileSet" uid="uid://v6fs17ekenoc" path="res://art/tilesets/new_tile_set.tres" id="5_i2agf"]
 [ext_resource type="Texture2D" uid="uid://tdf23n073efd" path="res://art/sprites/lights/halo.png" id="6_ecyny"]
-[ext_resource type="Texture2D" uid="uid://5oyyd2tufl1m" path="res://art/sprites/lights/long-line.png" id="8_gsnfl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rovmf"]
 size = Vector2(20, 35)
@@ -203,7 +202,6 @@ position = Vector2(6941, 1088.5)
 shape = SubResource("RectangleShape2D_rovmf")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0.333333, 0.333333, 0.333333, 1)
 
 [node name="KillLightHolder" type="Control" parent="."]
@@ -230,60 +228,5 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillLightHolder/KillLight/Area2D"]
 visible = false
 shape = SubResource("CircleShape2D_c1vd8")
-
-[node name="LightPathHolder" type="Node2D" parent="."]
-visible = false
-
-[node name="1" type="PointLight2D" parent="LightPathHolder"]
-position = Vector2(6583.5, 1088)
-scale = Vector2(0.65332, 1)
-color = Color(0.843107, 0.200671, 0, 1)
-shadow_enabled = true
-texture = ExtResource("8_gsnfl")
-
-[node name="2" type="PointLight2D" parent="LightPathHolder"]
-position = Vector2(6251, 1202)
-rotation = 1.5708
-scale = Vector2(0.226204, 1)
-color = Color(0.843107, 0.200671, 0, 1)
-shadow_enabled = true
-texture = ExtResource("8_gsnfl")
-
-[node name="3" type="PointLight2D" parent="LightPathHolder"]
-position = Vector2(6018.91, 1316)
-scale = Vector2(0.456852, 1)
-color = Color(0.843107, 0.200671, 0, 1)
-shadow_enabled = true
-texture = ExtResource("8_gsnfl")
-
-[node name="4" type="PointLight2D" parent="LightPathHolder"]
-position = Vector2(5787, 1254.74)
-rotation = 1.5708
-scale = Vector2(0.124395, 1)
-color = Color(0.843107, 0.200671, 0, 1)
-shadow_enabled = true
-texture = ExtResource("8_gsnfl")
-
-[node name="5" type="PointLight2D" parent="LightPathHolder"]
-position = Vector2(5547.85, 1193)
-scale = Vector2(0.470401, 1)
-color = Color(0.843107, 0.200671, 0, 1)
-shadow_enabled = true
-texture = ExtResource("8_gsnfl")
-
-[node name="6" type="PointLight2D" parent="LightPathHolder"]
-position = Vector2(5309, 1137)
-rotation = 1.5708
-scale = Vector2(0.11208, 1)
-color = Color(0.843107, 0.200671, 0, 1)
-shadow_enabled = true
-texture = ExtResource("8_gsnfl")
-
-[node name="7" type="PointLight2D" parent="LightPathHolder"]
-position = Vector2(4419.19, 1082)
-scale = Vector2(1.74256, 1)
-color = Color(0.843107, 0.200671, 0, 1)
-shadow_enabled = true
-texture = ExtResource("8_gsnfl")
 
 [connection signal="area_entered" from="LightsOutTrigger" to="." method="_on_lights_out_trigger_area_entered"]

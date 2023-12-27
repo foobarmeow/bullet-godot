@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca0aqod6yyxdo"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wfl4g"]
+blend_mode = 1
+
+[node name="SpriteLight" type="Sprite2D"]
+modulate = Color(0.792157, 0, 0.0823529, 1)
+material = SubResource("CanvasItemMaterial_wfl4g")
