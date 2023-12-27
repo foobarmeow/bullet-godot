@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://bq3efdgekuwou"]
+
+[ext_resource type="Texture2D" uid="uid://jhftm7n81ou3" path="res://art/sprites/debug/bullet-player.png" id="1_sdawf"]
+[ext_resource type="PackedScene" uid="uid://c27avw8s50be6" path="res://scenes/shadow-sprite/sprite_shadow.tscn" id="2_03yr1"]
+[ext_resource type="Texture2D" uid="uid://bs2ic4jk5myni" path="res://art/sprites/lights/2d_lights_and_shadows_neutral_point_light.webp" id="3_oi4vy"]
+[ext_resource type="Script" path="res://scenes/shadow-sprite/Light.gd" id="4_heygr"]
+
+[sub_resource type="Curve" id="Curve_na2jj"]
+_data = [Vector2(0.619597, 0.747368), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_yqd8g"]
+_data = [Vector2(0.516418, 0.589474), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_la6gv"]
+curve_x = SubResource("Curve_na2jj")
+curve_y = SubResource("Curve_yqd8g")
+
+[node name="Heyo" type="Node2D"]
+
+[node name="BG" type="Sprite2D" parent="."]
+position = Vector2(501.5, 401.25)
+scale = Vector2(4.91797, 803.5)
+texture = SubResource("CurveXYZTexture_la6gv")
+
+[node name="Bullet-player" type="Sprite2D" parent="."]
+position = Vector2(537, 335)
+texture = ExtResource("1_sdawf")
+metadata/_edit_group_ = true
+
+[node name="SpriteShadow" parent="Bullet-player" instance=ExtResource("2_03yr1")]
+texture = ExtResource("1_sdawf")
+sprite_height = 20
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.745098, 0.745098, 0.745098, 1)
+
+[node name="Light" type="PointLight2D" parent="."]
+position = Vector2(334, 268)
+shadow_enabled = true
+texture = ExtResource("3_oi4vy")
+script = ExtResource("4_heygr")

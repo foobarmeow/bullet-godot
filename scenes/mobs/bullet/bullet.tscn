@@ -1,13 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://den0ajf1m1ws3"]
+[gd_scene load_steps=6 format=3 uid="uid://den0ajf1m1ws3"]
 
 [ext_resource type="Script" path="res://scenes/mobs/bullet/bullet.gd" id="1_p1aaw"]
 [ext_resource type="Texture2D" uid="uid://bm2an1j5clbc0" path="res://art/sprites/kenny-1px/tile_0022.png" id="2_4nsqr"]
+[ext_resource type="Texture2D" uid="uid://b7ir2sgox37ar" path="res://art/sprites/lights/light-halo.png" id="3_gjnbb"]
+[ext_resource type="Texture2D" uid="uid://cvcc60svfqim0" path="res://art/s2s.bg.png" id="4_ho3l6"]
+[ext_resource type="Texture2D" uid="uid://y5aqf0ojfx0" path="res://art/sprites/lights/bullet-light.png" id="4_n2i24"]
 
 [node name="Mob" type="CharacterBody2D"]
 scale = Vector2(1.15, 1.15)
 collision_mask = 10
 script = ExtResource("1_p1aaw")
 metadata/_edit_group_ = true
+
+[node name="S2s_bg" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-43.4783, 28.6957)
+texture = ExtResource("4_ho3l6")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+color = Color(0.85098, 0, 0, 1)
+energy = 0.25
+texture = ExtResource("3_gjnbb")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+color = Color(0.85098, 0, 0, 1)
+texture = ExtResource("4_n2i24")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)
@@ -21,5 +39,9 @@ scale = Vector2(0.608696, 0.608696)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false
 polygon = PackedVector2Array(-6.08696, -1.73913, -6.08696, 1.73913, -1.73913, 6.08696, 1.73913, 6.08696, 6.08696, 1.73913, 6.08696, -1.73913, 1.73913, -6.08696, -0.869565, -6.08696, -3.53706, -3.86404)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0.258824, 0.258824, 0.258824, 1)
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exit"]

@@ -4,6 +4,7 @@ extends Node2D
 @export var bullet: PackedScene
 @export var speed: int = 900
 @export var dir: Vector2
+var v: Vector2
 
 func _ready():
 	$FireTimer.timeout.connect(fire)
@@ -19,6 +20,7 @@ func fire():
 		Constants.SpawnerType.DIR:
 			var v = dir * speed
 			add_bullet(v)
+			print(type, " - ", v, name	)
 		Constants.SpawnerType.PLUS:
 			for v in [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]:
 				add_bullet(v*speed)
@@ -30,6 +32,8 @@ func fire():
 				var v = Vector2.UP.rotated(angle) * speed
 				add_bullet(v)
 				angle += step
+				
+	get_parent().get_node("AnimatedSprite2D").play("fire")
 
 func add_bullet(v):
 	var b = bullet.instantiate()
@@ -41,3 +45,7 @@ func add_bullet(v):
 				
 			
 			
+
+
+func _on_animated_sprite_2d_animation_finished():
+	pass
