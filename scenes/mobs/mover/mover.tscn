@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://c7fyo24ou0om7"]
+[gd_scene load_steps=28 format=3 uid="uid://c7fyo24ou0om7"]
 
 [ext_resource type="Script" path="res://scenes/mobs/mover/mover.gd" id="1_6fl8p"]
 [ext_resource type="Material" uid="uid://vtmbky35o2p2" path="res://resources/lit-mat.tres" id="1_oict5"]
@@ -170,6 +170,9 @@ size = Vector2(10.0577, 14.0512)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_eiuu1"]
 polygon = PackedVector2Array(-4, -6, -7, -4, -7, 4, -6, 5, -6, 8, -2, 8, -2, 7, 2, 7, 2, 8, 6, 8, 6, 4, 7, 3, 7, -3, 6, -5, 4, -6)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ykj56"]
+size = Vector2(17, 17)
+
 [node name="Mover" type="CharacterBody2D"]
 material = ExtResource("1_oict5")
 collision_layer = 4
@@ -183,6 +186,7 @@ bullet = ExtResource("3_qs4ld")
 wait_time = 0.25
 
 [node name="OutsideRadius" type="Area2D" parent="."]
+visible = false
 scale = Vector2(10.72, 10.72)
 collision_layer = 0
 collision_mask = 16
@@ -192,6 +196,7 @@ scale = Vector2(14.4956, 14.4956)
 shape = SubResource("CircleShape2D_xxnp7")
 
 [node name="InsideRadius" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 16
 
@@ -222,6 +227,14 @@ debug_color = Color(0.898039, 0.27451, 0.396078, 0.419608)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_eiuu1")
+
+[node name="FromBox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FromBox"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ykj56")
 
 [connection signal="timeout" from="FireTimer" to="." method="fire"]
 [connection signal="area_entered" from="OutsideRadius" to="." method="_on_outside_radius_area_entered"]

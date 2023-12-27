@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0aqltjw153s5"]
+
+[ext_resource type="PackedScene" uid="uid://bwx1ygvwk1cwj" path="res://scenes/kill_light.tscn" id="1_nbnht"]
+[ext_resource type="Texture2D" uid="uid://bhm8ejjl2sa26" path="res://art/sprites/lights/ring-halo-1.png" id="2_slxba"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bb1at"]
+radius = 26.9677
+
+[node name="Parry" type="Area2D"]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bb1at")
+
+[node name="KillLight" parent="CollisionShape2D" instance=ExtResource("1_nbnht")]
+scale = Vector2(0.42, 0.42)
+texture = ExtResource("2_slxba")
+texture_scale = 0.35

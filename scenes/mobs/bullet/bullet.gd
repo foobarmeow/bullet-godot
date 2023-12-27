@@ -5,6 +5,7 @@ var fired: bool
 var fired_at: int
 var from: Vector2
 var parry_speed: int
+var armed: bool = false
 
 func fire():
 	fired_at = Engine.get_frames_drawn()
@@ -32,29 +33,14 @@ func _physics_process(delta):
 		var collider = collision.get_collider()
 		if collider is Player:
 			# Pass a reference to myself so it knows who brought the heat
-			collider.take_damage(10, self)
+			if armed:
+				collider.take_damage(10, self)
 			return # We'll let the damage taker free it
-		elif collider is Mover:
-			print("ya dead!")
-		elif collider is StaticBody2D:
-			# If we ran into a static body we want to bounce off of it
-						#velocity = velocity.bounce(collision.get_normal())
-			# Either bounce or go back to the originator
-			
-			# We're no longer a bullet
-			set_collision_mask_value(3, true)
-			# We're a magic
-			
-			# TODO: sometimes this can end up with the bullet getting a little stuck 
-			# on the parry collider
-			velocity = position.direction_to(from) * (parry_speed)
-			#collision = move_and_collide(velocity)
-			#if collision != null && collision.get_collider() is Mover:
-			#	#collision.get_collider().queue_free()
-			#	print("ya dead!")
-			
-			return
-		elif Engine.get_frames_drawn() - fired_at < 10:
+		elif collider is Mover && Engine.get_frames_drawn() - fired_at > 10:
+			if armed:
+				print("yo")
+				collider.destroy()
+		elif Engine.get_frames_drawn() - fired_at < 100:
 			# It's nice to have them dissapear when they
 			# hit another enemy, but we have to add this lag
 			# so that they have time to get away from their origin
@@ -64,3 +50,8 @@ func _physics_process(delta):
 
 func _on_screen_exit():
 	queue_free()
+
+
+func _on_area_2d_area_exited(area):
+	if area.name == "FromBox":
+		armed = true

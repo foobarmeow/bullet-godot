@@ -1,8 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://bhnamekyyvkpa"]
+[gd_scene load_steps=17 format=3 uid="uid://bhnamekyyvkpa"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_0r62m"]
 [ext_resource type="Material" uid="uid://vtmbky35o2p2" path="res://resources/lit-mat.tres" id="1_6rdlo"]
 [ext_resource type="Texture2D" uid="uid://c4026v6xiksqa" path="res://art/sprites/kenny-1px/monochrome_tilemap_transparent.png" id="3_i0sjv"]
+[ext_resource type="PackedScene" uid="uid://bwx1ygvwk1cwj" path="res://scenes/kill_light.tscn" id="4_y8ax7"]
+[ext_resource type="Texture2D" uid="uid://bhm8ejjl2sa26" path="res://art/sprites/lights/ring-halo-1.png" id="5_osp6x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x7kx5"]
 atlas = ExtResource("3_i0sjv")
@@ -73,6 +75,9 @@ size = Vector2(12.3077, 10.7692)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wl5i8"]
 size = Vector2(12.3077, 10.7693)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_bb1at"]
+radius = 26.9677
+
 [node name="Player" type="CharacterBody2D"]
 material = ExtResource("1_6rdlo")
 position = Vector2(512, 384)
@@ -104,5 +109,16 @@ collision_mask = 0
 position = Vector2(0, 2.30768)
 shape = SubResource("RectangleShape2D_wl5i8")
 debug_color = Color(0.929412, 0, 0.654902, 0.419608)
+
+[node name="Parry" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parry"]
+shape = SubResource("CircleShape2D_bb1at")
+
+[node name="KillLight" parent="Parry/CollisionShape2D" instance=ExtResource("4_y8ax7")]
+scale = Vector2(0.42, 0.42)
+texture = ExtResource("5_osp6x")
+texture_scale = 0.35
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

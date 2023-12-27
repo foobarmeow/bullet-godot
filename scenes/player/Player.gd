@@ -2,16 +2,17 @@ class_name Player extends CharacterBody2D
 
 signal health_updated
 
-@export var speed = 500
-@export var acceleration = 50
-@export var top_speed = 800
+@export var speed = 100
+@export var acceleration = 10
+@export var top_speed = 150
 @export var steps_to_accel: float = 3
 @export var steps_to_decel: float = 2
 @export var initial_health = 100
 @export var hittable: bool = true
 @export var damageable: bool = true
-@export var parry_time: float = 0.1
+@export var parry_time: float = 1.5
 @export var hit_grace: float = 0.1 # time after hit they can still parry
+@export var i_time: float = 0.25 # Invincible time after taking damage
 
 const TIME_PER_STEP: float = 0.2
 
@@ -30,6 +31,7 @@ var sprite: AnimatedSprite2D
 var taking_damage: bool
 var bounced: bool = false
 var last_parried: Node2D
+var parried: bool = false
 
 # TODO: Make this a property of the node that collided
 var damage: int = 10
@@ -56,14 +58,15 @@ func _ready():
 	#setup_shadow()
 
 func _unhandled_input(event):
+	if Input.is_action_just_pressed("reload"):
+		get_tree().reload_current_scene()
+		return
 	if Input.is_action_just_pressed("parry"):
-		#print(parryables)
-		#if len(parryables) > 0:
-		#	var p = parryables.pop_at(0)
-		#	p.get_parent().parry()
-		
+		if parried: 
+			return
 		var overlaps = $Parry.get_overlapping_bodies()
 		if len(overlaps) < 1:
+			parried = false
 			return
 		var first_overlap = overlaps.pop_at(0)
 		if first_overlap.has_method("parry"):
@@ -75,17 +78,16 @@ func _unhandled_input(event):
 			if o.has_method("destroy"):
 				o.destroy()
 					
-		var initial_color = circle_color
-		#$Parry.process_mode = Node.PROCESS_MODE_INHERIT
-		circle_color = Color.GREEN
-		queue_redraw()
 		var initial_energy = $Parry/CollisionShape2D/KillLight.energy
 		$Parry/CollisionShape2D/KillLight.energy = 0.1
-		await get_tree().create_timer(parry_time).timeout
-		$Parry/CollisionShape2D/KillLight.energy = initial_energy
-		#$Parry.process_mode = Node.PROCESS_MODE_DISABLED
-		circle_color = initial_color
-		queue_redraw()
+		
+		var parry_return_steps = 10
+		var step = parry_time/parry_return_steps
+		for i in parry_return_steps:
+			await get_tree().create_timer(step).timeout
+			$Parry/CollisionShape2D/KillLight.energy += initial_energy/parry_return_steps
+		parried = false
+		
 #func setup_shadow():
 #	var frame = $AnimatedSprite2D.get_frame()
 #	var animation = $AnimatedSprite2D.get_animation()
@@ -109,9 +111,7 @@ func _physics_process(delta):
 		sprite.play("dead")
 		return
 	handle_movement(delta)
-	
-	if taking_damage && damage != 0:
-		health -= damage * delta
+
 	
 func handle_movement(delta: float):
 	if bounced:
@@ -152,21 +152,26 @@ func handle_movement(delta: float):
 	
 # Called by bullets that detect collision with player
 func take_damage(d: int, enemy: Node2D):
-	if !hittable:
+	if !hittable || taking_damage:
 		return
 	if health > 0:
 		# Give just a couple frames of leway for them to parry
 		await get_tree().create_timer(hit_grace).timeout
 		if enemy != last_parried:
 			if damageable:
+				taking_damage = true
 				health -= d
-				
+				print(health)
 			if hittable:
 				sprite.modulate = Color("ff0000")
-				await get_tree().create_timer(.25).timeout
-				sprite.modulate = initial_modulate
+				get_tree().create_timer(.25).timeout.connect(func():
+					sprite.modulate = initial_modulate
+				)
 			if is_instance_valid(enemy):
 				enemy.queue_free()
+			await get_tree().create_timer(i_time).timeout
+			taking_damage = false
+			
 	
 func blink():
 	for i in 10:
@@ -182,10 +187,6 @@ func end():
 func _on_animated_sprite_2d_animation_finished():
 	if sprite.animation == "dead":
 		process_mode = Node.PROCESS_MODE_DISABLED
-
-
-
-
 
 func _on_parry_area_entered(area):
 	print("YO")
