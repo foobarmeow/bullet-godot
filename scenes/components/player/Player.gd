@@ -65,10 +65,17 @@ func _physics_process(delta):
 	var coll = move_and_collide(velocity * delta)
 	if coll:
 		if coll.get_collider().is_in_group("walls"):
+			# Slide off of walls
 			velocity = velocity.slide(coll.get_normal())
 			return
 		if coll.get_collider().is_in_group("rocks"):
-			take_damage(10, coll.get_collider())
+			var r = coll.get_collider()
+			if r.linear_velocity.length() > 5:
+				# Only take damage if the rock is moving at a certain speed
+				take_damage(10, r)
+
+			# Slide off of rocks 
+			velocity = velocity.slide(coll.get_normal())
 			return
 
 
