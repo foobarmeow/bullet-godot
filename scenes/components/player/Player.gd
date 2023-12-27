@@ -18,6 +18,7 @@ signal drink
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var dead: bool = false
+var drinkable: bool = false
 
 func _unhandled_input(_event):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
@@ -30,6 +31,8 @@ func _unhandled_input(_event):
 		_dash()
 		return
 	if Input.is_action_just_pressed("drink"):
+		if !drinkable:
+			return
 		drink.emit()
 		$AnimationPlayer.play("drink")
 		return
@@ -102,3 +105,5 @@ func _on_damage_manager_health_updated(health: int, _init_health: int):
 func _on_damage_manager_invuln_updated(invuln: bool):
 	handle_invuln(true, false)
 
+func _on_well_area_area(area):
+	drinkable = !drinkable
