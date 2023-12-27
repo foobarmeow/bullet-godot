@@ -39,7 +39,7 @@ func _physics_process(delta):
 		if player != null:
 			$Spawner.dir = position.direction_to(player.position)
 
-	if filling > 0:
+	if filling > 0: 
 		fill += filling * delta
 	elif fill > 0:
 		fill -= .5 * delta
