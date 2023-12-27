@@ -25,6 +25,7 @@ var walk_steps: int = 0
 var last_velocity: Vector2
 var sprite: AnimatedSprite2D
 var taking_damage: bool
+var bounced: bool = false
 
 # TODO: Make this a property of the node that collided
 var damage: int = 10
@@ -49,17 +50,17 @@ func _physics_process(delta):
 		health -= damage * delta
 	
 func handle_movement(delta: float):
-	var velocity = Vector2.ZERO
-	if Input.is_action_pressed("move_up"):
-		velocity.y = -1
-	if Input.is_action_pressed("move_down"):
-		velocity.y = 1
+	if bounced:
+		move_and_collide(velocity*delta)
+		return
+	
 	if Input.is_action_pressed("move_right"):
-		velocity.x = 1
 		sprite.flip_h = false
 	if Input.is_action_pressed("move_left"):
-		velocity.x = -1
 		sprite.flip_h = true
+		
+	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	velocity = input_direction
 
 	#if Input.is_action_just_pressed("move_right") || Input.is_action_just_pressed("move_left"):
 		#walk_steps = 0	
@@ -104,8 +105,21 @@ func handle_movement(delta: float):
 		walk_delta = 0
 		walk_steps = 0
 		
-	move_and_collide(velocity * delta)
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		#velocity = velocity.slide(collision.get_normal())
 		
+		var collider = collision.get_collider()
+		if collider.is_in_group("enemy"):
+			print("BOUNCE - ", velocity)
+			# bounce with it
+			bounced = true
+			get_tree().create_timer(.1).timeout.connect(func(): 
+					bounced = false
+			)
+			velocity = velocity.bounce(collision.get_normal())
+		else:
+			velocity = velocity.slide(collision.get_normal())
 	#position += velocity * delta
 	#position = position.clamp(Vector2.ZERO, screen_size)
 	last_velocity = velocity
