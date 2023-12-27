@@ -17,6 +17,7 @@ const animation_by_type = {
 @export var poppable: bool = true
 
 @export var spawn_type: Constants.SpawnerType = Constants.SpawnerType.TARGET
+@export var spawn_time: float = 0.25
 @export var bullet: PackedScene
 @export var speed: int = 50
 @export var dir: Vector2
@@ -29,6 +30,7 @@ var player: Player
 var alerted: bool = false
 
 func _ready():
+	$FireTimer.wait_time = spawn_time
 	if get_parent().name == "exp":
 		player = $Player
 		begin() # call begin on exp level
