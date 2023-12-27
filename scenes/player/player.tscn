@@ -91,6 +91,7 @@ sprite_frames = SubResource("SpriteFrames_ny255")
 animation = &"dead"
 
 [node name="SpriteShadow" parent="AnimatedSprite2D" instance=ExtResource("3_g1pj6")]
+visible = false
 position = Vector2(-0.221098, 2.30768)
 scale = Vector2(0.75, 0.633484)
 texture = SubResource("AtlasTexture_1twf4")

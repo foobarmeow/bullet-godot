@@ -17,3 +17,18 @@ func start_movers(nodes: Array[Node]):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+
+func _on_lights_out_trigger_area_entered(area):
+	$CanvasModulate.show()
+	
+	var l = $KillLight
+	l.energy = 0
+	$KillLight.show()
+	
+	while l.energy < 4:
+		await get_tree().create_timer(.1).timeout
+		l.energy += .1
+	l.reparent($Player)
+	$LightsOutTrigger.disconnect("area_entered", _on_lights_out_trigger_area_entered)
