@@ -14,4 +14,4 @@ func _on_damage_manager_health_updated(_health: int, _init_health: int):
 	heart.remove()
 		
 func _on_display_blood_hell():
-	$PentagramContainer.visible = true
+	$PentagramContainer.visible = !$PentagramContainer.visible
