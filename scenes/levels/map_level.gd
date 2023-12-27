@@ -1,5 +1,7 @@
 extends Node2D
 
+signal display_blood_hell
+
 var first_drank: int = 100
 var drinking_at_well = false
 
@@ -38,3 +40,9 @@ func _on_begin_area_area_entered(_area):
 		return
 	SignalBus.display_dialog.emit("intro")		
 	intro = false
+
+
+func _unhandled_input(event):
+	if event.is_action_pressed("blood_hell"):
+		display_blood_hell.emit()
+		$Scenery/CanvasLayer/RootModulate/AnimationPlayer.play("BloodLoop")
