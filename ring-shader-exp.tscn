@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://chtyp7d2agrrm"]
+[gd_scene load_steps=12 format=3 uid="uid://chtyp7d2agrrm"]
 
 [ext_resource type="Shader" path="res://ring-hl.gdshader" id="1_6rss3"]
 [ext_resource type="Texture2D" uid="uid://cvcc60svfqim0" path="res://art/s2s.bg.png" id="2_mv8vc"]
 [ext_resource type="Texture2D" uid="uid://bhm8ejjl2sa26" path="res://art/sprites/lights/ring-halo-1.png" id="3_mdk17"]
+[ext_resource type="Shader" path="res://ring-shader-area.gdshader" id="4_w1c0x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rfd6r"]
 shader = ExtResource("1_6rss3")
@@ -15,33 +16,38 @@ shader_parameter/slice_start = 0.0
 shader_parameter/slice_end = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6eexy"]
-shader = ExtResource("1_6rss3")
-shader_parameter/slice_start = 0.0
-shader_parameter/slice_end = 0.0
+shader = ExtResource("4_w1c0x")
+shader_parameter/circle_radius = 0.325
+shader_parameter/highlight_width = 0.155
+shader_parameter/start_angle = 0.0
+shader_parameter/end_angle = 0.0
 
 [sub_resource type="Animation" id="Animation_jjygt"]
-length = 0.001
-tracks/0/type = "bezier"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/slice_start")
+tracks/0/path = NodePath(".:material:shader_parameter/start_angle")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0, 0.05, 0.25, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 150.0, 330.0, 360.0]
 }
-tracks/1/type = "bezier"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:material:shader_parameter/slice_end")
+tracks/1/path = NodePath(".:material:shader_parameter/end_angle")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0, 0.05, 0.25, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 30.0, 180.0, 360.0, 360.0]
 }
 
 [sub_resource type="Animation" id="Animation_ivsf7"]
@@ -82,17 +88,47 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.25, 0.475)
 }
 
+[sub_resource type="Animation" id="Animation_kolwd"]
+resource_name = "parry_2"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/start_angle")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.25, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 150.0, 330.0, 360.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/end_angle")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.25, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 30.0, 180.0, 360.0, 360.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tkj07"]
 _data = {
 "RESET": SubResource("Animation_jjygt"),
-"parry": SubResource("Animation_ivsf7")
+"parry": SubResource("Animation_ivsf7"),
+"parry_2": SubResource("Animation_kolwd")
 }
 
 [node name="Node2D" type="Node2D"]
 material = SubResource("ShaderMaterial_rfd6r")
-rotation = 0.575959
 
 [node name="S2s_bg" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-45.7559, 45.215)
 texture = ExtResource("2_mv8vc")
 
@@ -100,15 +136,17 @@ texture = ExtResource("2_mv8vc")
 color = Color(0.384314, 0.384314, 0.384314, 1)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_pe4b7")
 energy = 0.15
 texture = ExtResource("3_mdk17")
 
-[node name="Ring-halo-1" type="Sprite2D" parent="PointLight2D"]
+[node name="Ring-halo-1" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_6eexy")
+scale = Vector2(8.83834, 8.83834)
 texture = ExtResource("3_mdk17")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PointLight2D/Ring-halo-1"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ring-halo-1"]
 libraries = {
 "": SubResource("AnimationLibrary_tkj07")
 }

@@ -17,7 +17,7 @@ resource_local_to_scene = true
 shader = ExtResource("4_tqwqv")
 shader_parameter/enabled = false
 shader_parameter/fade_distance = null
-shader_parameter/player_position = Vector2(-5818.97, -1103.76)
+shader_parameter/player_position = Vector2(-5828.51, -1110.66)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rovmf"]
 size = Vector2(20, 35)

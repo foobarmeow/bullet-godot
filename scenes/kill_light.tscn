@@ -1,9 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bwx1ygvwk1cwj"]
+[gd_scene load_steps=13 format=3 uid="uid://bwx1ygvwk1cwj"]
 
 [ext_resource type="Texture2D" uid="uid://bhm8ejjl2sa26" path="res://art/sprites/lights/ring-halo-1.png" id="1_r6q5i"]
 [ext_resource type="Script" path="res://scenes/kill_light.gd" id="2_84vhp"]
 [ext_resource type="Texture2D" uid="uid://cvcc60svfqim0" path="res://art/s2s.bg.png" id="2_tclfd"]
-[ext_resource type="Shader" path="res://ring-hl.gdshader" id="4_k1uue"]
+[ext_resource type="Shader" path="res://ring-shader-area.gdshader" id="4_ouufx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c1vd8"]
 radius = 63.0317
@@ -14,33 +14,38 @@ radius = 63.0317
 polygon = PackedVector2Array(149, -61, 180, -58, 178, -34, 157, -39)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ogiuw"]
-shader = ExtResource("4_k1uue")
-shader_parameter/slice_start = 0.0
-shader_parameter/slice_end = 0.0
+shader = ExtResource("4_ouufx")
+shader_parameter/circle_radius = 0.323
+shader_parameter/highlight_width = 0.133
+shader_parameter/start_angle = 0.0
+shader_parameter/end_angle = 0.0
 
 [sub_resource type="Animation" id="Animation_jjygt"]
-length = 0.001
-tracks/0/type = "bezier"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/slice_start")
+tracks/0/path = NodePath(".:material:shader_parameter/start_angle")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0, 0.05, 0.25, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 150.0, 330.0, 360.0]
 }
-tracks/1/type = "bezier"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:material:shader_parameter/slice_end")
+tracks/1/path = NodePath(".:material:shader_parameter/end_angle")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0, 0.05, 0.25, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 30.0, 180.0, 360.0, 360.0]
 }
 
 [sub_resource type="Animation" id="Animation_ivsf7"]
@@ -81,10 +86,40 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.25, 0.475)
 }
 
+[sub_resource type="Animation" id="Animation_kolwd"]
+resource_name = "parry_2"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/start_angle")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.25, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 150.0, 330.0, 360.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/end_angle")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.25, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 30.0, 180.0, 360.0, 360.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tkj07"]
 _data = {
 "RESET": SubResource("Animation_jjygt"),
-"parry": SubResource("Animation_ivsf7")
+"parry": SubResource("Animation_ivsf7"),
+"parry_2": SubResource("Animation_kolwd")
 }
 
 [node name="KillLight" type="PointLight2D"]
