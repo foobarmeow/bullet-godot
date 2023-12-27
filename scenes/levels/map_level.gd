@@ -25,7 +25,6 @@ func start_movers(nodes: Array[Node]):
 		if n.get_child_count() > 0:
 			start_movers(n.get_children())
 		if n is Mover:
-			n.player = $Player
 			n.begin()
 			n.dead.connect(_on_mover_dead)
 	

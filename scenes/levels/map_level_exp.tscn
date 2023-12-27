@@ -119,83 +119,108 @@ visible = false
 
 [node name="StillGuard" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(567, 326)
+bullet_color_override = null
 
 [node name="StillGuard3" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(744, 499)
+bullet_color_override = null
 
 [node name="StillGuard4" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(778, 546)
+bullet_color_override = null
 
 [node name="StillGuard6" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(443, 584)
+bullet_color_override = null
 
 [node name="StillGuardCircle2" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(1099, 1094)
+bullet_color_override = null
 
 [node name="StillGuard7" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(1935.41, 1006.31)
+bullet_color_override = null
 
 [node name="StillGuard8" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(2544.34, 1026.3)
+bullet_color_override = null
 
 [node name="StillGuard9" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(3060.74, 1028.27)
+bullet_color_override = null
 
 [node name="StillGuard11" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(3268, 1235)
+bullet_color_override = null
 
 [node name="StillGuard12" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(4107, 1015)
+bullet_color_override = null
 
 [node name="StillGuard13" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(4312, 1152)
+bullet_color_override = null
 
 [node name="StillGuard14" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(4339, 1011)
+bullet_color_override = null
 
 [node name="StillGuard10" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(2879.2, 686.55)
+bullet_color_override = null
 
 [node name="StillGuard15" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(4490, 1027)
+bullet_color_override = null
 
 [node name="StillGuard22" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(4618, 1027)
+bullet_color_override = null
 
 [node name="StillGuard23" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(4744.95, 1027)
+bullet_color_override = null
 
 [node name="StillGuard24" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(4874.02, 969)
+bullet_color_override = null
 spawn_time = 0.65
 
 [node name="StillGuard25" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(5002.63, 969)
+bullet_color_override = null
 spawn_time = 0.65
 
 [node name="StillGuard26" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(5131.89, 969)
+bullet_color_override = null
 spawn_time = 0.65
 
 [node name="StillGuard16" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(4491, 1137)
+bullet_color_override = null
 
 [node name="StillGuard17" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(4619.13, 1137)
+bullet_color_override = null
 
 [node name="StillGuard18" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(4743.98, 1137)
+bullet_color_override = null
 
 [node name="StillGuard19" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(4874.03, 1204)
+bullet_color_override = null
 spawn_time = 0.65
 
 [node name="StillGuard20" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(5001.87, 1204)
+bullet_color_override = null
 spawn_time = 0.65
 
 [node name="StillGuard21" parent="Enemies" instance=ExtResource("3_w5hcx")]
 position = Vector2(5130.65, 1204)
+bullet_color_override = null
 spawn_time = 0.65
 
 [node name="Player" parent="." instance=ExtResource("2_s21pb")]

@@ -17,7 +17,7 @@ const animation_by_type = {
 @export var path_speed: float = .01
 @export var movement_type: MovementType = MovementType.STOPPED
 @export var poppable: bool = true
-
+@export var bullet_color_override: Color
 @export var spawn_type: Constants.SpawnerType = Constants.SpawnerType.TARGET
 @export var spawn_time: float = 0.19
 @export var bullet: PackedScene
@@ -27,15 +27,14 @@ const animation_by_type = {
 @export var health: int = 30:
 	get:
 		return $DamageManager.health
+@export var target: Node2D
 
-var player: Player
 var alerted: bool = false
 var started: bool
 
 func _ready():
 	$FireTimer.wait_time = spawn_time
 	if get_parent().name == "exp":
-		player = $Player
 		begin() # call begin on exp level
 
 
@@ -45,8 +44,8 @@ func begin():
 	
 func _physics_process(delta):
 	if spawn_type == Constants.SpawnerType.TARGET:
-		if player != null:
-			dir = position.direction_to(player.position)
+		if target != null:
+			dir = position.direction_to(target.position)
 	
 	match movement_type:
 		MovementType.RANDOM:
@@ -118,6 +117,8 @@ func add_bullet(v):
 	b.speed = speed
 	b.from = position
 	b.parry_speed = parry_speed
+	if bullet_color_override:
+		b.modulate = bullet_color_override
 	b.fire()
 
 func take_damage(d: int, enemy: Node2D):
