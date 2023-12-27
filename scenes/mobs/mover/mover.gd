@@ -4,6 +4,7 @@ signal burst
 
 enum MovementType {PLAYER_STALK, STOPPED, RANDOM, PATHED = -1}
 
+
 const animation_by_type = {
 	MovementType.RANDOM: "mover",
 	MovementType.PATHED: "mover",
@@ -16,6 +17,7 @@ const animation_by_type = {
 @export var offset_from_player: int = 25
 @export var movement_type: MovementType
 @export var spawner_type: Constants.SpawnerType
+@export var spawner_dir: Vector2
 @export var poppable: bool = true
 
 var fill: float = 0
@@ -28,6 +30,9 @@ func begin():
 	$Spawner.type = spawner_type
 	var animation = animation_by_type[movement_type]
 	$AnimatedSprite2D.play(animation_by_type[movement_type])
+	
+	if spawner_type == Constants.SpawnerType.DIR:
+		$Spawner.dir = spawner_dir
 
 func _physics_process(delta):
 	if $Spawner.type == Constants.SpawnerType.TARGET:
@@ -98,4 +103,6 @@ func _on_visible_on_screen_notifier_2d_screen_entered():
 	$Spawner/FireTimer.start()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
+	alerted = false
+	$Spawner/FireTimer.stop()
 	pass
