@@ -14,3 +14,5 @@ func _process(delta):
 	if Input.is_action_just_pressed("zoom_out"):
 		zoom.x -= .2
 		zoom.y -= .2
+	zoom.x = clamp(zoom.x, 1.2, 4)
+	zoom.y = clamp(zoom.y, 1.2, 4)
