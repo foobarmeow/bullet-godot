@@ -114,7 +114,6 @@ offset_bottom = 1127.0
 
 [node name="KillLight" parent="KillLightHolder" instance=ExtResource("7_rheqg")]
 visible = false
-energy = 0.211166
 
 [node name="Enemies" type="Node2D" parent="."]
 visible = false

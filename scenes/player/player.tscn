@@ -85,6 +85,9 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_0r62m")
 
+[node name="KillLight" parent="." instance=ExtResource("4_y8ax7")]
+scale = Vector2(0.145, 0.145)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_ny255")
@@ -114,7 +117,5 @@ collision_layer = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Parry"]
 shape = SubResource("CircleShape2D_bb1at")
 
-[node name="KillLight" parent="Parry/CollisionShape2D" instance=ExtResource("4_y8ax7")]
-scale = Vector2(0.145, 0.145)
-
+[connection signal="parry_recharged" from="KillLight" to="." method="_on_kill_light_parry_recharged"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
