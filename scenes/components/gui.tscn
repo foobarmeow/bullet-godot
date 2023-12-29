@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bv30emql2nye5"]
+[gd_scene load_steps=28 format=3 uid="uid://bv30emql2nye5"]
 
 [ext_resource type="Script" path="res://scenes/components/gui.gd" id="1_ibyel"]
 [ext_resource type="FontFile" uid="uid://bf7dh5uueciw1" path="res://art/CompassPro.otf" id="1_nfopc"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://ch0ppvjvohdb2" path="res://art/sprites/byte-sheet.png" id="4_bsm5j"]
 [ext_resource type="Script" path="res://scenes/components/dialog_box.gd" id="6_hsosc"]
 [ext_resource type="Texture2D" uid="uid://drm8gr2tgri06" path="res://art/dialogue-box.png" id="7_mwb7k"]
+[ext_resource type="Texture2D" uid="uid://dkj27jbikl6lc" path="res://art/sprites/tear_particle.png" id="8_biwwr"]
+[ext_resource type="Texture2D" uid="uid://bbg3mfdwmdric" path="res://art/sprites/kenny-1px/bs_button.png" id="9_envsp"]
 
 [sub_resource type="Theme" id="Theme_g4xxv"]
 default_font = ExtResource("1_nfopc")
@@ -132,15 +134,86 @@ _data = {
 "show": SubResource("Animation_xc10u")
 }
 
+[sub_resource type="Curve" id="Curve_3eg0g"]
+_data = [Vector2(0.0119332, 0.2), 0.0, 0.0, 0, 0, Vector2(0.0692124, 0.494737), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3agyr"]
+curve = SubResource("Curve_3eg0g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gshxq"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.75
+scale_max = 0.75
+scale_curve = SubResource("CurveTexture_3agyr")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n5knm"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_guhhx"]
+texture = ExtResource("9_envsp")
+region_rect = Rect2(3, 3, 56, 28)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_khg6w"]
+texture = ExtResource("9_envsp")
+region_rect = Rect2(3, 3, 56, 28)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x2tqk"]
+texture = ExtResource("9_envsp")
+region_rect = Rect2(3, 3, 56, 28)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ow840"]
+texture = ExtResource("9_envsp")
+region_rect = Rect2(68, 3, 55, 27)
+
+[sub_resource type="Theme" id="Theme_8x3jx"]
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/h_separation = 2
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_nfopc")
+Button/styles/disabled = SubResource("StyleBoxFlat_n5knm")
+Button/styles/focus = SubResource("StyleBoxTexture_guhhx")
+Button/styles/hover = SubResource("StyleBoxTexture_khg6w")
+Button/styles/normal = SubResource("StyleBoxTexture_x2tqk")
+Button/styles/pressed = SubResource("StyleBoxTexture_ow840")
+
 [node name="GUI" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_left = 1.0
-offset_top = 2.0
-offset_right = 1.0
-offset_bottom = 2.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = SubResource("Theme_g4xxv")
 script = ExtResource("1_ibyel")
+metadata/_edit_use_anchors_ = true
 
 [node name="DebugCenter" type="Sprite2D" parent="."]
 visible = false
@@ -154,11 +227,13 @@ scale = Vector2(2.03999, 2.03999)
 texture = SubResource("AtlasTexture_272r4")
 
 [node name="HeartContainer" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 66.0
-offset_top = 611.0
-offset_right = 106.0
-offset_bottom = 651.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -46.0
+offset_bottom = -46.0
+grow_vertical = 0
 
 [node name="Heart" parent="HeartContainer" instance=ExtResource("2_2ji74")]
 position = Vector2(24, 16)
@@ -233,3 +308,61 @@ offset_bottom = 164.279
 theme_override_fonts/font = ExtResource("1_nfopc")
 theme_override_font_sizes/font_size = 18
 text = "space..."
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -174.0
+offset_top = -31.5
+offset_right = 174.0
+offset_bottom = 31.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4)
+theme_override_font_sizes/font_size = 64
+text = "Blood Shotgun"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="TitleLabel"]
+position = Vector2(131, 46.5)
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 5.0
+randomness = 1.0
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="TitleLabel"]
+position = Vector2(287.069, 59.8751)
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 5.0
+randomness = 1.0
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="TitleLabel"]
+position = Vector2(340.069, 47.8751)
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 6.0
+randomness = 1.0
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.0
+offset_top = 152.0
+offset_right = 47.0
+offset_bottom = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_8x3jx")
+text = "Start"
