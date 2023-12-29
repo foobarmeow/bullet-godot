@@ -4,6 +4,10 @@ func _ready():
 	SignalBus.player_ready.connect(func():
 		$HeartContainer.show()
 	)
+	SignalBus.dead_title.connect(func():
+		$ContinueContainer.show()
+		$ContinueContainer/AnimationPlayer.play_backwards("fade_title")
+	)
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("action_input"):
@@ -23,3 +27,7 @@ func _on_display_blood_hell():
 func _on_start_button_pressed():
 	$TitleContainer/AnimationPlayer.play("fade_title")
 	SignalBus.start_pressed.emit()
+
+func _on_continue_button_pressed():
+	$ContinueContainer/AnimationPlayer.play("fade_title")
+	SignalBus.continue_pressed.emit()

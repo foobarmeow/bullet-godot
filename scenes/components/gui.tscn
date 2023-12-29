@@ -361,6 +361,7 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4)
 theme_override_font_sizes/font_size = 64
 text = "Blood Shotgun"
+horizontal_alignment = 1
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="TitleContainer/TitleLabel"]
 position = Vector2(131, 46.5)
@@ -408,4 +409,79 @@ libraries = {
 "": SubResource("AnimationLibrary_grh0e")
 }
 
+[node name="ContinueContainer" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="ContinueContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -174.0
+offset_top = -31.5
+offset_right = 174.0
+offset_bottom = 31.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4)
+theme_override_font_sizes/font_size = 64
+text = "YOU DIED"
+horizontal_alignment = 1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ContinueContainer/TitleLabel"]
+position = Vector2(80, 48.5)
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 5.0
+randomness = 1.0
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ContinueContainer/TitleLabel"]
+position = Vector2(200, 48.5)
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 5.0
+randomness = 1.0
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="ContinueContainer/TitleLabel"]
+position = Vector2(260, 48.5)
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 6.0
+randomness = 1.0
+
+[node name="ContinueButton" type="Button" parent="ContinueContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.5
+offset_top = 150.0
+offset_right = 75.5
+offset_bottom = 202.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme = SubResource("Theme_8x3jx")
+text = "Continue?"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ContinueContainer"]
+libraries = {
+"": SubResource("AnimationLibrary_grh0e")
+}
+
 [connection signal="pressed" from="TitleContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="ContinueContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

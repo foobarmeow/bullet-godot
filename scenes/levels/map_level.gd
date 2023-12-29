@@ -6,12 +6,14 @@ var first_drank: int = 100
 var drinking_at_well = false
 var blood_hell_activated = false
 var dash_given = false
+var checkpoint: int = 0
 
 @export var map_anim: AnimationPlayer
 
 func _ready():
 	SignalBus.connect("level_action", _on_level_action)
 	SignalBus.connect("start_pressed", _on_start_pressed)
+	SignalBus.connect("continue_pressed", _on_continue_pressed)
 	# move the player over to the intro
 	#var titleArea = $Scenery/TitleArea
 	#$Player.position = titleArea.position
@@ -128,3 +130,18 @@ func _on_return_area_area_entered(_area):
 
 func _on_intro_area_area_exited(_area):
 	SignalBus.display_dialog.emit("intro")
+
+func _on_player_dead():
+	map_anim.play("FadeOut")
+	SignalBus.dead_title.emit()
+		
+
+func _on_continue_pressed():
+	match checkpoint:
+		0:
+			$Player.position = $Scenery/StartNode.position
+		1:
+			$Player.position = $Scenery/Checkpoint1.position
+		2: 
+			$Player.position = $Scenery.Checkpoint2.position	
+	map_anim.play("FadeIn")

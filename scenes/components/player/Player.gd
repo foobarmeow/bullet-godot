@@ -124,7 +124,6 @@ func handle_invuln(invuln: bool, is_dash: bool):
 
 func _on_damage_manager_health_updated(health: int, _init_health: int):
 	if health <= 0:
-		print(health)
 		dead = true
 		sprite.play("dead")
 		died.emit()

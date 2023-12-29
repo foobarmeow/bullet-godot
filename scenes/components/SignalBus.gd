@@ -9,3 +9,5 @@ signal level_action
 signal dialog_finished
 signal start_pressed
 signal player_ready
+signal continue_pressed
+signal dead_title
