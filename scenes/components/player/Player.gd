@@ -66,6 +66,16 @@ func _physics_process(delta):
 	var coll = move_and_collide(velocity * delta)
 	if coll:
 		if coll.get_collider().is_in_group("walls"):
+
+			var collider = coll.get_collider()
+			if collider is TileMap:
+				var coords = collider.local_to_map(collider.to_local(coll.get_position()))
+				var tile = collider.get_cell_tile_data(2, coords)
+				if tile is TileData:
+					var is_ledge = tile.get_custom_data("ledge")
+					print(is_ledge)
+
+
 			# Slide off of walls
 			velocity = velocity.slide(coll.get_normal())
 			return

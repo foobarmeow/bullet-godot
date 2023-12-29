@@ -8,12 +8,6 @@ extends Node2D
 @onready var ray: RayCast2D = $RayCast2D
 
 var spawning = false
-
-func _input(event):
-	if event is InputEventMouseButton && event.pressed:
-		print(event.position)
-		_on_rock_spawn()
-
 func _process(_delta):
 	if ray.is_colliding():
 		_on_rock_spawn()

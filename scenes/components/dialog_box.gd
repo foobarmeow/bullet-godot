@@ -6,10 +6,27 @@ enum BoxType {ACTION, DIALOG}
 
 var dialog_dict = {
 	"action_drink": "Drink!\n(space)",
+	"player_south_entrance_not_ready": [
+		"You're not ready my guy.",
+		"The Bad Guys™ are down there.",
+		"Go get my frickin La Croix, boy."
+	],
 	"intro": [
-		"My boy...it's time to drink.",
-		"From the well...",
-		"Go find it, get that drank son..."
+		"My boy...",
+		"The time has come...",
+		"I need you, the village needs you...",
+		"To get me a La Croix.",
+		"From the fridge up north yonder there...",
+		"Over the bridge...",
+		"Pomplamoose...",
+		"Now get!"
+	],
+	"bridge_collapse": [
+		"Yikes, the bridge collapsed...",
+		"Oh well. Go see the ANGEL OF DASH.",
+		"Then you can DASH over the pit.",
+		"WITH my La Croix.",
+		"And watch out for rocks!",
 	],
 	"drink_success": [
 		"Nice you drank, that's sick.",	
@@ -19,7 +36,17 @@ var dialog_dict = {
 		"What's up I'm the Angel of DASH.",
 		"I hand out the power to DASH",
 		"Get at it with SHIFT",
-		"Love you *kiss sound*"
+		"Love you *kiss*",
+		"Also no idea where the La Croix is."
+	],
+	"head_south": [
+		"I see you have no La Croix...",
+		"I heard the Bad Guys™ talking smack,",
+		"sayin they took the last two La Croix's",
+		"and headed down south with 'em.",
+		"Go fetch-itize my La Croix boy,",
+		"and be careful the Bad Guys™",
+		"don't murkilate you."
 	]
 }
 

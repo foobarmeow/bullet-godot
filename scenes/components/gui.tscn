@@ -154,7 +154,6 @@ scale = Vector2(2.03999, 2.03999)
 texture = SubResource("AtlasTexture_272r4")
 
 [node name="HeartContainer" type="Control" parent="."]
-visible = false
 anchors_preset = 0
 offset_left = 66.0
 offset_top = 611.0

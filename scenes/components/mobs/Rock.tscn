@@ -1,13 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://w1agd274alpy"]
+[gd_scene load_steps=8 format=3 uid="uid://w1agd274alpy"]
 
 [ext_resource type="Script" path="res://scenes/components/mobs/Rock.gd" id="1_27exj"]
-[ext_resource type="Texture2D" uid="uid://c4026v6xiksqa" path="res://art/sprites/kenny-1px/monochrome_tilemap_transparent.png" id="2_lhjr4"]
+[ext_resource type="Texture2D" uid="uid://dx40tnbi2k27e" path="res://art/tilesets/kenny1.tres" id="2_5l5av"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8g1v2"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j4ri1"]
-atlas = ExtResource("2_lhjr4")
-region = Rect2(238, 0, 16, 16)
 
 [sub_resource type="Gradient" id="Gradient_68pp1"]
 offsets = PackedFloat32Array(0.786116, 1)
@@ -54,7 +50,7 @@ metadata/_edit_group_ = true
 shape = SubResource("CircleShape2D_8g1v2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_j4ri1")
+texture = ExtResource("2_5l5av")
 
 [node name="Particles" type="GPUParticles2D" parent="."]
 emitting = false

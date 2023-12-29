@@ -1,0 +1,8 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://dx40tnbi2k27e"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1myvg"]
+load_path = "res://.godot/imported/monochrome_tilemap_transparent.png-e0b58abb9d61bff00b8c5dcd2973649e.ctex"
+
+[resource]
+atlas = SubResource("CompressedTexture2D_1myvg")
+region = Rect2(238, 0, 16, 16)
