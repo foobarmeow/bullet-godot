@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bv30emql2nye5"]
+[gd_scene load_steps=30 format=3 uid="uid://bv30emql2nye5"]
 
 [ext_resource type="Script" path="res://scenes/components/gui.gd" id="1_ibyel"]
 [ext_resource type="FontFile" uid="uid://bf7dh5uueciw1" path="res://art/CompassPro.otf" id="1_nfopc"]
@@ -151,23 +151,11 @@ scale_max = 0.75
 scale_curve = SubResource("CurveTexture_3agyr")
 color = Color(1, 0, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n5knm"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.3)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_guhhx"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u4bt5"]
 texture = ExtResource("9_envsp")
-region_rect = Rect2(3, 3, 56, 28)
+region_rect = Rect2(68, 3, 55, 27)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_khg6w"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ef0dr"]
 texture = ExtResource("9_envsp")
 region_rect = Rect2(3, 3, 56, 28)
 
@@ -198,11 +186,49 @@ Button/constants/icon_max_width = 0
 Button/constants/outline_size = 0
 Button/font_sizes/font_size = 32
 Button/fonts/font = ExtResource("1_nfopc")
-Button/styles/disabled = SubResource("StyleBoxFlat_n5knm")
-Button/styles/focus = SubResource("StyleBoxTexture_guhhx")
-Button/styles/hover = SubResource("StyleBoxTexture_khg6w")
+Button/styles/disabled = null
+Button/styles/focus = SubResource("StyleBoxTexture_u4bt5")
+Button/styles/hover = SubResource("StyleBoxTexture_ef0dr")
 Button/styles/normal = SubResource("StyleBoxTexture_x2tqk")
 Button/styles/pressed = SubResource("StyleBoxTexture_ow840")
+
+[sub_resource type="Animation" id="Animation_1ogac"]
+resource_name = "fade_title"
+length = 1.75
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.733333), Color(1, 1, 1, 0.490196), Color(1, 1, 1, 0.392157), Color(1, 1, 1, 0.294118), Color(1, 1, 1, 0.196078), Color(1, 1, 1, 0.0980392), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gruf4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_grh0e"]
+_data = {
+"RESET": SubResource("Animation_gruf4"),
+"fade_title": SubResource("Animation_1ogac")
+}
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -227,6 +253,7 @@ scale = Vector2(2.03999, 2.03999)
 texture = SubResource("AtlasTexture_272r4")
 
 [node name="HeartContainer" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -309,7 +336,15 @@ theme_override_fonts/font = ExtResource("1_nfopc")
 theme_override_font_sizes/font_size = 18
 text = "space..."
 
-[node name="TitleLabel" type="Label" parent="."]
+[node name="TitleContainer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="TitleContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -327,7 +362,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4)
 theme_override_font_sizes/font_size = 64
 text = "Blood Shotgun"
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="TitleLabel"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="TitleContainer/TitleLabel"]
 position = Vector2(131, 46.5)
 amount = 4
 process_material = SubResource("ParticleProcessMaterial_gshxq")
@@ -335,7 +370,7 @@ texture = ExtResource("8_biwwr")
 lifetime = 5.0
 randomness = 1.0
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="TitleLabel"]
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="TitleContainer/TitleLabel"]
 position = Vector2(287.069, 59.8751)
 amount = 2
 process_material = SubResource("ParticleProcessMaterial_gshxq")
@@ -343,7 +378,7 @@ texture = ExtResource("8_biwwr")
 lifetime = 5.0
 randomness = 1.0
 
-[node name="GPUParticles2D3" type="GPUParticles2D" parent="TitleLabel"]
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="TitleContainer/TitleLabel"]
 position = Vector2(340.069, 47.8751)
 amount = 6
 process_material = SubResource("ParticleProcessMaterial_gshxq")
@@ -351,18 +386,26 @@ texture = ExtResource("8_biwwr")
 lifetime = 6.0
 randomness = 1.0
 
-[node name="StartButton" type="Button" parent="."]
+[node name="StartButton" type="Button" parent="TitleContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -47.0
-offset_top = 152.0
-offset_right = 47.0
-offset_bottom = 192.0
+offset_left = -52.0
+offset_top = 164.5
+offset_right = 52.0
+offset_bottom = 203.5
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 0
 theme = SubResource("Theme_8x3jx")
 text = "Start"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TitleContainer"]
+libraries = {
+"": SubResource("AnimationLibrary_grh0e")
+}
+
+[connection signal="pressed" from="TitleContainer/StartButton" to="." method="_on_start_button_pressed"]

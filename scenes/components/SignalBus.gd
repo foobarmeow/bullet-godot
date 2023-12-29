@@ -7,3 +7,5 @@ signal hide_action
 signal input_action
 signal level_action
 signal dialog_finished
+signal start_pressed
+signal player_ready

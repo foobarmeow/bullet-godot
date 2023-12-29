@@ -7,13 +7,39 @@ var drinking_at_well = false
 var blood_hell_activated = false
 var dash_given = false
 
+@export var map_anim: AnimationPlayer
+
 func _ready():
 	SignalBus.connect("level_action", _on_level_action)
-	get_tree().create_timer(3).timeout.connect(func():
-		# DEBUGTODO
-		SignalBus.display_dialog.emit("intro")
-		pass
+	SignalBus.connect("start_pressed", _on_start_pressed)
+	# move the player over to the intro
+	#var titleArea = $Scenery/TitleArea
+	#$Player.position = titleArea.position
+
+	# Pause the player
+	$Player.process_mode = Node.PROCESS_MODE_DISABLED
+
+	# Turn him off
+	$Player.visible = false
+
+func _on_start_pressed():
+	map_anim.play("FadeOut")
+	map_anim.animation_finished.connect(func(anim_name):
+		match anim_name:
+			"FadeOut":
+				# Move to the start point
+				$Player.position = $Scenery/StartNode.position
+
+				# Fade the scene in
+				map_anim.play("FadeIn")
+			"FadeIn":
+				# Unpause the player
+				$Player.process_mode = Node.PROCESS_MODE_INHERIT
+				$Player.visible = true
+				SignalBus.player_ready.emit()
 	)
+
+
 
 func _on_level_action():
 	if drinking_at_well:
@@ -66,7 +92,9 @@ func _on_south_entrance_area_area_entered(_area):
 	if !$Player.can_dash:
 		SignalBus.display_dialog.emit("player_south_entrance_not_ready")
 		return
-	SignalBus.display_dialog.emit("head_south")
+	if !quest_given:
+		SignalBus.display_dialog.emit("head_south")
+		quest_given = true
 
 
 var fridge_bridge_occurred: bool = false
@@ -90,7 +118,13 @@ func _on_bridge_fall_finished(_animation_name):
 	$Player.process_mode = Node.PROCESS_MODE_INHERIT
 
 
+var quest_given: bool = false
 func _on_return_area_area_entered(_area):
 	if !$Player.can_dash:
 		return
 	SignalBus.display_dialog.emit("head_south")
+	quest_given = true
+
+
+func _on_intro_area_area_exited(_area):
+	SignalBus.display_dialog.emit("intro")
