@@ -181,3 +181,7 @@ func _load(step: int):
 	intro_given = true
 	fridge_bridge_occurred = true
 
+
+
+func _on_angel_of_death_area_area_entered(area):
+	SignalBus.display_dialog.emit("angel_of_death")

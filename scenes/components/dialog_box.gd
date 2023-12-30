@@ -47,6 +47,12 @@ var dialog_dict = {
 		"Go fetch-itize my La Croix boy,",
 		"and be careful the Bad Guys™",
 		"don't murkilate you."
+	],
+	"angel_of_death": [
+		"Hey what's up I'm the Angel of Death",
+		"These Bad Guys™ have the La Croix",
+		"Take it from them.",
+		"Use this."
 	]
 }
 
