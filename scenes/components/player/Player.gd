@@ -128,6 +128,12 @@ func _on_damage_manager_health_updated(health: int, _init_health: int):
 		sprite.play("dead")
 		died.emit()
 
+func continue_game():
+	dead = false
+	sprite.play("idle")
+	dmg.reset()
+
+
 func _on_damage_manager_invuln_updated(invuln: bool):
 	handle_invuln(invuln, false)
 

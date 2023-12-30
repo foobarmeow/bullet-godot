@@ -36,6 +36,14 @@ func _ready():
 	if get_parent().name == "exp":
 		begin() # call begin on exp level
 
+	SignalBus.dead_title.connect(_stop)
+
+func _stop():
+	alerted = false
+	$FireTimer.stop()
+
+
+
 
 func begin():
 	$AnimatedSprite2D.play(animation_by_type[movement_type])

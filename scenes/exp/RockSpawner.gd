@@ -7,6 +7,12 @@ extends Node2D
 
 @onready var ray: RayCast2D = $RayCast2D
 
+func _ready():
+	SignalBus.continue_pressed.connect(_reset)
+
+func _reset():
+	spawning = false
+
 var spawning = false
 func _process(_delta):
 	if ray.is_colliding():
@@ -17,7 +23,6 @@ func _on_rock_spawn():
 		return
 	var r = rockScene.instantiate()
 	add_child(r)
-	print("BRUH - ", ray.target_position.normalized().length(), " - ", ray.target_position.length())
 	r.apply_impulse(ray.target_position.normalized()*speed)
 
 	var torque_force: int
@@ -29,7 +34,3 @@ func _on_rock_spawn():
 	r.set_particles(ray.target_position)
 
 	spawning = true
-	# Only spawn once
-#	get_tree().create_timer(spawn_timeout).timeout.connect(func():
-#		spawning = false
-#	)

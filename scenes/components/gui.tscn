@@ -351,20 +351,21 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -174.0
-offset_top = -31.5
-offset_right = 174.0
-offset_bottom = 31.5
+offset_left = -338.5
+offset_top = -327.0
+offset_right = 338.5
+offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4)
-theme_override_font_sizes/font_size = 64
-text = "Blood Shotgun"
+theme_override_font_sizes/font_size = 200
+text = "Blood 
+Shotgun"
 horizontal_alignment = 1
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="TitleContainer/TitleLabel"]
-position = Vector2(131, 46.5)
+position = Vector2(125.5, 149)
 amount = 4
 process_material = SubResource("ParticleProcessMaterial_gshxq")
 texture = ExtResource("8_biwwr")
@@ -372,7 +373,7 @@ lifetime = 5.0
 randomness = 1.0
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="TitleContainer/TitleLabel"]
-position = Vector2(287.069, 59.8751)
+position = Vector2(261.5, 149)
 amount = 2
 process_material = SubResource("ParticleProcessMaterial_gshxq")
 texture = ExtResource("8_biwwr")
@@ -380,7 +381,23 @@ lifetime = 5.0
 randomness = 1.0
 
 [node name="GPUParticles2D3" type="GPUParticles2D" parent="TitleContainer/TitleLabel"]
-position = Vector2(340.069, 47.8751)
+position = Vector2(537.5, 149)
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 6.0
+randomness = 1.0
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="TitleContainer/TitleLabel"]
+position = Vector2(611.741, 339.715)
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 6.0
+randomness = 1.0
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="TitleContainer/TitleLabel"]
+position = Vector2(450.5, 379)
 amount = 6
 process_material = SubResource("ParticleProcessMaterial_gshxq")
 texture = ExtResource("8_biwwr")
