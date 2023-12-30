@@ -16,7 +16,7 @@ signal level_action
 
 @export var has_weapon: bool = false:
 	set(v):
-		if v:
+		if v && $Weapon:
 			$Weapon.visible = true
 		has_weapon = v
 

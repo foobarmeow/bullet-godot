@@ -169,6 +169,8 @@ func _on_continue_pressed():
 	dead = false
 
 func _on_angel_of_death_area_area_entered(_area):
+	if $Player.has_weapon:
+		return
 	SignalBus.display_dialog.emit("angel_of_death")
 	SignalBus.dialog_finished.connect(func():
 		_display_blood_hell()
@@ -196,6 +198,11 @@ func _load(step: int):
 			$Player.position = $Scenery/DebugPosition.position	
 			$Player.can_dash = true
 			quest_given = true
+		666:
+			$Player.position = $Scenery/DebugPosition.position	
+			$Player.can_dash = true
+			quest_given = true
+			$Player.has_weapon = true
 	checkpoint = step
 	intro_given = true
 	fridge_bridge_occurred = true

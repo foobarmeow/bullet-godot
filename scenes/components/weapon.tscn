@@ -9,9 +9,9 @@ script = ExtResource("1_ad736")
 projectile_component = ExtResource("2_irt80")
 
 [node name="ReticleSprite" type="Sprite2D" parent="."]
-position = Vector2(44.9949, 0.420527)
+position = Vector2(49.074, -0.287594)
 rotation = 3.14159
-scale = Vector2(-0.403, -0.403)
+scale = Vector2(-1.0772, -1.0772)
 texture = ExtResource("3_kajlw")
 
 [node name="Ray" type="RayCast2D" parent="."]
