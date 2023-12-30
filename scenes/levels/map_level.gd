@@ -20,9 +20,6 @@ func _ready():
 	SignalBus.connect("level_action", _on_level_action)
 	SignalBus.connect("start_pressed", _on_start_pressed)
 	SignalBus.connect("continue_pressed", _on_continue_pressed)
-	# move the player over to the intro
-	#var titleArea = $Scenery/TitleArea
-	#$Player.position = titleArea.position
 
 	# Pause the player
 	$Player.process_mode = Node.PROCESS_MODE_DISABLED
@@ -48,7 +45,7 @@ func _on_start_pressed():
 				$Player.continue_game()
 				SignalBus.player_ready.emit()
 
-				_load(3)
+				_load(69)
 	)
 
 
@@ -82,12 +79,16 @@ func _unhandled_input(event):
 	if event.is_action_pressed("debug_kill"):
 		$Player.take_damage(30, null)
 	if event.is_action_pressed("blood_hell"):
-		blood_hell_activated = !blood_hell_activated
-		display_blood_hell.emit()
-		if blood_hell_activated:
-			$Scenery/Background/RootModulate/AnimationPlayer.play("BloodLoop")
-		else:
-			$Scenery/Background/RootModulate/AnimationPlayer.play("RESET")
+		_display_blood_hell()
+
+func _display_blood_hell():
+	blood_hell_activated = !blood_hell_activated
+	display_blood_hell.emit()
+	if blood_hell_activated:
+		$Scenery/Background/SceneryModulate/AnimationPlayer.play("BloodLoop")
+	else:
+		$Scenery/Background/SceneryModulate/AnimationPlayer.play("RESET")
+
 
 
 func _on_angel_of_dash_area_area_entered(_area):
@@ -98,7 +99,7 @@ func _on_angel_of_dash_area_area_entered(_area):
 		# Give the boi the dash
 		$Player.can_dash = true
 		dash_given = true
-	)
+	, CONNECT_ONE_SHOT)
 	checkpoint = 2
 
 
@@ -163,8 +164,22 @@ func _on_continue_pressed():
 			$Player.position = $Scenery/Checkpoints/Checkpoint2.position	
 		3: 
 			$Player.position = $Scenery/Checkpoints/Checkpoint3.position	
+
 	map_anim.play("FadeIn")
 	dead = false
+
+func _on_angel_of_death_area_area_entered(_area):
+	SignalBus.display_dialog.emit("angel_of_death")
+	SignalBus.dialog_finished.connect(func():
+		_display_blood_hell()
+		SignalBus.weapon_get.emit()
+		# Give the boi the weapon
+		$Player.has_weapon = true
+		SignalBus.gui_done.connect(func():
+			_display_blood_hell()
+		, CONNECT_ONE_SHOT)
+	, CONNECT_ONE_SHOT)
+
 
 func _load(step: int):
 	match step:
@@ -177,11 +192,12 @@ func _load(step: int):
 			$Player.position = $Scenery/Checkpoints/Checkpoint3.position	
 			$Player.can_dash = true
 			quest_given = true
+		69:
+			$Player.position = $Scenery/DebugPosition.position	
+			$Player.can_dash = true
+			quest_given = true
 	checkpoint = step
 	intro_given = true
 	fridge_bridge_occurred = true
 
 
-
-func _on_angel_of_death_area_area_entered(area):
-	SignalBus.display_dialog.emit("angel_of_death")

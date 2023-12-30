@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bv30emql2nye5"]
+[gd_scene load_steps=34 format=3 uid="uid://bv30emql2nye5"]
 
 [ext_resource type="Script" path="res://scenes/components/gui.gd" id="1_ibyel"]
 [ext_resource type="FontFile" uid="uid://bf7dh5uueciw1" path="res://art/CompassPro.otf" id="1_nfopc"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://drm8gr2tgri06" path="res://art/dialogue-box.png" id="7_mwb7k"]
 [ext_resource type="Texture2D" uid="uid://dkj27jbikl6lc" path="res://art/sprites/tear_particle.png" id="8_biwwr"]
 [ext_resource type="Texture2D" uid="uid://bbg3mfdwmdric" path="res://art/sprites/kenny-1px/bs_button.png" id="9_envsp"]
+[ext_resource type="Texture2D" uid="uid://b3jyaxr1xx2jo" path="res://art/sprites/shotgun.png" id="10_t2ao2"]
 
 [sub_resource type="Theme" id="Theme_g4xxv"]
 default_font = ExtResource("1_nfopc")
@@ -228,6 +229,116 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_gruf4"),
 "fade_title": SubResource("Animation_1ogac")
+}
+
+[sub_resource type="Animation" id="Animation_re4vq"]
+resource_name = "weapon_get"
+length = 1.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shotgun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shotgun:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(3.795, 3.795), Vector2(8.07, 8.07), Vector2(15.5, 15.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shotgun:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-12.5664, -6.28319, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../LabelsContainer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_liaou"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shotgun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shotgun:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(15.5, 15.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shotgun:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../LabelsContainer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o5k1f"]
+_data = {
+"RESET": SubResource("Animation_liaou"),
+"weapon_get": SubResource("Animation_re4vq")
 }
 
 [node name="GUI" type="Control"]
@@ -499,6 +610,117 @@ text = "Continue?"
 libraries = {
 "": SubResource("AnimationLibrary_grh0e")
 }
+
+[node name="WeaponGetContainer" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WeaponContainer" type="Control" parent="WeaponGetContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -122.0
+offset_bottom = -122.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Shotgun" type="Sprite2D" parent="WeaponGetContainer/WeaponContainer"]
+scale = Vector2(15.5, 15.5)
+texture = ExtResource("10_t2ao2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WeaponGetContainer/WeaponContainer"]
+libraries = {
+"": SubResource("AnimationLibrary_o5k1f")
+}
+
+[node name="LabelsContainer" type="Control" parent="WeaponGetContainer"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GetLabel" type="Label" parent="WeaponGetContainer/LabelsContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 384.0
+offset_top = 417.0
+offset_right = 600.0
+offset_bottom = 465.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "You got the"
+horizontal_alignment = 1
+
+[node name="TitleLabel" type="Label" parent="WeaponGetContainer/LabelsContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.169434
+anchor_right = 0.460332
+anchor_bottom = 0.218854
+offset_left = 358.723
+offset_top = 530.0
+offset_right = 950.087
+offset_bottom = 903.246
+grow_horizontal = 2
+scale = Vector2(0.44, 0.44)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4)
+theme_override_font_sizes/font_size = 200
+text = "Blood 
+Shotgun"
+horizontal_alignment = 1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="WeaponGetContainer/LabelsContainer/TitleLabel"]
+position = Vector2(125.5, 149)
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 5.0
+randomness = 1.0
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="WeaponGetContainer/LabelsContainer/TitleLabel"]
+position = Vector2(261.5, 149)
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 5.0
+randomness = 1.0
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="WeaponGetContainer/LabelsContainer/TitleLabel"]
+position = Vector2(537.5, 149)
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 6.0
+randomness = 1.0
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="WeaponGetContainer/LabelsContainer/TitleLabel"]
+position = Vector2(611.741, 339.715)
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 6.0
+randomness = 1.0
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="WeaponGetContainer/LabelsContainer/TitleLabel"]
+position = Vector2(450.5, 379)
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 6.0
+randomness = 1.0
 
 [connection signal="pressed" from="TitleContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="ContinueContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

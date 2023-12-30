@@ -9,6 +9,17 @@ func _ready():
 		$ContinueContainer.show()
 		$ContinueContainer/AnimationPlayer.play_backwards("fade_title")
 	)
+	SignalBus.weapon_get.connect(func():
+		$WeaponGetContainer.show()
+		$WeaponGetContainer/WeaponContainer/AnimationPlayer.play("weapon_get")
+		$WeaponGetContainer/WeaponContainer/AnimationPlayer.animation_finished.connect(func(_a):
+			await get_tree().create_timer(.5).timeout
+			$WeaponGetContainer/WeaponContainer/AnimationPlayer.play_backwards("weapon_get")
+			$WeaponGetContainer/WeaponContainer/AnimationPlayer.animation_finished.connect(func(_a):
+				SignalBus.gui_done.emit()
+			, CONNECT_ONE_SHOT)
+		, CONNECT_ONE_SHOT)
+	)
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("action_input"):

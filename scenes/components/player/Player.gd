@@ -14,7 +14,11 @@ signal level_action
 @export var dash_time: float = .2
 @export var can_dash: bool = false
 
-@export var has_weapon: bool = false
+@export var has_weapon: bool = false:
+	set(v):
+		if v:
+			$Weapon.visible = true
+		has_weapon = v
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var dmg: DamageManager = $DamageManager

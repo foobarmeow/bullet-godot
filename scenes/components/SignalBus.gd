@@ -11,3 +11,5 @@ signal start_pressed
 signal player_ready
 signal continue_pressed
 signal dead_title
+signal weapon_get
+signal gui_done
