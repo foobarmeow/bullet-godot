@@ -49,8 +49,8 @@ func fire():
 		if r.is_colliding():
 			var c = r.get_collider()
 			p.target = c.position
-			if c.has_method("take_damage"):
-				c.take_damage(projectile_damage, null)
+			if c.has_method("take_damage_from"):
+				c.take_damage_from(projectile_damage, null, r.target_position.normalized())
 		else:
 			p.target = to_global(r.target_position)
 

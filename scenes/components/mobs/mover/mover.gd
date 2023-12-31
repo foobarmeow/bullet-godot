@@ -143,6 +143,14 @@ func take_damage(d: int, enemy: Node2D):
 	if dmgmgr:
 		dmgmgr.take_damage(self, enemy, d)
 
+
+func take_damage_from(d: int, enemy: Node2D, from: Vector2):
+	take_damage(d, enemy)
+	$DamageParticles.process_material.direction = Vector3(from.x, from.y, 0)
+	print(from.snapped(Vector2(1, 1)))
+	$DamageParticles.emitting = true
+
+
 func _on_damage_manager_health_updated(new_health: int, _init_health: int):
 	if new_health <= 0:
 		$FireTimer.stop()

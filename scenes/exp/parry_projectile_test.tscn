@@ -36,6 +36,7 @@ position = Vector2(458.849, 274.427)
 position = Vector2(618.28, 176.716)
 spawn_type = 1
 dir = Vector2(-1, 0)
+health = 300
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 position = Vector2(0, -1.00003)
@@ -47,7 +48,8 @@ position = Vector2(269, 171)
 shape = SubResource("CircleShape2D_gxyi1")
 
 [node name="Player" parent="." instance=ExtResource("3_4yhfd")]
-position = Vector2(508, 383)
+position = Vector2(672.411, 185.735)
+can_dash = true
 has_weapon = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]

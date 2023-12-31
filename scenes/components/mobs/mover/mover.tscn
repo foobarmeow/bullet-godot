@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://c7fyo24ou0om7"]
+[gd_scene load_steps=38 format=3 uid="uid://c7fyo24ou0om7"]
 
 [ext_resource type="Material" uid="uid://vtmbky35o2p2" path="res://resources/lit-mat.tres" id="1_n5o7v"]
 [ext_resource type="Script" path="res://scenes/components/mobs/mover/mover.gd" id="2_6yvkr"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://br1uqupw4mq8x" path="res://art/sprites/fire.png" id="6_ahb7p"]
 [ext_resource type="Texture2D" uid="uid://c4026v6xiksqa" path="res://art/sprites/kenny-1px/monochrome_tilemap_transparent.png" id="7_v4pk3"]
 [ext_resource type="Texture2D" uid="uid://ca1a0465063y0" path="res://art/sprites/enemy-dead-sheet.png" id="8_yqls7"]
+[ext_resource type="Texture2D" uid="uid://dkj27jbikl6lc" path="res://art/sprites/tear_particle.png" id="9_q63su"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_38ne5"]
 atlas = ExtResource("5_t8gwx")
@@ -212,6 +213,24 @@ polygon = PackedVector2Array(-4, -6, -7, -4, -7, 4, -6, 5, -6, 8, -2, 8, -2, 7, 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ykj56"]
 size = Vector2(17, 17)
 
+[sub_resource type="Curve" id="Curve_wkim2"]
+_data = [Vector2(0.00238663, 0.4), 0.0, 0.0, 0, 0, Vector2(0.553699, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wbgvp"]
+curve = SubResource("Curve_wkim2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_204yp"]
+particle_flag_disable_z = true
+spread = 17.15
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 136.88
+initial_velocity_max = 250.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_curve = SubResource("CurveTexture_wbgvp")
+color = Color(1, 0, 0, 1)
+
 [node name="Mover" type="CharacterBody2D"]
 material = ExtResource("1_n5o7v")
 collision_layer = 4
@@ -257,6 +276,16 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FromBox"]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_ykj56")
+
+[node name="DamageParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_204yp")
+texture = ExtResource("9_q63su")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
 
 [connection signal="health_updated" from="DamageManager" to="." method="_on_damage_manager_health_updated"]
 [connection signal="timeout" from="FireTimer" to="." method="fire"]
