@@ -5,44 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://b3jyaxr1xx2jo" path="res://art/sprites/shotgun.png" id="3_kajlw"]
 [ext_resource type="Texture2D" uid="uid://c75s5qiwq7ik7" path="res://art/sprites/shotgun_slide.png" id="4_wlw2q"]
 
-[sub_resource type="Animation" id="Animation_v32bl"]
-resource_name = "fire"
-length = 0.3
-step = 0.05
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ReticleSprite:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(49.074, -0.25, 0, 0, 3.42595, 49.7, -0.15, -90.2, 0.25, 0),
-"times": PackedFloat32Array(0, 0.25)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ReticleSprite:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(2.71241, -0.25, 0, 0.25, 0, 2.71241, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.25)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("ReticleSprite:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-3.14159, -0.25, 0, 0.25, 0, -3.56571, -0.25, 0, 0.25, 0, -3.14159, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.1, 0.25)
-}
-
 [sub_resource type="Animation" id="Animation_awp3d"]
 length = 0.001
 tracks/0/type = "bezier"
@@ -99,6 +61,44 @@ tracks/4/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_v32bl"]
+resource_name = "fire"
+length = 0.3
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ReticleSprite:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(49.074, -0.25, 0, 0, 3.42595, 49.7, -0.15, -90.2, 0.25, 0),
+"times": PackedFloat32Array(0, 0.25)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ReticleSprite:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(2.71241, -0.25, 0, 0.25, 0, 2.71241, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.25)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ReticleSprite:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-3.14159, -0.25, 0, 0.25, 0, -3.56571, -0.25, 0, 0.25, 0, -3.14159, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.25)
 }
 
 [sub_resource type="Animation" id="Animation_8bnpn"]

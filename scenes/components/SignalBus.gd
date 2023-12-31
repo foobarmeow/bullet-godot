@@ -13,3 +13,4 @@ signal continue_pressed
 signal dead_title
 signal weapon_get
 signal gui_done
+signal change_music

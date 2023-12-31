@@ -1,0 +1,846 @@
+[gd_scene load_steps=41 format=3 uid="uid://bv30emql2nye5"]
+
+[ext_resource type="Script" path="res://scenes/components/gui.gd" id="1_ibyel"]
+[ext_resource type="FontFile" uid="uid://bf7dh5uueciw1" path="res://art/CompassPro.otf" id="1_nfopc"]
+[ext_resource type="PackedScene" uid="uid://kjixn2352h1t" path="res://scenes/components/heart-white.tscn" id="2_2ji74"]
+[ext_resource type="Texture2D" uid="uid://jhftm7n81ou3" path="res://art/sprites/debug/bullet-player.png" id="3_4vho1"]
+[ext_resource type="Texture2D" uid="uid://ch0ppvjvohdb2" path="res://art/sprites/byte-sheet.png" id="4_bsm5j"]
+[ext_resource type="Script" path="res://scenes/components/dialog_box.gd" id="6_hsosc"]
+[ext_resource type="Texture2D" uid="uid://drm8gr2tgri06" path="res://art/dialogue-box.png" id="7_mwb7k"]
+[ext_resource type="Texture2D" uid="uid://dkj27jbikl6lc" path="res://art/sprites/tear_particle.png" id="8_biwwr"]
+[ext_resource type="Texture2D" uid="uid://bbg3mfdwmdric" path="res://art/sprites/kenny-1px/bs_button.png" id="9_envsp"]
+[ext_resource type="Texture2D" uid="uid://b3jyaxr1xx2jo" path="res://art/sprites/shotgun.png" id="10_t2ao2"]
+[ext_resource type="Texture2D" uid="uid://c75s5qiwq7ik7" path="res://art/sprites/shotgun_slide.png" id="11_oyxlc"]
+[ext_resource type="AudioStream" uid="uid://dk7s4rsmabrfd" path="res://music/bs_title.mp3" id="12_3cvjv"]
+[ext_resource type="AudioStream" uid="uid://dady3j2x2h0g3" path="res://music/bs_title_1.mp3" id="13_5i7uw"]
+
+[sub_resource type="Theme" id="Theme_g4xxv"]
+default_font = ExtResource("1_nfopc")
+default_font_size = 20
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_272r4"]
+atlas = ExtResource("4_bsm5j")
+region = Rect2(1, 0, 64, 64)
+
+[sub_resource type="Animation" id="Animation_ou8uo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gu8ns"]
+resource_name = "shake"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.056, 1.056), Vector2(1, 1), Vector2(1.056, 1.056), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sgi5f"]
+resource_name = "show"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j43pq"]
+_data = {
+"RESET": SubResource("Animation_ou8uo"),
+"shake": SubResource("Animation_gu8ns"),
+"show": SubResource("Animation_sgi5f")
+}
+
+[sub_resource type="Animation" id="Animation_2kn6c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xc10u"]
+resource_name = "show"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6qnwa"]
+_data = {
+"RESET": SubResource("Animation_2kn6c"),
+"show": SubResource("Animation_xc10u")
+}
+
+[sub_resource type="Curve" id="Curve_3eg0g"]
+_data = [Vector2(0.0119332, 0.2), 0.0, 0.0, 0, 0, Vector2(0.0692124, 0.494737), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3agyr"]
+curve = SubResource("Curve_3eg0g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gshxq"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.75
+scale_max = 0.75
+scale_curve = SubResource("CurveTexture_3agyr")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u4bt5"]
+texture = ExtResource("9_envsp")
+region_rect = Rect2(68, 3, 55, 27)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ef0dr"]
+texture = ExtResource("9_envsp")
+region_rect = Rect2(3, 3, 56, 28)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x2tqk"]
+texture = ExtResource("9_envsp")
+region_rect = Rect2(3, 3, 56, 28)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ow840"]
+texture = ExtResource("9_envsp")
+region_rect = Rect2(68, 3, 55, 27)
+
+[sub_resource type="Theme" id="Theme_8x3jx"]
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/h_separation = 2
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_nfopc")
+Button/styles/disabled = null
+Button/styles/focus = SubResource("StyleBoxTexture_u4bt5")
+Button/styles/hover = SubResource("StyleBoxTexture_ef0dr")
+Button/styles/normal = SubResource("StyleBoxTexture_x2tqk")
+Button/styles/pressed = SubResource("StyleBoxTexture_ow840")
+
+[sub_resource type="Animation" id="Animation_gruf4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1ogac"]
+resource_name = "fade_title"
+length = 1.75
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.733333), Color(1, 1, 1, 0.490196), Color(1, 1, 1, 0.392157), Color(1, 1, 1, 0.294118), Color(1, 1, 1, 0.196078), Color(1, 1, 1, 0.0980392), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_grh0e"]
+_data = {
+"RESET": SubResource("Animation_gruf4"),
+"fade_title": SubResource("Animation_1ogac")
+}
+
+[sub_resource type="Animation" id="Animation_liaou"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shotgun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shotgun:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(15.5, 15.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shotgun:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../LabelsContainer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_re4vq"]
+resource_name = "weapon_get"
+length = 1.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shotgun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shotgun:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(3.795, 3.795), Vector2(8.07, 8.07), Vector2(15.5, 15.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shotgun:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-12.5664, -6.28319, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../LabelsContainer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o5k1f"]
+_data = {
+"RESET": SubResource("Animation_liaou"),
+"weapon_get": SubResource("Animation_re4vq")
+}
+
+[sub_resource type="Animation" id="Animation_lthj4"]
+resource_name = "fade_in_music"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioA:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-80.0, -12.0]
+}
+
+[sub_resource type="Animation" id="Animation_r3jo7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioA:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-80.0]
+}
+
+[sub_resource type="Animation" id="Animation_051jr"]
+resource_name = "fade_a_to_b"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1dwkl"]
+_data = {
+"RESET": SubResource("Animation_r3jo7"),
+"fade_a_to_b": SubResource("Animation_051jr"),
+"fade_in_music": SubResource("Animation_lthj4")
+}
+
+[node name="GUI" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_g4xxv")
+script = ExtResource("1_ibyel")
+metadata/_edit_use_anchors_ = true
+
+[node name="DebugCenter" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(514.783, 360.854)
+texture = ExtResource("3_4vho1")
+
+[node name="Byte" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -287.5)
+scale = Vector2(2.03999, 2.03999)
+texture = SubResource("AtlasTexture_272r4")
+
+[node name="HeartContainer" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -46.0
+offset_bottom = -46.0
+grow_vertical = 0
+
+[node name="Heart" parent="HeartContainer" instance=ExtResource("2_2ji74")]
+position = Vector2(24, 16)
+
+[node name="Heart2" parent="HeartContainer" instance=ExtResource("2_2ji74")]
+position = Vector2(64, 16)
+
+[node name="Heart3" parent="HeartContainer" instance=ExtResource("2_2ji74")]
+position = Vector2(104, 16)
+
+[node name="ActionBox" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(591, 336)
+script = ExtResource("6_hsosc")
+type = 0
+
+[node name="Label" type="Label" parent="ActionBox"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -3.0
+offset_right = 371.0
+offset_bottom = 163.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_nfopc")
+theme_override_font_sizes/font_size = 64
+text = "a suh duh hows it going"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ActionBox"]
+libraries = {
+"": SubResource("AnimationLibrary_j43pq")
+}
+
+[node name="DialogBox" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(435, 438)
+scale = Vector2(1.72, 1.72)
+script = ExtResource("6_hsosc")
+
+[node name="Dialogue-box" type="Sprite2D" parent="DialogBox"]
+position = Vector2(160, 85)
+scale = Vector2(0.353601, 0.353601)
+texture = ExtResource("7_mwb7k")
+
+[node name="Label" type="Label" parent="DialogBox"]
+offset_left = 17.0
+offset_top = 10.0
+offset_right = 294.0
+offset_bottom = 93.0
+theme_override_fonts/font = ExtResource("1_nfopc")
+theme_override_font_sizes/font_size = 40
+text = "a suh duh hows it going"
+autowrap_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DialogBox"]
+libraries = {
+"": SubResource("AnimationLibrary_6qnwa")
+}
+
+[node name="NextLabel" type="Label" parent="DialogBox"]
+offset_left = 259.884
+offset_top = 141.279
+offset_right = 313.884
+offset_bottom = 164.279
+theme_override_fonts/font = ExtResource("1_nfopc")
+theme_override_font_sizes/font_size = 18
+text = "space..."
+
+[node name="TitleContainer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="TitleContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -338.5
+offset_top = -327.0
+offset_right = 338.5
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4)
+theme_override_font_sizes/font_size = 200
+text = "Blood 
+Shotgun"
+horizontal_alignment = 1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="TitleContainer/TitleLabel"]
+position = Vector2(125.5, 149)
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 5.0
+randomness = 1.0
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="TitleContainer/TitleLabel"]
+position = Vector2(261.5, 149)
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 5.0
+randomness = 1.0
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="TitleContainer/TitleLabel"]
+position = Vector2(537.5, 149)
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 6.0
+randomness = 1.0
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="TitleContainer/TitleLabel"]
+position = Vector2(611.741, 339.715)
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 6.0
+randomness = 1.0
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="TitleContainer/TitleLabel"]
+position = Vector2(450.5, 379)
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 6.0
+randomness = 1.0
+
+[node name="StartButton" type="Button" parent="TitleContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = 164.5
+offset_right = 52.0
+offset_bottom = 203.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme = SubResource("Theme_8x3jx")
+text = "Start"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TitleContainer"]
+libraries = {
+"": SubResource("AnimationLibrary_grh0e")
+}
+
+[node name="PauseContainer" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseLabel" type="Label" parent="PauseContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -338.5
+offset_top = -191.0
+offset_right = 338.5
+offset_bottom = 191.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4)
+theme_override_font_sizes/font_size = 200
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="PauseContainer/PauseLabel"]
+position = Vector2(118.5, 149)
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 5.0
+randomness = 1.0
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="PauseContainer/PauseLabel"]
+position = Vector2(243.5, 149)
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 5.0
+randomness = 1.0
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="PauseContainer/PauseLabel"]
+position = Vector2(521.5, 149)
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 6.0
+randomness = 1.0
+
+[node name="ContinueContainer" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="ContinueContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -174.0
+offset_top = -31.5
+offset_right = 174.0
+offset_bottom = 31.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4)
+theme_override_font_sizes/font_size = 64
+text = "YOU DIED"
+horizontal_alignment = 1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ContinueContainer/TitleLabel"]
+position = Vector2(80, 48.5)
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 5.0
+randomness = 1.0
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ContinueContainer/TitleLabel"]
+position = Vector2(200, 48.5)
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 5.0
+randomness = 1.0
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="ContinueContainer/TitleLabel"]
+position = Vector2(260, 48.5)
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 6.0
+randomness = 1.0
+
+[node name="ContinueButton" type="Button" parent="ContinueContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.5
+offset_top = 150.0
+offset_right = 75.5
+offset_bottom = 202.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme = SubResource("Theme_8x3jx")
+text = "Continue?"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ContinueContainer"]
+libraries = {
+"": SubResource("AnimationLibrary_grh0e")
+}
+
+[node name="WeaponGetContainer" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="WeaponContainer" type="Control" parent="WeaponGetContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -122.0
+offset_bottom = -122.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Shotgun" type="Sprite2D" parent="WeaponGetContainer/WeaponContainer"]
+scale = Vector2(15.5, 15.5)
+texture = ExtResource("10_t2ao2")
+
+[node name="ShotgunSlide" type="Sprite2D" parent="WeaponGetContainer/WeaponContainer/Shotgun"]
+position = Vector2(0.967739, 0.580648)
+scale = Vector2(1.06323, 1.06323)
+texture = ExtResource("11_oyxlc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WeaponGetContainer/WeaponContainer"]
+libraries = {
+"": SubResource("AnimationLibrary_o5k1f")
+}
+
+[node name="LabelsContainer" type="Control" parent="WeaponGetContainer"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="GetLabel" type="Label" parent="WeaponGetContainer/LabelsContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 384.0
+offset_top = 417.0
+offset_right = 600.0
+offset_bottom = 465.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "You got the"
+horizontal_alignment = 1
+
+[node name="TitleLabel" type="Label" parent="WeaponGetContainer/LabelsContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.169434
+anchor_right = 0.460332
+anchor_bottom = 0.218854
+offset_left = 358.723
+offset_top = 530.0
+offset_right = 950.087
+offset_bottom = 903.246
+grow_horizontal = 2
+scale = Vector2(0.44, 0.44)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4)
+theme_override_font_sizes/font_size = 200
+text = "Blood 
+Shotgun"
+horizontal_alignment = 1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="WeaponGetContainer/LabelsContainer/TitleLabel"]
+position = Vector2(125.5, 149)
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 5.0
+randomness = 1.0
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="WeaponGetContainer/LabelsContainer/TitleLabel"]
+position = Vector2(261.5, 149)
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 5.0
+randomness = 1.0
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="WeaponGetContainer/LabelsContainer/TitleLabel"]
+position = Vector2(537.5, 149)
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 6.0
+randomness = 1.0
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="WeaponGetContainer/LabelsContainer/TitleLabel"]
+position = Vector2(611.741, 339.715)
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 6.0
+randomness = 1.0
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="WeaponGetContainer/LabelsContainer/TitleLabel"]
+position = Vector2(450.5, 379)
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_gshxq")
+texture = ExtResource("8_biwwr")
+lifetime = 6.0
+randomness = 1.0
+
+[node name="AudioA" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_3cvjv")
+volume_db = -80.0
+autoplay = true
+bus = &"A"
+
+[node name="AudioB" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_5i7uw")
+autoplay = true
+bus = &"B"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1dwkl")
+}
+
+[connection signal="pressed" from="TitleContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="ContinueContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

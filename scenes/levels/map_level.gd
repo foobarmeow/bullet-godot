@@ -44,7 +44,7 @@ func _on_start_pressed():
 				$Player.visible = true
 				$Player.continue_game()
 				SignalBus.player_ready.emit()
-				_load(666)
+				#_load(666)
 	)
 
 
@@ -131,6 +131,7 @@ func _on_bridge_fall_finished(_animation_name):
 
 	# Unpause the player
 	$Player.process_mode = Node.PROCESS_MODE_INHERIT
+	SignalBus.change_music.emit(3)
 
 
 func _on_return_area_area_entered(_area):
@@ -139,6 +140,7 @@ func _on_return_area_area_entered(_area):
 	SignalBus.display_dialog.emit("head_south")
 	quest_given = true
 	checkpoint = 3
+	SignalBus.change_music.emit(4)
 
 
 func _on_intro_area_area_exited(_area):
@@ -146,6 +148,7 @@ func _on_intro_area_area_exited(_area):
 		return
 	SignalBus.display_dialog.emit("intro")
 	intro_given = true
+	SignalBus.change_music.emit(2)
 
 func _on_player_dead():
 	dead = true
@@ -178,6 +181,7 @@ func _on_angel_of_death_area_area_entered(_area):
 		$Player.has_weapon = true
 		SignalBus.gui_done.connect(func():
 			_display_blood_hell()
+			SignalBus.change_music.emit(5)
 		, CONNECT_ONE_SHOT)
 	, CONNECT_ONE_SHOT)
 
