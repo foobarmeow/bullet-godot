@@ -1,5 +1,7 @@
 extends Control
 
+var paused: bool = false
+
 
 func _ready():
 	SignalBus.player_ready.connect(func():
@@ -24,6 +26,16 @@ func _ready():
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("action_input"):
 		SignalBus.level_action.emit()
+		return
+	if Input.is_action_just_pressed("pause"):
+		if paused:
+			paused = false
+			get_tree().paused = false
+			$PauseContainer.hide()
+		else:
+			paused = true
+			get_tree().paused = true
+			$PauseContainer.show()
 		return
 
 func _on_damage_manager_health_updated(_health: int, _init_health: int):

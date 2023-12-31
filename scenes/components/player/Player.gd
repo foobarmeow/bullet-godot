@@ -72,15 +72,6 @@ func _physics_process(delta):
 	var coll = move_and_collide(velocity * delta)
 	if coll:
 		if coll.get_collider().is_in_group("walls"):
-
-			var collider = coll.get_collider()
-			if collider is TileMap:
-				var coords = collider.local_to_map(collider.to_local(coll.get_position()))
-				var tile = collider.get_cell_tile_data(2, coords)
-				if tile is TileData:
-					var is_ledge = tile.get_custom_data("ledge")
-
-
 			# Slide off of walls
 			velocity = velocity.slide(coll.get_normal())
 			return
@@ -119,12 +110,12 @@ func handle_invuln(invuln: bool, is_dash: bool):
 	# We don't exist on player layer while invulnerable
 	if invuln:
 		$AnimationPlayer.play(animation_name)
-		# TODO: We should only not collide with bullet
-		# not become a ghost
-		#set_collision_layer_value(2, false)
+		set_collision_mask_value(1, false)
+		set_collision_layer_value(2, false)
 	else:
 		$AnimationPlayer.stop()
-		#set_collision_layer_value(2, true)
+		set_collision_mask_value(1, true)
+		set_collision_layer_value(2, true)
 
 
 func _on_damage_manager_health_updated(health: int, _init_health: int):

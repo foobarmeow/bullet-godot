@@ -80,7 +80,7 @@ func _physics_process(_delta):
 	
 
 func _on_visible_on_screen_notifier_2d_screen_entered():
-	if alerted:
+	if alerted || is_dead:
 		return
 		
 	alerted = true
@@ -159,3 +159,8 @@ func _on_damage_manager_health_updated(new_health: int, _init_health: int):
 		dead.emit()
 		is_dead = true
 		
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	alerted = false
+	$FireTimer.stop()
