@@ -37,6 +37,8 @@ func _ready():
 		begin() # call begin on exp level
 
 	SignalBus.dead_title.connect(_stop)
+	SignalBus.start_pressed.connect(begin)
+	SignalBus.continue_pressed.connect(begin)
 
 func _stop():
 	alerted = false
@@ -46,6 +48,7 @@ func _stop():
 
 
 func begin():
+	$DamageManager.reset()
 	$AnimatedSprite2D.play(animation_by_type[movement_type])
 	
 func _physics_process(_delta):
@@ -85,9 +88,6 @@ func _on_visible_on_screen_notifier_2d_screen_entered():
 
 	$Alert.play("alert")
 	$FireTimer.start()
-
-func _on_visible_on_screen_notifier_2d_screen_exited():
-	pass
 
 func shake(delta, factor):
 	var p = Vector2.from_angle(randf_range(0, TAU)) * delta

@@ -26,10 +26,12 @@ signal level_action
 var dead: bool = false
 var drinkable: bool = false
 
-func _unhandled_input(_event):
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+func _process(_delta):
+	if Input.is_action_just_pressed("fire"):
 		fire()
 		return
+
+func _unhandled_input(_event):
 	if Input.is_action_just_pressed("reload"):
 		get_tree().reload_current_scene()
 		return
@@ -77,7 +79,6 @@ func _physics_process(delta):
 				var tile = collider.get_cell_tile_data(2, coords)
 				if tile is TileData:
 					var is_ledge = tile.get_custom_data("ledge")
-					print(is_ledge)
 
 
 			# Slide off of walls

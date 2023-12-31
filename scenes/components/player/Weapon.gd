@@ -6,18 +6,22 @@ extends Node2D
 @export var speed: int = 250
 @export var cooldown: int = 2
 @export var debug: bool = true
-@export var projectile_damage: int = 2
+@export var projectile_damage: int = 10
 
 var on_cooldown: bool = false
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
 func fire():
 	if on_cooldown:
 		return
 	on_cooldown = true
+
+	$AnimationPlayer.play("fire")
+	$AnimationPlayer.animation_finished.connect(func(_a):
+		$AnimationPlayer.play("rack")
+		$AnimationPlayer.animation_finished.connect(func(_a):
+			on_cooldown = false
+		, CONNECT_ONE_SHOT)
+	, CONNECT_ONE_SHOT)
 	
 	for i in num_projectiles:
 		# Random angle within firing arc
@@ -37,7 +41,7 @@ func fire():
 		
 		# shoot out a projectile 
 		var p = projectile_component.instantiate()
-		p.position = global_position
+		p.position = $Muzzle.global_position
 		
 		# If colliding, we want the vector only to be of 
 		# magnitude to the target
@@ -55,9 +59,7 @@ func fire():
 		
 		# free the ray
 		r.queue_free()
-		
-	get_tree().create_timer(cooldown).timeout.connect(reset_cooldown)
-		
+
 func reset_cooldown():
 	on_cooldown = false
 

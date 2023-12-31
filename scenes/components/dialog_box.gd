@@ -108,7 +108,6 @@ func _on_hide_dialog():
 		is_visible = false
 		
 func _on_input_action():
-	print("PLAYING SHAKE")
 	$AnimationPlayer.play("shake")
 	
 

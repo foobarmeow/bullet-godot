@@ -8,7 +8,6 @@ var speed: int = 900
 func _physics_process(delta):
 	if target:
 		look_at(target)
-		print(rotation)
 		position = position.move_toward(target, delta*speed)
 		
 		if position.distance_to(target) < hit_threshold:
