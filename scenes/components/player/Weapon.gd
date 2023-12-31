@@ -66,4 +66,9 @@ func reset_cooldown():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	look_at(get_global_mouse_position())
-	pass
+
+	var a = get_angle_to(Vector2.ZERO)
+	if a > -0.6 && a < 1.6:
+		$ReticleSprite.flip_v = true
+	else: 
+		$ReticleSprite.flip_v = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bv30emql2nye5"]
+[gd_scene load_steps=35 format=3 uid="uid://bv30emql2nye5"]
 
 [ext_resource type="Script" path="res://scenes/components/gui.gd" id="1_ibyel"]
 [ext_resource type="FontFile" uid="uid://bf7dh5uueciw1" path="res://art/CompassPro.otf" id="1_nfopc"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dkj27jbikl6lc" path="res://art/sprites/tear_particle.png" id="8_biwwr"]
 [ext_resource type="Texture2D" uid="uid://bbg3mfdwmdric" path="res://art/sprites/kenny-1px/bs_button.png" id="9_envsp"]
 [ext_resource type="Texture2D" uid="uid://b3jyaxr1xx2jo" path="res://art/sprites/shotgun.png" id="10_t2ao2"]
+[ext_resource type="Texture2D" uid="uid://c75s5qiwq7ik7" path="res://art/sprites/shotgun_slide.png" id="11_oyxlc"]
 
 [sub_resource type="Theme" id="Theme_g4xxv"]
 default_font = ExtResource("1_nfopc")
@@ -448,6 +449,7 @@ theme_override_font_sizes/font_size = 18
 text = "space..."
 
 [node name="TitleContainer" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -612,7 +614,6 @@ libraries = {
 }
 
 [node name="WeaponGetContainer" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -636,6 +637,11 @@ grow_vertical = 2
 [node name="Shotgun" type="Sprite2D" parent="WeaponGetContainer/WeaponContainer"]
 scale = Vector2(15.5, 15.5)
 texture = ExtResource("10_t2ao2")
+
+[node name="ShotgunSlide" type="Sprite2D" parent="WeaponGetContainer/WeaponContainer/Shotgun"]
+position = Vector2(0.967739, 0.580648)
+scale = Vector2(1.06323, 1.06323)
+texture = ExtResource("11_oyxlc")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="WeaponGetContainer/WeaponContainer"]
 libraries = {
