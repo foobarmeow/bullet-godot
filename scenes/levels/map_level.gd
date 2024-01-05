@@ -44,8 +44,8 @@ func _on_start_pressed():
 				$Player.visible = true
 				$Player.continue_game()
 				SignalBus.player_ready.emit()
-				_load(666)
-	)
+				#_load(666)
+	) 
 
 
 
@@ -166,6 +166,8 @@ func _on_continue_pressed():
 			$Player.position = $Scenery/Checkpoints/Checkpoint2.position	
 		3: 
 			$Player.position = $Scenery/Checkpoints/Checkpoint3.position	
+		4: 
+			$Player.position = $Scenery/Checkpoints/Checkpoint4.position	
 
 	map_anim.play("FadeIn")
 	dead = false
@@ -179,6 +181,7 @@ func _on_angel_of_death_area_area_entered(_area):
 		SignalBus.weapon_get.emit()
 		# Give the boi the weapon
 		$Player.has_weapon = true
+		checkpoint = 4
 		SignalBus.gui_done.connect(func():
 			_display_blood_hell()
 			SignalBus.change_music.emit(5)
@@ -196,6 +199,11 @@ func _load(step: int):
 		3: 
 			$Player.position = $Scenery/Checkpoints/Checkpoint3.position	
 			$Player.can_dash = true
+			quest_given = true
+		4: 
+			$Player.position = $Scenery/Checkpoints/Checkpoint3.position	
+			$Player.can_dash = true
+			$Player.has_weapon = true
 			quest_given = true
 		69:
 			$Player.position = $Scenery/DebugPosition.position	

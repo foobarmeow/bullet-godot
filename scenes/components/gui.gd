@@ -31,6 +31,8 @@ var debug_music_track = 0
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("blood_hell"):
 		debug_music_track += 1
+		if debug_music_track > 5:
+			debug_music_track = 0
 		SignalBus.change_music.emit(debug_music_track)
 		return
 	if Input.is_action_just_pressed("action_input"):
@@ -77,32 +79,24 @@ func _on_continue_button_pressed():
 func handle_music_change(track_index: int):
 	var track_name = "bs_title_%s" % track_index
 	switch_track("res://music/%s.wav" % track_name)
-	track_index += 1
 
 func switch_track(track_path: String):
 	# Find the dead streamer
 	var dead_streamer = get_node("./Audio%s" % dead_bus)
-
-	print("DEAD STREAMER %s" % dead_streamer)
 
 	# Load the new track into the dead streamer
 	# Fade them
 	var track = load(track_path)
 	dead_streamer.stream = track
 	dead_streamer.play()
-	fade()
+	fade(dead_bus == 'B')
 
-func fade():
-	print("FADING %s - %s" % [dead_bus, live_bus])
-	var t = get_tree().create_tween()
-	t.set_parallel(true)
-	t.set_ease(Tween.EASE_IN)
-	t.tween_method(change_audio_bus_volume.bind(dead_bus), -80, 0, 1.5)
-	t.tween_method(change_audio_bus_volume.bind(live_bus), 0, -80, 1.5)
+func fade(a_to_b: bool):
+	if a_to_b:
+		$AnimationPlayer.play("fade_a_to_b")
+	else:
+		$AnimationPlayer.play("fade_b_to_a")
 
-	var last_live_bus = live_bus
-	live_bus = dead_bus
-	dead_bus = last_live_bus
 
 func change_audio_bus_volume(value: float, bus_name: String):
 	var index = AudioServer.get_bus_index(bus_name)
