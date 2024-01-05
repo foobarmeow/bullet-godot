@@ -65,11 +65,13 @@ func _on_display_blood_hell():
 
 
 func _on_start_button_pressed():
+	$StartPlayer.play()
 	$TitleContainer/AnimationPlayer.play("fade_title")
 	SignalBus.start_pressed.emit()
 	SignalBus.change_music.emit(1)
 
 func _on_continue_button_pressed():
+	$StartPlayer.play()
 	$ContinueContainer/AnimationPlayer.play("fade_title")
 	SignalBus.continue_pressed.emit()
 
@@ -92,10 +94,13 @@ func switch_track(track_path: String):
 	fade(dead_bus == 'B')
 
 func fade(a_to_b: bool):
+	print("ATOB ", a_to_b)
 	if a_to_b:
 		$AnimationPlayer.play("fade_a_to_b")
+		dead_bus = "A"
 	else:
 		$AnimationPlayer.play("fade_b_to_a")
+		dead_bus = "B"
 
 
 func change_audio_bus_volume(value: float, bus_name: String):

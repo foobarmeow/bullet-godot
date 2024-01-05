@@ -4,6 +4,7 @@ extends Node2D
 @export var speed: int = 200
 @export var torque: int = 200
 @export var spawn_timeout: float = 5
+@export var sound_player: AudioStreamPlayer 
 
 @onready var ray: RayCast2D = $RayCast2D
 
@@ -21,6 +22,9 @@ func _process(_delta):
 func _on_rock_spawn():
 	if spawning:
 		return
+
+	if sound_player:
+		sound_player.play()
 	var r = rockScene.instantiate()
 	add_child(r)
 	r.apply_impulse(ray.target_position.normalized()*speed)

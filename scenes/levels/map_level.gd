@@ -44,7 +44,7 @@ func _on_start_pressed():
 				$Player.visible = true
 				$Player.continue_game()
 				SignalBus.player_ready.emit()
-				#_load(666)
+				_load(2)
 	) 
 
 
@@ -135,7 +135,7 @@ func _on_bridge_fall_finished(_animation_name):
 
 
 func _on_return_area_area_entered(_area):
-	if !$Player.can_dash:
+	if !$Player.can_dash || quest_given:
 		return
 	SignalBus.display_dialog.emit("head_south")
 	quest_given = true

@@ -1,7 +1,5 @@
 class_name Mover extends Node2D
 
-signal dead
-
 enum MovementType {PLAYER_STALK, STOPPED, RANDOM, PATHED = -1}
 
 
@@ -43,9 +41,6 @@ func _ready():
 func _stop():
 	alerted = false
 	$FireTimer.stop()
-
-
-
 
 func begin():
 	$DamageManager.reset()
@@ -147,7 +142,6 @@ func take_damage(d: int, enemy: Node2D):
 func take_damage_from(d: int, enemy: Node2D, from: Vector2):
 	take_damage(d, enemy)
 	$DamageParticles.process_material.direction = Vector3(from.x, from.y, 0)
-	print(from.snapped(Vector2(1, 1)))
 	$DamageParticles.emitting = true
 
 
@@ -156,7 +150,7 @@ func _on_damage_manager_health_updated(new_health: int, _init_health: int):
 		$FireTimer.stop()
 		var death_anim = "%s_dead" % animation_by_type[movement_type]
 		$AnimatedSprite2D.play(death_anim)
-		dead.emit()
+		SignalBus.enemy_dead.emit()
 		is_dead = true
 		
 

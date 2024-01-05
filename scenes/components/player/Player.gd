@@ -28,6 +28,8 @@ var drinkable: bool = false
 
 func _process(_delta):
 	if Input.is_action_just_pressed("fire"):
+		if dead: 
+			return
 		fire()
 		return
 
@@ -49,12 +51,15 @@ var dash = false
 func _dash():
 	if dash || !can_dash:
 		return
+
+	$DashPlayer.play()
 		
 	# We don't collide with ledges while dashing
 	set_collision_mask_value(7, false)
 	dash = true
 	handle_invuln(true, true)
 	await get_tree().create_timer(dash_time).timeout
+	$DashPlayer.stop()
 	dash = false
 	handle_invuln(false, false)
 	set_collision_mask_value(7, true)
