@@ -44,7 +44,7 @@ func _on_start_pressed():
 				$Player.visible = true
 				$Player.continue_game()
 				SignalBus.player_ready.emit()
-				#_load(666)
+				_load(666)
 	)
 
 

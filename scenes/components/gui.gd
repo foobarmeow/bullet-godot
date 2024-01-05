@@ -27,7 +27,12 @@ func _ready():
 	)
 	SignalBus.change_music.connect(handle_music_change)
 
+var debug_music_track = 0
 func _unhandled_input(_event):
+	if Input.is_action_just_pressed("blood_hell"):
+		debug_music_track += 1
+		SignalBus.change_music.emit(debug_music_track)
+		return
 	if Input.is_action_just_pressed("action_input"):
 		SignalBus.level_action.emit()
 		return
@@ -78,6 +83,8 @@ func switch_track(track_path: String):
 	# Find the dead streamer
 	var dead_streamer = get_node("./Audio%s" % dead_bus)
 
+	print("DEAD STREAMER %s" % dead_streamer)
+
 	# Load the new track into the dead streamer
 	# Fade them
 	var track = load(track_path)
@@ -86,8 +93,10 @@ func switch_track(track_path: String):
 	fade()
 
 func fade():
+	print("FADING %s - %s" % [dead_bus, live_bus])
 	var t = get_tree().create_tween()
 	t.set_parallel(true)
+	t.set_ease(Tween.EASE_IN)
 	t.tween_method(change_audio_bus_volume.bind(dead_bus), -80, 0, 1.5)
 	t.tween_method(change_audio_bus_volume.bind(live_bus), 0, -80, 1.5)
 

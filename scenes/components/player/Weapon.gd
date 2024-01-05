@@ -8,6 +8,9 @@ extends Node2D
 @export var debug: bool = true
 @export var projectile_damage: int = 10
 
+@onready var audio_fire: AudioStreamPlayer = $AudioFire
+@onready var audio_reload: AudioStreamPlayer = $AudioReload
+
 var on_cooldown: bool = false
 
 func fire():
@@ -18,10 +21,26 @@ func fire():
 	$AnimationPlayer.play("fire")
 	$AnimationPlayer.animation_finished.connect(func(_a):
 		$AnimationPlayer.play("rack")
+
+		# Play the reload audio
+		var track_index = randi_range(0, 6)
+		var track_name = "bs_sounds_reload shotgun_reload-%s" % track_index
+		var track_path = "res://sounds/%s.wav" % track_name
+		audio_reload.stream = load(track_path)
+		audio_reload.play()
+
 		$AnimationPlayer.animation_finished.connect(func(_a):
 			on_cooldown = false
+
 		, CONNECT_ONE_SHOT)
 	, CONNECT_ONE_SHOT)
+
+	# Play the shoot audio
+	var track_index = randi_range(0, 4)
+	var track_name = "bs_sounds shotgun_fire-%s" % track_index
+	var track_path = "res://sounds/%s.wav" % track_name
+	audio_fire.stream = load(track_path)
+	audio_fire.play()
 	
 	for i in num_projectiles:
 		# Random angle within firing arc
