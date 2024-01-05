@@ -4,9 +4,10 @@ var paused: bool = false
 var live_bus: String = "A"
 var dead_bus: String = "B"
 
+var music_muted: bool = false
+var sound_muted: bool = false
 
 func _ready():
-	$AnimationPlayer.play("fade_in_music")
 	SignalBus.player_ready.connect(func():
 		$HeartContainer.show()  
 	)
@@ -26,6 +27,7 @@ func _ready():
 		, CONNECT_ONE_SHOT)
 	)
 	SignalBus.change_music.connect(handle_music_change)
+	$AnimationPlayer.play('fade_in_game')
 
 var debug_music_track = 0
 func _unhandled_input(_event):
@@ -94,7 +96,6 @@ func switch_track(track_path: String):
 	fade(dead_bus == 'B')
 
 func fade(a_to_b: bool):
-	print("ATOB ", a_to_b)
 	if a_to_b:
 		$AnimationPlayer.play("fade_a_to_b")
 		dead_bus = "A"
@@ -106,3 +107,15 @@ func fade(a_to_b: bool):
 func change_audio_bus_volume(value: float, bus_name: String):
 	var index = AudioServer.get_bus_index(bus_name)
 	AudioServer.set_bus_volume_db(index, value)
+
+
+func _on_sound_effects_toggle_pressed():
+	var index = AudioServer.get_bus_index('SoundEffects')
+	AudioServer.set_bus_mute(index, !sound_muted)
+	sound_muted = !sound_muted
+
+
+func _on_music_toggle_pressed():
+	var index = AudioServer.get_bus_index('Music')
+	AudioServer.set_bus_mute(index, !music_muted)
+	music_muted = !music_muted

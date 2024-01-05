@@ -261,4 +261,3 @@ shape = SubResource("CircleShape2D_rp12q")
 [node name="DashPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_ytc7k")
 volume_db = -7.749
-bus = &"GunSounds"

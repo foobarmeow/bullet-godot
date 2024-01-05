@@ -170,8 +170,6 @@ libraries = {
 }
 
 [node name="AudioFire" type="AudioStreamPlayer" parent="."]
-bus = &"GunSounds"
 
 [node name="AudioReload" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamWAV_cxau0")
-bus = &"GunSounds"

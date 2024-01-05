@@ -27,6 +27,7 @@ func _ready():
 	# Turn him off
 	$Player.visible = false
 
+
 func _on_start_pressed():
 	map_anim.play("FadeOut")
 	map_anim.animation_finished.connect(func(anim_name):
@@ -44,7 +45,7 @@ func _on_start_pressed():
 				$Player.visible = true
 				$Player.continue_game()
 				SignalBus.player_ready.emit()
-				_load(2)
+				_load(666)
 	) 
 
 
@@ -210,6 +211,7 @@ func _load(step: int):
 			$Player.can_dash = true
 			quest_given = true
 		666:
+			SignalBus.change_music.emit(5)
 			$Player.position = $Scenery/DebugPosition.position	
 			$Player.can_dash = true
 			quest_given = true
