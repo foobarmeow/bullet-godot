@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c7xroxfe1m3tp"]
+[gd_scene load_steps=13 format=3 uid="uid://c7xroxfe1m3tp"]
 
 [ext_resource type="PackedScene" uid="uid://bhnamekyyvkpa" path="res://scenes/components/player/player.tscn" id="3_4yhfd"]
 [ext_resource type="PackedScene" uid="uid://cbudl0m208ybr" path="res://scenes/components/weapon.tscn" id="5_mq535"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://w1agd274alpy" path="res://scenes/components/mobs/Rock.tscn" id="7_sng7i"]
 [ext_resource type="Script" path="res://scenes/exp/RockSpawner.gd" id="8_ki532"]
 [ext_resource type="PackedScene" uid="uid://c7fyo24ou0om7" path="res://scenes/components/mobs/mover/mover.tscn" id="8_n88pa"]
+[ext_resource type="AudioStream" uid="uid://dhqoq2tlo6kam" path="res://music/bs_title_5.wav" id="10_8i82x"]
 
 [sub_resource type="GDScript" id="GDScript_oyuj3"]
 script/source = "extends RigidBody2D
@@ -74,3 +75,7 @@ spawn_timeout = 0.1
 
 [node name="RayCast2D" type="RayCast2D" parent="RockSpawner"]
 collision_mask = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_8i82x")
+autoplay = true

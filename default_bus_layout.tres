@@ -1,7 +1,15 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://1ibv5agywyqu"]
+[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://1ibv5agywyqu"]
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_jp76h"]
+resource_name = "Compressor"
+threshold = -10.0
+ratio = 48.0
+sidechain = &"GunSounds"
 
 [resource]
 bus/0/volume_db = 0.464998
+bus/0/effect/0/effect = SubResource("AudioEffectCompressor_jp76h")
+bus/0/effect/0/enabled = true
 bus/1/name = &"GunSounds"
 bus/1/solo = false
 bus/1/mute = false
