@@ -20,6 +20,8 @@ func _ready():
 	SignalBus.connect("level_action", _on_level_action)
 	SignalBus.connect("start_pressed", _on_start_pressed)
 	SignalBus.connect("continue_pressed", _on_continue_pressed)
+	SignalBus.connect("enemy_dead", _on_enemy_dead)
+	SignalBus.connect("fun_part", _load.bind(666))
 
 	# Pause the player
 	$Player.process_mode = Node.PROCESS_MODE_DISABLED
@@ -45,7 +47,7 @@ func _on_start_pressed():
 				$Player.visible = true
 				$Player.continue_game()
 				SignalBus.player_ready.emit()
-				_load(666)
+				_load(669)
 	) 
 
 
@@ -110,6 +112,7 @@ func _on_south_entrance_area_area_entered(_area):
 	if !quest_given:
 		SignalBus.display_dialog.emit("head_south")
 		quest_given = true
+		checkpoint = 3
 
 
 func _on_fridge_bridge_area_area_entered(_area):
@@ -189,6 +192,21 @@ func _on_angel_of_death_area_area_entered(_area):
 		, CONNECT_ONE_SHOT)
 	, CONNECT_ONE_SHOT)
 
+func _on_enemy_dead():
+	var enemies = $CharacterLayer/Enemies.get_children()
+	var undead = 0
+	for e in enemies:
+		if !e.is_dead:
+			undead+=1
+
+	if undead == 0:
+		end_game()
+
+func end_game():
+	SignalBus.display_dialog.emit("fin")
+	SignalBus.dialog_finished.connect(func(): 
+		SignalBus.game_end.emit()
+	, CONNECT_ONE_SHOT)
 
 func _load(step: int):
 	match step:
@@ -216,6 +234,13 @@ func _load(step: int):
 			$Player.can_dash = true
 			quest_given = true
 			$Player.has_weapon = true
+		669:
+			SignalBus.change_music.emit(5)
+			$Player.position = $Scenery/DebugPosition.position	
+			$Player.can_dash = true
+			quest_given = true
+			$Player.has_weapon = true
+			end_game()
 	checkpoint = step
 	intro_given = true
 	fridge_bridge_occurred = true

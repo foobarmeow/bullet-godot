@@ -15,3 +15,5 @@ signal weapon_get
 signal gui_done
 signal change_music
 signal enemy_dead
+signal game_end
+signal fun_part

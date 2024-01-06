@@ -43,6 +43,7 @@ func _stop():
 	$FireTimer.stop()
 
 func begin():
+	is_dead = false
 	$DamageManager.reset()
 	$AnimatedSprite2D.play(animation_by_type[movement_type])
 	
@@ -150,8 +151,8 @@ func _on_damage_manager_health_updated(new_health: int, _init_health: int):
 		$FireTimer.stop()
 		var death_anim = "%s_dead" % animation_by_type[movement_type]
 		$AnimatedSprite2D.play(death_anim)
-		SignalBus.enemy_dead.emit()
 		is_dead = true
+		SignalBus.enemy_dead.emit()
 		
 
 

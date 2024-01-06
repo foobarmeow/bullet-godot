@@ -2,7 +2,7 @@ extends Node2D
 
 @export var rockScene: PackedScene
 @export var speed: int = 200
-@export var torque: int = 200
+@export var torque: int = 5000
 @export var spawn_timeout: float = 5
 @export var sound_player: AudioStreamPlayer 
 

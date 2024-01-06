@@ -65,13 +65,15 @@ func fire():
 		# If colliding, we want the vector only to be of 
 		# magnitude to the target
 		# otherwise we want it to fly off somewhere else
-		if r.is_colliding():
-			var c = r.get_collider()
-			p.target = c.position
-			if c.has_method("take_damage_from"):
-				c.take_damage_from(projectile_damage, null, r.target_position.normalized())
-		else:
-			p.target = to_global(r.target_position)
+		#if r.is_colliding():
+		#	var c = r.get_collider()
+		#	p.target = c.position
+		#	if c.has_method("take_damage_from"):
+		#		c.take_damage_from(projectile_damage, null, r.target_position.normalized())
+		#else:
+		#	p.target = to_global(r.target_position)
+		# the projectiles now do the damaging themselves
+		p.target = to_global(r.target_position)
 
 		# Add the projectile to the scene
 		owner.add_child(p)

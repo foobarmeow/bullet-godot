@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://w1agd274alpy"]
+[gd_scene load_steps=9 format=3 uid="uid://w1agd274alpy"]
 
 [ext_resource type="Script" path="res://scenes/components/mobs/Rock.gd" id="1_27exj"]
 [ext_resource type="Texture2D" uid="uid://dx40tnbi2k27e" path="res://art/tilesets/kenny1.tres" id="2_5l5av"]
+[ext_resource type="Texture2D" uid="uid://bd7nbbut5v3or" path="res://art/sprites/rock_particle.png" id="3_e1e11"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8g1v2"]
 
@@ -38,7 +39,7 @@ collision_layer = 9
 collision_mask = 8
 input_pickable = true
 mass = 150.0
-inertia = 8.49
+inertia = 150.0
 gravity_scale = 0.0
 max_contacts_reported = 1
 contact_monitor = true
@@ -59,6 +60,11 @@ process_material = SubResource("ParticleProcessMaterial_um57p")
 texture = SubResource("CompressedTexture2D_k0ibh")
 one_shot = true
 explosiveness = 0.95
+
+[node name="RockParticle" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.251, 0.251)
+texture = ExtResource("3_e1e11")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="input_event" from="." to="." method="_on_input_event"]

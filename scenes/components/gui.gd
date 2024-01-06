@@ -1,5 +1,7 @@
 extends Control
 
+@export var skip_gui: bool = false
+
 var paused: bool = false
 var live_bus: String = "A"
 var dead_bus: String = "B"
@@ -8,6 +10,9 @@ var music_muted: bool = false
 var sound_muted: bool = false
 
 func _ready():
+	SignalBus.game_end.connect(func():
+		$AnimationPlayer.play("end")
+	)
 	SignalBus.player_ready.connect(func():
 		$HeartContainer.show()  
 	)
@@ -28,6 +33,19 @@ func _ready():
 	)
 	SignalBus.change_music.connect(handle_music_change)
 	$AnimationPlayer.play('fade_in_game')
+	if skip_gui:
+		_skip_gui()
+	$AnimationPlayer.animation_finished.connect(func(_a):
+		$TitleContainer/StartButton.disabled = false
+	, CONNECT_ONE_SHOT)
+
+
+func _skip_gui():
+	await get_tree().create_timer(1).timeout
+	_on_start_button_pressed()
+	$DevSplash.visible = false
+	$BGSprite.visible = false
+	$TitleContainer/StartButton.disabled = false
 
 var debug_music_track = 0
 func _unhandled_input(_event):
@@ -79,6 +97,13 @@ func _on_continue_button_pressed():
 
 	for h in $HeartContainer.get_children():
 		h.show()
+
+func _on_fun_part_pressed():
+	print("HERE FUCK")
+	$StartPlayer.play()
+	$AnimationPlayer.play("fun_part")
+	SignalBus.fun_part.emit()
+
 
 func handle_music_change(track_index: int):
 	var track_name = "bs_title_%s" % track_index

@@ -1,10 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6t4c2r3ux47h"]
+[gd_scene load_steps=5 format=3 uid="uid://c6t4c2r3ux47h"]
 
 [ext_resource type="Texture2D" uid="uid://cnq4075t4a7pq" path="res://art/sprites/projectile_sprite.png" id="1_ejwo0"]
 [ext_resource type="Script" path="res://scenes/components/projectile.gd" id="1_tx8sc"]
+[ext_resource type="Texture2D" uid="uid://jhftm7n81ou3" path="res://art/sprites/debug/bullet-player.png" id="3_54cl0"]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8uqle"]
+radius = 5.0
+height = 12.0384
+
+[node name="Node2D" type="RigidBody2D"]
+collision_mask = 12
+gravity_scale = 0.0
 script = ExtResource("1_tx8sc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.01034, 0.498403)
+shape = SubResource("CapsuleShape2D_8uqle")
 
 [node name="ProjectileSprite" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)
@@ -13,3 +24,11 @@ scale = Vector2(1.018, 1.018)
 texture = ExtResource("1_ejwo0")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="ProjectileSprite"]
+
+[node name="SplatterSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(40, 2)
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("3_54cl0")
+
+[connection signal="screen_exited" from="ProjectileSprite/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

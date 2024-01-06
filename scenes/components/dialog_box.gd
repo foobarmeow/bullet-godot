@@ -53,6 +53,13 @@ var dialog_dict = {
 		"These Bad Guys™ have the La Croix",
 		"Take it from them.",
 		"Use this."
+	],
+	"fin": [
+		"You've killed 'em all.",
+		"The Bad Guys™ are dead",
+		"and still no La Croix.",
+		"Maybe the real La Croix",
+		"was just the shotgun blood..."
 	]
 }
 
