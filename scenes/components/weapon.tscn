@@ -165,6 +165,8 @@ libraries = {
 }
 
 [node name="AudioFire" type="AudioStreamPlayer" parent="."]
+bus = &"SoundEffects"
 
 [node name="AudioReload" type="AudioStreamPlayer" parent="."]
 volume_db = -10.0
+bus = &"SoundEffects"

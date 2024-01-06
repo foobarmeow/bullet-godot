@@ -7,11 +7,10 @@ ratio = 48.0
 sidechain = &"GunSounds"
 
 [resource]
-bus/0/mute = true
 bus/0/volume_db = 0.464998
 bus/0/effect/0/effect = SubResource("AudioEffectCompressor_jp76h")
 bus/0/effect/0/enabled = true
-bus/1/name = &"GunSounds"
+bus/1/name = &"SoundEffects"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dgxhr3xgc5wa0"
+path="res://.godot/imported/bs_dmg 1.wav-443521ede2ba7db01d3a30004d6238ca.sample"
+
+[deps]
+
+source_file="res://sounds/bs_dmg 1.wav"
+dest_files=["res://.godot/imported/bs_dmg 1.wav-443521ede2ba7db01d3a30004d6238ca.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

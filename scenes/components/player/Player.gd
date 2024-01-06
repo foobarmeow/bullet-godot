@@ -105,6 +105,13 @@ func _physics_process(delta):
 # Called by bullets that detect collision with player
 func take_damage(d: int, enemy: Node2D):
 	$BytesAnimator.play("hit-byte")
+
+	var track_index = randi_range(1, 8)
+	var track_name = "bs_dmg %s" % track_index
+	var track_path = "res://sounds/%s.wav" % track_name
+	$DmgPlayer.stream = load(track_path)
+	$DmgPlayer.play()
+
 	dmg.take_damage(self, enemy, d)
 		
 func handle_invuln(invuln: bool, is_dash: bool):
