@@ -4,7 +4,7 @@
 resource_name = "Compressor"
 threshold = -10.0
 ratio = 48.0
-sidechain = &"GunSounds"
+sidechain = &"SoundEffects"
 
 [resource]
 bus/0/volume_db = 0.464998

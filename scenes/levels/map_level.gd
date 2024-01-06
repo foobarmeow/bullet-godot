@@ -8,6 +8,7 @@ var blood_hell_activated = false
 var dash_given = false
 var checkpoint: int = 0
 var dead: bool = false
+var first_start: bool = true
 
 @onready var checkpoint_position: Vector2 = $Scenery/StartNode.position
 
@@ -41,7 +42,9 @@ func _on_start_pressed():
 		match anim_name:
 			"FadeOut":
 				# Move to the start point
-				#$Player.position = $Scenery/StartNode.position
+				if first_start:
+					$Player.position = checkpoint_position
+					first_start = false
 
 				if !dead:
 					# Fade the scene in
@@ -233,5 +236,6 @@ func _load(step: int):
 			end_game()
 	intro_given = true
 	fridge_bridge_occurred = true
+	get_tree().call_group("splatter", "queue_free")
 
 

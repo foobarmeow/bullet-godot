@@ -101,7 +101,6 @@ func _on_continue_button_pressed():
 		h.show()
 
 func _on_fun_part_pressed():
-	print("FUN PART PRESSED")
 	$StartPlayer.play()
 	$AnimationPlayer.play("fun_part")
 	SignalBus.fun_part.emit()

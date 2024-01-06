@@ -168,5 +168,5 @@ libraries = {
 bus = &"SoundEffects"
 
 [node name="AudioReload" type="AudioStreamPlayer" parent="."]
-volume_db = -10.0
+volume_db = -4.0
 bus = &"SoundEffects"
