@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="BulletGodot"
-run/main_scene="res://scenes/levels/map_level_exp_2.tscn"
+config/name="BloodShotgun"
+run/main_scene="res://scenes/levels/map_level_1.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 
 [autoload]

@@ -8,7 +8,7 @@ var dialog_dict = {
 	"action_drink": "Drink!\n(space)",
 	"player_south_entrance_not_ready": [
 		"You're not ready my guy.",
-		"The Bad Guys™ are down there.",
+		"The Bad Guys are down there.",
 		"Go get my frickin La Croix, boy."
 	],
 	"intro": [
@@ -41,22 +41,22 @@ var dialog_dict = {
 	],
 	"head_south": [
 		"I see you have no La Croix...",
-		"I heard the Bad Guys™ talking smack,",
+		"I heard the Bad Guys talking smack,",
 		"sayin they took the last two La Croix's",
 		"and headed down south with 'em.",
 		"Go fetch-itize my La Croix boy,",
-		"and be careful the Bad Guys™",
+		"and be careful the Bad Guys",
 		"don't murkilate you."
 	],
 	"angel_of_death": [
 		"Hey what's up I'm the Angel of Death",
-		"These Bad Guys™ have the La Croix",
+		"These Bad Guys have the La Croix",
 		"Take it from them.",
 		"Use this."
 	],
 	"fin": [
 		"You've killed 'em all.",
-		"The Bad Guys™ are dead",
+		"The Bad Guys are dead",
 		"and still no La Croix.",
 		"Maybe the real La Croix",
 		"was the shotgun blood",

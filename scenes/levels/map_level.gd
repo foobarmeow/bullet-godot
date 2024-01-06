@@ -56,7 +56,7 @@ func _on_start_pressed():
 				$Player.continue_game()
 				SignalBus.player_ready.emit()
 				if !loaded:
-					_load(669)
+					#_load(669)
 					loaded = true
 	) 
 
@@ -226,6 +226,7 @@ func _load(step: int):
 			quest_given = true
 			$Player.has_weapon = true
 			set_checkpoint(4)
+			$Player.continue_game()
 		669:
 			SignalBus.change_music.emit(5)
 			$Player.position = $Scenery/DebugPosition.position	
