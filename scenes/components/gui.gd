@@ -37,6 +37,7 @@ func _ready():
 		_skip_gui()
 	$AnimationPlayer.animation_finished.connect(func(_a):
 		$TitleContainer/StartButton.disabled = false
+		$TitleContainer/StartButton.visible = true
 	, CONNECT_ONE_SHOT)
 
 
@@ -46,6 +47,7 @@ func _skip_gui():
 	$DevSplash.visible = false
 	$BGSprite.visible = false
 	$TitleContainer/StartButton.disabled = false
+	$TitleContainer/StartButton.visible = true
 
 var debug_music_track = 0
 func _unhandled_input(_event):
@@ -99,10 +101,13 @@ func _on_continue_button_pressed():
 		h.show()
 
 func _on_fun_part_pressed():
-	print("HERE FUCK")
+	print("FUN PART PRESSED")
 	$StartPlayer.play()
 	$AnimationPlayer.play("fun_part")
 	SignalBus.fun_part.emit()
+
+	for h in $HeartContainer.get_children():
+		h.show()
 
 
 func handle_music_change(track_index: int):
@@ -122,10 +127,10 @@ func switch_track(track_path: String):
 
 func fade(a_to_b: bool):
 	if a_to_b:
-		$AnimationPlayer.play("fade_a_to_b")
+		$AudioAnimator.play("fade_a_to_b")
 		dead_bus = "A"
 	else:
-		$AnimationPlayer.play("fade_b_to_a")
+		$AudioAnimator.play("fade_b_to_a")
 		dead_bus = "B"
 
 

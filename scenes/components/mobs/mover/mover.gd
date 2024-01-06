@@ -37,6 +37,7 @@ func _ready():
 	SignalBus.dead_title.connect(_stop)
 	SignalBus.start_pressed.connect(begin)
 	SignalBus.continue_pressed.connect(begin)
+	SignalBus.fun_part.connect(begin)
 
 func _stop():
 	alerted = false

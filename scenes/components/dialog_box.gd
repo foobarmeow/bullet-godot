@@ -59,7 +59,8 @@ var dialog_dict = {
 		"The Bad Guys™ are dead",
 		"and still no La Croix.",
 		"Maybe the real La Croix",
-		"was just the shotgun blood..."
+		"was the shotgun blood",
+		"that we spilled along the way..."
 	]
 }
 

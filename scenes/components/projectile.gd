@@ -29,6 +29,7 @@ func splatter(p: Vector2):
 		var s = Sprite2D.new()
 		s.texture = $SplatterSprite.texture
 		s.scale = $SplatterSprite.scale
+		s.add_to_group("splatter")
 		s.position = p
 		s.position.x += randf_range(-splatter_radius, splatter_radius)
 		s.position.y += randf_range(-splatter_radius, splatter_radius)
